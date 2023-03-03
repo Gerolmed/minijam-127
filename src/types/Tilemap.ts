@@ -13,7 +13,7 @@ type Entity = {
 
 }
 
-type Level = {
+export type Level = {
     identifier: string,
     iid: string,
     uid: number,
@@ -23,7 +23,7 @@ type Level = {
 
     layerInstances: Layer[],
 
-    __neighbours: []
+    __neighbours: Neighbour[]
 }
 
 export type Layer = {
@@ -36,7 +36,7 @@ export type Layer = {
     gridTiles: GridTile[]
 }
 
-type Neighbour = {
+export type Neighbour = {
     levelIid: string,
     dir: string
 }
