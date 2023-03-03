@@ -1,4 +1,8 @@
 import Phaser from 'phaser';
+import {Tilemap} from "../types/Tilemap";
+import {layerToIntGrid} from "../tilemap/Layer";
+import Sprite = Phaser.GameObjects.Sprite;
+import {ChunkedTilemap} from "../tilemap/ChunkedTilemap";
 
 export default class Demo extends Phaser.Scene {
   constructor() {
@@ -6,19 +10,18 @@ export default class Demo extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('logo', 'assets/phaser3-logo.png');
+    this.load.image("logo", 'assets/phaser3-logo.png');
+    this.load.json("map", "assets/map/map.ldtk")
+    this.load.spritesheet("tileset", "assets/tilesets/tileset_overworld.png", {
+      frameWidth: 16,
+      frameHeight: 16,
+      spacing: 1,
+      margin: 0
+    })
   }
 
   create() {
-    const logo = this.add.image(400, 70, 'logo');
-
-    this.tweens.add({
-      targets: logo,
-      y: 350,
-      duration: 1500,
-      ease: 'Sine.inOut',
-      yoyo: true,
-      repeat: -1
-    });
+    const map: Tilemap = this.cache.json.get("map");
+    new ChunkedTilemap(map).draw(this);
   }
 }
