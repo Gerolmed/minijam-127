@@ -24,6 +24,7 @@ export class LivingEntity extends Entity {
 
     protected createPhysicsConfig(): MatterBodyConfig {
         return {
+            frictionAir: .1
         }
     }
 

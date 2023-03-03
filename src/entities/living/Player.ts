@@ -32,7 +32,7 @@ export class Player extends LivingEntity {
     protected createPhysicsConfig(): Phaser.Types.Physics.Matter.MatterBodyConfig {
         return {
             ...super.createPhysicsConfig(),
-            frictionAir: .2,
+            frictionAir: .3,
             mass: 2,
             inverseMass: 1/2,
         };
