@@ -3,6 +3,7 @@ import {Tilemap} from "../types/Tilemap";
 import {layerToIntGrid} from "../tilemap/Layer";
 import Sprite = Phaser.GameObjects.Sprite;
 import {ChunkedTilemap} from "../tilemap/ChunkedTilemap";
+import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
 
 export default class Demo extends Phaser.Scene {
   constructor() {
@@ -22,6 +23,8 @@ export default class Demo extends Phaser.Scene {
 
   create() {
     const map: Tilemap = this.cache.json.get("map");
-    new ChunkedTilemap(map).draw(this);
+    const tilemap = new ChunkedTilemap(map, new OverworldAreaFactory());
+    const areas = tilemap.getAreas();
+    tilemap.enter(this, areas[0]);
   }
 }
