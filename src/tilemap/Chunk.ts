@@ -10,6 +10,9 @@ import RenderTexture = Phaser.GameObjects.RenderTexture;
 
 export class Chunk {
 
+
+    private container?: Container;
+
     constructor(private readonly area: Area, private readonly level: Level) {
 
     }
@@ -21,8 +24,8 @@ export class Chunk {
     }
 
     render(scene: Scene, params: ChunkParams) {
-        const container = scene.add.container(0, 0);
-        params.mapContainer.add(container);
+        this.container = scene.add.container(0, 0);
+        params.mapContainer.add(this.container);
         const walls = params.tileEnums.getTiles("Wall")
         this.level.layerInstances.forEach(layer => {
             const grid = layerToIntGrid(layer);
@@ -32,7 +35,7 @@ export class Chunk {
                     const index = grid[x][y];
                     if(index == 0) continue;
                     const sprite = scene.add.sprite(x * layer.__gridSize + this.level.worldX, y * layer.__gridSize + this.level.worldY, "tileset", index)
-                    container.add(sprite);
+                    this.container!.add(sprite);
 
                     if(!params.hasPhysics || !walls.includes(index)) continue;
 
@@ -53,6 +56,9 @@ export class Chunk {
 
     unload(scene: Scene) {
         this.physicsBodies.forEach(value => scene.matter.world.remove(value));
+
+        this.container?.destroy(true)
+        this.container = undefined;
     }
 
 }
