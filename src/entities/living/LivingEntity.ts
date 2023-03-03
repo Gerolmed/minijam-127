@@ -1,6 +1,7 @@
 import {Entity} from "../Entity";
 import {Animator} from "../../animations/Animator";
 import {Scene} from "phaser";
+import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 
 export class LivingEntity extends Entity {
     protected readonly animator: Animator;
@@ -18,7 +19,12 @@ export class LivingEntity extends Entity {
     }
 
     protected createPhysics() {
-        return this.scene.matter.add.circle(this.x, this.y,30, {})
+        return this.scene.matter.add.circle(this.x, this.y,30, this.createPhysicsConfig())
+    }
+
+    protected createPhysicsConfig(): MatterBodyConfig {
+        return {
+        }
     }
 
 }
