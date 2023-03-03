@@ -9,13 +9,32 @@ import {Jukebox} from "../audio/JukeBox";
 
 export default class Demo extends Phaser.Scene {
 
-    private readonly jukebox = new Jukebox();
+    private readonly jukebox!: Jukebox;
 
     constructor() {
         super('GameScene');
+        this.jukebox = new Jukebox(this, {
+            defaultTheme: "test",
+            themes: {
+                test: [
+                    {
+                        paths: [
+                            "assets/audio/music/test/test.mp3",
+                        ]
+                    },
+                    {
+                        paths: [
+                            "assets/audio/music/test/test2.mp3",
+                        ]
+                    },
+                ]
+            }
+        });
     }
 
     preload() {
+        this.jukebox.load();
+
         this.load.image("logo", 'assets/phaser3-logo.png');
         this.load.json("map", "assets/map/map.ldtk")
         this.load.spritesheet("tileset", "assets/tilesets/tileset_overworld.png", {
@@ -25,7 +44,6 @@ export default class Demo extends Phaser.Scene {
             margin: 0
         })
 
-        this.jukebox.load(this);
     }
 
     private addEntity<T extends Entity>(entity: T): T {
@@ -35,6 +53,8 @@ export default class Demo extends Phaser.Scene {
     }
 
     create() {
+        this.jukebox.start();
+
         const mapContainer = this.add.container(0, 0,);
         const map: Tilemap = this.cache.json.get("map");
         const tilemap = new ChunkedTilemap(map, mapContainer, new OverworldAreaFactory());
