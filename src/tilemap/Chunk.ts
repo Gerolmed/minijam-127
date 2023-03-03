@@ -7,12 +7,15 @@ import {getThemeTileset, Theme, Themes} from "../painting/Theme";
 import GameObject = Phaser.GameObjects.GameObject;
 import RenderTexture = Phaser.GameObjects.RenderTexture;
 import Sprite = Phaser.GameObjects.Sprite;
+import Transform = Phaser.GameObjects.Components.Transform;
 
 export class Chunk {
 
 
     private gameObjects: GameObject[] = [];
     private masks: Map<Theme, RenderTexture> = new Map();
+    private maskOffsetX: number = 0;
+    private maskOffsetY: number = 0;
 
     constructor(private readonly area: Area, private readonly level: Level) {
 
@@ -25,15 +28,19 @@ export class Chunk {
     }
 
 
-    paint(object: GameObject, theme: Theme) {
+    paint(object: GameObject & Transform, theme: Theme) {
         if(!this.masks.has(theme))
             return;
 
         const mask = this.masks.get(theme)!;
 
+        object.setPosition(object.x - this.maskOffsetX, object.y - this.maskOffsetY);
+
         mask.beginDraw();
         mask.batchDraw(object);
         mask.endDraw();
+
+        object.setPosition(object.x + this.maskOffsetX, object.y + this.maskOffsetY);
     }
 
 
@@ -42,9 +49,12 @@ export class Chunk {
         this.level.layerInstances.forEach(layer => {
             const grid = layerToIntGrid(layer);
             Themes.forEach(theme => {
+                this.maskOffsetX = this.level.worldX - 0.5 * layer.__gridSize;
+                this.maskOffsetY = this.level.worldY - 0.5 * layer.__gridSize;
+
                 const renderTexture = scene.add.renderTexture(
-                    this.level.worldX - 0.5 * layer.__gridSize,
-                    this.level.worldY - 0.5 * layer.__gridSize,
+                    this.maskOffsetX,
+                    this.maskOffsetY,
                     layer.__cWid * layer.__gridSize,
                     layer.__cHei * layer.__gridSize
                 );

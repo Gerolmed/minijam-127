@@ -6,6 +6,7 @@ import {Entity} from "../entities/Entity";
 import {LivingEntity} from "../entities/living/LivingEntity";
 import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
 import {Jukebox} from "../audio/JukeBox";
+import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
 
 export default class Demo extends Phaser.Scene {
@@ -45,6 +46,12 @@ export default class Demo extends Phaser.Scene {
             margin: 0
         })
 
+        this.load.spritesheet("tileset_orange", "assets/tilesets/tileset_overworld_orange.png", {
+            frameWidth: 16,
+            frameHeight: 16,
+            spacing: 1,
+            margin: 0
+        })
     }
 
     private addEntity<T extends Entity>(entity: T): T {
@@ -57,6 +64,7 @@ export default class Demo extends Phaser.Scene {
         this.jukebox.start();
 
         this.textures.get("tileset").setFilter(FilterMode.NEAREST);
+        this.textures.get("tileset_orange").setFilter(FilterMode.NEAREST);
 
         const map: Tilemap = this.cache.json.get("map");
         const tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
@@ -72,6 +80,11 @@ export default class Demo extends Phaser.Scene {
         // Unlocks audio after first click
         this.sound.unlock();
 
+
+        // TODO: remove
+        setInterval(() => {
+            tilemap.paint(player, Theme.ORANGE);
+        }, 5 * 1000)
     }
 
     update(time: number, delta: number) {

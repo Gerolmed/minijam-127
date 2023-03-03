@@ -5,6 +5,8 @@ import {Area} from "../world/Area";
 import {Chunk} from "./Chunk";
 import Container = Phaser.GameObjects.Container;
 import {TileTagStore} from "./TileTagStore";
+import GameObject = Phaser.GameObjects.GameObject;
+import {Theme} from "../painting/Theme";
 
 
 export class ChunkedTilemap {
@@ -15,6 +17,7 @@ export class ChunkedTilemap {
     private readonly mapContainer: Container;
 
     private loadedChunks: Chunk[] = [];
+
 
     constructor(map: Tilemap, areaFactory: AreaFactory, scene: Scene) {
         map.levels.forEach(level => {
@@ -51,10 +54,14 @@ export class ChunkedTilemap {
         return result;
     }
 
-    private async load(scene: Scene, area: Area) {
+    paint(obj: GameObject, theme: Theme) {
+        this.loadedChunks.forEach(chunk => chunk.paint(obj, theme));
+    }
+
+    private async load(scene: Scene, area: Area): Promise<Chunk> {
         const loadedChunk = this.loadedChunks.find(chunk => chunk.getArea() === area);
 
-        if(!!loadedChunk) return;
+        if(!!loadedChunk) return loadedChunk;
 
         const chunk = area.createChunkInstance();
         chunk.render(scene, {
@@ -62,6 +69,9 @@ export class ChunkedTilemap {
             tileEnums: this.tileTagStore,
             hasPhysics: true,
         });
+
+        this.loadedChunks.push(chunk);
+        return chunk;
     }
 
     private clean(scene: Scene, requiredChunks: Area[]) {
