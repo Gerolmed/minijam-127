@@ -51,7 +51,8 @@ export class ChunkedTilemap {
         const chunk = area.createChunkInstance();
         chunk.render(scene, {
             mapContainer: this.mapContainer,
-            tileEnums: new TileTagStore()
+            tileEnums: new TileTagStore(),
+            hasPhysics: true,
         });
     }
 
