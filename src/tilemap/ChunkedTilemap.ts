@@ -5,7 +5,7 @@ import {Area} from "../world/Area";
 import {Chunk} from "./Chunk";
 import Container = Phaser.GameObjects.Container;
 import {TileTagStore} from "./TileTagStore";
-import {Color, Colors} from "../painting/Color";
+
 
 export class ChunkedTilemap {
 
