@@ -9,12 +9,17 @@ import {TileTagStore} from "./TileTagStore";
 export class ChunkedTilemap {
 
     private areas: Map<string, Area> = new Map();
+
+    private readonly tileTagStore: TileTagStore;
+
     private loadedChunks: Chunk[] = [];
 
     constructor(map: Tilemap, private readonly mapContainer: Container, areaFactory: AreaFactory) {
         map.levels.forEach(level => {
             this.areas.set(level.iid, areaFactory.produce(level));
         })
+
+        this.tileTagStore = new TileTagStore(map.defs.tilesets);
     }
 
 
@@ -51,7 +56,7 @@ export class ChunkedTilemap {
         const chunk = area.createChunkInstance();
         chunk.render(scene, {
             mapContainer: this.mapContainer,
-            tileEnums: new TileTagStore()
+            tileEnums: this.tileTagStore
         });
     }
 

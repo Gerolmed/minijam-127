@@ -5,6 +5,7 @@ enum LayerType {
 
 
 export type Tilemap = {
+    defs: TypeDef,
     entities: Entity[],
     levels: Level[]
 }
@@ -47,4 +48,18 @@ type GridTile = {
     f: number,
     t: number,
     d: [number]
+}
+
+type TypeDef = {
+    tilesets: TilesetDef[]
+}
+
+export type TilesetDef = {
+    identifier: string,
+    enumTags: TilesetDefEnumValue[]
+}
+
+export type TilesetDefEnumValue = {
+    enumValueId: string,
+    tileIds: number[]
 }
