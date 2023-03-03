@@ -39,6 +39,16 @@ export class Chunk {
                 params.mapContainer.add(renderTexture);
                 this.gameObjects.push(renderTexture);
 
+                const sprite = new Sprite(
+                    scene,
+                    0,
+                    0,
+                    "tileset",
+                    1
+                )
+
+                renderTexture.setMask(sprite.createBitmapMask())
+
                 this.renderLayer(layer, scene, params, walls, grid, color, renderTexture)
             })
         })

@@ -7,7 +7,7 @@ export enum Color {
 }
 
 
-export const Colors: Color[] = [Color.ORANGE, Color.DEFAULT];
+export const Colors: Color[] = [Color.ORANGE];
 
 
 export function getColorTileset(color: Color): string {
