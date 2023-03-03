@@ -5,6 +5,7 @@ import {Player} from "../entities/living/Player";
 import {Entity} from "../entities/Entity";
 import {LivingEntity} from "../entities/living/LivingEntity";
 import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
+import WebAudioSoundManager = Phaser.Sound.WebAudioSoundManager;
 
 export default class Demo extends Phaser.Scene {
     constructor() {
@@ -39,5 +40,12 @@ export default class Demo extends Phaser.Scene {
         this.addEntity(new LivingEntity(this, 200, 100))
 
         this.cameras.main.startFollow(player, false, .09, .09);
+    }
+
+    update(time: number, delta: number) {
+        const sound = this.game.sound as WebAudioSoundManager;
+        if (sound.context.state === 'suspended') {
+            sound.context.resume().catch(e => console.error(e));
+        }
     }
 }
