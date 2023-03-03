@@ -4,6 +4,7 @@ import {AreaFactory} from "../world/AreaFactory";
 import {Area} from "../world/Area";
 import {Chunk} from "./Chunk";
 import Container = Phaser.GameObjects.Container;
+import {TileTagStore} from "./TileTagStore";
 
 export class ChunkedTilemap {
 
@@ -48,7 +49,10 @@ export class ChunkedTilemap {
         if(!!loadedChunk) return;
 
         const chunk = area.createChunkInstance();
-        chunk.render(scene, this.mapContainer);
+        chunk.render(scene, {
+            mapContainer: this.mapContainer,
+            tileEnums: new TileTagStore()
+        });
     }
 
     private clean(scene: Scene, requiredChunks: Area[]) {

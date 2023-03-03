@@ -4,6 +4,7 @@ import {Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
 import Sprite = Phaser.GameObjects.Sprite;
 import Container = Phaser.GameObjects.Container;
+import {ChunkParams} from "./ChunkParams";
 
 export class Chunk {
 
@@ -15,9 +16,9 @@ export class Chunk {
         return this.area;
     }
 
-    render(scene: Scene, mapContainer: Container) {
+    render(scene: Scene, params: ChunkParams) {
         const container = scene.add.container(0, 0);
-        mapContainer.add(container);
+        params.mapContainer.add(container);
 
         this.level.layerInstances.forEach(layer => {
             const grid = layerToIntGrid(layer);
