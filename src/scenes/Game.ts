@@ -5,6 +5,7 @@ import {Player} from "../entities/living/Player";
 import {Entity} from "../entities/Entity";
 import {LivingEntity} from "../entities/living/LivingEntity";
 import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
+import FilterMode = Phaser.Textures.FilterMode;
 
 export default class Demo extends Phaser.Scene {
     constructor() {
@@ -29,6 +30,8 @@ export default class Demo extends Phaser.Scene {
     }
 
     create() {
+        this.textures.get("tileset").setFilter(FilterMode.NEAREST);
+
         const map: Tilemap = this.cache.json.get("map");
         const tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
         const areas = tilemap.getAreas();

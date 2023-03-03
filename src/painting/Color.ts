@@ -2,13 +2,12 @@ import Container = Phaser.GameObjects.Container;
 
 export enum Color {
     ORANGE,
-    TEST1,
 
     DEFAULT
 }
 
 
-export const Colors: Color[] = [Color.ORANGE, Color.DEFAULT, Color.TEST1];
+export const Colors: Color[] = [Color.ORANGE, Color.DEFAULT];
 
 
 export function getColorTileset(color: Color): string {

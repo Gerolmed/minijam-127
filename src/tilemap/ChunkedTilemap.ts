@@ -12,7 +12,7 @@ export class ChunkedTilemap {
     private areas: Map<string, Area> = new Map();
 
     private readonly tileTagStore: TileTagStore;
-    private readonly colorMap: Map<Color, Container> = new Map();
+    private readonly mapContainer: Container;
 
     private loadedChunks: Chunk[] = [];
 
@@ -22,10 +22,7 @@ export class ChunkedTilemap {
         })
 
         this.tileTagStore = new TileTagStore(map.defs.tilesets);
-
-        Colors.forEach(color => {
-            this.colorMap.set(color, scene.add.container(0, 0));
-        })
+        this.mapContainer = scene.add.container(0, 0);
     }
 
 
@@ -61,7 +58,7 @@ export class ChunkedTilemap {
 
         const chunk = area.createChunkInstance();
         chunk.render(scene, {
-            colorContainer: this.colorMap,
+            mapContainer: this.mapContainer,
             tileEnums: this.tileTagStore,
             hasPhysics: true,
         });
