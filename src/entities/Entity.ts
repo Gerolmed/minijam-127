@@ -21,7 +21,7 @@ export class Entity extends Container {
 
     public update(deltaTime: number): void {
         if(TimeManager.isGameFrozen) return;
-        this.safeUpdate(deltaTime);
+        this.safeUpdate(deltaTime/1000);
     }
     protected safeUpdate(deltaTime: number): void {
 
