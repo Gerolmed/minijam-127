@@ -6,8 +6,8 @@ import Vector2 = Phaser.Math.Vector2;
 export class Player extends LivingEntity {
 
     private arrow!: CursorKeys;
-    private speed = 50;
-    private acceleration = 100;
+    private speed = 20;
+    private acceleration = 50;
     private movement!: {
         up: Key,
         down: Key,

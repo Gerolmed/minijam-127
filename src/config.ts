@@ -5,10 +5,13 @@ export default {
     parent: 'game',
     backgroundColor: '#33A5E7',
     scale: {
-        width: 800,
-        height: 600,
+        width: 256 * 4,
+        height: 144 * 4,
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    render: {
+        pixelArt: true
     },
 
     physics: {

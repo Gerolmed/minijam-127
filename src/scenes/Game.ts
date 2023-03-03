@@ -74,6 +74,8 @@ export default class Demo extends Phaser.Scene {
         const player = this.addEntity(new Player(this, 300, 100))
         this.addEntity(new LivingEntity(this, 200, 100))
 
+        this.cameras.main.zoom = 4;
+
         this.cameras.main.startFollow(player, false, .09, .09);
 
 

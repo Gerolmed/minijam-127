@@ -19,7 +19,7 @@ export class LivingEntity extends Entity {
     }
 
     protected createPhysics() {
-        return this.scene.matter.add.circle(this.x, this.y,30, this.createPhysicsConfig())
+        return this.scene.matter.add.circle(this.x, this.y,10, this.createPhysicsConfig())
     }
 
     protected createPhysicsConfig(): MatterBodyConfig {
