@@ -3,9 +3,8 @@ import {Scene} from "phaser";
 import {Layer, Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
 import {ChunkParams} from "./ChunkParams";
+import {getThemeTileset, Theme, Themes} from "../painting/Theme";
 import GameObject = Phaser.GameObjects.GameObject;
-import {Color, Colors, getColorTileset} from "../painting/Color";
-import Container = Phaser.GameObjects.Container;
 import RenderTexture = Phaser.GameObjects.RenderTexture;
 import Sprite = Phaser.GameObjects.Sprite;
 
@@ -13,6 +12,7 @@ export class Chunk {
 
 
     private gameObjects: GameObject[] = [];
+    private masks: Map<Theme, RenderTexture> = new Map();
 
     constructor(private readonly area: Area, private readonly level: Level) {
 
@@ -24,11 +24,24 @@ export class Chunk {
         return this.area;
     }
 
+
+    paint(object: GameObject, theme: Theme) {
+        if(!this.masks.has(theme))
+            return;
+
+        const mask = this.masks.get(theme)!;
+
+        mask.beginDraw();
+        mask.batchDraw(object);
+        mask.endDraw();
+    }
+
+
     render(scene: Scene, params: ChunkParams) {
         const walls = params.tileEnums.getTiles("Wall")
         this.level.layerInstances.forEach(layer => {
             const grid = layerToIntGrid(layer);
-            Colors.forEach(color => {
+            Themes.forEach(theme => {
                 const renderTexture = scene.add.renderTexture(
                     this.level.worldX - 0.5 * layer.__gridSize,
                     this.level.worldY - 0.5 * layer.__gridSize,
@@ -39,23 +52,28 @@ export class Chunk {
                 params.mapContainer.add(renderTexture);
                 this.gameObjects.push(renderTexture);
 
-                const sprite = new Sprite(
-                    scene,
-                    0,
-                    0,
-                    "tileset",
-                    1
-                )
+                if(theme !== Theme.DEFAULT) {
+                    const maskTexture = new RenderTexture(
+                        scene,
+                        this.level.worldX - 0.5 * layer.__gridSize,
+                        this.level.worldY - 0.5 * layer.__gridSize,
+                        layer.__cWid * layer.__gridSize,
+                        layer.__cHei * layer.__gridSize
+                    )
+                    maskTexture.setOrigin(0,0);
+                    this.gameObjects.push(maskTexture);
 
-                renderTexture.setMask(sprite.createBitmapMask())
+                    renderTexture.setMask(maskTexture.createBitmapMask());
+                    this.masks.set(theme, maskTexture);
+                }
 
-                this.renderLayer(layer, scene, params, walls, grid, color, renderTexture)
+                this.renderLayer(layer, scene, params, walls, grid, theme, renderTexture)
             })
         })
     }
 
 
-    private renderLayer(layer: Layer, scene: Scene, params: ChunkParams, walls: number[], grid: number[][], color: Color, renderTexture: RenderTexture) {
+    private renderLayer(layer: Layer, scene: Scene, params: ChunkParams, walls: number[], grid: number[][], theme: Theme, renderTexture: RenderTexture) {
         for(let x = 0; x < layer.__cWid; x++) {
             for(let y = 0; y < layer.__cHei; y++) {
                 const index = grid[x][y];
@@ -65,7 +83,7 @@ export class Chunk {
                     scene,
                     x * layer.__gridSize,
                     y * layer.__gridSize,
-                    getColorTileset(color),
+                    getThemeTileset(theme),
                     index
                 )
                 sprite.setOrigin(0, 0);
