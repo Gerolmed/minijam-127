@@ -2,6 +2,7 @@ import {Area} from "../world/Area";
 import {Scene} from "phaser";
 import {Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
+import Sprite = Phaser.GameObjects.Sprite;
 
 export class Chunk {
 
@@ -14,6 +15,7 @@ export class Chunk {
     }
 
     render(scene: Scene) {
+        const container = scene.add.container(0, 0);
         this.level.layerInstances.forEach(layer => {
             const grid = layerToIntGrid(layer);
 
@@ -21,7 +23,8 @@ export class Chunk {
                 for(let y = 0; y < layer.__cHei; y++) {
                     const index = grid[x][y];
                     if(index == 0) continue;
-                    scene.add.sprite(x * layer.__gridSize + this.level.worldX, y * layer.__gridSize + this.level.worldY, "tileset", index)
+                    const sprite = scene.add.sprite(x * layer.__gridSize + this.level.worldX, y * layer.__gridSize + this.level.worldY, "tileset", index)
+                    container.add(sprite);
                 }
             }
         })
