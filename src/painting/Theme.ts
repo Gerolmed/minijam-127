@@ -5,7 +5,7 @@ export enum Theme {
 }
 
 
-export const Themes: Theme[] = [Theme.ORANGE];
+export const Themes: Theme[] = [Theme.ORANGE, Theme.DEFAULT];
 
 
 export function getThemeTileset(theme: Theme): string {
