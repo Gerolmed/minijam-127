@@ -17,6 +17,8 @@ jobs:
         run: |
           yarn install
           yarn run build
+        env:
+          DEPLOY_BASE_PATH: "/minijam-127/"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
