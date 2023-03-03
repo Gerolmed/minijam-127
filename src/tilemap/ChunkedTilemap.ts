@@ -5,21 +5,27 @@ import {Area} from "../world/Area";
 import {Chunk} from "./Chunk";
 import Container = Phaser.GameObjects.Container;
 import {TileTagStore} from "./TileTagStore";
+import {Color, Colors} from "../painting/Color";
 
 export class ChunkedTilemap {
 
     private areas: Map<string, Area> = new Map();
 
     private readonly tileTagStore: TileTagStore;
+    private readonly colorMap: Map<Color, Container> = new Map();
 
     private loadedChunks: Chunk[] = [];
 
-    constructor(map: Tilemap, private readonly mapContainer: Container, areaFactory: AreaFactory) {
+    constructor(map: Tilemap, areaFactory: AreaFactory, scene: Scene) {
         map.levels.forEach(level => {
             this.areas.set(level.iid, areaFactory.produce(level));
         })
 
         this.tileTagStore = new TileTagStore(map.defs.tilesets);
+
+        Colors.forEach(color => {
+            this.colorMap.set(color, scene.add.container(0, 0));
+        })
     }
 
 
@@ -55,7 +61,7 @@ export class ChunkedTilemap {
 
         const chunk = area.createChunkInstance();
         chunk.render(scene, {
-            mapContainer: this.mapContainer,
+            colorContainer: this.colorMap,
             tileEnums: this.tileTagStore,
             hasPhysics: true,
         });

@@ -29,9 +29,8 @@ export default class Demo extends Phaser.Scene {
     }
 
     create() {
-        const mapContainer = this.add.container(0, 0,);
         const map: Tilemap = this.cache.json.get("map");
-        const tilemap = new ChunkedTilemap(map, mapContainer, new OverworldAreaFactory());
+        const tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
         const areas = tilemap.getAreas();
         tilemap.enter(this, areas[0]);
 

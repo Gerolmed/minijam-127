@@ -2,16 +2,15 @@ import {Area} from "../world/Area";
 import {Scene} from "phaser";
 import {Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
-import Sprite = Phaser.GameObjects.Sprite;
-import Container = Phaser.GameObjects.Container;
 import {ChunkParams} from "./ChunkParams";
-import BitmapMask = Phaser.Display.Masks.BitmapMask;
-import RenderTexture = Phaser.GameObjects.RenderTexture;
+import GameObject = Phaser.GameObjects.GameObject;
+import {Color, Colors, getColorTileset} from "../painting/Color";
+import Container = Phaser.GameObjects.Container;
 
 export class Chunk {
 
 
-    private container?: Container;
+    private gameObjects: GameObject[] = [];
 
     constructor(private readonly area: Area, private readonly level: Level) {
 
@@ -24,8 +23,14 @@ export class Chunk {
     }
 
     render(scene: Scene, params: ChunkParams) {
-        this.container = scene.add.container(0, 0);
-        params.mapContainer.add(this.container);
+        const colorContainers = new Map<Color, Container>();
+        Colors.forEach(color => {
+            const container = scene.add.container(0, 0);
+            colorContainers.set(color, container);
+            params.colorContainer.get(color)!.add(container);
+            this.gameObjects.push(container);
+        })
+
         const walls = params.tileEnums.getTiles("Wall")
         this.level.layerInstances.forEach(layer => {
             const grid = layerToIntGrid(layer);
@@ -34,8 +39,17 @@ export class Chunk {
                 for(let y = 0; y < layer.__cHei; y++) {
                     const index = grid[x][y];
                     if(index == 0) continue;
-                    const sprite = scene.add.sprite(x * layer.__gridSize + this.level.worldX, y * layer.__gridSize + this.level.worldY, "tileset", index)
-                    this.container!.add(sprite);
+
+                    Colors.forEach(color =>  {
+                        const sprite = scene.add.sprite(
+                            x * layer.__gridSize + this.level.worldX,
+                            y * layer.__gridSize + this.level.worldY,
+                            getColorTileset(color),
+                            index
+                        )
+
+                        colorContainers.get(color)!.add(sprite);
+                    });
 
                     if(!params.hasPhysics || !walls.includes(index)) continue;
 
@@ -57,8 +71,8 @@ export class Chunk {
     unload(scene: Scene) {
         this.physicsBodies.forEach(value => scene.matter.world.remove(value));
 
-        this.container?.destroy(true)
-        this.container = undefined;
+        this.gameObjects.forEach(object => object.destroy(true));
+        this.gameObjects = [];
     }
 
 }
