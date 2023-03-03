@@ -5,23 +5,28 @@ import {Player} from "../entities/living/Player";
 import {Entity} from "../entities/Entity";
 import {LivingEntity} from "../entities/living/LivingEntity";
 import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
-import WebAudioSoundManager = Phaser.Sound.WebAudioSoundManager;
+import {Jukebox} from "../audio/JukeBox";
 
 export default class Demo extends Phaser.Scene {
+
+    private readonly jukebox = new Jukebox();
+
     constructor() {
         super('GameScene');
     }
 
-  preload() {
-    this.load.image("logo", 'assets/phaser3-logo.png');
-    this.load.json("map", "assets/map/map.ldtk")
-    this.load.spritesheet("tileset", "assets/tilesets/tileset_overworld.png", {
-      frameWidth: 16,
-      frameHeight: 16,
-      spacing: 1,
-      margin: 0
-    })
-  }
+    preload() {
+        this.load.image("logo", 'assets/phaser3-logo.png');
+        this.load.json("map", "assets/map/map.ldtk")
+        this.load.spritesheet("tileset", "assets/tilesets/tileset_overworld.png", {
+            frameWidth: 16,
+            frameHeight: 16,
+            spacing: 1,
+            margin: 0
+        })
+
+        this.jukebox.load(this);
+    }
 
     private addEntity<T extends Entity>(entity: T): T {
         entity.create();
@@ -40,12 +45,14 @@ export default class Demo extends Phaser.Scene {
         this.addEntity(new LivingEntity(this, 200, 100))
 
         this.cameras.main.startFollow(player, false, .09, .09);
+
+
+        // Unlocks audio after first click
+        this.sound.unlock();
+
     }
 
     update(time: number, delta: number) {
-        const sound = this.game.sound as WebAudioSoundManager;
-        if (sound.context.state === 'suspended') {
-            sound.context.resume().catch(e => console.error(e));
-        }
+        this.jukebox.update(delta/1000)
     }
 }
