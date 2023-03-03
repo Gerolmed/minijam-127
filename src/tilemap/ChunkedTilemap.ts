@@ -3,13 +3,14 @@ import {Scene} from "phaser";
 import {AreaFactory} from "../world/AreaFactory";
 import {Area} from "../world/Area";
 import {Chunk} from "./Chunk";
+import Container = Phaser.GameObjects.Container;
 
 export class ChunkedTilemap {
 
     private areas: Map<string, Area> = new Map();
     private loadedChunks: Chunk[] = [];
 
-    constructor(map: Tilemap, areaFactory: AreaFactory) {
+    constructor(map: Tilemap, private readonly mapContainer: Container, areaFactory: AreaFactory) {
         map.levels.forEach(level => {
             this.areas.set(level.iid, areaFactory.produce(level));
         })
@@ -47,7 +48,7 @@ export class ChunkedTilemap {
         if(!!loadedChunk) return;
 
         const chunk = area.createChunkInstance();
-        chunk.render(scene);
+        chunk.render(scene, this.mapContainer);
     }
 
     private clean(scene: Scene, requiredChunks: Area[]) {
