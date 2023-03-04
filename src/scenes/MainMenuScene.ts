@@ -1,13 +1,33 @@
 import {Scene} from "phaser";
 import Constants from "../Constants";
 import {Button} from "../ui/Button";
+import {Jukebox} from "../audio/JukeBox";
 
 export class MainMenuScene extends Scene {
+
+    private readonly jukebox!: Jukebox;
+
+
     constructor() {
         super("MainMenu");
+
+        this.jukebox = new Jukebox(this, {
+            defaultTheme: "overworld",
+            themes: {
+                overworld: [
+                    {
+                        paths: [
+                            "assets/audio/music/overworld/PreVersion.mp3",
+                        ]
+                    },
+                ]
+            }
+        });
     }
 
     preload() {
+        this.jukebox.load();
+
         this.load.image("border", "assets/Menu/Border.png")
         this.load.aseprite("btn_continue", "assets/Menu/Button_Continue.png", "assets/Menu/Button_Continue.json")
         this.load.aseprite("btn_new_game", "assets/Menu/Button_NewGame.png", "assets/Menu/Button_NewGame.json")
@@ -18,13 +38,10 @@ export class MainMenuScene extends Scene {
     }
 
     create() {
+        this.jukebox.start();
 
         const camera = this.cameras.main;
 
-        // camera.zoom = Constants.UPSCALE_FACTOR;
-
-        // Black Magic value I hate math
-        // camera.setScroll(-480, -270);
 
         this.add.sprite(0,0, "border").setOrigin(0,0).setScale(Constants.UPSCALE_FACTOR)
         const logo = this.add.sprite(0,0, "logo").setOrigin(0,0).setScale(Constants.UPSCALE_FACTOR)
@@ -40,7 +57,15 @@ export class MainMenuScene extends Scene {
 
         this.add.existing(new Button(this, "btn_new_game",camera.width -250, 150, () => this.startNewGame()).setScale(Constants.UPSCALE_FACTOR))
         this.add.existing(new Button(this, "btn_continue",camera.width -250, 250).setScale(Constants.UPSCALE_FACTOR))
+
+        this.events.on('shutdown', () => this.jukebox.kill())
     }
+
+    update(time: number, delta: number) {
+        super.update(time, delta);
+        this.jukebox.update(delta/1000)
+    }
+
 
     private startNewGame() {
         this.sys.scenePlugin.start("HUDScene")

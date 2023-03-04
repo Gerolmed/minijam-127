@@ -27,17 +27,12 @@ export default class GameScene extends Phaser.Scene {
             key: "GameScene"
         });
         this.jukebox = new Jukebox(this, {
-            defaultTheme: "test",
+            defaultTheme: "overworld",
             themes: {
-                test: [
+                overworld: [
                     {
                         paths: [
-                            "assets/audio/music/test/test.mp3",
-                        ]
-                    },
-                    {
-                        paths: [
-                            "assets/audio/music/test/test2.mp3",
+                            "assets/audio/music/overworld/PreVersion.mp3",
                         ]
                     },
                 ]
@@ -108,6 +103,8 @@ export default class GameScene extends Phaser.Scene {
         this.sound.unlock();
 
         this.ready = true;
+
+        this.events.on('shutdown', () => this.jukebox.kill())
 
     }
 
