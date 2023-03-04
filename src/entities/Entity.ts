@@ -12,7 +12,8 @@ export class Entity extends Container {
     }
 
     public destroy() {
-        super.destroy(true)
+        this.scene.sys.updateList.remove(this);
+        super.destroy()
     }
 
     public preUpdate(time: number, delta: number) {
