@@ -3,6 +3,7 @@ import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
 import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
 import Vector2 = Phaser.Math.Vector2;
 import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
+import {IBodyDefinition} from "matter";
 
 export class Player extends LivingEntity {
 
@@ -26,7 +27,7 @@ export class Player extends LivingEntity {
         })
     }
 
-    protected createPhysicsConfig(): Phaser.Types.Physics.Matter.MatterBodyConfig {
+    protected createPhysicsConfig(): IBodyDefinition {
         return {
             ...super.createPhysicsConfig(),
             frictionAir: .3,

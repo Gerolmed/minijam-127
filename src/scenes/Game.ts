@@ -81,7 +81,7 @@ export default class GameScene extends Phaser.Scene {
         const physicsSocket = new PhysicsSocket();
         physicsSocket.setPlayer(player);
         physicsSocket.setTilemap(tilemap);
-        this.addEntity(new Wolf(this, 200, 100, physicsSocket))
+        this.addEntity(new Wolf(this, 200, 150, physicsSocket))
 
         this.cameras.main.zoom = 4;
         this.cameras.main.startFollow(player, false, .09, .09);

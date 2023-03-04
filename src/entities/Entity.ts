@@ -12,7 +12,7 @@ export class Entity extends Container {
     }
 
     public destroy() {
-
+        super.destroy(true)
     }
 
     public preUpdate(time: number, delta: number) {

@@ -1,6 +1,7 @@
 import GameObject = Phaser.GameObjects.GameObject;
 import {Scene} from "phaser";
 import Sprite = Phaser.GameObjects.Sprite;
+import PlayerAnimationKeys from "./PlayerAnimationKeys";
 
 export class Animator {
 
@@ -10,7 +11,7 @@ export class Animator {
         private scene: Scene,
         private animationSheets: string[] = []
     ) {
-        this.rootInstance = new Sprite(scene, 0,0, "logo");
+        this.rootInstance = new Sprite(scene, 0,0, PlayerAnimationKeys.BASE);
 
         animationSheets.forEach(sheet => this.load(sheet))
     }

@@ -4,6 +4,8 @@ import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 import {IDamageable, IHealthStatHandler} from "../../damage/IDamageable";
 import GameScene from "../../scenes/Game";
 import PhysicsLayers from "../PhysicsLayers";
+import {IBodyDefinition} from "matter";
+import MAX_SAFE_INTEGER = Phaser.Math.MAX_SAFE_INTEGER;
 
 export class LivingEntity extends Entity implements IDamageable {
     protected readonly animator: Animator;
@@ -33,13 +35,35 @@ export class LivingEntity extends Entity implements IDamageable {
     }
 
     protected createPhysics() {
-        return this.scene.matter.add.circle(this.x, this.y,10, this.createPhysicsConfig())
+        const Matter = this.scene.matter;
+
+
+        const base = Matter.body.create({
+            parts: this.assembleParts(),
+            inertia: Infinity,
+            inverseInertia: 0,
+
+            ...this.createPhysicsConfig()
+        })
+        this.scene.matter.world.add(base)
+        return base;
     }
 
-    protected createPhysicsConfig(): MatterBodyConfig {
+    protected assembleParts() {
+        const Matter = this.scene.matter;
+
+        return [
+            Matter.bodies.circle(this.x, this.y,10),
+            Matter.bodies.circle(this.x, this.y+11,10),
+        ]
+    }
+
+    protected createPhysicsConfig(): IBodyDefinition {
         return {
             collisionFilter: {
-                category: PhysicsLayers.PLAYER
+                group: 0,
+                mask: PhysicsLayers.All,
+                category: this.getPhysicsLayer(),
             },
             frictionAir: .1,
             friction: 0,
@@ -77,4 +101,11 @@ export class LivingEntity extends Entity implements IDamageable {
         this.statHandler = handler;
     }
 
+    /**
+     * Just for setup don't use
+     * @protected
+     */
+    protected getPhysicsLayer() {
+        return PhysicsLayers.PLAYER;
+    }
 }

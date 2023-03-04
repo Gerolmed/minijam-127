@@ -34,8 +34,8 @@ export class ProjectileEntity extends Entity {
     }
 
     destroy() {
-        super.destroy();
         this.scene.matter.world.remove(this.rigidbody)
+        super.destroy();
     }
 
     protected safeUpdate(deltaTime: number) {

@@ -3,6 +3,7 @@ import {PhysicsSocket} from "../PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
 import {ICollisionData} from "matter";
 import GameScene from "../../../scenes/Game";
+import PhysicsLayers from "../../PhysicsLayers";
 
 export class Enemy extends LivingEntity {
 
@@ -26,6 +27,10 @@ export class Enemy extends LivingEntity {
     protected hasLineOfSight(): boolean {
         const collisions = this.raycast();
         return collisions.length === 0;
+    }
+
+    protected getPhysicsLayer(): number {
+        return PhysicsLayers.ENEMY;
     }
 
 }
