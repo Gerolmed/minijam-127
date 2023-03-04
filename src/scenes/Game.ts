@@ -12,6 +12,7 @@ import {Wolf} from "../entities/living/Enemies/Wolf";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 import Container = Phaser.GameObjects.Container;
 import Constants from "../Constants";
+import Vector2 = Phaser.Math.Vector2;
 
 
 export default class GameScene extends Phaser.Scene {
@@ -97,7 +98,7 @@ export default class GameScene extends Phaser.Scene {
         physicsSocket.setTilemap(tilemap);
 
 
-        this.addEntity(new Wolf(this, 200, 150, physicsSocket))
+        this.addEntity(new Wolf(this, physicsSocket, new Vector2(200, 150)));
 
         this.cameras.main.zoom = Constants.UPSCALE_FACTOR;
         this.cameras.main.startFollow(player, false, .09, .09);

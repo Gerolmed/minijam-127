@@ -152,11 +152,11 @@ export class Chunk {
     unload(scene: Scene) {
         this.physicsBodies.forEach(value => scene.matter.world.remove(value));
 
-        this.gameObjects.forEach(obj => console.log(obj));
         this.gameObjects.forEach(object => object.destroy(false));
         this.gameObjects = [];
 
         this.entities.forEach(entity => entity.destroy());
+        this.entities = [];
     }
 
 }

@@ -7,13 +7,22 @@ import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
 import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 
+
+export enum EnemyState {
+    NEUTRAL,
+    AGGRO,
+    RETREATING
+}
+
 export class Enemy extends LivingEntity {
 
 
     protected readonly projectileShooter: ProjectileShooter;
 
-    constructor(scene: GameScene, x: number, y: number, protected readonly physicsSocket: PhysicsSocket) {
-        super(scene, x, y);
+    constructor(scene: GameScene,
+                protected readonly physicsSocket: PhysicsSocket,
+                protected readonly origin: Vector2) {
+        super(scene, origin.x, origin.y);
 
         this.projectileShooter = new ProjectileShooter(scene, this);
     }
