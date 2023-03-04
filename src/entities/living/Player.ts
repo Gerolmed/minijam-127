@@ -2,6 +2,7 @@ import {LivingEntity} from "./LivingEntity";
 import CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
 import Key = Phaser.Input.Keyboard.Key;
 import Vector2 = Phaser.Math.Vector2;
+import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
 
 export class Player extends LivingEntity {
 
@@ -27,6 +28,8 @@ export class Player extends LivingEntity {
         }
 
         this.arrow = keyboard.createCursorKeys()
+        this.animator.load(PlayerAnimationKeys.BASE);
+        this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
     }
 
     protected createPhysicsConfig(): Phaser.Types.Physics.Matter.MatterBodyConfig {
@@ -62,6 +65,18 @@ export class Player extends LivingEntity {
         } else {
             targetY = Math.max(current.y + dir.y * this.acceleration * deltaTime, targetY)
             targetY = Math.min(current.y, targetY)
+        }
+
+        if(dir.y > 0) {
+            this.animator.play(PlayerAnimationKeys.IDLE_DOWN)
+        } else if(dir.y < 0) {
+            this.animator.play(PlayerAnimationKeys.IDLE_UP)
+        } else {
+            if(dir.x > 0) {
+                this.animator.play(PlayerAnimationKeys.IDLE_RIGHT)
+            } else if(dir.x < 0) {
+                this.animator.play(PlayerAnimationKeys.IDLE_LEFT)
+            }
         }
 
         this.scene.matter.setVelocity(this.rigidbody, targetX, targetY);
