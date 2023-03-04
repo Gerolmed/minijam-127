@@ -1,33 +1,18 @@
 import {LivingEntity} from "./LivingEntity";
-import CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
-import Key = Phaser.Input.Keyboard.Key;
-import Vector2 = Phaser.Math.Vector2;
 import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
+import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
+import Vector2 = Phaser.Math.Vector2;
 
 export class Player extends LivingEntity {
 
-    private arrow!: CursorKeys;
     private speed = 20;
     private acceleration = 50;
-    private movement!: {
-        up: Key,
-        down: Key,
-        left: Key,
-        right: Key,
-    }
+    private playerInput!: PlayerIngameInput;
+    private lastDir: Vector2 = new Vector2(0,1);
 
     public create() {
 
-        const keyboard = this.scene.input.keyboard!;
-
-        this.movement = {
-            up: keyboard.addKey("w"),
-            down: keyboard.addKey("s"),
-            left: keyboard.addKey("a"),
-            right: keyboard.addKey("d"),
-        }
-
-        this.arrow = keyboard.createCursorKeys()
+        this.playerInput = new PlayerIngameInput(this.scene);
         this.animator.load(PlayerAnimationKeys.BASE);
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
     }
@@ -44,11 +29,22 @@ export class Player extends LivingEntity {
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
-        this.handleMovement(deltaTime);
+        const shootDir = this.handleShooting(deltaTime);
+        const moveDir = this.handleMovement(deltaTime);
+
+        this.handleAnimation(moveDir, shootDir);
     }
 
-    private handleMovement(deltaTime: number) {
-        const dir = this.getMovementVector().normalize();
+    private handleShooting(deltaTime: number): Vector2 {
+        const input = this.playerInput.getCombatVectorRaw();
+
+        this.tryShoot(input);
+
+        return input;
+    }
+
+    private handleMovement(deltaTime: number): Vector2  {
+        const dir = this.playerInput.getMovementVector();
         let targetX = dir.x * this.speed;
         let targetY = dir.y * this.speed;
         const current = this.rigidbody.velocity;
@@ -68,30 +64,38 @@ export class Player extends LivingEntity {
             targetY = Math.min(current.y, targetY)
         }
 
-        if(dir.y > 0) {
-            this.animator.play(PlayerAnimationKeys.IDLE_DOWN)
-        } else if(dir.y < 0) {
-            this.animator.play(PlayerAnimationKeys.IDLE_UP)
-        } else {
-            if(dir.x > 0) {
-                this.animator.play(PlayerAnimationKeys.IDLE_RIGHT)
-            } else if(dir.x < 0) {
-                this.animator.play(PlayerAnimationKeys.IDLE_LEFT)
-            }
-        }
-
         this.scene.matter.setVelocity(this.rigidbody, targetX, targetY);
+
+        return dir;
     }
 
-    private getMovementVector() {
-        const right = this.movement.right.isDown;
-        const left = this.movement.left.isDown;
-        const up = this.movement.up.isDown;
-        const down = this.movement.down.isDown;
 
-        const x = right ? 1 : (left ? -1 : 0);
-        const y = up ? -1 : (down ? 1 : 0);
-        return new Vector2(x, y);
+    private handleAnimation(moveDir: Vector2, shootDir: Vector2) {
+
+        let dir = shootDir.lengthSq() > 0.1 ? shootDir : moveDir;
+        let walking = true;
+        if(dir.lengthSq() > 0.1) {
+            this.lastDir = dir;
+        } else {
+            dir = this.lastDir;
+            walking = false;
+        }
+
+        if(dir.y > 0) {
+            this.animator.play(walking ? PlayerAnimationKeys.WALK_DOWN : PlayerAnimationKeys.IDLE_DOWN)
+        } else if(dir.y < 0) {
+            this.animator.play(walking ? PlayerAnimationKeys.WALK_UP : PlayerAnimationKeys.IDLE_UP)
+        } else {
+            if(dir.x > 0) {
+                this.animator.play(walking ? PlayerAnimationKeys.WALK_RIGHT : PlayerAnimationKeys.IDLE_RIGHT)
+            } else if(dir.x < 0) {
+                this.animator.play(walking ? PlayerAnimationKeys.WALK_LEFT : PlayerAnimationKeys.IDLE_LEFT)
+            }
+        }
+    }
+
+    private tryShoot(input: Vector2) {
+
     }
 
     getRigidBody() {

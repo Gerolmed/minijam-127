@@ -15,13 +15,26 @@ export class Animator {
         animationSheets.forEach(sheet => this.load(sheet))
     }
 
-    public play(animation: string, repeat = -1, replace = false) {
+    public play(animation: string, repeat = -1, replace = false, onStop?: () => any) {
         if(!replace && this.rootInstance.anims.getName() === animation) return
 
         this.rootInstance.play({
             key: animation,
             repeat: repeat
-        })
+        });
+
+        let hasRunStop = false;
+
+        this.rootInstance.once("animationcomplete", () => {
+            if(hasRunStop) return;
+            hasRunStop = true;
+            onStop?.()
+        });
+        this.rootInstance.once("animationstop", () => {
+            if(hasRunStop) return;
+            hasRunStop = true;
+            onStop?.()
+        });
     }
 
     public get root(): GameObject {
