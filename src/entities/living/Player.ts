@@ -1,33 +1,16 @@
 import {LivingEntity} from "./LivingEntity";
-import CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
-import Key = Phaser.Input.Keyboard.Key;
-import Vector2 = Phaser.Math.Vector2;
 import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
+import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
 
 export class Player extends LivingEntity {
 
-    private arrow!: CursorKeys;
     private speed = 20;
     private acceleration = 50;
-    private movement!: {
-        up: Key,
-        down: Key,
-        left: Key,
-        right: Key,
-    }
+    private playerInput!: PlayerIngameInput;
 
     public create() {
 
-        const keyboard = this.scene.input.keyboard!;
-
-        this.movement = {
-            up: keyboard.addKey("w"),
-            down: keyboard.addKey("s"),
-            left: keyboard.addKey("a"),
-            right: keyboard.addKey("d"),
-        }
-
-        this.arrow = keyboard.createCursorKeys()
+        this.playerInput = new PlayerIngameInput(this.scene);
         this.animator.load(PlayerAnimationKeys.BASE);
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
     }
@@ -47,7 +30,7 @@ export class Player extends LivingEntity {
     }
 
     private handleMovement(deltaTime: number) {
-        const dir = this.getMovementVector().normalize();
+        const dir = this.playerInput.getMovementVector();
         let targetX = dir.x * this.speed;
         let targetY = dir.y * this.speed;
         const current = this.rigidbody.velocity;
@@ -82,14 +65,4 @@ export class Player extends LivingEntity {
         this.scene.matter.setVelocity(this.rigidbody, targetX, targetY);
     }
 
-    private getMovementVector() {
-        const right = this.movement.right.isDown;
-        const left = this.movement.left.isDown;
-        const up = this.movement.up.isDown;
-        const down = this.movement.down.isDown;
-
-        const x = right ? 1 : (left ? -1 : 0);
-        const y = up ? -1 : (down ? 1 : 0);
-        return new Vector2(x, y);
-    }
 }
