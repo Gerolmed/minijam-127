@@ -5,6 +5,7 @@ import {ICollisionData} from "matter";
 import GameScene from "../../../scenes/Game";
 import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
+import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 
 export class Enemy extends LivingEntity {
 
@@ -22,6 +23,16 @@ export class Enemy extends LivingEntity {
         super.safeUpdate(deltaTime);
 
         this.projectileShooter.update(deltaTime);
+    }
+    create() {
+        super.create();
+        const healthBar = new EnemyHealthBar(this.scene, this.getHealthBarOffset())
+        this.setHandler(healthBar);
+        this.add(healthBar)
+    }
+
+    protected getHealthBarOffset() {
+        return new Vector2(0,-20);
     }
 
     protected raycast(): Array<ICollisionData> {

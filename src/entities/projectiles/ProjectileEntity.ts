@@ -3,9 +3,11 @@ import GameScene from "../../scenes/Game";
 import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 import PhysicsLayers from "../PhysicsLayers";
 import GameObject = Phaser.GameObjects.GameObject;
+import {Animator} from "../../animations/Animator";
 
 export class ProjectileEntity extends Entity {
     protected rigidbody!: MatterJS.BodyType;
+    protected animator!: Animator;
 
 
     constructor(
@@ -14,6 +16,8 @@ export class ProjectileEntity extends Entity {
     ) {
         super(scene, x, y);
 
+        this.animator = new Animator(scene)
+        this.add(this.animator.root)
 
 
         this.rigidbody = this.createPhysics();
