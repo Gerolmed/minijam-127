@@ -1,5 +1,6 @@
-enum LayerType {
-    Tiles = "Tiles"
+export enum LayerType {
+    Tiles = "Tiles",
+    Entity = "Entities"
 }
 
 
@@ -34,7 +35,15 @@ export type Layer = {
     __cWid: number,
     __cHei: number,
 
-    gridTiles: GridTile[]
+    gridTiles: GridTile[],
+
+    entityInstances: EntityInstance[]
+}
+
+export type EntityInstance = {
+    __grid: [number, number],
+    defUid: number,
+    iid: string
 }
 
 export type Neighbour = {
