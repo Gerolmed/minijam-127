@@ -4,14 +4,25 @@ import Vector2 = Phaser.Math.Vector2;
 import {ICollisionData} from "matter";
 import GameScene from "../../../scenes/Game";
 import PhysicsLayers from "../../PhysicsLayers";
+import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
 
 export class Enemy extends LivingEntity {
 
 
+    protected readonly projectileShooter: ProjectileShooter;
+
     constructor(scene: GameScene, x: number, y: number, protected readonly physicsSocket: PhysicsSocket) {
         super(scene, x, y);
+
+        this.projectileShooter = new ProjectileShooter(scene, this);
     }
 
+
+    protected safeUpdate(deltaTime: number) {
+        super.safeUpdate(deltaTime);
+
+        this.projectileShooter.update(deltaTime);
+    }
 
     protected raycast(): Array<ICollisionData> {
         const player = this.physicsSocket.getPlayer();
