@@ -98,6 +98,7 @@ export class LivingEntity extends Entity implements IDamageable {
 
     setHandler(handler: IHealthStatHandler): void {
         this.statHandler = handler;
+        this.statHandler.onHealthChange(this.health, this.maxHealth)
     }
 
     /**

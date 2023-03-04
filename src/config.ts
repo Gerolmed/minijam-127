@@ -2,6 +2,7 @@ import GameConfig = Phaser.Types.Core.GameConfig;
 
 
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
+import Constants from "./Constants";
 
 export const matterCollisionPluginConfig = {
     // The plugin class:
@@ -18,8 +19,8 @@ export default {
     parent: 'game',
     backgroundColor: '#efebea',
     scale: {
-        width: 320 * 4,
-        height: 180 * 4,
+        width: 320 * Constants.UPSCALE_FACTOR,
+        height: 180 * Constants.UPSCALE_FACTOR,
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
