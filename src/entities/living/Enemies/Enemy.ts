@@ -4,6 +4,7 @@ import Vector2 = Phaser.Math.Vector2;
 import {ICollisionData} from "matter";
 import GameScene from "../../../scenes/Game";
 import PhysicsLayers from "../../PhysicsLayers";
+import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 
 export class Enemy extends LivingEntity {
 
@@ -12,6 +13,16 @@ export class Enemy extends LivingEntity {
         super(scene, x, y);
     }
 
+    create() {
+        super.create();
+        const healthBar = new EnemyHealthBar(this.scene, this.getHealthBarOffset())
+        this.setHandler(healthBar);
+        this.add(healthBar)
+    }
+
+    protected getHealthBarOffset() {
+        return new Vector2(0,-20);
+    }
 
     protected raycast(): Array<ICollisionData> {
         const player = this.physicsSocket.getPlayer();
