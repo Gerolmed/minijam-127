@@ -1,0 +1,43 @@
+{ "frames": [
+   {
+    "filename": "0",
+    "frame": { "x": 1, "y": 1, "w": 98, "h": 23 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 2, "y": 2, "w": 96, "h": 21 },
+    "sourceSize": { "w": 100, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "1",
+    "frame": { "x": 100, "y": 1, "w": 98, "h": 23 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 2, "y": 2, "w": 96, "h": 21 },
+    "sourceSize": { "w": 100, "h": 25 },
+    "duration": 100
+   },
+   {
+    "filename": "2",
+    "frame": { "x": 1, "y": 25, "w": 98, "h": 23 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 2, "y": 2, "w": 96, "h": 21 },
+    "sourceSize": { "w": 100, "h": 25 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.16.2-x64",
+  "image": "Button_NewGame.png",
+  "format": "RGBA8888",
+  "size": { "w": 198, "h": 48 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Normal", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "Hover", "from": 1, "to": 1, "direction": "forward" },
+   { "name": "Click", "from": 2, "to": 2, "direction": "forward" }
+  ]
+ }
+}
