@@ -4,6 +4,7 @@ import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
 import Vector2 = Phaser.Math.Vector2;
 import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
 import {IBodyDefinition} from "matter";
+import {ChunkedTilemap} from "../../tilemap/ChunkedTilemap";
 
 export class Player extends LivingEntity {
 
@@ -12,6 +13,8 @@ export class Player extends LivingEntity {
     private playerInput!: PlayerIngameInput;
     private projectileShooter!: ProjectileShooter;
     private lastDir: Vector2 = new Vector2(0,1);
+
+    private tilemap?: ChunkedTilemap;
 
 
     public create() {
@@ -46,6 +49,9 @@ export class Player extends LivingEntity {
         const moveDir = this.handleMovement(deltaTime);
 
         this.handleAnimation(moveDir, shootDir);
+
+        if(this.tilemap)
+            this.tilemap.setPlayerPosition(this.x, this.y);
     }
 
     private handleShooting(deltaTime: number): Vector2 {
@@ -112,6 +118,11 @@ export class Player extends LivingEntity {
     private tryShoot(input: Vector2) {
         if (input.lengthSq() < .1) return;
         this.projectileShooter.tryShoot(input)
+    }
+
+
+    public setTilemap(tilemap: ChunkedTilemap) {
+        this.tilemap = tilemap;
     }
 
 }
