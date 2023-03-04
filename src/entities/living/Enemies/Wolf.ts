@@ -7,12 +7,12 @@ export class Wolf extends Enemy {
     private readonly SPEED = 52;
     private readonly RETREAT_SPEED = 25;
     private readonly ATTACK_RANGE = 50;
-    private readonly AGGRO_RANGE = 100;
+    private readonly AGGRO_RANGE = 150;
     private readonly AGGRO_RANGE_ORIGIN = 100;
     private readonly PATIENCE = 3 * 1000;
-    private readonly FOLLOW_DISTANCE = 150;
+    private readonly FOLLOW_DISTANCE = 200;
     private readonly RETREAT_DISTANCE_MAX = 250;
-    private readonly RETREAT_DURATION_MAX = 5 * 1000;
+    private readonly RETREAT_DURATION_MAX = 10 * 1000;
 
     private lastPlayerSpotted = Date.now();
     private startRetreating = 0;
@@ -70,31 +70,6 @@ export class Wolf extends Enemy {
             this.rigidbody.position.y = this.origin.y;
         }
 
-        /*
-        if(this.hasLineOfSight()) {
-            const player = this.physicsSocket.getPlayer()!;
-
-            const playerDir = [player.x - this.x, player.y - this.y];
-            const length = Math.sqrt(playerDir[0] * playerDir[0] + playerDir[1] * playerDir[1]);
-
-            if(length > this.ATTACK_RANGE) {
-                this.scene.matter.setVelocity(
-                    this.rigidbody,
-                    playerDir[0] / length * this.SPEED * deltaTime,
-                    playerDir[1] / length * this.SPEED * deltaTime
-                )
-
-                this.lastPlayerSpotted = Date.now();
-            }
-        }
-
-        const distanceToOrigin = (this.x - this.origin.x)^2 + (this.y - this.origin.y)^2;
-        const playerNotSeenTime = Date.now() - this.lastPlayerSpotted;
-        if(playerNotSeenTime > this.PATIENCE || distanceToOrigin > this.FOLLOW_DISTANCE) {
-            this.
-        }
-
-         */
     }
 
 }
