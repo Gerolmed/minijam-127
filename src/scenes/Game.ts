@@ -23,8 +23,7 @@ export default class GameScene extends Phaser.Scene {
 
     constructor() {
         super({
-            key: "GameScene",
-            active: true
+            key: "GameScene"
         });
         this.jukebox = new Jukebox(this, {
             defaultTheme: "test",
