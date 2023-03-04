@@ -11,7 +11,7 @@ export class PlayerIngameInput {
     constructor(scene: Scene) {
 
         const keyboard = scene.input.keyboard!;
-        this.combatDirection = new DoubleAxisInput(keyboard.createCursorKeys())
+        this.combatDirection = new DoubleAxisInput(keyboard.createCursorKeys(), true)
 
         this.movement = new DoubleAxisInput({
             up: keyboard.addKey("w"),
@@ -34,4 +34,9 @@ export class PlayerIngameInput {
     public getMovementVector() {
         return this.movement.getVector();
     }
+
+    public getCombatVectorRaw() {
+        return this.combatDirection.getVectorRaw();
+    }
+
 }

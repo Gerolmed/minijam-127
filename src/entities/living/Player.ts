@@ -1,12 +1,14 @@
 import {LivingEntity} from "./LivingEntity";
 import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
 import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
+import Vector2 = Phaser.Math.Vector2;
 
 export class Player extends LivingEntity {
 
     private speed = 20;
     private acceleration = 50;
     private playerInput!: PlayerIngameInput;
+    private lastDir: Vector2 = new Vector2(0,1);
 
     public create() {
 
@@ -26,10 +28,21 @@ export class Player extends LivingEntity {
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
-        this.handleMovement(deltaTime);
+        const shootDir = this.handleShooting(deltaTime);
+        const moveDir = this.handleMovement(deltaTime);
+
+        this.handleAnimation(moveDir, shootDir);
     }
 
-    private handleMovement(deltaTime: number) {
+    private handleShooting(deltaTime: number): Vector2 {
+        const input = this.playerInput.getCombatVectorRaw();
+
+        this.tryShoot(input);
+
+        return input;
+    }
+
+    private handleMovement(deltaTime: number): Vector2  {
         const dir = this.playerInput.getMovementVector();
         let targetX = dir.x * this.speed;
         let targetY = dir.y * this.speed;
@@ -50,19 +63,37 @@ export class Player extends LivingEntity {
             targetY = Math.min(current.y, targetY)
         }
 
-        if(dir.y > 0) {
-            this.animator.play(PlayerAnimationKeys.IDLE_DOWN)
-        } else if(dir.y < 0) {
-            this.animator.play(PlayerAnimationKeys.IDLE_UP)
-        } else {
-            if(dir.x > 0) {
-                this.animator.play(PlayerAnimationKeys.IDLE_RIGHT)
-            } else if(dir.x < 0) {
-                this.animator.play(PlayerAnimationKeys.IDLE_LEFT)
-            }
-        }
-
         this.scene.matter.setVelocity(this.rigidbody, targetX, targetY);
+
+        return dir;
     }
 
+
+    private handleAnimation(moveDir: Vector2, shootDir: Vector2) {
+
+        let dir = shootDir.lengthSq() > 0.1 ? shootDir : moveDir;
+        let walking = true;
+        if(dir.lengthSq() > 0.1) {
+            this.lastDir = dir;
+        } else {
+            dir = this.lastDir;
+            walking = false;
+        }
+
+        if(dir.y > 0) {
+            this.animator.play(walking ? PlayerAnimationKeys.WALK_DOWN : PlayerAnimationKeys.IDLE_DOWN)
+        } else if(dir.y < 0) {
+            this.animator.play(walking ? PlayerAnimationKeys.WALK_UP : PlayerAnimationKeys.IDLE_UP)
+        } else {
+            if(dir.x > 0) {
+                this.animator.play(walking ? PlayerAnimationKeys.WALK_RIGHT : PlayerAnimationKeys.IDLE_RIGHT)
+            } else if(dir.x < 0) {
+                this.animator.play(walking ? PlayerAnimationKeys.WALK_LEFT : PlayerAnimationKeys.IDLE_LEFT)
+            }
+        }
+    }
+
+    private tryShoot(input: Vector2) {
+
+    }
 }

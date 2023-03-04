@@ -5,22 +5,36 @@ export class DoubleAxisInput {
 
     private prioRight = false;
     private prioUp = false;
+    private prioX = false;
 
 
     constructor(
-        private directions: {
+        private readonly directions: {
             up: Key,
             down: Key,
             left: Key,
             right: Key,
-        }
+        },
+        private readonly singleDir = false,
     ) {
         // Detect input key down
-        directions.up.on("down", () => this.prioUp = true)
-        directions.down.on("down", () => this.prioUp = false)
+        directions.up.on("down", () => {
+            this.prioUp = true;
+            this.prioX = false;
+        })
+        directions.down.on("down", () => {
+            this.prioUp = false;
+            this.prioX = false;
+        })
 
-        directions.right.on("down", () => this.prioRight = true)
-        directions.left.on("down", () => this.prioRight = false)
+        directions.right.on("down", () => {
+            this.prioRight = true;
+            this.prioX = true;
+        })
+        directions.left.on("down", () => {
+            this.prioRight = false;
+            this.prioX = true;
+        })
     }
 
 
@@ -51,6 +65,12 @@ export class DoubleAxisInput {
         } else {
             y = down ? 1 : (up ? -1 : 0);
         }
+
+        if(this.singleDir) {
+            if(this.prioX && x !== 0) y = 0;
+            if(!this.prioX && y !== 0) x = 0;
+        }
+
 
         return new Vector2(x, y);
     }
