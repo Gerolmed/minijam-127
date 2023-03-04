@@ -6,6 +6,7 @@ export class NormalArea implements Area {
 
 
     constructor(private level: Level) {
+        level.layerInstances.reverse()
     }
 
     createChunkInstance(): Chunk {

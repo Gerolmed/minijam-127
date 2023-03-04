@@ -1,11 +1,10 @@
 import {Entity} from "../Entity";
 import {Animator} from "../../animations/Animator";
-import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 import {IDamageable, IHealthStatHandler} from "../../damage/IDamageable";
 import GameScene from "../../scenes/Game";
 import PhysicsLayers from "../PhysicsLayers";
 import {IBodyDefinition} from "matter";
-import MAX_SAFE_INTEGER = Phaser.Math.MAX_SAFE_INTEGER;
+import Vector2 = Phaser.Math.Vector2;
 
 export class LivingEntity extends Entity implements IDamageable {
     protected readonly animator: Animator;
@@ -15,6 +14,7 @@ export class LivingEntity extends Entity implements IDamageable {
     private health: number;
     private maxHealth: number;
     private statHandler?: IHealthStatHandler;
+    protected physicsOffset = new Vector2();
 
     constructor(scene: GameScene, x?: number, y?: number) {
         super(scene, x, y);
@@ -31,9 +31,8 @@ export class LivingEntity extends Entity implements IDamageable {
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
-        this.setPosition(this.rigidbody.position.x, this.rigidbody.position.y);
+        this.setPosition(this.rigidbody.position.x + this.physicsOffset.x, this.rigidbody.position.y + this.physicsOffset.y);
     }
-
     protected createPhysics() {
         const Matter = this.scene.matter;
 
@@ -53,8 +52,8 @@ export class LivingEntity extends Entity implements IDamageable {
         const Matter = this.scene.matter;
 
         return [
-            Matter.bodies.circle(this.x, this.y,10),
-            Matter.bodies.circle(this.x, this.y+11,10),
+            Matter.bodies.circle(this.x, this.y,12),
+            Matter.bodies.circle(this.x, this.y+6,12),
         ]
     }
 

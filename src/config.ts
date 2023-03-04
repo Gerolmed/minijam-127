@@ -33,10 +33,10 @@ export default {
             gravity: {
                 y: 0
             },
-            debug: {
-                showBody: true,
-                showStaticBody: true
-            }
+            // debug: {
+            //     showBody: true,
+            //     showStaticBody: true
+            // }
         }
     },
 

@@ -20,6 +20,8 @@ export class Player extends LivingEntity {
         this.animator.load(PlayerAnimationKeys.BASE);
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
 
+        this.physicsOffset = new Vector2(-1,-2);
+
         this.setHandler({
             onHealthChange(health: number, maxHealth: number) {
                 console.log("hit me")
