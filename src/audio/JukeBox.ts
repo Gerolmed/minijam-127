@@ -151,4 +151,8 @@ export class Jukebox {
     }
 
 
+    kill() {
+        this.current?.stop()
+        this.previous?.stop()
+    }
 }
