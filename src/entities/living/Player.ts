@@ -117,7 +117,7 @@ export class Player extends LivingEntity {
 
     private tryShoot(input: Vector2) {
         if (input.lengthSq() < .1) return;
-        this.projectileShooter.tryShoot(input)
+        this.projectileShooter.tryShoot(new Vector2(this.x, this.y).add(this.getShootDirOffset(input)),input)
     }
 
 
@@ -125,4 +125,9 @@ export class Player extends LivingEntity {
         this.tilemap = tilemap;
     }
 
+    private getShootDirOffset(input: Vector2) {
+        if(input.y < 0) return new Vector2(0, -15)
+
+        return new Vector2(input.x * 7,0)
+    }
 }

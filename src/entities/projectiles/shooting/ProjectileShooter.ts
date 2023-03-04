@@ -40,19 +40,18 @@ export class ProjectileShooter {
 
     }
 
-    tryShoot(input: Vector2): boolean {
-
+    tryShoot(source: Vector2, input: Vector2): boolean {
 
         if(this.shootTimer < this.config.frequency) return false;
 
         this.shootTimer = 0;
 
-        this.shoot(input);
+        this.shoot(source, input);
         return true;
     }
 
-    public shoot(input: Vector2) {
-        this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, this.transform.x, this.transform.y, input, this.config));
+    public shoot(source: Vector2, input: Vector2) {
+        this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input, this.config));
     }
 
     update(deltaTime: number) {
