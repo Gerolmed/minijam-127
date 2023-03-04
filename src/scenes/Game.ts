@@ -8,6 +8,7 @@ import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
 import {Jukebox} from "../audio/JukeBox";
 import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
+import {PersistenceManager} from "../persistence/PersistenceManager";
 
 export default class Demo extends Phaser.Scene {
 
@@ -85,6 +86,15 @@ export default class Demo extends Phaser.Scene {
         setInterval(() => {
             tilemap.paint(player, Theme.ORANGE);
         }, 5 * 1000)
+
+        this.testPM();
+    }
+
+    async testPM() {
+        const pm = PersistenceManager.get();
+        await pm.connect();
+        console.log(await pm.set("test:key", "hello world"));
+        console.log(await pm.get("test:key"));      // should output "hello world"
     }
 
     update(time: number, delta: number) {
