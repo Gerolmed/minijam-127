@@ -23,6 +23,7 @@ export class Player extends LivingEntity {
             frictionAir: .3,
             mass: 2,
             inverseMass: 1/2,
+            label: "player"
         };
     }
 
@@ -96,4 +97,9 @@ export class Player extends LivingEntity {
     private tryShoot(input: Vector2) {
 
     }
+
+    getRigidBody() {
+        return this.rigidbody
+    }
+
 }

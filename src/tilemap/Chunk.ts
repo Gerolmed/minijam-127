@@ -104,18 +104,25 @@ export class Chunk {
 
                 if(!params.hasPhysics || !walls.includes(index)) continue;
 
-                const physics = scene.matter.add.rectangle(
-                    x * layer.__gridSize + this.level.worldX,
-                    y * layer.__gridSize + this.level.worldY,
-                    16, 16 ,
-                    {
-                        isStatic: true
-                    }
-                );
+                if(theme == Theme.DEFAULT) {
+                    const physics = scene.matter.add.rectangle(
+                        x * layer.__gridSize + this.level.worldX,
+                        y * layer.__gridSize + this.level.worldY,
+                        16, 16,
+                        {
+                            isStatic: true
+                        }
+                    );
 
-                this.physicsBodies.push(physics)
+                    this.physicsBodies.push(physics)
+                }
             }
         }
+    }
+
+
+    getPhysicsBodies() {
+        return this.physicsBodies;
     }
 
     unload(scene: Scene) {
