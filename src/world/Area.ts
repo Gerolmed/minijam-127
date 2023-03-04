@@ -6,4 +6,6 @@ export interface Area {
 
     getNeighbours(): string[];
 
+    getBounds(): {x: number, y: number, width: number, height: number}
+
 }
