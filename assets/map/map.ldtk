@@ -36,7 +36,7 @@
 	"levelNamePattern": "Level_%idx",
 	"tutorialDesc": null,
 	"customCommands": [],
-	"flags": [],
+	"flags": ["IgnoreBackupSuggest"],
 	"defs": { "layers": [
 		{
 			"__type": "Tiles",
@@ -137,7 +137,7 @@
 			"padding": 0,
 			"tags": [],
 			"tagsSourceEnumUid": 6,
-			"enumTags": [{ "enumValueId": "Wall", "tileIds": [6,24,25,26,27,28,32,33,34,35,36,40,41,42,48,49,50] }],
+			"enumTags": [{ "enumValueId": "Wall", "tileIds": [0,1,2,6,8,10,16,17,18,24,25,26,27,28,32,33,34,35,36,38,39,40,41,42,46,47,48,49,50] }],
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
