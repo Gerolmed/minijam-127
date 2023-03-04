@@ -8,7 +8,6 @@ import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
 import {Jukebox} from "../audio/JukeBox";
 import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
-import {PersistenceManager} from "../persistence/PersistenceManager";
 import SpriteLoader from "../animations/SpriteLoader";
 
 
@@ -39,6 +38,8 @@ export default class Demo extends Phaser.Scene {
 
     preload() {
         this.jukebox.load();
+
+        SpriteLoader(this.load)
 
         this.load.image("logo", 'assets/phaser3-logo.png');
         this.load.json("map", "assets/map/map.ldtk")
