@@ -10,11 +10,14 @@ import SpriteLoader from "../animations/SpriteLoader";
 import MatterCollisionPlugin from "phaser-matter-collision-plugin";
 import {Wolf} from "../entities/living/Enemies/Wolf";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
+import Container = Phaser.GameObjects.Container;
 
 
 export default class GameScene extends Phaser.Scene {
 
     private readonly jukebox!: Jukebox;
+
+    private entityContainer!: Container;
 
     constructor() {
         super('GameScene');
@@ -61,7 +64,8 @@ export default class GameScene extends Phaser.Scene {
 
     public addEntity<T extends Entity>(entity: T): T {
         entity.create();
-        this.add.existing(entity);
+        this.entityContainer.add(entity);
+        this.sys.updateList.add(entity);
         return entity;
     }
 
@@ -76,11 +80,18 @@ export default class GameScene extends Phaser.Scene {
         const areas = tilemap.getAreas();
         tilemap.enter(this, areas[0]);
 
+
+        // Init Entities
+        //////////////////
+        this.entityContainer = this.add.container();
+
         const player = this.addEntity(new Player(this, 300, 100))
 
         const physicsSocket = new PhysicsSocket();
         physicsSocket.setPlayer(player);
         physicsSocket.setTilemap(tilemap);
+
+
         this.addEntity(new Wolf(this, 200, 150, physicsSocket))
 
         this.cameras.main.zoom = 4;
