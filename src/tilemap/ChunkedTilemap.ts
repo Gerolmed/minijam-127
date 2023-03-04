@@ -8,6 +8,7 @@ import {TileTagStore} from "./TileTagStore";
 import GameObject = Phaser.GameObjects.GameObject;
 import {Theme} from "../painting/Theme";
 import Transform = Phaser.GameObjects.Components.Transform;
+import {IEntityFactory} from "../entities/IEntityFactory";
 
 
 export class ChunkedTilemap {
@@ -19,6 +20,8 @@ export class ChunkedTilemap {
 
     private loadedChunks: Chunk[] = [];
     private currentArea?: Area;
+
+    private readonly entityFactories: IEntityFactory[] = [];
 
 
     constructor(map: Tilemap, areaFactory: AreaFactory, private readonly scene: Scene) {
@@ -89,6 +92,10 @@ export class ChunkedTilemap {
         return result;
     }
 
+    registerEntityFactory(entityFactory: IEntityFactory) {
+        this.entityFactories.push(entityFactory);
+    }
+
     private async load(area: Area): Promise<Chunk> {
         const loadedChunk = this.loadedChunks.find(chunk => chunk.getArea() === area);
 
@@ -99,6 +106,7 @@ export class ChunkedTilemap {
             mapContainer: this.mapContainer,
             tileEnums: this.tileTagStore,
             hasPhysics: true,
+            entityFactories: this.entityFactories
         });
 
         this.loadedChunks.push(chunk);

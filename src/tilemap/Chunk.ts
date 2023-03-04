@@ -1,6 +1,6 @@
 import {Area} from "../world/Area";
 import {Scene} from "phaser";
-import {Layer, Level} from "../types/Tilemap";
+import {Layer, LayerType, Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
 import {ChunkParams} from "./ChunkParams";
 import {getThemeTileset, Theme, Themes} from "../painting/Theme";
@@ -8,6 +8,7 @@ import GameObject = Phaser.GameObjects.GameObject;
 import RenderTexture = Phaser.GameObjects.RenderTexture;
 import Sprite = Phaser.GameObjects.Sprite;
 import Transform = Phaser.GameObjects.Components.Transform;
+import {Entity} from "../entities/Entity";
 
 export class Chunk {
 
@@ -16,6 +17,8 @@ export class Chunk {
     private masks: Map<Theme, RenderTexture> = new Map();
     private maskOffsetX: number = 0;
     private maskOffsetY: number = 0;
+
+    private entities: Entity[] = [];
 
     constructor(private readonly area: Area, private readonly level: Level) {
 
@@ -47,38 +50,59 @@ export class Chunk {
     render(scene: Scene, params: ChunkParams) {
         const walls = params.tileEnums.getTiles("Wall")
         this.level.layerInstances.forEach(layer => {
-            const grid = layerToIntGrid(layer);
-            Themes.forEach(theme => {
-                this.maskOffsetX = this.level.worldX - 0.5 * layer.__gridSize;
-                this.maskOffsetY = this.level.worldY - 0.5 * layer.__gridSize;
+            if(layer.__type === LayerType.Tiles)
+                this.processTileLayer(scene, params, layer, walls);
+            else if(layer.__type === LayerType.Entity)
+                this.processEntityLayer(scene, params, layer);
+        })
+    }
 
-                const renderTexture = scene.add.renderTexture(
-                    this.maskOffsetX,
-                    this.maskOffsetY,
+
+    private processTileLayer(scene: Scene, params: ChunkParams, layer: Layer, walls: number[]) {
+        const grid = layerToIntGrid(layer);
+        Themes.forEach(theme => {
+            this.maskOffsetX = this.level.worldX - 0.5 * layer.__gridSize;
+            this.maskOffsetY = this.level.worldY - 0.5 * layer.__gridSize;
+
+            const renderTexture = scene.add.renderTexture(
+                this.maskOffsetX,
+                this.maskOffsetY,
+                layer.__cWid * layer.__gridSize,
+                layer.__cHei * layer.__gridSize
+            );
+            renderTexture.setOrigin(0, 0);
+            params.mapContainer.add(renderTexture);
+            this.gameObjects.push(renderTexture);
+
+            if (theme !== Theme.DEFAULT) {
+                const maskTexture = new RenderTexture(
+                    scene,
+                    this.level.worldX - 0.5 * layer.__gridSize,
+                    this.level.worldY - 0.5 * layer.__gridSize,
                     layer.__cWid * layer.__gridSize,
                     layer.__cHei * layer.__gridSize
-                );
-                renderTexture.setOrigin(0, 0);
-                params.mapContainer.add(renderTexture);
-                this.gameObjects.push(renderTexture);
+                )
+                maskTexture.setOrigin(0, 0);
+                this.gameObjects.push(maskTexture);
 
-                if(theme !== Theme.DEFAULT) {
-                    const maskTexture = new RenderTexture(
-                        scene,
-                        this.level.worldX - 0.5 * layer.__gridSize,
-                        this.level.worldY - 0.5 * layer.__gridSize,
-                        layer.__cWid * layer.__gridSize,
-                        layer.__cHei * layer.__gridSize
-                    )
-                    maskTexture.setOrigin(0,0);
-                    this.gameObjects.push(maskTexture);
+                renderTexture.setMask(maskTexture.createBitmapMask());
+                this.masks.set(theme, maskTexture);
+            }
 
-                    renderTexture.setMask(maskTexture.createBitmapMask());
-                    this.masks.set(theme, maskTexture);
-                }
+            this.renderLayer(layer, scene, params, walls, grid, theme, renderTexture)
+        })
+    }
 
-                this.renderLayer(layer, scene, params, walls, grid, theme, renderTexture)
-            })
+
+    private processEntityLayer(scene: Scene, params: ChunkParams, layer: Layer) {
+        layer.entityInstances.forEach(instance => {
+            const factory = params.entityFactories.find(factory => factory.supports(instance.defUid));
+
+            if(!factory)
+                return;
+
+            const entity = factory.produce(instance, scene);
+            this.entities.push(entity);
         })
     }
 
@@ -128,9 +152,11 @@ export class Chunk {
     unload(scene: Scene) {
         this.physicsBodies.forEach(value => scene.matter.world.remove(value));
 
-        this.gameObjects.forEach(obj => console.log(obj))
+        this.gameObjects.forEach(obj => console.log(obj));
         this.gameObjects.forEach(object => object.destroy(false));
         this.gameObjects = [];
+
+        this.entities.forEach(entity => entity.destroy());
     }
 
 }
