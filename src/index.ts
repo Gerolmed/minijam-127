@@ -2,9 +2,11 @@ import Phaser from 'phaser';
 import config from './config';
 import GameScene from './scenes/Game';
 import {HUDScene} from "./scenes/HUDScene";
+import {MainMenuScene} from "./scenes/MainMenuScene";
+import {PressToStart} from "./scenes/PressToStart";
 
 new Phaser.Game(
   Object.assign(config, {
-    scene: [GameScene, HUDScene]
+    scene: [PressToStart, MainMenuScene, GameScene, HUDScene]
   })
 );

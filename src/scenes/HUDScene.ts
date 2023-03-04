@@ -11,8 +11,7 @@ export class HUDScene extends Scene {
 
     constructor() {
         super({
-            key: "HUDScene",
-            active: true,
+            key: "HUDScene"
         });
     }
 
@@ -32,7 +31,7 @@ export class HUDScene extends Scene {
 
         camera.zoom = Constants.UPSCALE_FACTOR;
 
-        // Magic value I hate math
+        // Black Magic value I hate math
         camera.setScroll(-480, -270);
 
         const player = this.gameScene.getEntityByName<Player>("Player")!;
