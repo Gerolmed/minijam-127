@@ -13,7 +13,10 @@ export class Player extends LivingEntity {
     private projectileShooter!: ProjectileShooter;
     private lastDir: Vector2 = new Vector2(0,1);
 
+
     public create() {
+
+        this.setName("Player")
 
         this.playerInput = new PlayerIngameInput(this.scene);
         this.projectileShooter = new ProjectileShooter(this.gameScene, this);
@@ -21,12 +24,6 @@ export class Player extends LivingEntity {
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
 
         this.physicsOffset = new Vector2(-1,-2);
-
-        this.setHandler({
-            onHealthChange(health: number, maxHealth: number) {
-                console.log("hit me")
-            }
-        })
     }
 
     protected createPhysicsConfig(): IBodyDefinition {
