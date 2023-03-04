@@ -11,6 +11,7 @@ import MatterCollisionPlugin from "phaser-matter-collision-plugin";
 import {Wolf} from "../entities/living/Enemies/Wolf";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 import Container = Phaser.GameObjects.Container;
+import Constants from "../Constants";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -18,9 +19,13 @@ export default class GameScene extends Phaser.Scene {
     private readonly jukebox!: Jukebox;
 
     private entityContainer!: Container;
+    private ready = false;
 
     constructor() {
-        super('GameScene');
+        super({
+            key: "GameScene",
+            active: true
+        });
         this.jukebox = new Jukebox(this, {
             defaultTheme: "test",
             themes: {
@@ -94,17 +99,29 @@ export default class GameScene extends Phaser.Scene {
 
         this.addEntity(new Wolf(this, 200, 150, physicsSocket))
 
-        this.cameras.main.zoom = 4;
+        this.cameras.main.zoom = Constants.UPSCALE_FACTOR;
         this.cameras.main.startFollow(player, false, .09, .09);
 
 
         // Unlocks audio after first click
         this.sound.unlock();
+
+        this.ready = true;
+
+    }
+
+    public isReady() {
+        return this.ready;
     }
 
     update(time: number, delta: number) {
         this.jukebox.update(delta/1000)
     }
+
+    getEntityByName<T extends Entity>(name: string): T | undefined {
+        return this.entityContainer.getByName(name) as T;
+    }
+
 
     get matterCollisionPlugin() {
         return this.matterCollision as MatterCollisionPlugin
