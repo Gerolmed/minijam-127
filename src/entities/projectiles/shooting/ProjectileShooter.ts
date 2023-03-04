@@ -17,8 +17,8 @@ export class ProjectileShooter {
 
     private shootTimer = 0;
     private config: ShooterConfig = {
-        frequency: 1,
-        projectileSpeed: 4,
+        frequency: .5,
+        projectileSpeed: 3,
         hitLayer: PhysicsLayers.ENEMY,
         fireProjectile: SimpleProjectile.fire
     }
