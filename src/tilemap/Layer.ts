@@ -9,6 +9,9 @@ export function layerToIntGrid(layer: Layer): number[][] {
     const result: number[][] = [];
     for(let i = 0; i < layer.__cWid; i++) {
         result[i] = [];
+        for(let j = 0; j < layer.__cHei; j++) {
+            result[i][j] = -1;
+        }
     }
 
     layer.gridTiles.forEach(tile => {

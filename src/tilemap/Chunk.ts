@@ -87,7 +87,7 @@ export class Chunk {
         for(let x = 0; x < layer.__cWid; x++) {
             for(let y = 0; y < layer.__cHei; y++) {
                 const index = grid[x][y];
-                if(index == 0) continue;
+                if(index == -1) continue;
 
                 const sprite = new Sprite(
                     scene,

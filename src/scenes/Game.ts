@@ -43,10 +43,10 @@ export default class Demo extends Phaser.Scene {
 
         this.load.image("logo", 'assets/phaser3-logo.png');
         this.load.json("map", "assets/map/map.ldtk")
-        this.load.spritesheet("tileset", "assets/tilesets/tileset_overworld.png", {
+        this.load.spritesheet("tileset", "assets/tilesets/tileset.png", {
             frameWidth: 16,
             frameHeight: 16,
-            spacing: 1,
+            spacing: 0,
             margin: 0
         })
 
