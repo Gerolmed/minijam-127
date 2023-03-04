@@ -7,6 +7,7 @@ import Container = Phaser.GameObjects.Container;
 import {TileTagStore} from "./TileTagStore";
 import GameObject = Phaser.GameObjects.GameObject;
 import {Theme} from "../painting/Theme";
+import Transform = Phaser.GameObjects.Components.Transform;
 
 
 export class ChunkedTilemap {
@@ -54,8 +55,14 @@ export class ChunkedTilemap {
         return result;
     }
 
-    paint(obj: GameObject, theme: Theme) {
+    paint(obj: GameObject & Transform, theme: Theme) {
         this.loadedChunks.forEach(chunk => chunk.paint(obj, theme));
+    }
+
+    getPhysicsBodies(): MatterJS.BodyType[] {
+        const result: MatterJS.BodyType[] = [];
+        this.loadedChunks.map(chunk => chunk.getPhysicsBodies()).forEach(arr => result.push(...arr));
+        return result;
     }
 
     private async load(scene: Scene, area: Area): Promise<Chunk> {

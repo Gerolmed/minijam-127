@@ -9,6 +9,8 @@ import {Jukebox} from "../audio/JukeBox";
 import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
 import SpriteLoader from "../animations/SpriteLoader";
+import {Wolf} from "../entities/living/Enemies/Wolf";
+import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 
 
 export default class Demo extends Phaser.Scene {
@@ -76,21 +78,18 @@ export default class Demo extends Phaser.Scene {
         tilemap.enter(this, areas[0]);
 
         const player = this.addEntity(new Player(this, 300, 100))
-        this.addEntity(new LivingEntity(this, 200, 100))
+
+        const physicsSocket = new PhysicsSocket();
+        physicsSocket.setPlayer(player);
+        physicsSocket.setTilemap(tilemap);
+        this.addEntity(new Wolf(this, 200, 100, physicsSocket))
 
         this.cameras.main.zoom = 4;
-
         this.cameras.main.startFollow(player, false, .09, .09);
 
 
         // Unlocks audio after first click
         this.sound.unlock();
-
-
-        // TODO: remove
-        setInterval(() => {
-            tilemap.paint(player, Theme.ORANGE);
-        }, 5 * 1000)
     }
 
     update(time: number, delta: number) {

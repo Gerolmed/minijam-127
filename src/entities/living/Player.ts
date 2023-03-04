@@ -38,6 +38,7 @@ export class Player extends LivingEntity {
             frictionAir: .3,
             mass: 2,
             inverseMass: 1/2,
+            label: "player"
         };
     }
 
@@ -92,4 +93,9 @@ export class Player extends LivingEntity {
         const y = up ? -1 : (down ? 1 : 0);
         return new Vector2(x, y);
     }
+
+    getRigidBody() {
+        return this.rigidbody
+    }
+
 }
