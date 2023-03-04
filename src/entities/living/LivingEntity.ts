@@ -52,8 +52,8 @@ export class LivingEntity extends Entity implements IDamageable {
         const Matter = this.scene.matter;
 
         return [
-            Matter.bodies.circle(this.x, this.y,12),
-            Matter.bodies.circle(this.x, this.y+6,12),
+            Matter.bodies.circle(this.x, this.y,8), // was 12 and below too
+            Matter.bodies.circle(this.x, this.y+12,8),
         ]
     }
 
