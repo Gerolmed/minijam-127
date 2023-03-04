@@ -2,6 +2,7 @@ import {ProjectileEntity} from "./ProjectileEntity";
 import GameScene from "../../scenes/Game";
 import Vector2 = Phaser.Math.Vector2;
 import {isDamageable} from "../../damage/IDamageable";
+import {ShooterConfig} from "./shooting/ProjectileShooter";
 
 export class SimpleProjectile extends ProjectileEntity {
 
@@ -36,5 +37,9 @@ export class SimpleProjectile extends ProjectileEntity {
         other.damage(10);
 
         return super.hit(other);
+    }
+
+    static fire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig){
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, dir.scale(shooterConfig.projectileSpeed));
     }
 }

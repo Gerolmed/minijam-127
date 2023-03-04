@@ -3,11 +3,14 @@ import Vector2 = Phaser.Math.Vector2;
 import {SimpleProjectile} from "../SimpleProjectile";
 import PhysicsLayers from "../../PhysicsLayers";
 import Transform = Phaser.GameObjects.Components.Transform;
+import {ProjectileEntity} from "../ProjectileEntity";
 
 
-type ShooterConfig = {
+export type ShooterConfig = {
     frequency: number;
     projectileSpeed: number;
+    hitLayer?: number;
+    fireProjectile: (scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) => ProjectileEntity;
 }
 
 export class ProjectileShooter {
@@ -16,6 +19,8 @@ export class ProjectileShooter {
     private config: ShooterConfig = {
         frequency: 1,
         projectileSpeed: 4,
+        hitLayer: PhysicsLayers.ENEMY,
+        fireProjectile: SimpleProjectile.fire
     }
 
     constructor(
@@ -47,8 +52,7 @@ export class ProjectileShooter {
     }
 
     public shoot(input: Vector2) {
-        this.gameScene.addEntity(new SimpleProjectile(this.gameScene, this.transform.x, this.transform.y, PhysicsLayers.ENEMY, input.scale(this.config.projectileSpeed)))
-
+        this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, this.transform.x, this.transform.y, input, this.config));
     }
 
     update(deltaTime: number) {
