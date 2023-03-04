@@ -10,9 +10,22 @@
         background: linear-gradient(0deg, rgba(77,35,64,1) 0%, rgba(212,113,93,1) 72%, rgba(243,180,134,1) 96%);
       }
     </style>
+    <style media='screen' type='text/css'>
+      body {
+        margin: 0;
+        background: rgb(77,35,64);
+        background: linear-gradient(0deg, rgba(77,35,64,1) 0%, rgba(212,113,93,1) 72%, rgba(243,180,134,1) 96%);
+      }
+
+      @font-face {
+        font-family: EndFont;
+        src: url("assets/fonts/EndFont.ttf");
+      }
+    </style>
     <script type="module" src="/src/index.ts"></script>
   </head>
   <body>
-    <div id="game"></div>
+  <div style="font-family:EndFont; position:absolute; left:-1000px; visibility:hidden;">.</div>
+  <div id="game"></div>
   </body>
 </html>

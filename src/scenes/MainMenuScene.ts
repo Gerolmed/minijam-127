@@ -4,7 +4,7 @@ import {Button} from "../ui/Button";
 
 export class MainMenuScene extends Scene {
     constructor() {
-        super("MainMenuScene");
+        super("MainMenu");
     }
 
     preload() {
@@ -12,6 +12,9 @@ export class MainMenuScene extends Scene {
         this.load.aseprite("btn_continue", "assets/Menu/Button_Continue.png", "assets/Menu/Button_Continue.json")
         this.load.aseprite("btn_new_game", "assets/Menu/Button_NewGame.png", "assets/Menu/Button_NewGame.json")
         this.load.image("logo", "assets/Menu/Logo.png")
+        this.load.audio("ui_error", ["assets/audio/sfx/ui/Error.mp3"])
+        this.load.audio("ui_navigate", ["assets/audio/sfx/ui/Navigate.mp3"])
+        this.load.audio("ui_select", ["assets/audio/sfx/ui/Select.mp3"])
     }
 
     create() {
