@@ -83,7 +83,7 @@ export default class GameScene extends Phaser.Scene {
         const map: Tilemap = this.cache.json.get("map");
         const tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
         const areas = tilemap.getAreas();
-        tilemap.enter(this, areas[0]);
+        tilemap.enter(areas[0]);
 
 
         // Init Entities
@@ -91,6 +91,7 @@ export default class GameScene extends Phaser.Scene {
         this.entityContainer = this.add.container();
 
         const player = this.addEntity(new Player(this, 300, 100))
+        player.setTilemap(tilemap);
 
         const physicsSocket = new PhysicsSocket();
         physicsSocket.setPlayer(player);

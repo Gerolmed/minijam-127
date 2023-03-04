@@ -18,9 +18,10 @@ export class ChunkedTilemap {
     private readonly mapContainer: Container;
 
     private loadedChunks: Chunk[] = [];
+    private currentArea?: Area;
 
 
-    constructor(map: Tilemap, areaFactory: AreaFactory, scene: Scene) {
+    constructor(map: Tilemap, areaFactory: AreaFactory, private readonly scene: Scene) {
         map.levels.forEach(level => {
             this.areas.set(level.iid, areaFactory.produce(level));
         })
@@ -30,20 +31,43 @@ export class ChunkedTilemap {
     }
 
 
-    async enter(scene: Scene, area: Area) {
+    setPlayerPosition(x: number, y: number) {
+        if(!(this.currentArea) || this.isPositionIn(x, y, this.currentArea))
+            return;
+
+        this.areas.forEach(area => {
+            if(this.isPositionIn(x, y, area)) {
+                this.currentArea = area;
+                this.enter(area);
+            }
+        })
+    }
+
+
+    private isPositionIn(x: number, y: number, area: Area): boolean {
+        const currentBounds = area.getBounds();
+
+        return !(currentBounds.x > x ||
+            currentBounds.y > y ||
+            currentBounds.x + currentBounds.width < x ||
+            currentBounds.y + currentBounds.height < y)
+    }
+
+    async enter(area: Area) {
+        this.currentArea = area;
         const requiredAreas = [area];
 
-        await this.load(scene, area);
+        await this.load(area);
 
         area.getNeighbours().forEach(neighbor => {
             const neighbourArea = this.areas.get(neighbor);
             if(!neighbourArea) return;
 
             requiredAreas.push(neighbourArea);
-            this.load(scene, neighbourArea);
+            this.load(neighbourArea);
         })
 
-        this.clean(scene, requiredAreas);
+        this.clean(this.scene, requiredAreas);
     }
 
 
@@ -65,13 +89,13 @@ export class ChunkedTilemap {
         return result;
     }
 
-    private async load(scene: Scene, area: Area): Promise<Chunk> {
+    private async load(area: Area): Promise<Chunk> {
         const loadedChunk = this.loadedChunks.find(chunk => chunk.getArea() === area);
 
         if(!!loadedChunk) return loadedChunk;
 
         const chunk = area.createChunkInstance();
-        chunk.render(scene, {
+        chunk.render(this.scene, {
             mapContainer: this.mapContainer,
             tileEnums: this.tileTagStore,
             hasPhysics: true,
