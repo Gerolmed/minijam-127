@@ -9,6 +9,11 @@ export interface IDamageable {
     setHandler(handler: IHealthStatHandler): void;
 }
 
+
+export function isDamageable(obj: any): obj is IDamageable {
+    return obj && typeof obj.damage === "function";
+}
+
 export interface IHealthStatHandler {
     onHealthChange(health: number, maxHealth: number): void;
 }

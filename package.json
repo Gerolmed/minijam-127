@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/geocine/phaser3-rollup-typescript#readme",
   "dependencies": {
-    "phaser": "^3.60.0-beta.19"
+    "phaser": "^3.60.0-beta.19",
+    "phaser-matter-collision-plugin": "^1.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",

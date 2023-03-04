@@ -1,8 +1,9 @@
 import {Entity} from "../Entity";
 import {Animator} from "../../animations/Animator";
-import {Scene} from "phaser";
 import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 import {IDamageable, IHealthStatHandler} from "../../damage/IDamageable";
+import GameScene from "../../scenes/Game";
+import PhysicsLayers from "../PhysicsLayers";
 
 export class LivingEntity extends Entity implements IDamageable {
     protected readonly animator: Animator;
@@ -13,7 +14,7 @@ export class LivingEntity extends Entity implements IDamageable {
     private maxHealth: number;
     private statHandler?: IHealthStatHandler;
 
-    constructor(scene: Scene, x?: number, y?: number) {
+    constructor(scene: GameScene, x?: number, y?: number) {
         super(scene, x, y);
         this.animator = new Animator(scene);
         this.add(this.animator.root);
@@ -37,8 +38,13 @@ export class LivingEntity extends Entity implements IDamageable {
 
     protected createPhysicsConfig(): MatterBodyConfig {
         return {
+            collisionFilter: {
+                category: PhysicsLayers.PLAYER
+            },
             frictionAir: .1,
             friction: 0,
+            mass: 20,
+            inverseMass: 1/20,
         }
     }
 

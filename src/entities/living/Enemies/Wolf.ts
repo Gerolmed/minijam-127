@@ -8,6 +8,7 @@ export class Wolf extends Enemy {
     }
 
     protected safeUpdate(deltaTime: number) {
+        super.safeUpdate(deltaTime);
         console.log(this.hasLineOfSight());
     }
 

@@ -1,13 +1,13 @@
 import {LivingEntity} from "../LivingEntity";
 import {PhysicsSocket} from "../PhysicsSocket";
-import {Scene} from "phaser";
 import Vector2 = Phaser.Math.Vector2;
 import {ICollisionData} from "matter";
+import GameScene from "../../../scenes/Game";
 
 export class Enemy extends LivingEntity {
 
 
-    constructor(scene: Scene, x: number, y: number, protected readonly physicsSocket: PhysicsSocket) {
+    constructor(scene: GameScene, x: number, y: number, protected readonly physicsSocket: PhysicsSocket) {
         super(scene, x, y);
     }
 

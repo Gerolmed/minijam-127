@@ -315,6 +315,11 @@ path-parse@^1.0.7:
   resolved "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
+phaser-matter-collision-plugin@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/phaser-matter-collision-plugin/-/phaser-matter-collision-plugin-1.0.0.tgz#de6da670662b1d507857db02d0961356c5037e74"
+  integrity sha512-8ihbK5tPmMzpLSbJkrnyPKNZT/TyhN2bjHtthTl2cmTCiJpY6Ih7SZf1Kb6zWtUD8kWlllPrBktF1CcwmMvc0w==
+
 phaser@^3.60.0-beta.19:
   version "3.60.0-beta.19"
   resolved "https://registry.yarnpkg.com/phaser/-/phaser-3.60.0-beta.19.tgz#6828d740d8bbdc064cd8ae7c6e8d5f172cd00153"

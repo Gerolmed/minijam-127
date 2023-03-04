@@ -1,10 +1,10 @@
 import Container = Phaser.GameObjects.Container;
 import TimeManager from "../TimeManager";
-import {Scene} from "phaser";
+import GameScene from "../scenes/Game";
 
 export class Entity extends Container {
 
-    constructor(scene: Scene, x?: number, y?: number) {
+    constructor(scene: GameScene, x?: number, y?: number) {
         super(scene, x, y);
     }
 
@@ -25,6 +25,10 @@ export class Entity extends Container {
     }
     protected safeUpdate(deltaTime: number): void {
 
+    }
+
+    get gameScene() {
+        return this.scene as GameScene;
     }
 
 }

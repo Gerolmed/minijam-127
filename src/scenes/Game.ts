@@ -3,17 +3,16 @@ import {Tilemap} from "../types/Tilemap";
 import {ChunkedTilemap} from "../tilemap/ChunkedTilemap";
 import {Player} from "../entities/living/Player";
 import {Entity} from "../entities/Entity";
-import {LivingEntity} from "../entities/living/LivingEntity";
 import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
 import {Jukebox} from "../audio/JukeBox";
-import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
 import SpriteLoader from "../animations/SpriteLoader";
+import MatterCollisionPlugin from "phaser-matter-collision-plugin";
 import {Wolf} from "../entities/living/Enemies/Wolf";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 
 
-export default class Demo extends Phaser.Scene {
+export default class GameScene extends Phaser.Scene {
 
     private readonly jukebox!: Jukebox;
 
@@ -60,7 +59,7 @@ export default class Demo extends Phaser.Scene {
         })
     }
 
-    private addEntity<T extends Entity>(entity: T): T {
+    public addEntity<T extends Entity>(entity: T): T {
         entity.create();
         this.add.existing(entity);
         return entity;
@@ -94,5 +93,9 @@ export default class Demo extends Phaser.Scene {
 
     update(time: number, delta: number) {
         this.jukebox.update(delta/1000)
+    }
+
+    get matterCollisionPlugin() {
+        return this.matterCollision as MatterCollisionPlugin
     }
 }

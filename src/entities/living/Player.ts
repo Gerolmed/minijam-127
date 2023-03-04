@@ -2,33 +2,46 @@ import {LivingEntity} from "./LivingEntity";
 import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
 import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
 import Vector2 = Phaser.Math.Vector2;
+import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
 
 export class Player extends LivingEntity {
 
     private speed = 20;
     private acceleration = 50;
     private playerInput!: PlayerIngameInput;
+    private projectileShooter!: ProjectileShooter;
     private lastDir: Vector2 = new Vector2(0,1);
 
     public create() {
 
         this.playerInput = new PlayerIngameInput(this.scene);
+        this.projectileShooter = new ProjectileShooter(this.gameScene, this);
         this.animator.load(PlayerAnimationKeys.BASE);
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
+
+        this.setHandler({
+            onHealthChange(health: number, maxHealth: number) {
+                console.log("hit me")
+            }
+        })
     }
 
     protected createPhysicsConfig(): Phaser.Types.Physics.Matter.MatterBodyConfig {
         return {
             ...super.createPhysicsConfig(),
             frictionAir: .3,
-            mass: 2,
-            inverseMass: 1/2,
+            mass: 20,
+            inverseMass: 1/20,
             label: "player"
         };
     }
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
+
+        this.playerInput.update(deltaTime);
+        this.projectileShooter.update(deltaTime);
+
         const shootDir = this.handleShooting(deltaTime);
         const moveDir = this.handleMovement(deltaTime);
 
@@ -73,12 +86,11 @@ export class Player extends LivingEntity {
     private handleAnimation(moveDir: Vector2, shootDir: Vector2) {
 
         let dir = shootDir.lengthSq() > 0.1 ? shootDir : moveDir;
-        let walking = true;
+        let walking = moveDir.lengthSq() > 0.1;
         if(dir.lengthSq() > 0.1) {
             this.lastDir = dir;
         } else {
             dir = this.lastDir;
-            walking = false;
         }
 
         if(dir.y > 0) {
@@ -94,12 +106,12 @@ export class Player extends LivingEntity {
         }
     }
 
+
+    hasShot = false;
+
     private tryShoot(input: Vector2) {
-
-    }
-
-    getRigidBody() {
-        return this.rigidbody
+        if (input.lengthSq() < .1) return;
+        this.projectileShooter.tryShoot(input)
     }
 
 }
