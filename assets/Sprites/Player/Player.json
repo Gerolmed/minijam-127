@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "{frame)",
+    "filename": "0",
     "frame": { "x": 1, "y": 1, "w": 26, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -9,7 +9,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "1",
     "frame": { "x": 1, "y": 1, "w": 26, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -18,7 +18,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "2",
     "frame": { "x": 1, "y": 34, "w": 26, "h": 30 },
     "rotated": false,
     "trimmed": true,
@@ -27,7 +27,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "3",
     "frame": { "x": 28, "y": 34, "w": 26, "h": 30 },
     "rotated": false,
     "trimmed": true,
@@ -36,7 +36,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "4",
     "frame": { "x": 55, "y": 65, "w": 24, "h": 31 },
     "rotated": false,
     "trimmed": true,
@@ -45,7 +45,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "5",
     "frame": { "x": 55, "y": 34, "w": 26, "h": 30 },
     "rotated": false,
     "trimmed": true,
@@ -54,7 +54,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "6",
     "frame": { "x": 82, "y": 34, "w": 26, "h": 30 },
     "rotated": false,
     "trimmed": true,
@@ -63,7 +63,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "7",
     "frame": { "x": 80, "y": 65, "w": 24, "h": 31 },
     "rotated": false,
     "trimmed": true,
@@ -72,7 +72,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "8",
     "frame": { "x": 44, "y": 97, "w": 16, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -81,7 +81,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "9",
     "frame": { "x": 28, "y": 1, "w": 26, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -90,7 +90,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "10",
     "frame": { "x": 1, "y": 65, "w": 26, "h": 29 },
     "rotated": false,
     "trimmed": true,
@@ -99,7 +99,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "11",
     "frame": { "x": 105, "y": 65, "w": 22, "h": 31 },
     "rotated": false,
     "trimmed": true,
@@ -108,7 +108,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "12",
     "frame": { "x": 55, "y": 1, "w": 26, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -117,7 +117,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "13",
     "frame": { "x": 28, "y": 65, "w": 26, "h": 29 },
     "rotated": false,
     "trimmed": true,
@@ -126,7 +126,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "14",
     "frame": { "x": 1, "y": 95, "w": 22, "h": 31 },
     "rotated": false,
     "trimmed": true,
@@ -135,7 +135,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "15",
     "frame": { "x": 82, "y": 1, "w": 26, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -144,7 +144,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "16",
     "frame": { "x": 61, "y": 97, "w": 16, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -153,7 +153,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "17",
     "frame": { "x": 109, "y": 1, "w": 19, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -162,7 +162,7 @@
     "duration": 100
    },
    {
-    "filename": "{frame)",
+    "filename": "18",
     "frame": { "x": 24, "y": 95, "w": 19, "h": 32 },
     "rotated": false,
     "trimmed": true,
@@ -172,8 +172,8 @@
    }
  ],
  "meta": {
-  "app": "http://www.aseprite.org/",
-  "version": "1.2.16.2-x64",
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
   "image": "Player.png",
   "format": "RGBA8888",
   "size": { "w": 128, "h": 129 },
