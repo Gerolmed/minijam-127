@@ -3,6 +3,7 @@ import GameScene from "../../scenes/Game";
 import Vector2 = Phaser.Math.Vector2;
 import {isDamageable} from "../../damage/IDamageable";
 import {ShooterConfig} from "./shooting/ProjectileShooter";
+import {PlayerProjectileAnimationKeys} from "../../animations/ProjectileAnimationKeys";
 
 export class SimpleProjectile extends ProjectileEntity {
 
@@ -15,6 +16,9 @@ export class SimpleProjectile extends ProjectileEntity {
         private readonly ttl = 6,
     ) {
         super(scene, x, y, hitTeamMask);
+
+        this.animator.load(PlayerProjectileAnimationKeys.BASE);
+        this.animator.play(PlayerProjectileAnimationKeys.IDLE);
     }
 
     protected safeUpdate(deltaTime: number) {
