@@ -1,11 +1,11 @@
 import GameScene from "../../../scenes/Game";
-import Vector2 = Phaser.Math.Vector2;
 import {SimpleProjectile} from "../SimpleProjectile";
 import PhysicsLayers from "../../PhysicsLayers";
-import Transform = Phaser.GameObjects.Components.Transform;
 import {ProjectileEntity} from "../ProjectileEntity";
 import {SimpleProjectileKeys, SplatsLarge, SplatsSmall} from "../../../animations/ProjectileAnimationKeys";
 import {Theme} from "../../../painting/Theme";
+import Vector2 = Phaser.Math.Vector2;
+import Transform = Phaser.GameObjects.Components.Transform;
 
 
 export type ShooterConfig = {
@@ -15,7 +15,7 @@ export type ShooterConfig = {
     accuracy: number; // TODO: implement this
     hitBoxSizeMod: number; // TODO: implement this
     projectiles: number; // TODO: implement this
-    range: number; // TODO: implement this
+    range: number;
     hasBackShot?: boolean; // TODO: implement this
     hasSideShots?: boolean; // TODO: implement this
     hitLayer?: number;
