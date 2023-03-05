@@ -16,6 +16,8 @@ import Vector2 = Phaser.Math.Vector2;
 import {EnemyFactory} from "../entities/factories/EnemyFactory";
 import {ItemEntity} from "../items/ItemEntity";
 import {MaxHealthItem} from "../items/MaxHealthItem";
+import {CampfireFactory} from "../entities/factories/CampfireFactory";
+import {NPCFactory} from "../entities/factories/NPCFactory";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -92,6 +94,8 @@ export default class GameScene extends Phaser.Scene {
         const physicsSocket = new PhysicsSocket();
         const enemyFactory = new EnemyFactory(this, physicsSocket, (entity) => this.addEntity(entity));
         this.tilemap.registerEntityFactory(enemyFactory);
+        this.tilemap.registerEntityFactory(new CampfireFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
+        this.tilemap.registerEntityFactory(new NPCFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
 
         this.entityContainer = this.add.container();
 
