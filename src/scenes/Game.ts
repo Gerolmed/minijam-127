@@ -10,10 +10,14 @@ import MatterCollisionPlugin from "phaser-matter-collision-plugin";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 import Constants from "../Constants";
 import {EnemyFactory} from "../entities/factories/EnemyFactory";
+import {ItemEntity} from "../items/ItemEntity";
+import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
 import {CampfireFactory} from "../entities/factories/CampfireFactory";
 import {NPCFactory} from "../entities/factories/NPCFactory";
+import {PersistenceManager} from "../persistence/PersistenceManager";
+import {BossFactory} from "../entities/factories/BossFactory";
 import {ItemFactory} from "../entities/factories/ItemFactory";
 
 
@@ -91,7 +95,9 @@ export default class GameScene extends Phaser.Scene {
 
         const physicsSocket = new PhysicsSocket();
         const enemyFactory = new EnemyFactory(this, physicsSocket, (entity) => this.addEntity(entity));
+        const bossFactory = new BossFactory(this, physicsSocket, (entity) => this.addEntity(entity));
         this.tilemap.registerEntityFactory(enemyFactory);
+        this.tilemap.registerEntityFactory(bossFactory);
         this.tilemap.registerEntityFactory(new CampfireFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
         this.tilemap.registerEntityFactory(new NPCFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
         this.tilemap.registerEntityFactory(new ItemFactory(this, (entity) => this.addEntity(entity)));
@@ -146,7 +152,7 @@ export default class GameScene extends Phaser.Scene {
 
     async softResetWorld(): Promise<void> {
         const currentArea = this.tilemap.getCurrentArea()!;
-        this.tilemap.unloadAllChunks();
+        await this.tilemap.unloadAllChunks();
         await this.tilemap.enter(currentArea);
     }
 }

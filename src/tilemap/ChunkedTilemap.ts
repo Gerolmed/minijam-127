@@ -9,6 +9,7 @@ import GameObject = Phaser.GameObjects.GameObject;
 import {Theme} from "../painting/Theme";
 import Transform = Phaser.GameObjects.Components.Transform;
 import {IEntityFactory} from "../entities/factories/IEntityFactory";
+import {AABB} from "../util/AABB";
 
 
 export class ChunkedTilemap {
@@ -49,11 +50,7 @@ export class ChunkedTilemap {
 
     private isPositionIn(x: number, y: number, area: Area): boolean {
         const currentBounds = area.getBounds();
-
-        return !(currentBounds.x > x ||
-            currentBounds.y > y ||
-            currentBounds.x + currentBounds.width < x ||
-            currentBounds.y + currentBounds.height < y)
+        return AABB.isIn(x, y, currentBounds.x, currentBounds.y, currentBounds.width, currentBounds.height);
     }
 
     async enter(area: Area) {
@@ -118,14 +115,24 @@ export class ChunkedTilemap {
     }
 
 
-    unloadAllChunks() {
-        this.clean([]);
+    async unloadAllChunks() {
+        await this.clean([]);
     }
 
-    private clean(requiredChunks: Area[]) {
+    private async clean(requiredChunks: Area[]) {
+        const promises: Promise<any>[] = [];
+
         const unloadChunks = this.loadedChunks.filter(chunk => !(requiredChunks.includes(chunk.getArea())));
-        unloadChunks.forEach(chunk => chunk.unload(this.scene));
+        unloadChunks.forEach(chunk => {
+            promises.push(chunk.unload(this.scene));
+        });
         this.loadedChunks = this.loadedChunks.filter(chunk => requiredChunks.includes(chunk.getArea()));
+
+        promises.push(new Promise(resolve => {
+            setTimeout(resolve, 1);
+        }))
+
+        await Promise.all(promises);
     }
 
 }
