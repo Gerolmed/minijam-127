@@ -70,7 +70,7 @@ export class ChunkedTilemap {
             this.load(neighbourArea);
         })
 
-        this.clean(this.scene, requiredAreas);
+        this.clean(requiredAreas);
     }
 
 
@@ -80,6 +80,10 @@ export class ChunkedTilemap {
             result.push(area);
         }
         return result;
+    }
+
+    getCurrentArea(): Area | undefined {
+        return this.currentArea;
     }
 
     paint(obj: GameObject & Transform, theme: Theme) {
@@ -113,9 +117,14 @@ export class ChunkedTilemap {
         return chunk;
     }
 
-    private clean(scene: Scene, requiredChunks: Area[]) {
+
+    unloadAllChunks() {
+        this.clean([]);
+    }
+
+    private clean(requiredChunks: Area[]) {
         const unloadChunks = this.loadedChunks.filter(chunk => !(requiredChunks.includes(chunk.getArea())));
-        unloadChunks.forEach(chunk => chunk.unload(scene));
+        unloadChunks.forEach(chunk => chunk.unload(this.scene));
         this.loadedChunks = this.loadedChunks.filter(chunk => requiredChunks.includes(chunk.getArea()));
     }
 
