@@ -5,10 +5,11 @@ import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
 import {IBodyDefinition} from "matter";
 import {ChunkedTilemap} from "../../tilemap/ChunkedTilemap";
 import {Item} from "../../items/Item";
+import {IShootSource} from "./IShootSource";
 import Vector2 = Phaser.Math.Vector2;
 import Color = Phaser.Display.Color;
 
-export class Player extends LivingEntity {
+export class Player extends LivingEntity implements IShootSource{
 
     private readonly baseSpeed = 20;
     private speed = this.baseSpeed;
@@ -136,7 +137,7 @@ export class Player extends LivingEntity {
 
     private tryShoot(input: Vector2) {
         if (input.lengthSq() < .1) return;
-        this.projectileShooter.tryShoot(new Vector2(this.x, this.y).add(this.getShootDirOffset(input)),input)
+        this.projectileShooter.tryShoot(input)
     }
 
 
@@ -176,6 +177,10 @@ export class Player extends LivingEntity {
 
     addSpeed(number: number) {
         this.speed += number;
+    }
+
+    getShootPos(dir: Vector2): Vector2 {
+        return new Vector2(this.x, this.y).add(this.getShootDirOffset(dir))
     }
 }
 

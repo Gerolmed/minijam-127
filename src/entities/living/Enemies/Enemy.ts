@@ -8,6 +8,7 @@ import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 import {Animator} from "../../../animations/Animator";
 import {Theme} from "../../../painting/Theme";
 import {SpinnyProjectileAnimationKeys} from "../../../animations/ProjectileAnimationKeys";
+import {IShootSource} from "../IShootSource";
 import Vector2 = Phaser.Math.Vector2;
 
 
@@ -24,7 +25,7 @@ export enum EnemyFacing {
     DOWN
 }
 
-export class Enemy extends LivingEntity {
+export class Enemy extends LivingEntity implements IShootSource {
 
 
     protected readonly projectileShooter: ProjectileShooter;
@@ -109,7 +110,7 @@ export class Enemy extends LivingEntity {
                 moving = true;
                 this.updateFacing(velX, velY);
             } else {
-                this.projectileShooter.tryShoot(new Vector2(this.x, this.y), new Vector2(playerDir[0] / distanceToPlayer, playerDir[1] / distanceToPlayer));
+                this.projectileShooter.tryShoot(new Vector2(playerDir[0] / distanceToPlayer, playerDir[1] / distanceToPlayer));
             }
         }
 
@@ -192,4 +193,13 @@ export class Enemy extends LivingEntity {
         return "";
     }
 
+    getShootPos(dir: Vector2): Vector2 {
+        return new Vector2(this.x, this.y).add(this.getShootDirOffset(dir))
+    }
+
+    private getShootDirOffset(input: Vector2) {
+        if(input.y < 0) return new Vector2(0, -15)
+
+        return new Vector2(input.x * 7,0)
+    }
 }

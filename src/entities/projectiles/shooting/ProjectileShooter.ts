@@ -4,7 +4,7 @@ import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileEntity} from "../ProjectileEntity";
 import {SimpleProjectileKeys, SplatsLarge, SplatsSmall} from "../../../animations/ProjectileAnimationKeys";
 import {Theme} from "../../../painting/Theme";
-import {Entity} from "../../Entity";
+import {IShootSource} from "../../living/IShootSource";
 import Vector2 = Phaser.Math.Vector2;
 import Transform = Phaser.GameObjects.Components.Transform;
 
@@ -15,7 +15,7 @@ export type ShooterConfig = {
     // the large the more inaccurate
     accuracy: number;
     hitBoxSizeMod: number; // TODO: implement this
-    projectiles: number; // TODO: implement this
+    projectiles: number;
     range: number;
     hasBackShot?: boolean;
     hasSideShots?: boolean;
@@ -35,7 +35,7 @@ export class ProjectileShooter {
     private readonly baseConfig: ShooterConfig;
 
     constructor(
-        private readonly source: Entity,
+        private readonly source: IShootSource,
         private readonly transform: Transform,
         config?: Partial<ShooterConfig>,
     ) {
@@ -66,13 +66,13 @@ export class ProjectileShooter {
 
     }
 
-    tryShoot(source: Vector2, input: Vector2): boolean {
+    tryShoot(input: Vector2): boolean {
 
         if(this.shootTimer < this.config.frequency) return false;
 
         this.shootTimer = 0;
 
-        this.shoot(source, input);
+        this.shoot(input);
         return true;
     }
 
@@ -83,23 +83,26 @@ export class ProjectileShooter {
         return this.baseConfig
     }
 
-    public shoot(source: Vector2, input: Vector2) {
+    public shoot(input: Vector2) {
 
 
-        this.fireProjectile(source, input.clone());
+
+        for (let i = 0; i < this.config.projectiles; i++) {
+            setTimeout(() => this.fireProjectile(input, input.clone()), 333 * i / this.config.projectileSpeed)
+        }
 
         if(this.config.hasBackShot) {
-            this.fireProjectile(source, input.clone().scale(-1));
+            this.fireProjectile(input, input.clone().scale(-1));
         }
         if(this.config.hasSideShots) {
-            this.fireProjectile(source, input.clone().rotate(30/180 * Math.PI));
-            this.fireProjectile(source, input.clone().rotate(-30/180 * Math.PI));
+            this.fireProjectile(input, input.clone().rotate(30/180 * Math.PI));
+            this.fireProjectile(input, input.clone().rotate(-30/180 * Math.PI));
         }
     }
 
-    private fireProjectile(source: Vector2, input: Vector2) {
+    private fireProjectile(sourceDir: Vector2, input: Vector2) {
 
-        console.log(this.config.accuracy)
+        if(!this.source.isAlive) return
 
         if(this.config.accuracy > 0) {
             let angle = 90 *  this.config.accuracy * Math.random();
@@ -108,7 +111,9 @@ export class ProjectileShooter {
 
             input.rotate(angle/180 * Math.PI)
         }
-        this.source.gameScene.addEntity(this.config.fireProjectile(this.source.gameScene, source.x, source.y, input, this.config));
+
+        const shootPos = this.source.getShootPos(sourceDir);
+        this.source.gameScene.addEntity(this.config.fireProjectile(this.source.gameScene, shootPos.x, shootPos.y, input, this.config));
     }
 
 
