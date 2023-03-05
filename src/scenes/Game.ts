@@ -148,4 +148,8 @@ export default class GameScene extends Phaser.Scene {
     getTilemap() {
         return this.tilemap
     }
+
+    async softResetWorld(): Promise<void> {
+
+    }
 }

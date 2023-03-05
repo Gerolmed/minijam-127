@@ -1,14 +1,14 @@
 import {LivingEntity} from "../LivingEntity";
 import {PhysicsSocket} from "../PhysicsSocket";
-import Vector2 = Phaser.Math.Vector2;
 import {ICollisionData} from "matter";
 import GameScene from "../../../scenes/Game";
 import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
 import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 import {Animator} from "../../../animations/Animator";
-import {Scene} from "phaser";
-import {SimpleProjectile} from "../../projectiles/SimpleProjectile";
+import {Theme} from "../../../painting/Theme";
+import Vector2 = Phaser.Math.Vector2;
+import {SpinnyProjectileAnimationKeys} from "../../../animations/ProjectileAnimationKeys";
 
 
 export enum EnemyState {
@@ -57,7 +57,8 @@ export class Enemy extends LivingEntity {
             hitLayer: PhysicsLayers.PLAYER,
             projectileSpeed: 1.5,
             frequency: 0.6,
-            fireProjectile: SimpleProjectile.enemyFire
+            splashTheme: Theme.PURPLE,
+            projectileAnimKeys: SpinnyProjectileAnimationKeys
         });
     }
 

@@ -4,7 +4,7 @@ class TimeManager {
     private uiFrozen = false;
 
     public setGameFreeze(freeze: boolean) {
-
+        this.gameFrozen = freeze;
     }
     public setUIFrozen(freeze: boolean) {
         this.uiFrozen = freeze;

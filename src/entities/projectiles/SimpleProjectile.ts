@@ -2,7 +2,7 @@ import {ProjectileEntity} from "./ProjectileEntity";
 import GameScene from "../../scenes/Game";
 import {isDamageable} from "../../damage/IDamageable";
 import {ShooterConfig} from "./shooting/ProjectileShooter";
-import {PlayerProjectileAnimationKeys} from "../../animations/ProjectileAnimationKeys";
+import {PlayerProjectileAnimationKeys, SimpleProjectileKeys} from "../../animations/ProjectileAnimationKeys";
 import {Theme} from "../../painting/Theme";
 import Vector2 = Phaser.Math.Vector2;
 import Sprite = Phaser.GameObjects.Sprite;
@@ -23,11 +23,12 @@ export class SimpleProjectile extends ProjectileEntity {
         private readonly direction = new Vector2(1, 0),
         private readonly theme: Theme = Theme.ORANGE,
         private readonly ttl = 1.5,
+        private readonly animationKeys: SimpleProjectileKeys = PlayerProjectileAnimationKeys,
     ) {
         super(scene, x, y, hitTeamMask, selfMask);
 
-        this.animator.load(PlayerProjectileAnimationKeys.BASE);
-        this.animator.play(PlayerProjectileAnimationKeys.IDLE);
+        this.animator.load(this.animationKeys.BASE);
+        this.animator.play(this.animationKeys.IDLE);
         this.lastPos = new Vector2(this.x, this.y);
     }
 
@@ -55,21 +56,21 @@ export class SimpleProjectile extends ProjectileEntity {
     }
 
     protected hit(other: Phaser.GameObjects.GameObject | undefined): boolean {
+        this.gameScene.getTilemap().paint(new Sprite(this.scene,this.x,this.y, "splat_2"), this.theme)
         if(!isDamageable(other)) return true;
 
         other.damage(10);
-        this.gameScene.getTilemap().paint(new Sprite(this.scene,this.x,this.y, "splat_2"), this.theme)
 
 
         return super.hit(other);
     }
 
     static fire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig){
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed));
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys);
     }
 
     static enemyFire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) {
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), Theme.PURPLE);
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys);
     }
 
 }

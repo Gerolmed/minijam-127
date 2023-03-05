@@ -38,6 +38,7 @@ export class InteractableEntity extends LivingEntity {
         this.getInteractKey().on("down",() => {
             if(TimeManager.isGameFrozen) return;
             if(!this.insidePlayer) return;
+            if(!this.interactionIndicator) return;
             this.doInteract(this.insidePlayer);
         });
     }
@@ -124,7 +125,7 @@ export class InteractableEntity extends LivingEntity {
         return group;
     }
 
-    private showIndicator() {
+    protected showIndicator() {
         this.interactionIndicator?.destroy()
         this.interactionIndicator = this.createIndicator(this.x, this.y-24)
     }
