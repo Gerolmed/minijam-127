@@ -677,7 +677,14 @@
 							"defUid": 52,
 							"px": [296,120],
 							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
+								{ "__identifier": "DialogLines", "__value": [
+									"Welcome Splat Cat, /n the rats, wolfs and opossums /n are threatening all of catkind in /n this area. Kill them! /n K I L L  T H E M  A L L!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"Welcome Splat Cat, /n the rats, wolfs and opossums /n are threatening all of catkind in /n this area. Kill them! /n K I L L  T H E M  A L L!"
+									]
+								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
 								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
