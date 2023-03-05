@@ -383,12 +383,12 @@
 			"padding": 0,
 			"tags": [],
 			"tagsSourceEnumUid": 6,
-			"enumTags": [{ "enumValueId": "Wall", "tileIds": [0,1,2,6,20,22,40,41,42,46,47,48,49,60,61,62,63,64,80,81,82,86,87,100,101,102] }],
+			"enumTags": [{ "enumValueId": "Wall", "tileIds": [0,1,2,6,20,22,40,41,42,46,47,48,49,50,60,61,62,63,64,80,81,82,86,87,100,101,102] }],
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
 				"opaqueTiles": "111111001111110000001111110011111100000011111100000111000000111111000001110000001110010000011100000011100000000000000000111011111000000000000000111110000000000000111111100000000000001111111000000000000011111110000000000000011111110000000000",
-				"averageColors": "feeefeeefeeefeeefeeefeeeaeeeaeeefedcfedcfedcfeddfedcfedc000000000000000000000000feeefeeefeeefeeefeeefeee6eee0000fedcfedcfedcfeddfeddfeed000000000000000000000000feeefeeefeeefeeefeeefeee8eee9eee8eee9eee0000feeefeeefeee000000000000000000000000feddfeddfeddfeedfeedfeee000000000000aeee0000feeefdddfeee000000000000000000000000feddfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeee000000000000000000000000feedfeddfddd0000000000006cbb6cbb000000000000000000000000000000000000000000000000feedfeddfeed0000feeefeddfeeefeeefeee000000000000000000000000000000000000000000000000000000000000feeefeddfeeefeeefeee0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee0000000000000000000000000000000000000000000000000000feedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
+				"averageColors": "feeefeeefeeefeeefeeefeeeaeeeaeeefedcfedcfedcfeddfedcfedc000000000000000000000000feeefeeefeeefeeefeeefeee6eee0000fedcfedcfedcfeddfeddfeed000000000000000000000000feeefeeefeeefeeefeeefeee8eee9eee8eee9eee9ffffeeefeeefeee000000000000000000000000feddfeddfeddfeedfeedfeee000000000000aeee7feefeeefdddfeee000000000000000000000000feddfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeee000000000000000000000000feedfeddfddd0000000000006cbb6cbb000000000000000000000000000000000000000000000000feedfeddfeed0000feeefeddfeeefeeefeee000000000000000000000000000000000000000000000000000000000000feeefeddfeeefeeefeee0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee0000000000000000000000000000000000000000000000000000feedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
 			}
 		}
 	], "enums": [
@@ -479,16 +479,16 @@
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [12,9],
+							"__grid": [18,7],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#30E3D2",
-							"iid": "26efb0d0-9f30-11ed-ba78-4325770d065a",
+							"iid": "69ed74d0-9f30-11ed-a4bd-510be75bcb7f",
 							"width": 16,
 							"height": 16,
 							"defUid": 52,
-							"px": [200,152],
+							"px": [296,120],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
 								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
@@ -611,6 +611,8 @@
 						{ "px": [32,96], "src": [144,48], "f": 0, "t": 69, "d": [134] },
 						{ "px": [256,96], "src": [144,32], "f": 0, "t": 49, "d": [148] },
 						{ "px": [256,112], "src": [144,48], "f": 0, "t": 69, "d": [170] },
+						{ "px": [80,144], "src": [160,32], "f": 0, "t": 50, "d": [203] },
+						{ "px": [80,160], "src": [160,48], "f": 0, "t": 70, "d": [225] },
 						{ "px": [272,160], "src": [96,0], "f": 0, "t": 6, "d": [237] }
 					],
 					"entityInstances": []
@@ -1509,7 +1511,9 @@
 						{ "px": [208,80], "src": [112,32], "f": 0, "t": 47, "d": [118] },
 						{ "px": [224,80], "src": [128,32], "f": 0, "t": 48, "d": [119] },
 						{ "px": [48,112], "src": [96,16], "f": 0, "t": 26, "d": [150] },
-						{ "px": [144,144], "src": [96,0], "f": 0, "t": 6, "d": [198] }
+						{ "px": [144,144], "src": [96,0], "f": 0, "t": 6, "d": [198] },
+						{ "px": [240,176], "src": [160,32], "f": 0, "t": 50, "d": [246] },
+						{ "px": [240,192], "src": [160,48], "f": 0, "t": 70, "d": [267] }
 					],
 					"entityInstances": []
 				},
@@ -2655,11 +2659,13 @@
 						{ "px": [96,384], "src": [64,0], "f": 0, "t": 4, "d": [702] },
 						{ "px": [112,384], "src": [48,16], "f": 0, "t": 23, "d": [703] },
 						{ "px": [128,384], "src": [32,32], "f": 0, "t": 42, "d": [704] },
+						{ "px": [208,384], "src": [160,32], "f": 0, "t": 50, "d": [709] },
 						{ "px": [64,400], "src": [0,32], "f": 0, "t": 40, "d": [729] },
 						{ "px": [80,400], "src": [16,32], "f": 0, "t": 41, "d": [730] },
 						{ "px": [96,400], "src": [16,32], "f": 0, "t": 41, "d": [731] },
 						{ "px": [112,400], "src": [32,32], "f": 0, "t": 42, "d": [732] },
 						{ "px": [128,400], "src": [32,48], "f": 0, "t": 62, "d": [733] },
+						{ "px": [208,400], "src": [160,48], "f": 0, "t": 70, "d": [738] },
 						{ "px": [64,416], "src": [0,48], "f": 0, "t": 60, "d": [758] },
 						{ "px": [80,416], "src": [16,48], "f": 0, "t": 61, "d": [759] },
 						{ "px": [96,416], "src": [16,48], "f": 0, "t": 61, "d": [760] },
@@ -5706,8 +5712,8 @@
 						{ "px": [48,112], "src": [112,112], "f": 0, "t": 147, "d": [108] },
 						{ "px": [96,112], "src": [128,112], "f": 0, "t": 148, "d": [111] },
 						{ "px": [192,112], "src": [96,16], "f": 0, "t": 26, "d": [117] },
-						{ "px": [112,160], "src": [144,32], "f": 0, "t": 49, "d": [157] },
-						{ "px": [112,176], "src": [144,48], "f": 0, "t": 69, "d": [172] }
+						{ "px": [112,160], "src": [160,32], "f": 0, "t": 50, "d": [157] },
+						{ "px": [112,176], "src": [160,48], "f": 0, "t": 70, "d": [172] }
 					],
 					"entityInstances": []
 				},
