@@ -1,46 +1,46 @@
 { "frames": [
    {
     "filename": "0",
-    "frame": { "x": 1, "y": 17, "w": 10, "h": 10 },
+    "frame": { "x": 1, "y": 19, "w": 12, "h": 12 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 8, "y": 7, "w": 8, "h": 8 },
+    "spriteSourceSize": { "x": 7, "y": 6, "w": 10, "h": 10 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
    },
    {
     "filename": "1",
-    "frame": { "x": 17, "y": 1, "w": 12, "h": 10 },
+    "frame": { "x": 19, "y": 1, "w": 14, "h": 12 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 7, "y": 7, "w": 10, "h": 8 },
+    "spriteSourceSize": { "x": 6, "y": 6, "w": 12, "h": 10 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
    },
    {
     "filename": "2",
-    "frame": { "x": 17, "y": 12, "w": 15, "h": 7 },
+    "frame": { "x": 19, "y": 14, "w": 17, "h": 9 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 5, "y": 9, "w": 13, "h": 5 },
+    "spriteSourceSize": { "x": 4, "y": 8, "w": 15, "h": 7 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
    },
    {
     "filename": "3",
-    "frame": { "x": 1, "y": 1, "w": 15, "h": 15 },
+    "frame": { "x": 1, "y": 1, "w": 17, "h": 17 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 6, "y": 5, "w": 13, "h": 13 },
+    "spriteSourceSize": { "x": 5, "y": 4, "w": 15, "h": 15 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
    },
    {
     "filename": "4",
-    "frame": { "x": 33, "y": 1, "w": 7, "h": 15 },
+    "frame": { "x": 37, "y": 1, "w": 9, "h": 17 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 10, "y": 5, "w": 5, "h": 13 },
+    "spriteSourceSize": { "x": 9, "y": 4, "w": 7, "h": 15 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
    }
@@ -50,7 +50,7 @@
   "version": "1.2.40-x64",
   "image": "Spinny.png",
   "format": "RGBA8888",
-  "size": { "w": 40, "h": 27 },
+  "size": { "w": 46, "h": 31 },
   "scale": "1",
   "frameTags": [
    { "name": "Idle", "from": 0, "to": 4, "direction": "forward" }
