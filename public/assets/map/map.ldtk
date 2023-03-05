@@ -11,7 +11,7 @@
 	"iid": "8cf017f0-9f30-11ed-a90c-5d794baafe79",
 	"jsonVersion": "1.2.5",
 	"appBuildId": 464870,
-	"nextUid": 85,
+	"nextUid": 86,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -336,6 +336,38 @@
 					"allowedRefs": "OnlySame",
 					"allowedRefTags": [],
 					"tilesetUid": null
+				},
+				{
+					"identifier": "Oneshot",
+					"doc": null,
+					"__type": "Bool",
+					"uid": 85,
+					"type": "F_Bool",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
 				}
 			]
 		},
@@ -576,7 +608,7 @@
 			"savedSelections": [],
 			"cachedPixelData": {
 				"opaqueTiles": "111111001111111110001111110011111111100011111100000111111000111111000001111100001110010000011111000011100000000000000000111011111000000000000000111110000000000011111111100000000000111111111000000000000011111110000000000000011111110000000000",
-				"averageColors": "feeefeeefeeefeeefeeefeeeaecaaeeefeddfecbfedcfedcfedcfeddfeedfeeefeed000000000000feeefeeefeeefeeefeeefeee6eee0000fedcfedcfedcfedcfeddfeddfeeefeeefeee000000000000feeefeeefeeefeeefeeefeee8eba9eba8eba9ecb9ecafeeefeeefeeefeeefeeefeee000000000000fedcfeddfedcfeedfeedfeee2eb800000000aecb7ecafeeefdddfeeefeeefeee0000000000000000fedcfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeeefeeefeee0000000000000000feedfeddfddd0000000000006cbb6cbb000000000000000000000000000000000000000000000000feddfeddfedd0000feeefeddfeeefeeefeee000000000000000000000000000000000000000000000000000000000000feeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
+				"averageColors": "feeefeeefeeefeeefeeefeeeaecaaeeefeddfecbfedcfedcfedcfeddfeedfeeefeed000000000000feeefeeefeeefeeefeeefeee6eee0000fedcfedcfedcfedcfeddfeddfeeefeeefeee000000000000feeefeeefeeefeeefeeefeee8eba9eba8eba9ecb9ecafeeefeeefeeefeeefeeefeee000000000000fedcfeddfedcfeedfeedfeee000000000000aecb7ecafeeefdddfeeefeeefeee0000000000000000fedcfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeeefeeefeee0000000000000000feedfeddfddd0000000000006cbb6cbb000000000000000000000000000000000000000000000000feddfeddfedd0000feeefeddfeeefeeefeee000000000000000000000000000000000000000000000000000000000000feeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
 			}
 		}
 	], "enums": [
@@ -685,11 +717,15 @@
 										"Welcome Splat Cat, /n the rats, wolfs and opossums /n are threatening all of catkind in /n this area. Kill them! /n K I L L  T H E M  A L L!"
 									]
 								}] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Cat_Player"]
-								}] }
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
 							]
 						}
 					]
@@ -1586,6 +1622,38 @@
 								"id": "V_String",
 								"params": ["Paws_of_Swiftness"]
 							}] }]
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [7,1],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "72b7a8b0-9f30-11ed-9103-752dac8c653b",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [120,24],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [
+									"Beware glourious warrior, /n if you continue to the north, you´ll /n get to \"The Alpha\". /n instead try walking to the east, /n where you´ll find the /n \"opportunistic opossum\" /n good luck!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"Beware glourious warrior, /n if you continue to the north, you´ll /n get to \"The Alpha\". /n instead try walking to the east, /n where you´ll find the /n \"opportunistic opossum\" /n good luck!"
+									]
+								}] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
 						}
 					]
 				},
@@ -5452,6 +5520,28 @@
 								"id": "V_String",
 								"params": ["Wolf"]
 							}] }]
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [4,38],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "32ecfb30-9f30-11ed-9103-073470c0dc45",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [72,616],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
+								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
 						}
 					]
 				},
@@ -5605,7 +5695,11 @@
 						{ "px": [224,352], "src": [144,48], "f": 0, "t": 69, "d": [366] },
 						{ "px": [80,368], "src": [96,16], "f": 0, "t": 26, "d": [373] },
 						{ "px": [64,448], "src": [160,32], "f": 0, "t": 50, "d": [452] },
-						{ "px": [64,464], "src": [160,48], "f": 0, "t": 70, "d": [468] }
+						{ "px": [64,464], "src": [160,48], "f": 0, "t": 70, "d": [468] },
+						{ "px": [48,576], "src": [96,32], "f": 0, "t": 46, "d": [579] },
+						{ "px": [64,576], "src": [112,32], "f": 0, "t": 47, "d": [580] },
+						{ "px": [80,576], "src": [128,32], "f": 0, "t": 48, "d": [581] },
+						{ "px": [16,624], "src": [96,0], "f": 0, "t": 6, "d": [625] }
 					],
 					"entityInstances": []
 				},
@@ -7224,7 +7318,30 @@
 					"seed": 5407635,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "NPC",
+							"__grid": [23,8],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "8218ecf0-9f30-11ed-9103-a1c19a8ddb0e",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [376,136],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
+								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -7261,16 +7378,16 @@
 						{ "px": [240,0], "src": [16,32], "f": 0, "t": 41, "d": [15] },
 						{ "px": [256,0], "src": [16,32], "f": 0, "t": 41, "d": [16] },
 						{ "px": [272,0], "src": [32,32], "f": 0, "t": 42, "d": [17] },
-						{ "px": [384,0], "src": [0,16], "f": 0, "t": 20, "d": [24] },
-						{ "px": [384,16], "src": [0,16], "f": 0, "t": 20, "d": [50] },
-						{ "px": [384,32], "src": [0,16], "f": 0, "t": 20, "d": [76] },
-						{ "px": [384,48], "src": [0,16], "f": 0, "t": 20, "d": [102] },
-						{ "px": [384,64], "src": [0,16], "f": 0, "t": 20, "d": [128] },
-						{ "px": [384,80], "src": [0,16], "f": 0, "t": 20, "d": [154] },
-						{ "px": [384,96], "src": [0,16], "f": 0, "t": 20, "d": [180] },
-						{ "px": [384,112], "src": [0,16], "f": 0, "t": 20, "d": [206] },
-						{ "px": [384,128], "src": [0,16], "f": 0, "t": 20, "d": [232] },
-						{ "px": [384,144], "src": [0,16], "f": 0, "t": 20, "d": [258] },
+						{ "px": [400,0], "src": [0,16], "f": 0, "t": 20, "d": [25] },
+						{ "px": [400,16], "src": [0,16], "f": 0, "t": 20, "d": [51] },
+						{ "px": [400,32], "src": [0,16], "f": 0, "t": 20, "d": [77] },
+						{ "px": [400,48], "src": [0,16], "f": 0, "t": 20, "d": [103] },
+						{ "px": [400,64], "src": [0,16], "f": 0, "t": 20, "d": [129] },
+						{ "px": [400,80], "src": [0,16], "f": 0, "t": 20, "d": [155] },
+						{ "px": [400,96], "src": [0,16], "f": 0, "t": 20, "d": [181] },
+						{ "px": [400,112], "src": [0,16], "f": 0, "t": 20, "d": [207] },
+						{ "px": [400,128], "src": [0,16], "f": 0, "t": 20, "d": [233] },
+						{ "px": [400,144], "src": [0,16], "f": 0, "t": 20, "d": [259] },
 						{ "px": [0,160], "src": [16,0], "f": 0, "t": 1, "d": [260] },
 						{ "px": [16,160], "src": [16,0], "f": 0, "t": 1, "d": [261] },
 						{ "px": [32,160], "src": [16,0], "f": 0, "t": 1, "d": [262] },
@@ -7295,7 +7412,8 @@
 						{ "px": [336,160], "src": [16,0], "f": 0, "t": 1, "d": [281] },
 						{ "px": [352,160], "src": [16,0], "f": 0, "t": 1, "d": [282] },
 						{ "px": [368,160], "src": [16,0], "f": 0, "t": 1, "d": [283] },
-						{ "px": [384,160], "src": [64,32], "f": 0, "t": 44, "d": [284] }
+						{ "px": [384,160], "src": [16,0], "f": 0, "t": 1, "d": [284] },
+						{ "px": [400,160], "src": [64,32], "f": 0, "t": 44, "d": [285] }
 					],
 					"entityInstances": []
 				},
@@ -7970,12 +8088,23 @@
 							"defUid": 52,
 							"px": [216,136],
 							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "DialogLines", "__value": [
+									"finally, a cat. I´ve been waiting /n for you! right there is the /n \"opportunistic opossum\". /n he needs to be defeated!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"finally, a cat. I´ve been waiting /n for you! right there is the /n \"opportunistic opossum\". /n he needs to be defeated!"
+									]
+								}] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Cat_Player"]
-								}] }
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9315,7 +9444,30 @@
 					"seed": 5122519,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "NPC",
+							"__grid": [18,14],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "3af875c0-9f30-11ed-9103-279043b1938a",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [296,232],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
+								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -14111,12 +14263,23 @@
 							"defUid": 52,
 							"px": [168,88],
 							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "DialogLines", "__value": [
+									"aah, you found the way, fellow /n cat-fighter, the \"rat-king\" is right /n over there. go kill him!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"aah, you found the way, fellow /n cat-fighter, the \"rat-king\" is right /n over there. go kill him!"
+									]
+								}] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Cat_Player"]
-								}] }
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
 							]
 						},
 						{
