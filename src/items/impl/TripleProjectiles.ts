@@ -1,17 +1,14 @@
-import {ItemEntity} from "../ItemEntity";
 import {Player} from "../../entities/living/Player";
 import {Item} from "../Item";
+
 export class TripleProjectiles extends Item {
-
-    create(itemEntity: ItemEntity) {
-    }
-
 
     apply(player: Player): void {
 
         const shooter = player.getShooter();
         shooter.updateConfig({
-            hasSideShots: true
+            hasSideShots: true,
+            accuracy: shooter.getConfig().accuracy+0.2,
         })
     }
 

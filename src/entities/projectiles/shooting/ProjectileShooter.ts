@@ -12,12 +12,12 @@ export type ShooterConfig = {
     frequency: number;
     projectileSpeed: number;
     // the large the more inaccurate
-    accuracy: number; // TODO: implement this
+    accuracy: number;
     hitBoxSizeMod: number; // TODO: implement this
     projectiles: number; // TODO: implement this
     range: number;
-    hasBackShot?: boolean; // TODO: implement this
-    hasSideShots?: boolean; // TODO: implement this
+    hasBackShot?: boolean;
+    hasSideShots?: boolean;
     hitLayer?: number;
     selfLayer?: number;
     projectileAnimKeys?: SimpleProjectileKeys;
@@ -83,13 +83,34 @@ export class ProjectileShooter {
     }
 
     public shoot(source: Vector2, input: Vector2) {
-        this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input, this.config));
+
+
+        this.fireProjectile(source, input.clone());
 
         if(this.config.hasBackShot) {
-            console.log("Back")
-            this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input.clone().scale(-1), this.config));
+            this.fireProjectile(source, input.clone().scale(-1));
+        }
+        if(this.config.hasSideShots) {
+            this.fireProjectile(source, input.clone().rotate(30/180 * Math.PI));
+            this.fireProjectile(source, input.clone().rotate(-30/180 * Math.PI));
         }
     }
+
+    private fireProjectile(source: Vector2, input: Vector2) {
+
+        console.log(this.config.accuracy)
+
+        if(this.config.accuracy > 0) {
+            let angle = 90 *  this.config.accuracy * Math.random();
+
+            angle = Math.random() > .5 ? -angle : angle;
+
+            input.rotate(angle/180 * Math.PI)
+        }
+        this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input, this.config));
+    }
+
+
 
     update(deltaTime: number) {
         this.shootTimer += deltaTime;
