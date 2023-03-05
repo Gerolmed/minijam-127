@@ -147,6 +147,22 @@ export class Player extends LivingEntity {
 
         return new Vector2(input.x * 7,0)
     }
+
+    forceIdle() {
+        this.scene.matter.body.setVelocity(this.rigidbody, new Vector2());
+        this.setPosition(this.rigidbody.position.x + this.physicsOffset.x, this.rigidbody.position.y + this.physicsOffset.y);
+        if(this.lastDir.y > 0) {
+            this.animator.play(PlayerAnimationKeys.IDLE_DOWN)
+        } else if(this.lastDir.y < 0) {
+            this.animator.play(PlayerAnimationKeys.IDLE_UP)
+        } else {
+            if(this.lastDir.x > 0) {
+                this.animator.play(PlayerAnimationKeys.IDLE_RIGHT)
+            } else if(this.lastDir.x < 0) {
+                this.animator.play(PlayerAnimationKeys.IDLE_LEFT)
+            }
+        }
+    }
 }
 
 export function isPlayer(obj: any): obj is Player {
