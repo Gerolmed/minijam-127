@@ -13065,9 +13065,9 @@
 							"height": 16,
 							"defUid": 47,
 							"px": [64,64],
-							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Type", "__value": "Opossum", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
-								"params": ["Rat"]
+								"params": ["Opossum"]
 							}] }]
 						}
 					]
