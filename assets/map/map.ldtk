@@ -11,7 +11,7 @@
 	"iid": "8cf017f0-9f30-11ed-a90c-5d794baafe79",
 	"jsonVersion": "1.2.5",
 	"appBuildId": 464870,
-	"nextUid": 86,
+	"nextUid": 87,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -328,7 +328,10 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["Maxwell"]
+					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -361,6 +364,41 @@
 					"regex": null,
 					"acceptFileTypes": null,
 					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "Name",
+					"doc": null,
+					"__type": "String",
+					"uid": 86,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["Maxwell"]
+					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -618,7 +656,14 @@
 			{ "id": "Rat", "tileId": null, "color": 5790555, "__tileSrcRect": null },
 			{ "id": "Opossum", "tileId": null, "color": 3625853, "__tileSrcRect": null }
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
-		{ "identifier": "NPC_Skins", "uid": 56, "values": [{ "id": "Cat_Player", "tileId": null, "color": 12470831, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
+		{ "identifier": "NPC_Skins", "uid": 56, "values": [
+			{ "id": "Raymond", "tileId": null, "color": 12470831, "__tileSrcRect": null },
+			{ "id": "Maxwell", "tileId": null, "color": 14120515, "__tileSrcRect": null },
+			{ "id": "Bingus", "tileId": null, "color": 15389866, "__tileSrcRect": null },
+			{ "id": "Thurston", "tileId": null, "color": 14984818, "__tileSrcRect": null },
+			{ "id": "Ganymede", "tileId": null, "color": 7552569, "__tileSrcRect": null },
+			{ "id": "NyanCat", "tileId": null, "color": 4073265, "__tileSrcRect": null }
+		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "Item_ID", "uid": 59, "values": [
 			{ "id": "Paws_of_Swiftness", "tileId": null, "color": 39387, "__tileSrcRect": null },
 			{ "id": "Slingshot", "tileId": null, "color": 39387, "__tileSrcRect": null },
@@ -710,22 +755,32 @@
 							"px": [296,120],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"Welcome Splat Cat!\\nthe rats, wolfs and\\nopossums are threatening\\nall of catkind in this\\narea.\\nKill them!\\nK I L L  T H E M  A L L!"
-								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"Welcome Splat Cat!",
+									"the rats, wolves and opossums are threatening all of catkind in this area.",
+									"Kill them!/nK I L L  T H E M  A L L!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [ {
 									"id": "V_String",
-									"params": [
-										"Welcome Splat Cat!\\nthe rats, wolfs and\\nopossums are threatening\\nall of catkind in this\\narea.\\nKill them!\\nK I L L  T H E M  A L L!"
-									]
-								}] },
+									"params": ["Welcome Splat Cat!"]
+								}, {
+									"id": "V_String",
+									"params": ["the rats, wolves and opossums are threatening all of catkind in this area."]
+								}, {
+									"id": "V_String",
+									"params": ["Kill them!/nK I L L  T H E M  A L L!"]
+								} ] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
 									"id": "V_Bool",
 									"params": [ true ]
 								}] },
-								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+								{ "__identifier": "Skin", "__value": "Bingus", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Cat_Player"]
+									"params": ["Bingus"]
 								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
+								{ "__identifier": "Name", "__value": "Bingus", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Bingus"]
+								}] }
 							]
 						}
 					]
@@ -1637,22 +1692,26 @@
 							"px": [120,24],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"Beware glourious warrior,\\nif you continue to the north, you´ll\\nget to \"The Alpha\".\\ninstead try walking to the east,\\nwhere you´ll find the\\n\"opportunistic opossum\"\\ngood luck!"
+									"Beware glourious warrior,/nif you continue to the north, you´ll/nget to \"The Alpha\"./ninstead try walking to the east,/nwhere you´ll find the/n\"opportunistic opossum\"/ngood luck!"
 								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"Beware glourious warrior,\\nif you continue to the north, you´ll\\nget to \"The Alpha\".\\ninstead try walking to the east,\\nwhere you´ll find the\\n\"opportunistic opossum\"\\ngood luck!"
+										"Beware glourious warrior,/nif you continue to the north, you´ll/nget to \"The Alpha\"./ninstead try walking to the east,/nwhere you´ll find the/n\"opportunistic opossum\"/ngood luck!"
 									]
 								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
 									"id": "V_Bool",
 									"params": [ true ]
 								}] },
-								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+								{ "__identifier": "Skin", "__value": "Thurston", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Cat_Player"]
+									"params": ["Thurston"]
 								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
+								{ "__identifier": "Name", "__value": "Thurston", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Thurston"]
+								}] }
 							]
 						}
 					]
@@ -5562,12 +5621,16 @@
 							"px": [72,616],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
-								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Cat_Player"]
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
 								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+								{ "__identifier": "Skin", "__value": "Maxwell", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Maxwell"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
+								{ "__identifier": "Name", "__value": "Maxwell", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [] }
 							]
 						}
 					]
@@ -7361,11 +7424,12 @@
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
 								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
-								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+								{ "__identifier": "Skin", "__value": "Raymond", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Cat_Player"]
+									"params": ["Raymond"]
 								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
+								{ "__identifier": "Name", "__value": "Maxwell", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [] }
 							]
 						}
 					]
@@ -8116,22 +8180,23 @@
 							"px": [216,136],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"finally, a cat. I´ve been waiting\\nfor you! right there is the\\n\"opportunistic opossum\".\\nhe needs to be defeated!"
+									"finally, a cat. I´ve been waiting/nfor you! right there is the/n\"opportunistic opossum\"./nhe needs to be defeated!"
 								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"finally, a cat. I´ve been waiting\\nfor you! right there is the\\n\"opportunistic opossum\".\\nhe needs to be defeated!"
+										"finally, a cat. I´ve been waiting/nfor you! right there is the/n\"opportunistic opossum\"./nhe needs to be defeated!"
 									]
 								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
 									"id": "V_Bool",
 									"params": [ true ]
 								}] },
-								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+								{ "__identifier": "Skin", "__value": "Ganymede", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Cat_Player"]
+									"params": ["Ganymede"]
 								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
+								{ "__identifier": "Name", "__value": "Maxwell", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9485,13 +9550,23 @@
 							"defUid": 52,
 							"px": [296,232],
 							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
-								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+								{ "__identifier": "DialogLines", "__value": ["Nyan Nyan Nyan Nyan Nyan /nNyan Nyan Nyan Nyan Nyan /nNyan Nyan Nyan Nyan Nyan"], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Cat_Player"]
+									"params": ["Nyan Nyan Nyan Nyan Nyan /nNyan Nyan Nyan Nyan Nyan /nNyan Nyan Nyan Nyan Nyan"]
 								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Skin", "__value": "NyanCat", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["NyanCat"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": true, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Name", "__value": "Maxwell", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [] }
 							]
 						}
 					]
@@ -14291,22 +14366,26 @@
 							"px": [168,88],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"aah, you found the way, fellow\\ncat-fighter, the \"rat-king\" is right\\nover there. go kill him!"
+									"aah, you found the way, fellow/ncat-fighter, the \"rat-king\" is right/nover there. go kill him!"
 								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"aah, you found the way, fellow\\ncat-fighter, the \"rat-king\" is right\\nover there. go kill him!"
+										"aah, you found the way, fellow/ncat-fighter, the \"rat-king\" is right/nover there. go kill him!"
 									]
 								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
 									"id": "V_Bool",
 									"params": [ true ]
 								}] },
-								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+								{ "__identifier": "Skin", "__value": "Raymond", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Cat_Player"]
+									"params": ["Raymond"]
 								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
+								{ "__identifier": "Name", "__value": "Raymond", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Raymond"]
+								}] }
 							]
 						},
 						{
