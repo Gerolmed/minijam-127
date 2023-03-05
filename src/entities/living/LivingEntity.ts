@@ -83,11 +83,16 @@ export class LivingEntity extends Entity implements IDamageable {
 
         this.statHandler?.onHealthChange(this.health, this.maxHealth);
 
-        this.animator.doColorFade(new Color(255,255,255), new Color(255,0,0), 50, false)
-            .then(() => this.animator.doColorFade(new Color(255,0,0), new Color(255,255,255), 100))
+        this.animator.doColorFade(new Color(255,255,255), this.getDamageColor(), 50, false)
+            .then(() => this.animator.doColorFade(this.getDamageColor(), new Color(255,255,255), 100))
 
         if(this.health <= 0) this.death();
 
+    }
+
+
+    getDamageColor() {
+        return new Color(212,113,93);
     }
 
     death() {
