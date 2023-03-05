@@ -22,7 +22,10 @@ export class CampfireFactory implements IEntityFactory {
 
     produce(instance: EntityInstance, layer: Layer, chunkX: number, chunkY: number, scene: Phaser.Scene): Entity {
 
-        const pos = new Vector2(instance.__grid[0] * layer.__gridSize + chunkX, instance.__grid[1] * layer.__gridSize + chunkY);
+        const pos = new Vector2(
+            instance.__grid[0] * layer.__gridSize + chunkX -1,
+            instance.__grid[1] * layer.__gridSize + chunkY -18,
+        );
 
         const fire = new CampfireEntity(this.scene, pos.x, pos.y, this.physicsSocket);
 

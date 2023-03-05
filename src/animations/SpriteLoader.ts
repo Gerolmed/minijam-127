@@ -1,7 +1,11 @@
 import LoaderPlugin = Phaser.Loader.LoaderPlugin;
 import PlayerAnimationKeys from "./PlayerAnimationKeys";
-import {PlayerProjectileAnimationKeys, SpinnyProjectileAnimationKeys} from "./ProjectileAnimationKeys";
+import {
+    PlayerProjectileAnimationKeys,
+    SpinnyProjectileAnimationKeys
+} from "./ProjectileAnimationKeys";
 import {OpossumAnimationKeys, RatAnimationKeys, WolfAnimationKeys} from "./EnemyAnimationKeys";
+import {CampfireAnimationKeys} from "./ObjectAnimationKeys";
 
 export default function(load: LoaderPlugin) {
 
@@ -21,6 +25,12 @@ export default function(load: LoaderPlugin) {
     load.image("item_greater_fish", "assets/Sprites/Items/GreaterFish.png");
     load.image("item_minor_fish", "assets/Sprites/Items/MinorFish.png");
 
+    // Campfire
+    load.aseprite(
+        CampfireAnimationKeys.BASE,
+        "assets/tilesets/Campfire.png",
+        "assets/tilesets/Campfire.json",
+    );
     // Player sprites
     load.aseprite(
         PlayerAnimationKeys.BASE,
