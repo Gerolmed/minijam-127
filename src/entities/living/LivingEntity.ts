@@ -12,8 +12,8 @@ export class LivingEntity extends Entity implements IDamageable {
     protected readonly rigidbody: MatterJS.BodyType;
 
 
-    private health: number;
-    private maxHealth: number;
+    private health!: number;
+    private maxHealth!: number;
     private statHandler?: IHealthStatHandler;
     protected physicsOffset = new Vector2();
 
@@ -24,10 +24,14 @@ export class LivingEntity extends Entity implements IDamageable {
         this.rigidbody = this.createPhysics();
         this.rigidbody.gameObject = this;
 
-        this.maxHealth = 50;
+        this.setupHealth(50);
+
+    }
+
+    protected setupHealth(health: number) {
+        this.maxHealth = health;
         this.health = this.maxHealth;
         this.statHandler?.onHealthChange(this.health, this.maxHealth);
-
     }
 
     protected safeUpdate(deltaTime: number) {
@@ -47,6 +51,18 @@ export class LivingEntity extends Entity implements IDamageable {
         })
         this.scene.matter.world.add(base)
         return base;
+    }
+
+    getMaxHealth() {
+        return this.maxHealth;
+    }
+
+    getHealth() {
+        return this.health;
+    }
+    heal(amount: number) {
+        this.health = Math.min(this.health+amount, this.maxHealth);
+        this.statHandler?.onHealthChange(this.health, this.maxHealth);
     }
 
     protected assembleParts() {
@@ -101,6 +117,7 @@ export class LivingEntity extends Entity implements IDamageable {
 
 
     destroy() {
+        if(!this.isAlive) return
         this.scene.matter.world.remove(this.rigidbody);
         super.destroy();
     }

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import replace from '@rollup/plugin-replace';
 
 export default defineConfig({
-  base: process.env["DEPLOY_BASE_PATH"] || "/",
+  base: process.env["DEPLOY_BASE_PATH"] || "./",
   build: {
     rollupOptions: {
       plugins: [

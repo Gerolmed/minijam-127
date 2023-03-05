@@ -16,6 +16,7 @@ export class CampfireEntity extends InteractableEntity {
     protected doInteract(player: Player) {
         super.doInteract(player);
         TimeManager.setGameFreeze(true)
+        player.forceIdle()
         this.unlocked = true;
         this.animator.play(CampfireAnimationKeys.ACTIVATED)
         const hudScene = this.scene.sys.scenePlugin.get<HUDScene>("HUDScene");
@@ -23,5 +24,9 @@ export class CampfireEntity extends InteractableEntity {
             .finally(() => {
                 TimeManager.setGameFreeze(false)
             })
+    }
+
+    protected getActionText(): string {
+        return "to save";
     }
 }

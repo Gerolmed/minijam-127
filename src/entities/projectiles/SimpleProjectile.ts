@@ -66,11 +66,11 @@ export class SimpleProjectile extends ProjectileEntity {
     }
 
     static fire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig){
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys);
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.clone().scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, shooterConfig.range * 3 / shooterConfig.projectileSpeed, shooterConfig.projectileAnimKeys);
     }
 
     static enemyFire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) {
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys);
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.clone().scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys);
     }
 
 }

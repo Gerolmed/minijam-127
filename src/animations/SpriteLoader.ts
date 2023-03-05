@@ -25,8 +25,22 @@ export default function(load: LoaderPlugin) {
     load.image("dialog_arrow", "assets/Sprites/UI/DialogArrow.png");
 
 
+    // Load items
+    load.image("item_anti_rat", "assets/Sprites/Items/AntiRat.png");
+    load.image("item_bigger_brush", "assets/Sprites/Items/BiggerBrush.png");
+    load.image("item_bigger_projectile", "assets/Sprites/Items/BigProjectile.png");
+    load.image("item_catfood", "assets/Sprites/Items/Catfood.png");
+    load.image("item_catvision", "assets/Sprites/Items/CatVision.png");
+    load.image("item_extra_projectile", "assets/Sprites/Items/ExtraProjectile.png");
     load.image("item_greater_fish", "assets/Sprites/Items/GreaterFish.png");
     load.image("item_minor_fish", "assets/Sprites/Items/MinorFish.png");
+    load.image("item_opossum_obliterator", "assets/Sprites/Items/OpossumObliterator.png");
+    load.image("item_paws_glide", "assets/Sprites/Items/PawsOfGliding.png");
+    load.image("item_paws_swift", "assets/Sprites/Items/PawsOfSwiftness.png");
+    load.image("item_sling", "assets/Sprites/Items/Sling.png");
+    load.image("item_sling_tail", "assets/Sprites/Items/SlingTail.png");
+    load.image("item_special_concoction", "assets/Sprites/Items/SpecialConcoction.png");
+    load.image("item_triple_projectile", "assets/Sprites/Items/TripleProjectile.png");
 
     // Campfire
     load.aseprite(
