@@ -5,6 +5,7 @@ const Layers = {
     PLAYER_PROJECTILE: 0b1000,
     ENEMY_PROJECTILE: 0b10000,
     ITEM: 0b100000,
+    INTERACTABLE: 0b1000000,
     get All(): number {
         return Layers.WALL
             | Layers.PLAYER
@@ -12,6 +13,7 @@ const Layers = {
             | Layers.PLAYER_PROJECTILE
             | Layers.ENEMY_PROJECTILE
             | Layers.ITEM
+            | Layers.INTERACTABLE
     }
 }
 

@@ -9,7 +9,7 @@ import {PhysicsSocket} from "../living/PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
 import GameScene from "../../scenes/Game";
 import {Enemy} from "../living/Enemies/Enemy";
-import {CampfireEntity} from "../other/CampfireEntity";
+import {CampfireEntity} from "../living/interactibles/CampfireEntity";
 
 
 
@@ -24,7 +24,7 @@ export class CampfireFactory implements IEntityFactory {
 
         const pos = new Vector2(instance.__grid[0] * layer.__gridSize + chunkX, instance.__grid[1] * layer.__gridSize + chunkY);
 
-        const fire = new CampfireEntity(this.scene, pos.x, pos.y);
+        const fire = new CampfireEntity(this.scene, pos.x, pos.y, this.physicsSocket);
 
         return this.addEntity(fire);
     }

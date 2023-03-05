@@ -9,7 +9,7 @@ import {PhysicsSocket} from "../living/PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
 import GameScene from "../../scenes/Game";
 import {Enemy} from "../living/Enemies/Enemy";
-import {NPCEntity} from "../living/NPCEntity";
+import {NPCEntity} from "../living/interactibles/NPCEntity";
 
 
 
@@ -26,7 +26,7 @@ export class NPCFactory implements IEntityFactory {
 
         const pos = new Vector2(instance.__grid[0] * layer.__gridSize + chunkX, instance.__grid[1] * layer.__gridSize + chunkY);
 
-        const npc = new NPCEntity(this.scene, pos.x, pos.y);
+        const npc = new NPCEntity(this.scene, pos.x, pos.y, this.physicsSocket);
 
         return this.addEntity(npc);
     }
