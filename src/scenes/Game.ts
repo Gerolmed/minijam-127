@@ -58,10 +58,16 @@ export default class GameScene extends Phaser.Scene {
             margin: 0
         })
 
-        this.load.spritesheet("tileset_orange", "assets/tilesets/tileset_overworld_orange.png", {
+        this.load.spritesheet("tileset_orange", "assets/tilesets/tilesetOrange.png", {
             frameWidth: 16,
             frameHeight: 16,
-            spacing: 1,
+            spacing: 0,
+            margin: 0
+        })
+        this.load.spritesheet("tileset_orange", "assets/tilesets/tilesetPurple.png", {
+            frameWidth: 16,
+            frameHeight: 16,
+            spacing: 0,
             margin: 0
         })
     }
