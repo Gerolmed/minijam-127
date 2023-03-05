@@ -24,8 +24,9 @@ export class SimpleProjectile extends ProjectileEntity {
         private readonly theme: Theme = Theme.ORANGE,
         private readonly ttl = 1.5,
         private readonly animationKeys: SimpleProjectileKeys = PlayerProjectileAnimationKeys,
+        hitBoxSizeMod = 1,
     ) {
-        super(scene, x, y, hitTeamMask, selfMask);
+        super(scene, x, y, hitTeamMask, selfMask, hitBoxSizeMod);
 
         this.animator.load(this.animationKeys.BASE);
         this.animator.play(this.animationKeys.IDLE);
@@ -66,11 +67,11 @@ export class SimpleProjectile extends ProjectileEntity {
     }
 
     static fire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig){
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, shooterConfig.range * 3 / shooterConfig.projectileSpeed, shooterConfig.projectileAnimKeys);
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, shooterConfig.range * 3 / shooterConfig.projectileSpeed, shooterConfig.projectileAnimKeys, shooterConfig.hitBoxSizeMod);
     }
 
     static enemyFire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) {
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys);
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys, shooterConfig.hitBoxSizeMod);
     }
 
 }

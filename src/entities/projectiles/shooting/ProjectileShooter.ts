@@ -14,7 +14,7 @@ export type ShooterConfig = {
     projectileSpeed: number;
     // the large the more inaccurate
     accuracy: number;
-    hitBoxSizeMod: number; // TODO: implement this
+    hitBoxSizeMod: number;
     projectiles: number;
     range: number;
     hasBackShot?: boolean;
