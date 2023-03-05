@@ -49,6 +49,10 @@ export class Player extends LivingEntity {
         item.apply(this);
     }
 
+    death() {
+
+    }
+
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
 
