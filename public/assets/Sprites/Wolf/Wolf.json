@@ -37,7 +37,7 @@
    },
    {
     "filename": "4",
-    "frame": { "x": 47, "y": 135, "w": 19, "h": 34 },
+    "frame": { "x": 90, "y": 138, "w": 19, "h": 34 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 9, "y": 0, "w": 17, "h": 32 },
@@ -46,7 +46,7 @@
    },
    {
     "filename": "5",
-    "frame": { "x": 127, "y": 139, "w": 19, "h": 32 },
+    "frame": { "x": 1, "y": 166, "w": 19, "h": 32 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 8, "y": 2, "w": 17, "h": 30 },
@@ -55,7 +55,7 @@
    },
    {
     "filename": "6",
-    "frame": { "x": 141, "y": 36, "w": 24, "h": 33 },
+    "frame": { "x": 141, "y": 70, "w": 24, "h": 33 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 5, "y": 1, "w": 22, "h": 31 },
@@ -64,7 +64,7 @@
    },
    {
     "filename": "7",
-    "frame": { "x": 67, "y": 138, "w": 19, "h": 34 },
+    "frame": { "x": 110, "y": 138, "w": 19, "h": 34 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 6, "y": 0, "w": 17, "h": 32 },
@@ -73,7 +73,7 @@
    },
    {
     "filename": "8",
-    "frame": { "x": 117, "y": 1, "w": 27, "h": 34 },
+    "frame": { "x": 1, "y": 36, "w": 27, "h": 34 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 5, "y": 0, "w": 25, "h": 32 },
@@ -181,7 +181,7 @@
    },
    {
     "filename": "20",
-    "frame": { "x": 87, "y": 138, "w": 19, "h": 34 },
+    "frame": { "x": 130, "y": 139, "w": 19, "h": 34 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 5, "y": 0, "w": 17, "h": 32 },
@@ -190,7 +190,7 @@
    },
    {
     "filename": "21",
-    "frame": { "x": 147, "y": 139, "w": 19, "h": 32 },
+    "frame": { "x": 21, "y": 168, "w": 19, "h": 32 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 7, "y": 2, "w": 17, "h": 30 },
@@ -199,7 +199,7 @@
    },
    {
     "filename": "22",
-    "frame": { "x": 141, "y": 70, "w": 24, "h": 33 },
+    "frame": { "x": 141, "y": 36, "w": 24, "h": 33 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 5, "y": 1, "w": 22, "h": 31 },
@@ -208,7 +208,7 @@
    },
    {
     "filename": "23",
-    "frame": { "x": 107, "y": 138, "w": 19, "h": 34 },
+    "frame": { "x": 70, "y": 138, "w": 19, "h": 34 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 8, "y": 0, "w": 17, "h": 32 },
@@ -217,7 +217,7 @@
    },
    {
     "filename": "24",
-    "frame": { "x": 1, "y": 36, "w": 27, "h": 34 },
+    "frame": { "x": 117, "y": 1, "w": 27, "h": 34 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 2, "y": 0, "w": 25, "h": 32 },
@@ -295,6 +295,33 @@
     "spriteSourceSize": { "x": 2, "y": 0, "w": 26, "h": 32 },
     "sourceSize": { "w": 32, "h": 32 },
     "duration": 100
+   },
+   {
+    "filename": "33",
+    "frame": { "x": 47, "y": 135, "w": 22, "h": 32 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 8, "y": 2, "w": 20, "h": 30 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   {
+    "filename": "34",
+    "frame": { "x": 41, "y": 168, "w": 22, "h": 24 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 8, "y": 1, "w": 20, "h": 22 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   {
+    "filename": "35",
+    "frame": { "x": 64, "y": 173, "w": 22, "h": 23 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 8, "y": 5, "w": 20, "h": 21 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
    }
  ],
  "meta": {
@@ -302,7 +329,7 @@
   "version": "1.2.16.2-x64",
   "image": "Wolf.png",
   "format": "RGBA8888",
-  "size": { "w": 166, "h": 172 },
+  "size": { "w": 166, "h": 200 },
   "scale": "1",
   "frameTags": [
    { "name": "Front_Idle", "from": 1, "to": 1, "direction": "forward" },
@@ -312,7 +339,8 @@
    { "name": "Back_Idle", "from": 17, "to": 17, "direction": "forward" },
    { "name": "Back_Walk", "from": 18, "to": 23, "direction": "forward" },
    { "name": "Right_Idle", "from": 24, "to": 24, "direction": "forward" },
-   { "name": "Right_Walk", "from": 25, "to": 32, "direction": "forward" }
+   { "name": "Right_Walk", "from": 25, "to": 32, "direction": "forward" },
+   { "name": "Death", "from": 33, "to": 35, "direction": "forward" }
   ]
  }
 }
