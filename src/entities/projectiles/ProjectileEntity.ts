@@ -53,11 +53,16 @@ export class ProjectileEntity extends Entity {
         return this.scene.matter.add.circle(this.x, this.y,5 * this.hitBoxSizeMod, this.createPhysicsConfig())
     }
 
+    isProjectile() {
+        return true;
+    }
+
     protected createPhysicsConfig(): MatterBodyConfig {
+        const otherType = this.selfMask == PhysicsLayers.PLAYER_PROJECTILE ? PhysicsLayers.ENEMY_PROJECTILE : PhysicsLayers.PLAYER_PROJECTILE;
         return {
             collisionFilter: {
                 category: this.selfMask,
-                mask: PhysicsLayers.WALL | this.hitTeamMask
+                mask: PhysicsLayers.WALL | this.hitTeamMask | otherType
             },
             mass: 1,
             inverseMass: 1,
@@ -67,4 +72,9 @@ export class ProjectileEntity extends Entity {
     protected hit(other: GameObject | undefined) {
         return true;
     }
+}
+
+
+export function isProjectile(obj: any): obj is ProjectileEntity {
+    return obj && typeof obj.isProjectile === "function" && obj.isProjectile();
 }

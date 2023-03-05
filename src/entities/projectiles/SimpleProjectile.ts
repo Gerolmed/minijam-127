@@ -1,4 +1,4 @@
-import {ProjectileEntity} from "./ProjectileEntity";
+import {isProjectile, ProjectileEntity} from "./ProjectileEntity";
 import GameScene from "../../scenes/Game";
 import {isDamageable} from "../../damage/IDamageable";
 import {ShooterConfig} from "./shooting/ProjectileShooter";
@@ -57,7 +57,10 @@ export class SimpleProjectile extends ProjectileEntity {
     }
 
     protected hit(other: Phaser.GameObjects.GameObject | undefined): boolean {
-        this.gameScene.getTilemap().paint(new Sprite(this.scene,this.x,this.y, "splat_2"), this.theme)
+
+        if(!isProjectile(other)) {
+            this.gameScene.getTilemap().paint(new Sprite(this.scene, this.x, this.y, "splat_2"), this.theme)
+        }
         if(!isDamageable(other)) return true;
 
         other.damage(10);
