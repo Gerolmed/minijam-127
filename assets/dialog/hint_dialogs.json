@@ -1,11 +1,18 @@
 {
     "pre_boss_1": [
-        ""
+        "Please, Please help us and /n annihilate those idiots, /n that killed all my kittens!"
+		"The Wolfs are dangerous /n in this area. Beware!"
+		"Rats are very annoying and /n deadly, but they can be killed /n easly. Good Luck!"
+		"All Opossums share a very thick /n skin, so make sure to hit /n them hard"
     ],
     "pre_boss_2": [
-        ""
+        "Their leader is dead, but /n many opossums are still /n ransacking the northern areas. /n Go and kill them!"
+		"I heard, that a pack of /n filthy rats is loafing /n around in the west. They /n need to die!"
+		
     ],
     "end_boss": [
-        ""
+        "The alpha is waiting."
+		"Go and kill the Alpha!"
+		"Finish it!"
     ]
 }
