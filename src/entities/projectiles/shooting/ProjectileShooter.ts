@@ -86,7 +86,8 @@ export class ProjectileShooter {
         this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input, this.config));
 
         if(this.config.hasBackShot) {
-            this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, -source.x, -source.y, input, this.config));
+            console.log("Back")
+            this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input.clone().scale(-1), this.config));
         }
     }
 

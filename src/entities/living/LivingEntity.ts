@@ -117,6 +117,7 @@ export class LivingEntity extends Entity implements IDamageable {
 
 
     destroy() {
+        if(!this.isAlive) return
         this.scene.matter.world.remove(this.rigidbody);
         super.destroy();
     }

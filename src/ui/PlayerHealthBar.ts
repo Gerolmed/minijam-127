@@ -28,8 +28,8 @@ export class PlayerHealthBar implements IHealthStatHandler{
     }
 
     onHealthChange(health: number, maxHealth: number): void {
-        this.frame.width = maxHealth * 2;
-        this.fill.width = health * 2;
+        this.frame.width = maxHealth;
+        this.fill.width = health;
         this.recenter()
     }
 }
