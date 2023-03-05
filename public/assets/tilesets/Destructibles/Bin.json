@@ -1,0 +1,43 @@
+{ "frames": [
+   {
+    "filename": "0",
+    "frame": { "x": 18, "y": 1, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 1, "y": 1, "w": 14, "h": 14 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "1",
+    "frame": { "x": 1, "y": 1, "w": 16, "h": 17 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 15 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "2",
+    "frame": { "x": 18, "y": 18, "w": 16, "h": 9 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 1, "y": 8, "w": 14, "h": 7 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.16.2-x64",
+  "image": "Bin.png",
+  "format": "RGBA8888",
+  "size": { "w": 34, "h": 27 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Normal", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "Damaged", "from": 1, "to": 2, "direction": "forward" },
+   { "name": "Destroyed", "from": 2, "to": 2, "direction": "forward" }
+  ]
+ }
+}
