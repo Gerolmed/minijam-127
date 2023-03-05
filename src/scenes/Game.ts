@@ -16,6 +16,7 @@ import {BossFactory} from "../entities/factories/BossFactory";
 import {ItemFactory} from "../entities/factories/ItemFactory";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
+import {WorldStoreManager} from "../world/WorldSave";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -162,5 +163,8 @@ export default class GameScene extends Phaser.Scene {
         const currentArea = this.tilemap.getCurrentArea()!;
         await this.tilemap.unloadAllChunks();
         await this.tilemap.enter(currentArea);
+
+        const worldStoreManager = WorldStoreManager.get();
+        await worldStoreManager.write();
     }
 }

@@ -3,6 +3,7 @@ import Constants from "../Constants";
 import {Button} from "../ui/Button";
 import {Jukebox} from "../audio/JukeBox";
 import {PersistenceManager} from "../persistence/PersistenceManager";
+import {WorldStoreManager} from "../world/WorldSave";
 
 export class MainMenuScene extends Scene {
 
@@ -63,7 +64,10 @@ export class MainMenuScene extends Scene {
 
         const persistenceManager = PersistenceManager.get();
         persistenceManager.connect().then(() => {
-            console.log("Connected to database");
+            console.log("Connected to database")
+            WorldStoreManager.loadFromDatabase().then(() => {
+                console.log("Restored world save")
+            })
         })
     }
 

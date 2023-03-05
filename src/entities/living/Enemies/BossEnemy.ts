@@ -29,7 +29,7 @@ export class BossEnemy extends Enemy {
 
 
     private startBossFight() {
-        this.gameScene.getJukebox().setTheme("boss",)
+        this.gameScene.getJukebox().setTheme("boss");
     }
 
 }
