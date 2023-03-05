@@ -14,6 +14,8 @@ import Container = Phaser.GameObjects.Container;
 import Constants from "../Constants";
 import Vector2 = Phaser.Math.Vector2;
 import {EnemyFactory} from "../entities/EnemyFactory";
+import {ItemEntity} from "../items/ItemEntity";
+import {MaxHealthItem} from "../items/MaxHealthItem";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -56,10 +58,16 @@ export default class GameScene extends Phaser.Scene {
             margin: 0
         })
 
-        this.load.spritesheet("tileset_orange", "assets/tilesets/tileset_overworld_orange.png", {
+        this.load.spritesheet("tileset_orange", "assets/tilesets/tilesetOrange.png", {
             frameWidth: 16,
             frameHeight: 16,
-            spacing: 1,
+            spacing: 0,
+            margin: 0
+        })
+        this.load.spritesheet("tileset_orange", "assets/tilesets/tilesetPurple.png", {
+            frameWidth: 16,
+            frameHeight: 16,
+            spacing: 0,
             margin: 0
         })
     }
@@ -94,6 +102,7 @@ export default class GameScene extends Phaser.Scene {
         /////////////////
 
         const player = this.addEntity(new Player(this, 300, 100))
+        this.addEntity(new ItemEntity(this, 300, 140, new MaxHealthItem(10)))
         player.setTilemap(this.tilemap);
 
         physicsSocket.setPlayer(player);

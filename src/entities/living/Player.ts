@@ -6,6 +6,8 @@ import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
 import {IBodyDefinition} from "matter";
 import {ChunkedTilemap} from "../../tilemap/ChunkedTilemap";
 import Color = Phaser.Display.Color;
+import {IDamageable} from "../../damage/IDamageable";
+import {Item} from "../../items/Item";
 
 export class Player extends LivingEntity {
 
@@ -16,6 +18,7 @@ export class Player extends LivingEntity {
     private lastDir: Vector2 = new Vector2(0,1);
 
     private tilemap?: ChunkedTilemap;
+    private items: Item[] = []
 
 
     public create() {
@@ -38,6 +41,11 @@ export class Player extends LivingEntity {
             inverseMass: 1/20,
             label: "player"
         };
+    }
+
+    public collectItem(item: Item) {
+        this.items.push(item);
+        item.apply(this);
     }
 
     protected safeUpdate(deltaTime: number) {
@@ -134,4 +142,8 @@ export class Player extends LivingEntity {
 
         return new Vector2(input.x * 7,0)
     }
+}
+
+export function isPlayer(obj: any): obj is Player {
+    return obj && typeof obj.collectItem === "function";
 }
