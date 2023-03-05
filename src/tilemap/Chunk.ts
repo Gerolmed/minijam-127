@@ -101,7 +101,7 @@ export class Chunk {
             if(!factory)
                 return;
 
-            const entity = factory.produce(instance, scene);
+            const entity = factory.produce(instance, layer, this.level.worldX, this.level.worldY, scene);
             this.entities.push(entity);
         })
     }

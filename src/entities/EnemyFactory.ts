@@ -1,6 +1,6 @@
 import {IEntityFactory} from "./IEntityFactory";
 import {Entity} from "./Entity";
-import {EntityInstance} from "../types/Tilemap";
+import {EntityInstance, Layer} from "../types/Tilemap";
 import {Wolf} from "./living/Enemies/Wolf";
 import {Rat} from "./living/Enemies/Rat";
 import {Opossum} from "./living/Enemies/Opossum";
@@ -21,14 +21,14 @@ export class EnemyFactory implements IEntityFactory {
                 private readonly addEnemy: <T extends Entity>(enemy: T) => T) {
     }
 
-    produce(instance: EntityInstance, scene: Phaser.Scene): Entity {
+    produce(instance: EntityInstance, layer: Layer, chunkX: number, chunkY: number, scene: Phaser.Scene): Entity {
         const type = instance.fieldInstances.find(field => field.__identifier === "Type");
         if(!type)
             throw new Error("Enemy has no type");
 
         const enemyType = type.__value;
 
-        const pos = new Vector2(instance.__grid[0], instance.__grid[1]);
+        const pos = new Vector2(instance.__grid[0] * layer.__gridSize + chunkX, instance.__grid[1] * layer.__gridSize + chunkY);
         let enemy;
         if(enemyType === "Wolf")
             enemy = new Wolf(this.scene, this.physicsSocket, pos)
