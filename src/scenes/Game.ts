@@ -17,6 +17,7 @@ import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
 import {CampfireFactory} from "../entities/factories/CampfireFactory";
 import {NPCFactory} from "../entities/factories/NPCFactory";
+import {PersistenceManager} from "../persistence/PersistenceManager";
 
 
 export default class GameScene extends Phaser.Scene {
