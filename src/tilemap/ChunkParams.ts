@@ -1,6 +1,6 @@
 import Container = Phaser.GameObjects.Container;
 import {TileTagStore} from "./TileTagStore";
-import {IEntityFactory} from "../entities/IEntityFactory";
+import {IEntityFactory} from "../entities/factories/IEntityFactory";
 
 
 export type ChunkParams = {

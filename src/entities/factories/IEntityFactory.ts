@@ -1,5 +1,5 @@
-import {EntityInstance, Layer} from "../types/Tilemap";
-import {Entity} from "./Entity";
+import {EntityInstance, Layer} from "../../types/Tilemap";
+import {Entity} from "../Entity";
 import {Scene} from "phaser";
 
 export interface IEntityFactory {

@@ -13,7 +13,7 @@ import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 import Container = Phaser.GameObjects.Container;
 import Constants from "../Constants";
 import Vector2 = Phaser.Math.Vector2;
-import {EnemyFactory} from "../entities/EnemyFactory";
+import {EnemyFactory} from "../entities/factories/EnemyFactory";
 import {ItemEntity} from "../items/ItemEntity";
 import {MaxHealthItem} from "../items/MaxHealthItem";
 

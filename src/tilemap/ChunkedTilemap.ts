@@ -8,7 +8,7 @@ import {TileTagStore} from "./TileTagStore";
 import GameObject = Phaser.GameObjects.GameObject;
 import {Theme} from "../painting/Theme";
 import Transform = Phaser.GameObjects.Components.Transform;
-import {IEntityFactory} from "../entities/IEntityFactory";
+import {IEntityFactory} from "../entities/factories/IEntityFactory";
 
 
 export class ChunkedTilemap {
