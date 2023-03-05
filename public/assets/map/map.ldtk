@@ -1469,6 +1469,23 @@
 								"id": "V_String",
 								"params": ["Opossum"]
 							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [10,5],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "e3e81940-9f30-11ed-a4bd-d90b0bab6a29",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [160,80],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Paws_of_Swiftness", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Paws_of_Swiftness"]
+							}] }]
 						}
 					]
 				},
@@ -2616,7 +2633,25 @@
 					"seed": 2780562,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "Item",
+							"__grid": [2,25],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "1bda9bc0-9f30-11ed-a4bd-5d7adb34c3ff",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [32,400],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Catvision", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Catvision"]
+							}] }]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -5111,6 +5146,23 @@
 								"id": "V_String",
 								"params": ["Wolf"]
 							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [10,9],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "16a6f950-9f30-11ed-a4bd-a53db11cd6bd",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [160,144],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Super_Catfood_Can", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Super_Catfood_Can"]
+							}] }]
 						}
 					]
 				},
@@ -6858,6 +6910,23 @@
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Opossum", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Opossum"]
+							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [5,8],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "f2db4ee0-9f30-11ed-a4bd-8db0f4183f15",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [80,128],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Special_Concoction", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Special_Concoction"]
 							}] }]
 						}
 					]
@@ -10235,6 +10304,23 @@
 								"id": "V_String",
 								"params": ["Wolf"]
 							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [4,11],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "ef48b240-9f30-11ed-a4bd-0535f51cc408",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [64,176],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Bigger_Brush", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Bigger_Brush"]
+							}] }]
 						}
 					]
 				},
@@ -10801,6 +10887,23 @@
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Opossum", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Opossum"]
+							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [9,11],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "f56f8e50-9f30-11ed-a4bd-2b1457e09d46",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [144,176],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Special_Concoction", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Special_Concoction"]
 							}] }]
 						}
 					]
@@ -12198,6 +12301,23 @@
 								"id": "V_String",
 								"params": ["Opossum"]
 							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [6,9],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "0b6e33a0-9f30-11ed-a4bd-a5daf19bb811",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [96,144],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Extra_Projectile", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Extra_Projectile"]
+							}] }]
 						}
 					]
 				},
@@ -12623,6 +12743,23 @@
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Opossum", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Opossum"]
+							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [6,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "fd9d36e0-9f30-11ed-a4bd-6de492e9c8b6",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [96,64],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Greater_Fish", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Greater_Fish"]
 							}] }]
 						}
 					]
@@ -13855,6 +13992,23 @@
 								"id": "V_String",
 								"params": ["Opossum"]
 							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [6,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "05d47c60-9f30-11ed-a4bd-7d791b38f1e1",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [96,48],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Sling_Tail", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Sling_Tail"]
+							}] }]
 						}
 					]
 				},
@@ -14389,6 +14543,23 @@
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
+							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [10,7],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "eaed2050-9f30-11ed-a4bd-d92d2bf5e489",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [160,112],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Slingshot", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Slingshot"]
 							}] }]
 						}
 					]
@@ -15303,6 +15474,23 @@
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
+							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [15,12],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "00f8bdf0-9f30-11ed-a4bd-b78202672edf",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [240,192],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Greater_Fish", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Greater_Fish"]
 							}] }]
 						}
 					]
@@ -16666,6 +16854,23 @@
 								"id": "V_String",
 								"params": ["Rat"]
 							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [19,6],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "121e8b00-9f30-11ed-a4bd-77913e927c39",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [304,96],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Paws_of_Gliding", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Paws_of_Gliding"]
+							}] }]
 						}
 					]
 				},
@@ -17096,6 +17301,23 @@
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
+							}] }]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [5,5],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "0ee950a0-9f30-11ed-a4bd-f105c2c4f1fa",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [80,80],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Extra_Projectile", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Extra_Projectile"]
 							}] }]
 						}
 					]
