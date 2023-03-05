@@ -1,5 +1,5 @@
 import {Area} from "../world/Area";
-import {Scene} from "phaser";
+import {BlendModes, Scene} from "phaser";
 import {Layer, LayerType, Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
 import {ChunkParams} from "./ChunkParams";
@@ -9,6 +9,7 @@ import GameObject = Phaser.GameObjects.GameObject;
 import RenderTexture = Phaser.GameObjects.RenderTexture;
 import Sprite = Phaser.GameObjects.Sprite;
 import Transform = Phaser.GameObjects.Components.Transform;
+import BlendMode = Phaser.GameObjects.Components.BlendMode;
 
 export class Chunk {
 
@@ -31,19 +32,27 @@ export class Chunk {
     }
 
 
-    paint(object: GameObject & Transform, theme: Theme) {
-        if(!this.masks.has(theme))
-            return;
+    paint(object: GameObject & Transform & BlendMode, targetTheme: Theme) {
+        Themes.forEach(theme => {
+            if(theme === Theme.DEFAULT) return;
 
-        const mask = this.masks.get(theme)!;
+            if(!this.masks.has(theme))
+                return;
 
-        object.setPosition(object.x - this.maskOffsetX, object.y - this.maskOffsetY);
+            const mask = this.masks.get(theme)!;
 
-        mask.beginDraw();
-        mask.batchDraw(object);
-        mask.endDraw();
+            object.setPosition(object.x - this.maskOffsetX, object.y - this.maskOffsetY);
 
-        object.setPosition(object.x + this.maskOffsetX, object.y + this.maskOffsetY);
+            if(theme === targetTheme) {
+                mask.beginDraw();
+                mask.batchDraw(object);
+                mask.endDraw();
+            } else {
+                mask.erase(object)
+            }
+
+            object.setPosition(object.x + this.maskOffsetX, object.y + this.maskOffsetY);
+        })
     }
 
 

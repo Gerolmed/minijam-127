@@ -5,17 +5,16 @@ import {Player} from "../entities/living/Player";
 import {Entity} from "../entities/Entity";
 import {OverworldAreaFactory} from "../world/OverworldAreaFactory";
 import {Jukebox} from "../audio/JukeBox";
-import FilterMode = Phaser.Textures.FilterMode;
 import SpriteLoader from "../animations/SpriteLoader";
 import MatterCollisionPlugin from "phaser-matter-collision-plugin";
-import {Wolf} from "../entities/living/Enemies/Wolf";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
-import Container = Phaser.GameObjects.Container;
 import Constants from "../Constants";
-import Vector2 = Phaser.Math.Vector2;
 import {EnemyFactory} from "../entities/factories/EnemyFactory";
 import {ItemEntity} from "../items/ItemEntity";
 import {MaxHealthItem} from "../items/MaxHealthItem";
+import {Theme} from "../painting/Theme";
+import FilterMode = Phaser.Textures.FilterMode;
+import Container = Phaser.GameObjects.Container;
 import {CampfireFactory} from "../entities/factories/CampfireFactory";
 import {NPCFactory} from "../entities/factories/NPCFactory";
 
@@ -66,7 +65,7 @@ export default class GameScene extends Phaser.Scene {
             spacing: 0,
             margin: 0
         })
-        this.load.spritesheet("tileset_orange", "assets/tilesets/tilesetPurple.png", {
+        this.load.spritesheet("tileset_purple", "assets/tilesets/tilesetPurple.png", {
             frameWidth: 16,
             frameHeight: 16,
             spacing: 0,
@@ -86,6 +85,7 @@ export default class GameScene extends Phaser.Scene {
 
         this.textures.get("tileset").setFilter(FilterMode.NEAREST);
         this.textures.get("tileset_orange").setFilter(FilterMode.NEAREST);
+        this.textures.get("tileset_purple").setFilter(FilterMode.NEAREST);
 
         const map: Tilemap = this.cache.json.get("map");
         this.tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
@@ -125,7 +125,6 @@ export default class GameScene extends Phaser.Scene {
         this.ready = true;
 
         this.events.on('shutdown', () => this.jukebox.kill())
-
     }
 
     public isReady() {
