@@ -21,7 +21,6 @@ export class CampfireEntity extends InteractableEntity {
         const hudScene = this.scene.sys.scenePlugin.get<HUDScene>("HUDScene");
         hudScene.doSaveFade(() => this.gameScene.softResetWorld())
             .finally(() => {
-                this.showIndicator();
                 TimeManager.setGameFreeze(false)
             })
     }
