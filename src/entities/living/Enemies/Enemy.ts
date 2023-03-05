@@ -8,6 +8,7 @@ import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
 import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 import {Animator} from "../../../animations/Animator";
 import {Scene} from "phaser";
+import {SimpleProjectile} from "../../projectiles/SimpleProjectile";
 
 
 export enum EnemyState {
@@ -55,7 +56,8 @@ export class Enemy extends LivingEntity {
             selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
             hitLayer: PhysicsLayers.PLAYER,
             projectileSpeed: 1.5,
-            frequency: 0.6
+            frequency: 0.6,
+            fireProjectile: SimpleProjectile.enemyFire
         });
     }
 
