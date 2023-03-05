@@ -33,7 +33,7 @@ const reg = new ItemRegistry()
 reg.register("Paws_of_Swiftness", (id) => new PawsOfSwiftness(id))
 reg.register("Slingshot", (id) => new Slingshot(id))
 reg.register("Bigger_Brush", (id) => new BiggerBrush(id))
-reg.register("Big_Projectile", (id) => new BigProjectile(id))
+reg.register("Big_Projectiles", (id) => new BigProjectile(id))
 reg.register("Special_Concoction", (id) => new SpecialConcoction(id))
 
 reg.register("Super_Catfood_Can", (id) => new SuperCatfoodCan(id))

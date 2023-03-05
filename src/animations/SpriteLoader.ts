@@ -1,8 +1,13 @@
 import LoaderPlugin = Phaser.Loader.LoaderPlugin;
 import PlayerAnimationKeys from "./PlayerAnimationKeys";
 import {
+    FunkyProjectileAnimationKeys,
+    LargePlayerProjectileAnimationKeys,
     PlayerProjectileAnimationKeys,
-    SpinnyProjectileAnimationKeys
+    SliceyProjectileAnimationKeys,
+    SmallPlayerProjectileAnimationKeys,
+    SpinnyProjectileAnimationKeys,
+    TinyPlayerProjectileAnimationKeys
 } from "./ProjectileAnimationKeys";
 import {OpossumAnimationKeys, RatAnimationKeys, WolfAnimationKeys} from "./EnemyAnimationKeys";
 import {CampfireAnimationKeys} from "./ObjectAnimationKeys";
@@ -81,8 +86,37 @@ export default function(load: LoaderPlugin) {
         "assets/Sprites/Projectiles/PlayerShot.json",
     );
     load.aseprite(
+        LargePlayerProjectileAnimationKeys.BASE,
+        "assets/Sprites/Projectiles/BigProjectile.png",
+        "assets/Sprites/Projectiles/BigProjectile.json",
+    );
+    load.aseprite(
+        SmallPlayerProjectileAnimationKeys.BASE,
+        "assets/Sprites/Projectiles/SmallProjectile.png",
+        "assets/Sprites/Projectiles/SmallProjectile.json",
+    );
+    load.aseprite(
+        TinyPlayerProjectileAnimationKeys.BASE,
+        "assets/Sprites/Projectiles/TinyProjectile.png",
+        "assets/Sprites/Projectiles/TinyProjectile.json",
+    );
+
+
+    load.aseprite(
         SpinnyProjectileAnimationKeys.BASE,
         "assets/Sprites/Projectiles/Spinny.png",
         "assets/Sprites/Projectiles/Spinny.json",
+    );
+
+    load.aseprite(
+        SliceyProjectileAnimationKeys.BASE,
+        "assets/Sprites/Projectiles/Slicey.png",
+        "assets/Sprites/Projectiles/Slicey.json",
+    );
+
+    load.aseprite(
+        FunkyProjectileAnimationKeys.BASE,
+        "assets/Sprites/Projectiles/Funky.png",
+        "assets/Sprites/Projectiles/Funky.json",
     );
 }
