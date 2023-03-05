@@ -1,15 +1,17 @@
 import {Area} from "../world/Area";
-import {BlendModes, Scene} from "phaser";
+import {Scene} from "phaser";
 import {Layer, LayerType, Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
 import {ChunkParams} from "./ChunkParams";
 import {getThemeTileset, Theme, Themes} from "../painting/Theme";
 import {Entity} from "../entities/Entity";
+import {PersistenceManager} from "../persistence/PersistenceManager";
 import GameObject = Phaser.GameObjects.GameObject;
 import RenderTexture = Phaser.GameObjects.RenderTexture;
 import Sprite = Phaser.GameObjects.Sprite;
 import Transform = Phaser.GameObjects.Components.Transform;
 import BlendMode = Phaser.GameObjects.Components.BlendMode;
+import Color = Phaser.Display.Color;
 
 export class Chunk {
 
@@ -18,11 +20,12 @@ export class Chunk {
     private masks: Map<Theme, RenderTexture> = new Map();
     private maskOffsetX: number = 0;
     private maskOffsetY: number = 0;
-
     private entities: Entity[] = [];
 
-    constructor(private readonly area: Area, private readonly level: Level) {
+    private readonly persistenceManager;
 
+    constructor(private readonly area: Area, private readonly level: Level) {
+        this.persistenceManager = PersistenceManager.get();
     }
 
     private physicsBodies: MatterJS.BodyType[] = []
@@ -80,6 +83,42 @@ export class Chunk {
                     this.processEntityLayer(scene, params, layer);
             })
         })
+
+        this.masks.forEach((mask, theme) => {
+            this.loadMaskFromDB(mask, theme, scene);
+        })
+    }
+
+
+    private getBlobKey(theme: Theme) {
+        return "chunk_blobs:" + this.level.iid + ":" + theme;
+    }
+
+    private async loadMaskFromDB(mask: RenderTexture, theme: Theme, scene: Scene) {
+        try {
+            const chunk_blob_key = this.getBlobKey(theme);
+            const imageSource = await this.persistenceManager.get(chunk_blob_key) as string;
+            // console.log(imageSource)
+            const image = new Image();
+            image.loading = "eager";
+            image.src = imageSource;
+
+            await new Promise(resolve => {
+                setTimeout(resolve, 50);
+            })
+
+            scene.textures.addImage(chunk_blob_key, image);
+
+            const object = new Sprite(scene, 0, 0, chunk_blob_key);
+            object.setOrigin(0, 0);
+            mask.beginDraw();
+            mask.batchDraw(object);
+            mask.endDraw();
+
+            scene.textures.remove(chunk_blob_key);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
 
@@ -162,6 +201,13 @@ export class Chunk {
 
     unload(scene: Scene) {
         this.physicsBodies.forEach(value => scene.matter.world.remove(value));
+
+        this.masks.forEach((mask, theme) => {
+            mask.snapshot((blob: Color | HTMLImageElement) => {
+                const source = (blob as HTMLImageElement).src;
+                this.persistenceManager.set(this.getBlobKey(theme), source);
+            })
+        })
 
         this.gameObjects.forEach(object => object.destroy(false));
         this.gameObjects = [];

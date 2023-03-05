@@ -49,7 +49,13 @@ export class PersistenceManager {
         const request = store.get(IDBKeyRange.only(id));
 
         return new Promise((resolve, reject) => {
-            request.onsuccess = () => resolve(request.result["value"]);
+            request.onsuccess = () => {
+                if(!request.result) {
+                    reject("Unknown key");
+                    return;
+                }
+                resolve(request.result["value"]);
+            }
             request.onerror = reject;
         })
     }
