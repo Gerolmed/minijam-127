@@ -1,0 +1,22 @@
+{ "frames": {
+   "0": {
+    "frame": { "x": 1, "y": 1, "w": 28, "h": 32 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 6, "y": 2, "w": 26, "h": 30 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
+  "image": "Thurston.png",
+  "format": "RGBA8888",
+  "size": { "w": 29, "h": 33 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Front_Idle", "from": 0, "to": 0, "direction": "forward" }
+  ]
+ }
+}
