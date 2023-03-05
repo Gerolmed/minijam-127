@@ -19,6 +19,10 @@ export class WorldStoreManager {
         this.persistenceManager = PersistenceManager.get();
     }
 
+    getStore(): WorldStore {
+        return this.store!;
+    }
+
 
     private async load() {
         try {

@@ -5,12 +5,17 @@ import {RatKing} from "../living/Enemies/RatKing";
 import GameScene from "../../scenes/Game";
 import {PhysicsSocket} from "../living/PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
+import {WorldStoreManager} from "../../world/WorldSave";
 
 export class BossFactory implements IEntityFactory {
+
+
+    private readonly worldStore: WorldStoreManager;
 
     constructor(private readonly scene: GameScene,
                 private readonly physicsSocket: PhysicsSocket,
                 private readonly addEnemy: <T extends Entity>(enemy: T) => T) {
+        this.worldStore = WorldStoreManager.get();
     }
 
     supports(typeID: number): boolean {
@@ -38,7 +43,7 @@ export class BossFactory implements IEntityFactory {
         const botRightCorner = new Vector2(av1.cx * layer.__gridSize + chunkX, av1.cy * layer.__gridSize + chunkY);
 
         let boss = undefined;
-        if(enemyType === "Ratking") {
+        if(enemyType === "Ratking" && !this.worldStore.getStore().ratKingKilled) {
             boss = new RatKing(this.scene, this.physicsSocket, pos, topLeftCorner, new Vector2(botRightCorner.x - topLeftCorner.x,botRightCorner.y - topLeftCorner.y))
         }
 
