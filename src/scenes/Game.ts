@@ -39,6 +39,13 @@ export default class GameScene extends Phaser.Scene {
                             "assets/audio/music/overworld/PreVersion.mp3",
                         ]
                     },
+                ],
+                boss: [
+                    {
+                        paths: [
+                            "assets/audio/music/overworld/Boss.mp3"
+                        ]
+                    }
                 ]
             }
         });
@@ -145,6 +152,10 @@ export default class GameScene extends Phaser.Scene {
 
     getTilemap() {
         return this.tilemap
+    }
+
+    getJukebox() {
+        return this.jukebox;
     }
 
     async softResetWorld(): Promise<void> {

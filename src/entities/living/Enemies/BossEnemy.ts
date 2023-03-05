@@ -3,6 +3,7 @@ import GameScene from "../../../scenes/Game";
 import {PhysicsSocket} from "../PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
 import {AABB} from "../../../util/AABB";
+import {Jukebox} from "../../../audio/JukeBox";
 
 export class BossEnemy extends Enemy {
 
@@ -23,7 +24,12 @@ export class BossEnemy extends Enemy {
             return;
 
         if(AABB.isIn(player.x, player.y, this.arenaTopLeft.x, this.arenaTopLeft.y, this.arenaSize.x, this.arenaSize.y))
-            console.log("Player in bounds");
+            this.startBossFight();
+    }
+
+
+    private startBossFight() {
+        this.gameScene.getJukebox().setTheme("boss",)
     }
 
 }
