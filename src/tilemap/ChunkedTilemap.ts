@@ -119,9 +119,7 @@ export class ChunkedTilemap {
 
 
     unloadAllChunks() {
-        console.log(this.loadedChunks.length)
         this.clean([]);
-        console.log(this.loadedChunks.length)
     }
 
     private clean(requiredChunks: Area[]) {
