@@ -383,7 +383,7 @@
 			"padding": 0,
 			"tags": [],
 			"tagsSourceEnumUid": 6,
-			"enumTags": [{ "enumValueId": "Wall", "tileIds": [0,1,2,6,20,22,40,41,42,46,47,48,49,50,60,61,62,63,64,80,81,82,86,87,100,101,102] }],
+			"enumTags": [{ "enumValueId": "Wall", "tileIds": [0,1,2,6,14,15,16,20,22,34,35,36,40,41,42,46,47,48,49,50,54,55,56,60,61,62,63,64,80,81,82,86,87,100,101,102] }],
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
