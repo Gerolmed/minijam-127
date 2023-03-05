@@ -80,31 +80,52 @@ export class InteractableEntity extends LivingEntity {
 
 
     protected doEnter(player: Player) {
-        this.interactionIndicator = this.createIndicator(this.x, this.y-24)
-
+        this.showIndicator();
     }
     protected doExit(player: Player) {
         this.interactionIndicator?.destroy(true);
+        this.interactionIndicator = undefined;
     }
 
     protected doInteract(player: Player) {
-         console.log("test")
+        this.doExit(player);
     }
 
     private getInteractCenter() {
         return new Vector2(this.x, this.y)
     }
     private getInteractKey() {
-        return this.scene.input.keyboard!.addKey("space");
+        return this.scene.input.keyboard!.addKey(this.getInteractKeyLabel());
     }
+
     private getInteractRangeSQ() {
         return 32*32
+    }
+    protected getActionText() {
+        return "to talk"
+    }
+    protected getInteractKeyLabel() {
+        return "space"
     }
 
     private createIndicator(x: number, y: number): GameObject {
         const textScale = 0.1;
-        const text = this.scene.add.text(x, y, "Space to talk", {fontFamily: "EndFont", fontSize: 50}).setScale(textScale);
-        text.setX(text.x-text.displayWidth/2)
-        return text;
+        const keyText = new Phaser.GameObjects.Text(this.scene, x, y, "'"+this.getInteractKeyLabel()+"'", {fontFamily: "EndFont", fontSize: 50, color: "#d4715d", stroke: "#4d234a", strokeThickness: 30}).setScale(textScale);
+        const actionText = new Phaser.GameObjects.Text(this.scene, x, y, this.getActionText(), {fontFamily: "EndFont", fontSize: 50, stroke: "#4d234a", strokeThickness: 30}).setScale(textScale);
+
+        const keyTextHalf = keyText.displayWidth/2;
+        const actionTextHalf = actionText.displayWidth/2;
+
+        keyText.setX(keyText.x-actionTextHalf-keyTextHalf)
+        actionText.setX(actionText.x-actionTextHalf+keyTextHalf)
+        const group = this.scene.add.container()
+        group.add(keyText)
+        group.add(actionText)
+        return group;
+    }
+
+    private showIndicator() {
+        this.interactionIndicator?.destroy()
+        this.interactionIndicator = this.createIndicator(this.x, this.y-24)
     }
 }
