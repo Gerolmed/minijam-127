@@ -12,10 +12,11 @@ export class SimpleProjectile extends ProjectileEntity {
     constructor(
         scene: GameScene, x?: number, y?: number,
         hitTeamMask?: number,
+        selfMask?: number,
         private readonly direction = new Vector2(1, 0),
         private readonly ttl = 6,
     ) {
-        super(scene, x, y, hitTeamMask);
+        super(scene, x, y, hitTeamMask, selfMask);
 
         this.animator.load(PlayerProjectileAnimationKeys.BASE);
         this.animator.play(PlayerProjectileAnimationKeys.IDLE);
@@ -44,6 +45,6 @@ export class SimpleProjectile extends ProjectileEntity {
     }
 
     static fire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig){
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, dir.scale(shooterConfig.projectileSpeed));
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed));
     }
 }
