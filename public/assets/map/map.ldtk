@@ -11,7 +11,7 @@
 	"iid": "8cf017f0-9f30-11ed-a90c-5d794baafe79",
 	"jsonVersion": "1.2.5",
 	"appBuildId": 464870,
-	"nextUid": 59,
+	"nextUid": 63,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -367,6 +367,68 @@
 			"pivotX": 0.5,
 			"pivotY": 0.5,
 			"fieldDefs": []
+		},
+		{
+			"identifier": "Item",
+			"uid": 61,
+			"tags": [],
+			"exportToToc": false,
+			"doc": null,
+			"width": 16,
+			"height": 16,
+			"resizableX": false,
+			"resizableY": false,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#F800FF",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0,
+			"pivotY": 0,
+			"fieldDefs": [
+				{
+					"identifier": "Items",
+					"doc": null,
+					"__type": "Array<LocalEnum.Items>",
+					"uid": 62,
+					"type": "F_Enum(59)",
+					"isArray": true,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -398,7 +460,21 @@
 			{ "id": "Rat", "tileId": null, "color": 5790555, "__tileSrcRect": null },
 			{ "id": "Opossum", "tileId": null, "color": 3625853, "__tileSrcRect": null }
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
-		{ "identifier": "NPC_Skins", "uid": 56, "values": [{ "id": "Cat_Player", "tileId": null, "color": 12470831, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
+		{ "identifier": "NPC_Skins", "uid": 56, "values": [{ "id": "Cat_Player", "tileId": null, "color": 12470831, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
+		{ "identifier": "Items", "uid": 59, "values": [
+			{ "id": "Paws_of_Swiftness", "tileId": null, "color": 39387, "__tileSrcRect": null },
+			{ "id": "Slingshot", "tileId": null, "color": 39387, "__tileSrcRect": null },
+			{ "id": "Bigger_Brush", "tileId": null, "color": 39387, "__tileSrcRect": null },
+			{ "id": "Special_Concoction", "tileId": null, "color": 39387, "__tileSrcRect": null },
+			{ "id": "Super_Catfood_Can", "tileId": null, "color": 16217634, "__tileSrcRect": null },
+			{ "id": "Minor_Fish", "tileId": null, "color": 16217634, "__tileSrcRect": null },
+			{ "id": "Catvision", "tileId": null, "color": 16217634, "__tileSrcRect": null },
+			{ "id": "Sling_Tail", "tileId": null, "color": 11882632, "__tileSrcRect": null },
+			{ "id": "Extra_Projectile", "tileId": null, "color": 11882632, "__tileSrcRect": null },
+			{ "id": "Paws_of_Gliding", "tileId": null, "color": 11882632, "__tileSrcRect": null },
+			{ "id": "Greater_Fish", "tileId": null, "color": 16705377, "__tileSrcRect": null },
+			{ "id": "Triple_Projectiles", "tileId": null, "color": 16705377, "__tileSrcRect": null }
+		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
 	], "externalEnums": [], "levelFields": [] },
 	"levels": [
 		{
