@@ -42,6 +42,9 @@ export type Layer = {
 
 export type EntityInstance = {
     __grid: [number, number],
+    __pivot: [number, number],
+    "width": number,
+    "height": number,
     defUid: number,
     iid: string
     fieldInstances: EntityFieldInstance[]

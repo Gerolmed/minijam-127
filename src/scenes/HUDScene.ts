@@ -49,4 +49,8 @@ export class HUDScene extends Scene {
             }
         }
     }
+
+    async doSaveFade(doSave: () => Promise<void>): Promise<void> {
+
+    }
 }
