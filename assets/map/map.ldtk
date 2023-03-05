@@ -651,23 +651,6 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "EnemySpawn",
-							"__grid": [3,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "ecfed9d0-9f30-11ed-85e6-7192b7a456ee",
-							"width": 16,
-							"height": 16,
-							"defUid": 47,
-							"px": [48,48],
-							"fieldInstances": [{ "__identifier": "Type", "__value": "Wolf", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Wolf"]
-							}] }]
-						},
-						{
 							"__identifier": "Campfire",
 							"__grid": [10,7],
 							"__pivot": [0.5,0.5],
@@ -701,23 +684,6 @@
 									"params": ["Cat_Player"]
 								}] }
 							]
-						},
-						{
-							"__identifier": "Item",
-							"__grid": [6,7],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#F800FF",
-							"iid": "f6b0bee0-9f30-11ed-9103-2fcad74859ed",
-							"width": 16,
-							"height": 16,
-							"defUid": 61,
-							"px": [96,112],
-							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Triple_Projectiles", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Triple_Projectiles"]
-							}] }]
 						}
 					]
 				},
@@ -1200,25 +1166,7 @@
 					"seed": 7343250,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "EnemySpawn",
-							"__grid": [3,8],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "410498c0-9f30-11ed-85e6-833fe53a2ed5",
-							"width": 16,
-							"height": 16,
-							"defUid": 47,
-							"px": [48,128],
-							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Rat"]
-							}] }]
-						}
-					]
+					"entityInstances": []
 				},
 				{
 					"__identifier": "_03_Front",
