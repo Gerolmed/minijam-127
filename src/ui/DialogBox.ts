@@ -8,15 +8,16 @@ import {doTextTween} from "../animations/ColorUtils";
 export class DialogBox extends Container {
     private box!: Phaser.GameObjects.NineSlice;
     private text!: Phaser.GameObjects.Text;
+    private nameText!: Phaser.GameObjects.Text;
     private readonly renderText: string[];
     private renderedText: string[] = [];
 
-    constructor(scene: Scene, x: number, y: number, text: string) {
+    constructor(scene: Scene, x: number, y: number, text: string, private readonly charName?: string) {
         super(scene, x, y);
 
 
         this.renderText = []
-        text.replaceAll("\\n", "\n").split("\n").forEach(part => {
+        text.replaceAll("/n", "\n").split("\n").forEach(part => {
             let piece = ""
 
             for (let i = 0; i < part.length; i++) {
@@ -36,9 +37,11 @@ export class DialogBox extends Container {
     async start(): Promise<void> {
         this.box = new NineSlice(this.scene, 0, 0, "dialog_box", 0, 9*10, 9, 3, 3, 3, 3).setOrigin(0,0);
         this.text = new Text(this.scene, 0,0, "", {fontFamily: "EndFont", fontSize: 100}).setScale(0.05 )
+        this.nameText = new Text(this.scene, 0,0, this.charName || "", {fontFamily: "EndFont", fontSize: 50, color: "#d4715d", stroke: "#4d234a", strokeThickness: 30}).setScale(0.1 )
         this.add(this.box)
         this.add(new Sprite(this.scene, 0, 0, "dialog_arrow").setOrigin(0,1))
         this.add(this.text)
+        this.add(this.nameText)
 
 
 
@@ -50,11 +53,13 @@ export class DialogBox extends Container {
     }
 
     private adjustBoxPosition() {
-        this.box.setSize(this.box.width, this.renderedText.length * 6+2);
+        this.box.setSize(this.box.width, this.renderedText.length * 6+4);
         this.box.setY(-5-this.box.height)
         this.box.setX(12-this.box.width/2)
-        this.text.setY(-5-this.box.height + 1)
+        this.text.setY(-5-this.box.height + 2)
         this.text.setX(12-this.box.width/2 + 3)
+        this.nameText.setY(-12-this.box.height)
+        this.nameText.setX(12-this.box.width/2)
     }
 
     private async tweenLines() {
