@@ -2,17 +2,19 @@ import {BehaviourStateMachine, State, TransitionRule, UpdateRule} from "./Behavi
 
 
 
-export class BehaviourBuilder {
+export class BehaviourBuilder<T> {
 
 
-    private states: Map<string, State> = new Map();
+    private states: Map<string, State<T>> = new Map();
     private startState: string = "";
+
+    private dataProvider?: () => T;
 
     constructor() {
     }
 
 
-    registerState(id: string, transitions: Map<TransitionRule, string>, updates: UpdateRule[]) {
+    registerState(id: string, transitions: Map<TransitionRule<T>, string>, updates: UpdateRule<T>[]) {
         this.states.set(id, {
             id,
             onUpdate: updates,
@@ -20,7 +22,7 @@ export class BehaviourBuilder {
         })
     }
 
-    addState(id: string): StateBuilder {
+    addState(id: string): StateBuilder<T> {
         return new StateBuilder(id, this);
     }
 
@@ -29,38 +31,46 @@ export class BehaviourBuilder {
         return this;
     }
 
-    build(): BehaviourStateMachine {
+    setDataProvider(dataProvider: () => T): BehaviourBuilder<T> {
+        this.dataProvider = dataProvider;
+        return this;
+    }
+
+    build(): BehaviourStateMachine<T> {
         const start = this.states.get(this.startState);
         if(!start)
             throw new Error("No valid start state specified");
 
-        return new BehaviourStateMachine(this.states, start);
+        if(!this.dataProvider)
+            throw new Error("No valid data provider specified")
+
+        return new BehaviourStateMachine<T>(this.states, start, this.dataProvider);
     }
 
 }
 
 
-class StateBuilder {
+class StateBuilder<T> {
 
 
-    private readonly transitionRules: Map<TransitionRule, string> = new Map();
-    private readonly updateRules: UpdateRule[] = [];
+    private readonly transitionRules: Map<TransitionRule<T>, string> = new Map();
+    private readonly updateRules: UpdateRule<T>[] = [];
 
     constructor(private readonly id: string,
-                private readonly behaviourBuilder: BehaviourBuilder) {
+                private readonly behaviourBuilder: BehaviourBuilder<T>) {
     }
 
-    addTransition(state: string, transition: TransitionRule): StateBuilder {
+    addTransition(state: string, transition: TransitionRule<T>): StateBuilder<T> {
         this.transitionRules.set(transition, state);
         return this;
     }
 
-    onUpdate(update: UpdateRule): StateBuilder {
+    onUpdate(update: UpdateRule<T>): StateBuilder<T> {
         this.updateRules.push(update);
         return this;
     }
 
-    and(): BehaviourBuilder {
+    and(): BehaviourBuilder<T> {
         return this.behaviourBuilder;
     }
 

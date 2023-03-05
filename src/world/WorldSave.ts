@@ -3,6 +3,7 @@ import {PersistenceManager} from "../persistence/PersistenceManager";
 
 type WorldStore = {
     ratKingKilled: boolean
+    opportunisticOpossumKilled: boolean
     raw: {
         [key: string]: any
     }
@@ -17,6 +18,10 @@ export class WorldStoreManager {
 
     private constructor() {
         this.persistenceManager = PersistenceManager.get();
+    }
+
+    getStore(): WorldStore {
+        return this.store!;
     }
 
 
@@ -35,6 +40,7 @@ export class WorldStoreManager {
     private createEmptySave(): WorldStore {
         return {
             ratKingKilled: false,
+            opportunisticOpossumKilled: false,
             raw: {}
         }
     }

@@ -14,9 +14,10 @@ import {CampfireFactory} from "../entities/factories/CampfireFactory";
 import {NPCFactory} from "../entities/factories/NPCFactory";
 import {BossFactory} from "../entities/factories/BossFactory";
 import {ItemFactory} from "../entities/factories/ItemFactory";
+import {WorldStoreManager} from "../world/WorldSave";
+import {GLOBAL_DIALOG_DATA} from "../util/DialogData";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
-import {WorldStoreManager} from "../world/WorldSave";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -59,6 +60,7 @@ export default class GameScene extends Phaser.Scene {
 
         this.load.image("logo", "assets/phaser3-logo.png");
         this.load.json("map", "assets/map/map.ldtk")
+        this.load.json("hint_dialog", "assets/dialog/hint_dialogs.json")
         this.load.spritesheet("tileset", "assets/tilesets/tileset.png", {
             frameWidth: 16,
             frameHeight: 16,
@@ -90,6 +92,8 @@ export default class GameScene extends Phaser.Scene {
 
     create() {
         this.jukebox.start();
+
+        GLOBAL_DIALOG_DATA.load(this.cache.json.get("hint_dialog"))
 
         this.textures.get("tileset").setFilter(FilterMode.NEAREST);
         this.textures.get("tileset_orange").setFilter(FilterMode.NEAREST);

@@ -1,8 +1,8 @@
 import Container = Phaser.GameObjects.Container;
-import {Scene} from "phaser";
 import Sprite = Phaser.GameObjects.Sprite;
 import NineSlice = Phaser.GameObjects.NineSlice;
 import Text = Phaser.GameObjects.Text;
+import {Scene} from "phaser";
 import {doTextTween} from "../animations/ColorUtils";
 
 export class DialogBox extends Container {
@@ -16,7 +16,7 @@ export class DialogBox extends Container {
 
 
         this.renderText = []
-        text.split("\n").forEach(part => {
+        text.replaceAll("\\n", "\n").split("\n").forEach(part => {
             let piece = ""
 
             for (let i = 0; i < part.length; i++) {

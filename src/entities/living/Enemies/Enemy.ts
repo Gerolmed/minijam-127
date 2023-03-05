@@ -10,6 +10,8 @@ import {Theme} from "../../../painting/Theme";
 import {SpinnyProjectileAnimationKeys} from "../../../animations/ProjectileAnimationKeys";
 import {IShootSource} from "../IShootSource";
 import Vector2 = Phaser.Math.Vector2;
+import {BehaviourStateMachine} from "../../../behaviour/BehaviourStateMachine";
+import {BehaviourBuilder} from "../../../behaviour/BehaviourBuilder";
 
 
 export enum EnemyState {
@@ -23,6 +25,23 @@ export enum EnemyFacing {
     RIGHT,
     TOP,
     DOWN
+}
+
+/*
+
+hasLos = this.hasLineOfSight();
+        const playerDir = [player.x - this.x, player.y - this.y];
+        const distanceToPlayer = Math.sqrt(playerDir[0] * playerDir[0] + playerDir[1] * playerDir[1]);
+        const distanceToOrigin = Math.sqrt((this.x - this.origin.x) * (this.x - this.origin.x) + (this.y - this.origin.y) * (this.y - this.origin.y));
+        const timeLastSpotted = Date.now() - this.lastPlayerSpotted;
+ */
+
+type EnemyAiParams = {
+    hasLos: boolean,
+    playerDir: [number, number],
+    distanceToPlayer: number,
+    distanceToOrigin: number,
+    timeLastSpotted: number
 }
 
 export class Enemy extends LivingEntity implements IShootSource {
@@ -45,6 +64,9 @@ export class Enemy extends LivingEntity implements IShootSource {
     private startRetreating = 0;
     private aState: EnemyState = EnemyState.NEUTRAL;
     private facing: EnemyFacing = EnemyFacing.DOWN;
+    private isWalking = false;
+
+    private readonly behaviour: BehaviourStateMachine<EnemyAiParams>;
 
 
     constructor(scene: GameScene,
@@ -61,6 +83,20 @@ export class Enemy extends LivingEntity implements IShootSource {
             splashTheme: Theme.PURPLE,
             projectileAnimKeys: SpinnyProjectileAnimationKeys
         });
+
+        this.behaviour = new BehaviourBuilder<EnemyAiParams>()
+            .addState("neutral")
+                .onUpdate((param) => this.setToOrigin())
+                .and()
+            .addState("aggro")
+                .onUpdate((param, delta) => this.moveIntoAttackRange(param, delta))
+                .and()
+            .addState("retreat")
+                .onUpdate((param, delta) => this.retreat(param, delta))
+                .and()
+            .setStart("neutral")
+            .setDataProvider(() => this.getAiParams())
+            .build()
     }
 
 
@@ -97,47 +133,71 @@ export class Enemy extends LivingEntity implements IShootSource {
         if(this.aState !== EnemyState.AGGRO && distanceToPlayer < this.AGGRO_RANGE && distanceToOrigin < this.AGGRO_RANGE_ORIGIN)
             this.aState = EnemyState.AGGRO;
 
-        if(this.aState === EnemyState.AGGRO && hasLos) {
-            if(distanceToPlayer > this.ATTACK_RANGE) {
-                const velX = playerDir[0] / distanceToPlayer * this.SPEED * deltaTime;
-                const velY = playerDir[1] / distanceToPlayer * this.SPEED * deltaTime;
-                this.scene.matter.setVelocity(
-                    this.rigidbody,
-                    velX,
-                    velY
-                )
 
-                moving = true;
-                this.updateFacing(velX, velY);
-            } else {
-                this.projectileShooter.tryShoot(new Vector2(playerDir[0] / distanceToPlayer, playerDir[1] / distanceToPlayer));
-            }
+        if(this.aState === EnemyState.RETREATING && (distanceToOrigin > this.RETREAT_DISTANCE_MAX || timeRetreating > this.RETREAT_DURATION_MAX)) {
+            this.aState = EnemyState.NEUTRAL;
         }
 
-        if(this.aState === EnemyState.RETREATING) {
-            const velX = -playerDir[0] / distanceToPlayer * this.RETREAT_SPEED * deltaTime;
-            const velY = -playerDir[1] / distanceToPlayer * this.RETREAT_SPEED * deltaTime;
+        this.animator.play(this.getAnimationFrame(this.facing, moving? "WALK" : "IDLE"));
+    }
+
+
+    protected getAiParams(): EnemyAiParams {
+        const player = this.physicsSocket.getPlayer();
+        if(!player)
+            throw new Error("No player specified");
+
+        const playerDir = [player.x - this.x, player.y - this.y];
+
+        return {
+            hasLos: this.hasLineOfSight(),
+            playerDir: [player.x - this.x, player.y - this.y],
+            distanceToPlayer: Math.sqrt(playerDir[0] * playerDir[0] + playerDir[1] * playerDir[1]),
+            distanceToOrigin: Math.sqrt((this.x - this.origin.x) * (this.x - this.origin.x) + (this.y - this.origin.y) * (this.y - this.origin.y)),
+            timeLastSpotted: Date.now() - this.lastPlayerSpotted
+        }
+    }
+
+    protected setToOrigin() {
+        this.scene.matter.body.setPosition(this.rigidbody, new Vector2(this.origin.x, this.origin.y));
+        this.facing = EnemyFacing.DOWN;
+    }
+
+
+    protected retreat(param: EnemyAiParams, deltaTime: number) {
+        const velX = -param.playerDir[0] / param.distanceToPlayer * this.RETREAT_SPEED * deltaTime;
+        const velY = -param.playerDir[1] / param.distanceToPlayer * this.RETREAT_SPEED * deltaTime;
+        this.scene.matter.setVelocity(
+            this.rigidbody,
+            velX,
+            velY
+        )
+
+        this.isWalking = true;
+        this.updateFacing(velX, velY);
+    }
+
+
+    protected moveIntoAttackRange(param: EnemyAiParams, deltaTime: number) {
+        if(!param.hasLos)
+            return;
+
+        if(param.distanceToPlayer > this.ATTACK_RANGE) {
+            const velX = param.playerDir[0] / param.distanceToPlayer * this.SPEED * deltaTime;
+            const velY = param.playerDir[1] / param.distanceToPlayer * this.SPEED * deltaTime;
             this.scene.matter.setVelocity(
                 this.rigidbody,
                 velX,
                 velY
             )
 
-            moving = true;
+            this.isWalking = true;
             this.updateFacing(velX, velY);
+        } else {
+            this.projectileShooter.tryShoot(new Vector2(param.playerDir[0] / param.distanceToPlayer, param.playerDir[1] / param.distanceToPlayer));
         }
-        if(this.aState === EnemyState.RETREATING && (distanceToOrigin > this.RETREAT_DISTANCE_MAX || timeRetreating > this.RETREAT_DURATION_MAX)) {
-            this.aState = EnemyState.NEUTRAL;
-        }
-
-        if(this.aState === EnemyState.NEUTRAL) {
-            this.scene.matter.body.setPosition(this.rigidbody, new Vector2(this.origin.x, this.origin.y));
-
-            this.facing = EnemyFacing.DOWN;
-        }
-
-        this.animator.play(this.getAnimationFrame(this.facing, moving? "WALK" : "IDLE"));
     }
+
 
     private updateFacing(velX: number, velY: number) {
         const horizontal = Math.abs(velX) > Math.abs(velY);
