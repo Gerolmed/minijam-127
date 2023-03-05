@@ -595,6 +595,7 @@
 			{ "id": "Super_Catfood_Can", "tileId": null, "color": 16217634, "__tileSrcRect": null },
 			{ "id": "Minor_Fish", "tileId": null, "color": 16217634, "__tileSrcRect": null },
 			{ "id": "Catvision", "tileId": null, "color": 16217634, "__tileSrcRect": null },
+			{ "id": "Big_Projectiles", "tileId": null, "color": 16217634, "__tileSrcRect": null },
 			{ "id": "Sling_Tail", "tileId": null, "color": 11882632, "__tileSrcRect": null },
 			{ "id": "Extra_Projectile", "tileId": null, "color": 11882632, "__tileSrcRect": null },
 			{ "id": "Paws_of_Gliding", "tileId": null, "color": 11882632, "__tileSrcRect": null },
@@ -6350,9 +6351,9 @@
 							"defUid": 79,
 							"px": [128,352],
 							"fieldInstances": [
-								{ "__identifier": "Arena0", "__value": { "cx": 1, "cy": 3 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
+								{ "__identifier": "Arena0", "__value": { "cx": 1, "cy": 1 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["1,3"]
+									"params": ["1,1"]
 								}] },
 								{ "__identifier": "Arena1", "__value": { "cx": 24, "cy": 26 }, "__type": "Point", "__tile": null, "defUid": 81, "realEditorValues": [{
 									"id": "V_String",
@@ -8038,6 +8039,23 @@
 									"params": ["Cat_Player"]
 								}] }
 							]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [3,12],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "f3fa69c0-9f30-11ed-9103-7382e49fca13",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [48,192],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Big_Projectiles", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Big_Projectiles"]
+							}] }]
 						}
 					]
 				},
