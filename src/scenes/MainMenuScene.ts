@@ -2,6 +2,7 @@ import {Scene} from "phaser";
 import Constants from "../Constants";
 import {Button} from "../ui/Button";
 import {Jukebox} from "../audio/JukeBox";
+import {PersistenceManager} from "../persistence/PersistenceManager";
 
 export class MainMenuScene extends Scene {
 
@@ -59,6 +60,11 @@ export class MainMenuScene extends Scene {
         this.add.existing(new Button(this, "btn_continue",camera.width -250, 250).setScale(Constants.UPSCALE_FACTOR))
 
         this.events.on('shutdown', () => this.jukebox.kill())
+
+        const persistenceManager = PersistenceManager.get();
+        persistenceManager.connect().then(() => {
+            console.log("Connected to database");
+        })
     }
 
     update(time: number, delta: number) {
