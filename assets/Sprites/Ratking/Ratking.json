@@ -349,6 +349,15 @@
     "spriteSourceSize": { "x": 14, "y": 22, "w": 34, "h": 42 },
     "sourceSize": { "w": 64, "h": 64 },
     "duration": 100
+   },
+   {
+    "filename": "39",
+    "frame": { "x": 166, "y": 49, "w": 32, "h": 46 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 18, "y": 20, "w": 30, "h": 44 },
+    "sourceSize": { "w": 64, "h": 64 },
+    "duration": 100
    }
  ],
  "meta": {
@@ -366,7 +375,7 @@
    { "name": "Back_Idle", "from": 20, "to": 20, "direction": "forward" },
    { "name": "Back_Walk", "from": 21, "to": 30, "direction": "forward" },
    { "name": "Right_Idle", "from": 31, "to": 31, "direction": "forward" },
-   { "name": "Right_Walk", "from": 32, "to": 38, "direction": "forward" }
+   { "name": "Right_Walk", "from": 32, "to": 39, "direction": "forward" }
   ]
  }
 }
