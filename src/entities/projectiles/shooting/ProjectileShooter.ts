@@ -4,6 +4,7 @@ import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileEntity} from "../ProjectileEntity";
 import {SimpleProjectileKeys, SplatsLarge, SplatsSmall} from "../../../animations/ProjectileAnimationKeys";
 import {Theme} from "../../../painting/Theme";
+import {Entity} from "../../Entity";
 import Vector2 = Phaser.Math.Vector2;
 import Transform = Phaser.GameObjects.Components.Transform;
 
@@ -34,7 +35,7 @@ export class ProjectileShooter {
     private readonly baseConfig: ShooterConfig;
 
     constructor(
-        private readonly gameScene: GameScene,
+        private readonly source: Entity,
         private readonly transform: Transform,
         config?: Partial<ShooterConfig>,
     ) {
@@ -107,7 +108,7 @@ export class ProjectileShooter {
 
             input.rotate(angle/180 * Math.PI)
         }
-        this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input, this.config));
+        this.source.gameScene.addEntity(this.config.fireProjectile(this.source.gameScene, source.x, source.y, input, this.config));
     }
 
 

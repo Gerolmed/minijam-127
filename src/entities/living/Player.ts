@@ -1,13 +1,12 @@
 import {LivingEntity} from "./LivingEntity";
 import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
 import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
-import Vector2 = Phaser.Math.Vector2;
 import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
 import {IBodyDefinition} from "matter";
 import {ChunkedTilemap} from "../../tilemap/ChunkedTilemap";
-import Color = Phaser.Display.Color;
-import {IDamageable} from "../../damage/IDamageable";
 import {Item} from "../../items/Item";
+import Vector2 = Phaser.Math.Vector2;
+import Color = Phaser.Display.Color;
 
 export class Player extends LivingEntity {
 
@@ -30,7 +29,7 @@ export class Player extends LivingEntity {
         this.setName("Player")
 
         this.playerInput = new PlayerIngameInput(this.scene);
-        this.projectileShooter = new ProjectileShooter(this.gameScene, this);
+        this.projectileShooter = new ProjectileShooter(this, this);
         this.animator.load(PlayerAnimationKeys.BASE);
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
 

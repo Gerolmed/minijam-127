@@ -7,8 +7,8 @@ import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
 import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 import {Animator} from "../../../animations/Animator";
 import {Theme} from "../../../painting/Theme";
-import Vector2 = Phaser.Math.Vector2;
 import {SpinnyProjectileAnimationKeys} from "../../../animations/ProjectileAnimationKeys";
+import Vector2 = Phaser.Math.Vector2;
 
 
 export enum EnemyState {
@@ -52,7 +52,7 @@ export class Enemy extends LivingEntity {
         super(scene, origin.x, origin.y);
 
         this.facing = EnemyFacing.DOWN;
-        this.projectileShooter = new ProjectileShooter(scene, this, {
+        this.projectileShooter = new ProjectileShooter(this, this, {
             selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
             hitLayer: PhysicsLayers.PLAYER,
             projectileSpeed: 1.5,
