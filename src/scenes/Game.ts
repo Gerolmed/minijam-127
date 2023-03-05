@@ -15,6 +15,8 @@ import {MaxHealthItem} from "../items/MaxHealthItem";
 import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
+import {CampfireFactory} from "../entities/factories/CampfireFactory";
+import {NPCFactory} from "../entities/factories/NPCFactory";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -92,6 +94,8 @@ export default class GameScene extends Phaser.Scene {
         const physicsSocket = new PhysicsSocket();
         const enemyFactory = new EnemyFactory(this, physicsSocket, (entity) => this.addEntity(entity));
         this.tilemap.registerEntityFactory(enemyFactory);
+        this.tilemap.registerEntityFactory(new CampfireFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
+        this.tilemap.registerEntityFactory(new NPCFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
 
         this.entityContainer = this.add.container();
 
@@ -121,11 +125,6 @@ export default class GameScene extends Phaser.Scene {
         this.ready = true;
 
         this.events.on('shutdown', () => this.jukebox.kill())
-
-        setInterval(() => {
-            this.tilemap.paint(player, Theme.PURPLE);
-        }, 3 * 1000)
-
     }
 
     public isReady() {
