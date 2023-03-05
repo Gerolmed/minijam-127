@@ -710,11 +710,11 @@
 							"px": [296,120],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"Welcome Splat Cat, /n the rats, wolfs and opossums /n are threatening all of catkind in /n this area. Kill them! /n K I L L  T H E M  A L L!"
+									"Welcome Splat Cat!\\nthe rats, wolfs and\\nopossums are threatening\\nall of catkind in this\\narea.\\nKill them!\\nK I L L  T H E M  A L L!"
 								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"Welcome Splat Cat, /n the rats, wolfs and opossums /n are threatening all of catkind in /n this area. Kill them! /n K I L L  T H E M  A L L!"
+										"Welcome Splat Cat!\\nthe rats, wolfs and\\nopossums are threatening\\nall of catkind in this\\narea.\\nKill them!\\nK I L L  T H E M  A L L!"
 									]
 								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
@@ -1637,11 +1637,11 @@
 							"px": [120,24],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"Beware glourious warrior, /n if you continue to the north, you´ll /n get to \"The Alpha\". /n instead try walking to the east, /n where you´ll find the /n \"opportunistic opossum\" /n good luck!"
+									"Beware glourious warrior,\\nif you continue to the north, you´ll\\nget to \"The Alpha\".\\ninstead try walking to the east,\\nwhere you´ll find the\\n\"opportunistic opossum\"\\ngood luck!"
 								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"Beware glourious warrior, /n if you continue to the north, you´ll /n get to \"The Alpha\". /n instead try walking to the east, /n where you´ll find the /n \"opportunistic opossum\" /n good luck!"
+										"Beware glourious warrior,\\nif you continue to the north, you´ll\\nget to \"The Alpha\".\\ninstead try walking to the east,\\nwhere you´ll find the\\n\"opportunistic opossum\"\\ngood luck!"
 									]
 								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
@@ -8116,11 +8116,11 @@
 							"px": [216,136],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"finally, a cat. I´ve been waiting /n for you! right there is the /n \"opportunistic opossum\". /n he needs to be defeated!"
+									"finally, a cat. I´ve been waiting\\nfor you! right there is the\\n\"opportunistic opossum\".\\nhe needs to be defeated!"
 								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"finally, a cat. I´ve been waiting /n for you! right there is the /n \"opportunistic opossum\". /n he needs to be defeated!"
+										"finally, a cat. I´ve been waiting\\nfor you! right there is the\\n\"opportunistic opossum\".\\nhe needs to be defeated!"
 									]
 								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
@@ -14291,11 +14291,11 @@
 							"px": [168,88],
 							"fieldInstances": [
 								{ "__identifier": "DialogLines", "__value": [
-									"aah, you found the way, fellow /n cat-fighter, the \"rat-king\" is right /n over there. go kill him!"
+									"aah, you found the way, fellow\\ncat-fighter, the \"rat-king\" is right\\nover there. go kill him!"
 								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"aah, you found the way, fellow /n cat-fighter, the \"rat-king\" is right /n over there. go kill him!"
+										"aah, you found the way, fellow\\ncat-fighter, the \"rat-king\" is right\\nover there. go kill him!"
 									]
 								}] },
 								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
