@@ -11,7 +11,7 @@
 	"iid": "8cf017f0-9f30-11ed-a90c-5d794baafe79",
 	"jsonVersion": "1.2.5",
 	"appBuildId": 464870,
-	"nextUid": 79,
+	"nextUid": 84,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -429,6 +429,132 @@
 					"tilesetUid": null
 				}
 			]
+		},
+		{
+			"identifier": "Boss",
+			"uid": 79,
+			"tags": [],
+			"exportToToc": false,
+			"doc": null,
+			"width": 16,
+			"height": 16,
+			"resizableX": false,
+			"resizableY": false,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#EAD4AA",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0,
+			"pivotY": 0,
+			"fieldDefs": [
+				{
+					"identifier": "Arena0",
+					"doc": null,
+					"__type": "Point",
+					"uid": 80,
+					"type": "F_Point",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "PointPath",
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "Arena1",
+					"doc": null,
+					"__type": "Point",
+					"uid": 81,
+					"type": "F_Point",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "PointPath",
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "Type",
+					"doc": null,
+					"__type": "LocalEnum.Boss",
+					"uid": 83,
+					"type": "F_Enum(82)",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -474,7 +600,8 @@
 			{ "id": "Paws_of_Gliding", "tileId": null, "color": 11882632, "__tileSrcRect": null },
 			{ "id": "Greater_Fish", "tileId": null, "color": 16705377, "__tileSrcRect": null },
 			{ "id": "Triple_Projectiles", "tileId": null, "color": 16705377, "__tileSrcRect": null }
-		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
+		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
+		{ "identifier": "Boss", "uid": 82, "values": [{ "id": "Ratking", "tileId": null, "color": 12470831, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
 	], "externalEnums": [], "levelFields": [] },
 	"levels": [
 		{
@@ -5898,6 +6025,33 @@
 							"defUid": 58,
 							"px": [328,104],
 							"fieldInstances": []
+						},
+						{
+							"__identifier": "Boss",
+							"__grid": [8,22],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#EAD4AA",
+							"iid": "029c10e0-9f30-11ed-b4f7-a7dd0d982310",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [128,352],
+							"fieldInstances": [
+								{ "__identifier": "Arena0", "__value": { "cx": 1, "cy": 8 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["1,8"]
+								}] },
+								{ "__identifier": "Arena1", "__value": { "cx": 24, "cy": 26 }, "__type": "Point", "__tile": null, "defUid": 81, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["24,26"]
+								}] },
+								{ "__identifier": "Type", "__value": "Ratking", "__type": "LocalEnum.Boss", "__tile": null, "defUid": 83, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Ratking"]
+								}] }
+							]
 						}
 					]
 				},
