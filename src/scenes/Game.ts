@@ -151,7 +151,7 @@ export default class GameScene extends Phaser.Scene {
 
     async softResetWorld(): Promise<void> {
         const currentArea = this.tilemap.getCurrentArea()!;
-        this.tilemap.unloadAllChunks();
+        await this.tilemap.unloadAllChunks();
         await this.tilemap.enter(currentArea);
     }
 }

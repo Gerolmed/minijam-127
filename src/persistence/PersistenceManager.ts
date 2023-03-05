@@ -35,7 +35,7 @@ export class PersistenceManager {
         const request = store.put(object);
 
         return new Promise<any>((resolve, reject) => {
-            request.onsuccess = resolve;
+            transaction.oncomplete = resolve;
             request.onerror = reject;
         })
     }

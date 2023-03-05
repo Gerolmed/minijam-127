@@ -118,14 +118,24 @@ export class ChunkedTilemap {
     }
 
 
-    unloadAllChunks() {
-        this.clean([]);
+    async unloadAllChunks() {
+        await this.clean([]);
     }
 
-    private clean(requiredChunks: Area[]) {
+    private async clean(requiredChunks: Area[]) {
+        const promises: Promise<any>[] = [];
+
         const unloadChunks = this.loadedChunks.filter(chunk => !(requiredChunks.includes(chunk.getArea())));
-        unloadChunks.forEach(chunk => chunk.unload(this.scene));
+        unloadChunks.forEach(chunk => {
+            promises.push(chunk.unload(this.scene));
+        });
         this.loadedChunks = this.loadedChunks.filter(chunk => requiredChunks.includes(chunk.getArea()));
+
+        promises.push(new Promise(resolve => {
+            setTimeout(resolve, 1);
+        }))
+
+        await Promise.all(promises);
     }
 
 }

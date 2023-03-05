@@ -199,13 +199,15 @@ export class Chunk {
         return this.physicsBodies;
     }
 
-    unload(scene: Scene) {
+    async unload(scene: Scene) {
         this.physicsBodies.forEach(value => scene.matter.world.remove(value));
+
+        const promises: Promise<any>[] = [];
 
         this.masks.forEach((mask, theme) => {
             mask.snapshot((blob: Color | HTMLImageElement) => {
                 const source = (blob as HTMLImageElement).src;
-                this.persistenceManager.set(this.getBlobKey(theme), source);
+                promises.push(this.persistenceManager.set(this.getBlobKey(theme), source));
             })
         })
 
@@ -214,6 +216,8 @@ export class Chunk {
 
         this.entities.forEach(entity => entity.isAlive && entity.destroy());
         this.entities = [];
+
+        await Promise.all(promises);
     }
 
 }
