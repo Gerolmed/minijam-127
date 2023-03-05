@@ -40,11 +40,11 @@ reg.register("Super_Catfood_Can", (id) => new SuperCatfoodCan(id))
 reg.register("Minor_Fish", (id) => new MinorFish(id))
 reg.register("Catvision", (id) => new Catvision(id))
 
-reg.register("Sling_Tail", (id) => new SlingTail(id)) // MISSING
+reg.register("Sling_Tail", (id) => new SlingTail(id))
 reg.register("Extra_Projectile", (id) => new ExtraProjectile(id))
 reg.register("Paws_of_Gliding", (id) => new PawsOfGliding(id))
 
 reg.register("Greater_Fish", (id) => new GreaterFish(id))
-reg.register("Triple_Projectiles", (id) => new TripleProjectiles(id)) // MISSING
+reg.register("Triple_Projectiles", (id) => new TripleProjectiles(id))
 
 export default reg;

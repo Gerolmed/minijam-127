@@ -84,6 +84,10 @@ export class ProjectileShooter {
 
     public shoot(source: Vector2, input: Vector2) {
         this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input, this.config));
+
+        if(this.config.hasBackShot) {
+            this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, -source.x, -source.y, input, this.config));
+        }
     }
 
     update(deltaTime: number) {
