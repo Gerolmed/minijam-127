@@ -1,9 +1,7 @@
 import {ItemEntity} from "../ItemEntity";
 import {Player} from "../../entities/living/Player";
 import {Item} from "../Item";
-import {
-    LargePlayerProjectileAnimationKeys, SplatsLarge, SplatsSmall,
-} from "../../animations/ProjectileAnimationKeys";
+import {SplatsLarge,} from "../../animations/ProjectileAnimationKeys";
 
 export class SpecialConcoction extends Item {
 
@@ -15,7 +13,8 @@ export class SpecialConcoction extends Item {
 
         const shooter = player.getShooter();
         shooter.updateConfig({
-            splatsPath: SplatsLarge
+            splatsPath: SplatsLarge,
+            accuracy: shooter.getConfig().accuracy+.05,
         })
     }
 

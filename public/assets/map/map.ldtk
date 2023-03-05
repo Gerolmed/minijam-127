@@ -11,7 +11,7 @@
 	"iid": "8cf017f0-9f30-11ed-a90c-5d794baafe79",
 	"jsonVersion": "1.2.5",
 	"appBuildId": 464870,
-	"nextUid": 85,
+	"nextUid": 86,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -336,6 +336,38 @@
 					"allowedRefs": "OnlySame",
 					"allowedRefTags": [],
 					"tilesetUid": null
+				},
+				{
+					"identifier": "Oneshot",
+					"doc": null,
+					"__type": "Bool",
+					"uid": 85,
+					"type": "F_Bool",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
 				}
 			]
 		},
@@ -576,7 +608,7 @@
 			"savedSelections": [],
 			"cachedPixelData": {
 				"opaqueTiles": "111111001111111110001111110011111111100011111100000111111000111111000001111100001110010000011111000011100000000000000000111011111000000000000000111110000000000011111111100000000000111111111000000000000011111110000000000000011111110000000000",
-				"averageColors": "feeefeeefeeefeeefeeefeeeaecaaeeefeddfecbfedcfedcfedcfeddfeedfeeefeed000000000000feeefeeefeeefeeefeeefeee6eee0000fedcfedcfedcfedcfeddfeddfeeefeeefeee000000000000feeefeeefeeefeeefeeefeee8eba9eba8eba9ecb9ecafeeefeeefeeefeeefeeefeee000000000000fedcfeddfedcfeedfeedfeee2eb800000000aecb7ecafeeefdddfeeefeeefeee0000000000000000fedcfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeeefeeefeee0000000000000000feedfeddfddd0000000000006cbb6cbb000000000000000000000000000000000000000000000000feddfeddfedd0000feeefeddfeeefeeefeee000000000000000000000000000000000000000000000000000000000000feeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
+				"averageColors": "feeefeeefeeefeeefeeefeeeaecaaeeefeddfecbfedcfedcfedcfeddfeedfeeefeed000000000000feeefeeefeeefeeefeeefeee6eee0000fedcfedcfedcfedcfeddfeddfeeefeeefeee000000000000feeefeeefeeefeeefeeefeee8eba9eba8eba9ecb9ecafeeefeeefeeefeeefeeefeee000000000000fedcfeddfedcfeedfeedfeee000000000000aecb7ecafeeefdddfeeefeeefeee0000000000000000fedcfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeeefeeefeee0000000000000000feedfeddfddd0000000000006cbb6cbb000000000000000000000000000000000000000000000000feddfeddfedd0000feeefeddfeeefeeefeee000000000000000000000000000000000000000000000000000000000000feeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
 			}
 		}
 	], "enums": [
@@ -595,6 +627,7 @@
 			{ "id": "Super_Catfood_Can", "tileId": null, "color": 16217634, "__tileSrcRect": null },
 			{ "id": "Minor_Fish", "tileId": null, "color": 16217634, "__tileSrcRect": null },
 			{ "id": "Catvision", "tileId": null, "color": 16217634, "__tileSrcRect": null },
+			{ "id": "Big_Projectiles", "tileId": null, "color": 16217634, "__tileSrcRect": null },
 			{ "id": "Sling_Tail", "tileId": null, "color": 11882632, "__tileSrcRect": null },
 			{ "id": "Extra_Projectile", "tileId": null, "color": 11882632, "__tileSrcRect": null },
 			{ "id": "Paws_of_Gliding", "tileId": null, "color": 11882632, "__tileSrcRect": null },
@@ -650,23 +683,6 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "EnemySpawn",
-							"__grid": [3,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "ecfed9d0-9f30-11ed-85e6-7192b7a456ee",
-							"width": 16,
-							"height": 16,
-							"defUid": 47,
-							"px": [48,48],
-							"fieldInstances": [{ "__identifier": "Type", "__value": "Wolf", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Wolf"]
-							}] }]
-						},
-						{
 							"__identifier": "Campfire",
 							"__grid": [10,7],
 							"__pivot": [0.5,0.5],
@@ -693,30 +709,24 @@
 							"defUid": 52,
 							"px": [296,120],
 							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "DialogLines", "__value": [
+									"Welcome Splat Cat, /n the rats, wolfs and opossums /n are threatening all of catkind in /n this area. Kill them! /n K I L L  T H E M  A L L!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"Welcome Splat Cat, /n the rats, wolfs and opossums /n are threatening all of catkind in /n this area. Kill them! /n K I L L  T H E M  A L L!"
+									]
+								}] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Cat_Player"]
-								}] }
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
 							]
-						},
-						{
-							"__identifier": "Item",
-							"__grid": [6,7],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#F800FF",
-							"iid": "f6b0bee0-9f30-11ed-9103-2fcad74859ed",
-							"width": 16,
-							"height": 16,
-							"defUid": 61,
-							"px": [96,112],
-							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Triple_Projectiles", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Triple_Projectiles"]
-							}] }]
 						}
 					]
 				},
@@ -1199,25 +1209,7 @@
 					"seed": 7343250,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "EnemySpawn",
-							"__grid": [3,8],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "410498c0-9f30-11ed-85e6-833fe53a2ed5",
-							"width": 16,
-							"height": 16,
-							"defUid": 47,
-							"px": [48,128],
-							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Rat"]
-							}] }]
-						}
-					]
+					"entityInstances": []
 				},
 				{
 					"__identifier": "_03_Front",
@@ -1630,6 +1622,38 @@
 								"id": "V_String",
 								"params": ["Paws_of_Swiftness"]
 							}] }]
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [7,1],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "72b7a8b0-9f30-11ed-9103-752dac8c653b",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [120,24],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [
+									"Beware glourious warrior, /n if you continue to the north, you´ll /n get to \"The Alpha\". /n instead try walking to the east, /n where you´ll find the /n \"opportunistic opossum\" /n good luck!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"Beware glourious warrior, /n if you continue to the north, you´ll /n get to \"The Alpha\". /n instead try walking to the east, /n where you´ll find the /n \"opportunistic opossum\" /n good luck!"
+									]
+								}] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
 						}
 					]
 				},
@@ -2727,6 +2751,33 @@
 								"id": "V_String",
 								"params": ["Opossum"]
 							}] }]
+						},
+						{
+							"__identifier": "Boss",
+							"__grid": [13,13],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#EAD4AA",
+							"iid": "8a97f460-9f30-11ed-9103-d989418c62fe",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [208,208],
+							"fieldInstances": [
+								{ "__identifier": "Arena0", "__value": { "cx": 0, "cy": 1 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["0,1"]
+								}] },
+								{ "__identifier": "Arena1", "__value": { "cx": 26, "cy": 22 }, "__type": "Point", "__tile": null, "defUid": 81, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["26,22"]
+								}] },
+								{ "__identifier": "Type", "__value": "Ratking", "__type": "LocalEnum.Boss", "__tile": null, "defUid": 83, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Ratking"]
+								}] }
+							]
 						}
 					]
 				},
@@ -3401,11 +3452,11 @@
 						{ "px": [128,176], "src": [16,16], "f": 0, "t": 21, "d": [536] },
 						{ "px": [144,176], "src": [16,16], "f": 0, "t": 21, "d": [537] },
 						{ "px": [160,176], "src": [16,16], "f": 0, "t": 21, "d": [538] },
-						{ "px": [176,176], "src": [16,16], "f": 0, "t": 21, "d": [539] },
-						{ "px": [192,176], "src": [16,16], "f": 0, "t": 21, "d": [540] },
-						{ "px": [208,176], "src": [16,16], "f": 0, "t": 21, "d": [541] },
-						{ "px": [224,176], "src": [16,16], "f": 0, "t": 21, "d": [542] },
-						{ "px": [240,176], "src": [16,16], "f": 0, "t": 21, "d": [543] },
+						{ "px": [176,176], "src": [176,32], "f": 0, "t": 51, "d": [539] },
+						{ "px": [192,176], "src": [192,32], "f": 0, "t": 52, "d": [540] },
+						{ "px": [208,176], "src": [192,32], "f": 0, "t": 52, "d": [541] },
+						{ "px": [224,176], "src": [192,32], "f": 0, "t": 52, "d": [542] },
+						{ "px": [240,176], "src": [208,32], "f": 0, "t": 53, "d": [543] },
 						{ "px": [256,176], "src": [16,16], "f": 0, "t": 21, "d": [544] },
 						{ "px": [272,176], "src": [64,0], "f": 0, "t": 4, "d": [545] },
 						{ "px": [288,176], "src": [16,16], "f": 0, "t": 21, "d": [546] },
@@ -3451,11 +3502,11 @@
 						{ "px": [128,192], "src": [16,16], "f": 0, "t": 21, "d": [584] },
 						{ "px": [144,192], "src": [16,16], "f": 0, "t": 21, "d": [585] },
 						{ "px": [160,192], "src": [16,16], "f": 0, "t": 21, "d": [586] },
-						{ "px": [176,192], "src": [64,0], "f": 0, "t": 4, "d": [587] },
-						{ "px": [192,192], "src": [16,16], "f": 0, "t": 21, "d": [588] },
-						{ "px": [208,192], "src": [16,16], "f": 0, "t": 21, "d": [589] },
-						{ "px": [224,192], "src": [16,16], "f": 0, "t": 21, "d": [590] },
-						{ "px": [240,192], "src": [16,16], "f": 0, "t": 21, "d": [591] },
+						{ "px": [176,192], "src": [176,48], "f": 0, "t": 71, "d": [587] },
+						{ "px": [192,192], "src": [192,48], "f": 0, "t": 72, "d": [588] },
+						{ "px": [208,192], "src": [192,48], "f": 0, "t": 72, "d": [589] },
+						{ "px": [224,192], "src": [192,48], "f": 0, "t": 72, "d": [590] },
+						{ "px": [240,192], "src": [208,48], "f": 0, "t": 73, "d": [591] },
 						{ "px": [256,192], "src": [16,16], "f": 0, "t": 21, "d": [592] },
 						{ "px": [272,192], "src": [16,16], "f": 0, "t": 21, "d": [593] },
 						{ "px": [288,192], "src": [16,16], "f": 0, "t": 21, "d": [594] },
@@ -3499,11 +3550,11 @@
 						{ "px": [128,208], "src": [16,16], "f": 0, "t": 21, "d": [632] },
 						{ "px": [144,208], "src": [16,16], "f": 0, "t": 21, "d": [633] },
 						{ "px": [160,208], "src": [16,16], "f": 0, "t": 21, "d": [634] },
-						{ "px": [176,208], "src": [16,16], "f": 0, "t": 21, "d": [635] },
-						{ "px": [192,208], "src": [16,16], "f": 0, "t": 21, "d": [636] },
-						{ "px": [208,208], "src": [16,16], "f": 0, "t": 21, "d": [637] },
-						{ "px": [224,208], "src": [16,16], "f": 0, "t": 21, "d": [638] },
-						{ "px": [240,208], "src": [16,16], "f": 0, "t": 21, "d": [639] },
+						{ "px": [176,208], "src": [176,48], "f": 0, "t": 71, "d": [635] },
+						{ "px": [192,208], "src": [192,48], "f": 0, "t": 72, "d": [636] },
+						{ "px": [208,208], "src": [192,48], "f": 0, "t": 72, "d": [637] },
+						{ "px": [224,208], "src": [192,48], "f": 0, "t": 72, "d": [638] },
+						{ "px": [240,208], "src": [208,48], "f": 0, "t": 73, "d": [639] },
 						{ "px": [256,208], "src": [16,16], "f": 0, "t": 21, "d": [640] },
 						{ "px": [272,208], "src": [16,16], "f": 0, "t": 21, "d": [641] },
 						{ "px": [288,208], "src": [16,16], "f": 0, "t": 21, "d": [642] },
@@ -3547,11 +3598,11 @@
 						{ "px": [128,224], "src": [16,16], "f": 0, "t": 21, "d": [680] },
 						{ "px": [144,224], "src": [16,16], "f": 0, "t": 21, "d": [681] },
 						{ "px": [160,224], "src": [16,16], "f": 0, "t": 21, "d": [682] },
-						{ "px": [176,224], "src": [16,16], "f": 0, "t": 21, "d": [683] },
-						{ "px": [192,224], "src": [16,16], "f": 0, "t": 21, "d": [684] },
-						{ "px": [208,224], "src": [80,16], "f": 0, "t": 25, "d": [685] },
-						{ "px": [224,224], "src": [16,16], "f": 0, "t": 21, "d": [686] },
-						{ "px": [240,224], "src": [16,16], "f": 0, "t": 21, "d": [687] },
+						{ "px": [176,224], "src": [176,48], "f": 0, "t": 71, "d": [683] },
+						{ "px": [192,224], "src": [192,48], "f": 0, "t": 72, "d": [684] },
+						{ "px": [208,224], "src": [192,48], "f": 0, "t": 72, "d": [685] },
+						{ "px": [224,224], "src": [192,48], "f": 0, "t": 72, "d": [686] },
+						{ "px": [240,224], "src": [208,48], "f": 0, "t": 73, "d": [687] },
 						{ "px": [256,224], "src": [16,16], "f": 0, "t": 21, "d": [688] },
 						{ "px": [272,224], "src": [16,16], "f": 0, "t": 21, "d": [689] },
 						{ "px": [288,224], "src": [16,16], "f": 0, "t": 21, "d": [690] },
@@ -3597,11 +3648,11 @@
 						{ "px": [128,240], "src": [80,48], "f": 0, "t": 65, "d": [728] },
 						{ "px": [144,240], "src": [16,16], "f": 0, "t": 21, "d": [729] },
 						{ "px": [160,240], "src": [16,16], "f": 0, "t": 21, "d": [730] },
-						{ "px": [176,240], "src": [16,16], "f": 0, "t": 21, "d": [731] },
-						{ "px": [192,240], "src": [16,16], "f": 0, "t": 21, "d": [732] },
-						{ "px": [208,240], "src": [16,16], "f": 0, "t": 21, "d": [733] },
-						{ "px": [224,240], "src": [16,16], "f": 0, "t": 21, "d": [734] },
-						{ "px": [240,240], "src": [16,16], "f": 0, "t": 21, "d": [735] },
+						{ "px": [176,240], "src": [176,64], "f": 0, "t": 91, "d": [731] },
+						{ "px": [192,240], "src": [192,64], "f": 0, "t": 92, "d": [732] },
+						{ "px": [208,240], "src": [192,64], "f": 0, "t": 92, "d": [733] },
+						{ "px": [224,240], "src": [192,64], "f": 0, "t": 92, "d": [734] },
+						{ "px": [240,240], "src": [208,64], "f": 0, "t": 93, "d": [735] },
 						{ "px": [256,240], "src": [16,16], "f": 0, "t": 21, "d": [736] },
 						{ "px": [272,240], "src": [16,16], "f": 0, "t": 21, "d": [737] },
 						{ "px": [288,240], "src": [16,16], "f": 0, "t": 21, "d": [738] },
@@ -4913,7 +4964,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [22,1],
+							"__grid": [22,0],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -4922,7 +4973,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [352,16],
+							"px": [352,0],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
@@ -4930,7 +4981,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [20,8],
+							"__grid": [24,3],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -4939,24 +4990,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [320,128],
-							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Rat"]
-							}] }]
-						},
-						{
-							"__identifier": "EnemySpawn",
-							"__grid": [10,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "5d97e7c0-9f30-11ed-819b-cd63da50dd12",
-							"width": 16,
-							"height": 16,
-							"defUid": 47,
-							"px": [160,48],
+							"px": [384,48],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
@@ -5513,6 +5547,28 @@
 								"id": "V_String",
 								"params": ["Wolf"]
 							}] }]
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [4,38],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "32ecfb30-9f30-11ed-9103-073470c0dc45",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [72,616],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
+								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
 						}
 					]
 				},
@@ -5666,7 +5722,11 @@
 						{ "px": [224,352], "src": [144,48], "f": 0, "t": 69, "d": [366] },
 						{ "px": [80,368], "src": [96,16], "f": 0, "t": 26, "d": [373] },
 						{ "px": [64,448], "src": [160,32], "f": 0, "t": 50, "d": [452] },
-						{ "px": [64,464], "src": [160,48], "f": 0, "t": 70, "d": [468] }
+						{ "px": [64,464], "src": [160,48], "f": 0, "t": 70, "d": [468] },
+						{ "px": [48,576], "src": [96,32], "f": 0, "t": 46, "d": [579] },
+						{ "px": [64,576], "src": [112,32], "f": 0, "t": 47, "d": [580] },
+						{ "px": [80,576], "src": [128,32], "f": 0, "t": 48, "d": [581] },
+						{ "px": [16,624], "src": [96,0], "f": 0, "t": 6, "d": [625] }
 					],
 					"entityInstances": []
 				},
@@ -6350,9 +6410,9 @@
 							"defUid": 79,
 							"px": [128,352],
 							"fieldInstances": [
-								{ "__identifier": "Arena0", "__value": { "cx": 1, "cy": 3 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
+								{ "__identifier": "Arena0", "__value": { "cx": 1, "cy": 1 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["1,3"]
+									"params": ["1,1"]
 								}] },
 								{ "__identifier": "Arena1", "__value": { "cx": 24, "cy": 26 }, "__type": "Point", "__tile": null, "defUid": 81, "realEditorValues": [{
 									"id": "V_String",
@@ -7285,7 +7345,30 @@
 					"seed": 5407635,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "NPC",
+							"__grid": [23,8],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "8218ecf0-9f30-11ed-9103-a1c19a8ddb0e",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [376,136],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
+								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -7322,16 +7405,16 @@
 						{ "px": [240,0], "src": [16,32], "f": 0, "t": 41, "d": [15] },
 						{ "px": [256,0], "src": [16,32], "f": 0, "t": 41, "d": [16] },
 						{ "px": [272,0], "src": [32,32], "f": 0, "t": 42, "d": [17] },
-						{ "px": [384,0], "src": [0,16], "f": 0, "t": 20, "d": [24] },
-						{ "px": [384,16], "src": [0,16], "f": 0, "t": 20, "d": [50] },
-						{ "px": [384,32], "src": [0,16], "f": 0, "t": 20, "d": [76] },
-						{ "px": [384,48], "src": [0,16], "f": 0, "t": 20, "d": [102] },
-						{ "px": [384,64], "src": [0,16], "f": 0, "t": 20, "d": [128] },
-						{ "px": [384,80], "src": [0,16], "f": 0, "t": 20, "d": [154] },
-						{ "px": [384,96], "src": [0,16], "f": 0, "t": 20, "d": [180] },
-						{ "px": [384,112], "src": [0,16], "f": 0, "t": 20, "d": [206] },
-						{ "px": [384,128], "src": [0,16], "f": 0, "t": 20, "d": [232] },
-						{ "px": [384,144], "src": [0,16], "f": 0, "t": 20, "d": [258] },
+						{ "px": [400,0], "src": [0,16], "f": 0, "t": 20, "d": [25] },
+						{ "px": [400,16], "src": [0,16], "f": 0, "t": 20, "d": [51] },
+						{ "px": [400,32], "src": [0,16], "f": 0, "t": 20, "d": [77] },
+						{ "px": [400,48], "src": [0,16], "f": 0, "t": 20, "d": [103] },
+						{ "px": [400,64], "src": [0,16], "f": 0, "t": 20, "d": [129] },
+						{ "px": [400,80], "src": [0,16], "f": 0, "t": 20, "d": [155] },
+						{ "px": [400,96], "src": [0,16], "f": 0, "t": 20, "d": [181] },
+						{ "px": [400,112], "src": [0,16], "f": 0, "t": 20, "d": [207] },
+						{ "px": [400,128], "src": [0,16], "f": 0, "t": 20, "d": [233] },
+						{ "px": [400,144], "src": [0,16], "f": 0, "t": 20, "d": [259] },
 						{ "px": [0,160], "src": [16,0], "f": 0, "t": 1, "d": [260] },
 						{ "px": [16,160], "src": [16,0], "f": 0, "t": 1, "d": [261] },
 						{ "px": [32,160], "src": [16,0], "f": 0, "t": 1, "d": [262] },
@@ -7356,7 +7439,8 @@
 						{ "px": [336,160], "src": [16,0], "f": 0, "t": 1, "d": [281] },
 						{ "px": [352,160], "src": [16,0], "f": 0, "t": 1, "d": [282] },
 						{ "px": [368,160], "src": [16,0], "f": 0, "t": 1, "d": [283] },
-						{ "px": [384,160], "src": [64,32], "f": 0, "t": 44, "d": [284] }
+						{ "px": [384,160], "src": [16,0], "f": 0, "t": 1, "d": [284] },
+						{ "px": [400,160], "src": [64,32], "f": 0, "t": 44, "d": [285] }
 					],
 					"entityInstances": []
 				},
@@ -8031,13 +8115,41 @@
 							"defUid": 52,
 							"px": [216,136],
 							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "DialogLines", "__value": [
+									"finally, a cat. I´ve been waiting /n for you! right there is the /n \"opportunistic opossum\". /n he needs to be defeated!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"finally, a cat. I´ve been waiting /n for you! right there is the /n \"opportunistic opossum\". /n he needs to be defeated!"
+									]
+								}] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Cat_Player"]
-								}] }
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
 							]
+						},
+						{
+							"__identifier": "Item",
+							"__grid": [3,12],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#F800FF",
+							"iid": "f3fa69c0-9f30-11ed-9103-7382e49fca13",
+							"width": 16,
+							"height": 16,
+							"defUid": 61,
+							"px": [48,192],
+							"fieldInstances": [{ "__identifier": "ItemID", "__value": "Big_Projectiles", "__type": "LocalEnum.Item_ID", "__tile": null, "defUid": 78, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Big_Projectiles"]
+							}] }]
 						}
 					]
 				},
@@ -9359,7 +9471,30 @@
 					"seed": 5122519,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "NPC",
+							"__grid": [18,14],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "3af875c0-9f30-11ed-9103-279043b1938a",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [296,232],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
+								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cat_Player"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
+							]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -11441,7 +11576,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [8,14],
+							"__grid": [16,13],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -11450,7 +11585,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [128,224],
+							"px": [256,208],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Opossum", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Opossum"]
@@ -13237,7 +13372,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [20,4],
+							"__grid": [29,4],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -13246,7 +13381,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [320,64],
+							"px": [464,64],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
@@ -13254,7 +13389,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [23,11],
+							"__grid": [30,9],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -13263,7 +13398,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [368,176],
+							"px": [480,144],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
@@ -14155,12 +14290,23 @@
 							"defUid": 52,
 							"px": [168,88],
 							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [] },
-								{ "__identifier": "AppendProgressionHelp", "__value": false, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [] },
+								{ "__identifier": "DialogLines", "__value": [
+									"aah, you found the way, fellow /n cat-fighter, the \"rat-king\" is right /n over there. go kill him!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"aah, you found the way, fellow /n cat-fighter, the \"rat-king\" is right /n over there. go kill him!"
+									]
+								}] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "Skin", "__value": "Cat_Player", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Cat_Player"]
-								}] }
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] }
 							]
 						},
 						{

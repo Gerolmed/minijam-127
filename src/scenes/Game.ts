@@ -84,6 +84,7 @@ export default class GameScene extends Phaser.Scene {
         entity.create();
         this.entityContainer.add(entity);
         this.sys.updateList.add(entity);
+        this.entityContainer.sort("depth")
         return entity;
     }
 

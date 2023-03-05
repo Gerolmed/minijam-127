@@ -4,6 +4,7 @@ import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileEntity} from "../ProjectileEntity";
 import {SimpleProjectileKeys, SplatsLarge, SplatsSmall} from "../../../animations/ProjectileAnimationKeys";
 import {Theme} from "../../../painting/Theme";
+import {IShootSource} from "../../living/IShootSource";
 import Vector2 = Phaser.Math.Vector2;
 import Transform = Phaser.GameObjects.Components.Transform;
 
@@ -12,12 +13,12 @@ export type ShooterConfig = {
     frequency: number;
     projectileSpeed: number;
     // the large the more inaccurate
-    accuracy: number; // TODO: implement this
-    hitBoxSizeMod: number; // TODO: implement this
-    projectiles: number; // TODO: implement this
+    accuracy: number;
+    hitBoxSizeMod: number;
+    projectiles: number;
     range: number;
-    hasBackShot?: boolean; // TODO: implement this
-    hasSideShots?: boolean; // TODO: implement this
+    hasBackShot?: boolean;
+    hasSideShots?: boolean;
     hitLayer?: number;
     selfLayer?: number;
     projectileAnimKeys?: SimpleProjectileKeys;
@@ -34,7 +35,7 @@ export class ProjectileShooter {
     private readonly baseConfig: ShooterConfig;
 
     constructor(
-        private readonly gameScene: GameScene,
+        private readonly source: IShootSource,
         private readonly transform: Transform,
         config?: Partial<ShooterConfig>,
     ) {
@@ -65,13 +66,13 @@ export class ProjectileShooter {
 
     }
 
-    tryShoot(source: Vector2, input: Vector2): boolean {
+    tryShoot(input: Vector2): boolean {
 
         if(this.shootTimer < this.config.frequency) return false;
 
         this.shootTimer = 0;
 
-        this.shoot(source, input);
+        this.shoot(input);
         return true;
     }
 
@@ -82,14 +83,40 @@ export class ProjectileShooter {
         return this.baseConfig
     }
 
-    public shoot(source: Vector2, input: Vector2) {
-        this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input, this.config));
+    public shoot(input: Vector2) {
+
+
+
+        for (let i = 0; i < this.config.projectiles; i++) {
+            setTimeout(() => this.fireProjectile(input, input.clone()), 333 * i / this.config.projectileSpeed)
+        }
 
         if(this.config.hasBackShot) {
-            console.log("Back")
-            this.gameScene.addEntity(this.config.fireProjectile(this.gameScene, source.x, source.y, input.clone().scale(-1), this.config));
+            this.fireProjectile(input, input.clone().scale(-1));
+        }
+        if(this.config.hasSideShots) {
+            this.fireProjectile(input, input.clone().rotate(30/180 * Math.PI));
+            this.fireProjectile(input, input.clone().rotate(-30/180 * Math.PI));
         }
     }
+
+    private fireProjectile(sourceDir: Vector2, input: Vector2) {
+
+        if(!this.source.isAlive) return
+
+        if(this.config.accuracy > 0) {
+            let angle = 90 *  this.config.accuracy * Math.random();
+
+            angle = Math.random() > .5 ? -angle : angle;
+
+            input.rotate(angle/180 * Math.PI)
+        }
+
+        const shootPos = this.source.getShootPos(sourceDir);
+        this.source.gameScene.addEntity(this.config.fireProjectile(this.source.gameScene, shootPos.x, shootPos.y, input, this.config));
+    }
+
+
 
     update(deltaTime: number) {
         this.shootTimer += deltaTime;

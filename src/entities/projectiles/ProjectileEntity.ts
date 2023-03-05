@@ -1,9 +1,9 @@
 import {Entity} from "../Entity";
 import GameScene from "../../scenes/Game";
-import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 import PhysicsLayers from "../PhysicsLayers";
-import GameObject = Phaser.GameObjects.GameObject;
 import {Animator} from "../../animations/Animator";
+import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
+import GameObject = Phaser.GameObjects.GameObject;
 
 export class ProjectileEntity extends Entity {
     protected rigidbody!: MatterJS.BodyType;
@@ -13,7 +13,8 @@ export class ProjectileEntity extends Entity {
     constructor(
         scene: GameScene, x?: number, y?: number,
         private readonly hitTeamMask: number = PhysicsLayers.ENEMY | PhysicsLayers.PLAYER,
-        private readonly selfMask: number = PhysicsLayers.PLAYER_PROJECTILE
+        private readonly selfMask: number = PhysicsLayers.PLAYER_PROJECTILE,
+        private readonly hitBoxSizeMod = 1,
     ) {
         super(scene, x, y);
 
@@ -49,14 +50,19 @@ export class ProjectileEntity extends Entity {
     }
 
     protected createPhysics() {
-        return this.scene.matter.add.circle(this.x, this.y,5, this.createPhysicsConfig())
+        return this.scene.matter.add.circle(this.x, this.y,5 * this.hitBoxSizeMod, this.createPhysicsConfig())
+    }
+
+    isProjectile() {
+        return true;
     }
 
     protected createPhysicsConfig(): MatterBodyConfig {
+        const otherType = this.selfMask == PhysicsLayers.PLAYER_PROJECTILE ? PhysicsLayers.ENEMY_PROJECTILE : PhysicsLayers.PLAYER_PROJECTILE;
         return {
             collisionFilter: {
                 category: this.selfMask,
-                mask: PhysicsLayers.WALL | this.hitTeamMask
+                mask: PhysicsLayers.WALL | this.hitTeamMask | otherType
             },
             mass: 1,
             inverseMass: 1,
@@ -66,4 +72,9 @@ export class ProjectileEntity extends Entity {
     protected hit(other: GameObject | undefined) {
         return true;
     }
+}
+
+
+export function isProjectile(obj: any): obj is ProjectileEntity {
+    return obj && typeof obj.isProjectile === "function" && obj.isProjectile();
 }

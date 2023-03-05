@@ -1,15 +1,15 @@
 import {LivingEntity} from "./LivingEntity";
 import PlayerAnimationKeys from "../../animations/PlayerAnimationKeys";
 import {PlayerIngameInput} from "../../inputs/PlayerIngameInput";
-import Vector2 = Phaser.Math.Vector2;
 import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
 import {IBodyDefinition} from "matter";
 import {ChunkedTilemap} from "../../tilemap/ChunkedTilemap";
-import Color = Phaser.Display.Color;
-import {IDamageable} from "../../damage/IDamageable";
 import {Item} from "../../items/Item";
+import {IShootSource} from "./IShootSource";
+import Vector2 = Phaser.Math.Vector2;
+import Color = Phaser.Display.Color;
 
-export class Player extends LivingEntity {
+export class Player extends LivingEntity implements IShootSource{
 
     private readonly baseSpeed = 20;
     private speed = this.baseSpeed;
@@ -24,13 +24,14 @@ export class Player extends LivingEntity {
 
     public create() {
         super.create();
+        this.setDepth(100)
         this.setupHealth(100);
 
 
         this.setName("Player")
 
         this.playerInput = new PlayerIngameInput(this.scene);
-        this.projectileShooter = new ProjectileShooter(this.gameScene, this);
+        this.projectileShooter = new ProjectileShooter(this, this);
         this.animator.load(PlayerAnimationKeys.BASE);
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
 
@@ -137,7 +138,7 @@ export class Player extends LivingEntity {
 
     private tryShoot(input: Vector2) {
         if (input.lengthSq() < .1) return;
-        this.projectileShooter.tryShoot(new Vector2(this.x, this.y).add(this.getShootDirOffset(input)),input)
+        this.projectileShooter.tryShoot(input)
     }
 
 
@@ -152,8 +153,10 @@ export class Player extends LivingEntity {
     }
 
     forceIdle() {
+
         this.scene.matter.body.setVelocity(this.rigidbody, new Vector2());
         this.setPosition(this.rigidbody.position.x + this.physicsOffset.x, this.rigidbody.position.y + this.physicsOffset.y);
+
         if(this.lastDir.y > 0) {
             this.animator.play(PlayerAnimationKeys.IDLE_DOWN)
         } else if(this.lastDir.y < 0) {
@@ -177,6 +180,10 @@ export class Player extends LivingEntity {
 
     addSpeed(number: number) {
         this.speed += number;
+    }
+
+    getShootPos(dir: Vector2): Vector2 {
+        return new Vector2(this.x, this.y).add(this.getShootDirOffset(dir))
     }
 }
 
