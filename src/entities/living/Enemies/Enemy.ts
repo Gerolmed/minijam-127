@@ -109,7 +109,7 @@ export class Enemy extends LivingEntity {
                 moving = true;
                 this.updateFacing(velX, velY);
             } else {
-                // this.projectileShooter.tryShoot(new Vector2(this.x, this.y), new Vector2(playerDir[0] / distanceToPlayer, playerDir[1] / distanceToPlayer));
+                this.projectileShooter.tryShoot(new Vector2(this.x, this.y), new Vector2(playerDir[0] / distanceToPlayer, playerDir[1] / distanceToPlayer));
             }
         }
 
