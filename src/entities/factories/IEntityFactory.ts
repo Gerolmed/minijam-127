@@ -6,6 +6,6 @@ export interface IEntityFactory {
 
     supports(typeID: number): boolean;
 
-    produce(instance: EntityInstance, layer: Layer, chunkX: number, chunkY: number, scene: Scene): Entity;
+    produce(instance: EntityInstance, layer: Layer, chunkX: number, chunkY: number, scene: Scene): Entity | undefined;
 
 }

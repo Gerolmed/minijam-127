@@ -2,6 +2,11 @@ import {ItemEntity} from "./ItemEntity";
 import {Player} from "../entities/living/Player";
 
 export class Item {
+
+    constructor(
+        public readonly ID: string
+    ) {
+    }
     create(itemEntity: ItemEntity) {}
     apply(player: Player): void {}
     getBaseSprite(): string {

@@ -11,7 +11,8 @@ import {Item} from "../../items/Item";
 
 export class Player extends LivingEntity {
 
-    private speed = 20;
+    private readonly baseSpeed = 20;
+    private speed = this.baseSpeed;
     private acceleration = 50;
     private playerInput!: PlayerIngameInput;
     private projectileShooter!: ProjectileShooter;
@@ -23,6 +24,8 @@ export class Player extends LivingEntity {
 
     public create() {
         super.create();
+        this.setupHealth(100);
+
 
         this.setName("Player")
 
@@ -162,6 +165,18 @@ export class Player extends LivingEntity {
                 this.animator.play(PlayerAnimationKeys.IDLE_LEFT)
             }
         }
+    }
+
+    getShooter() {
+        return this.projectileShooter;
+    }
+
+    getBaseSpeed() {
+        return this.baseSpeed
+    }
+
+    addSpeed(number: number) {
+        this.speed += number;
     }
 }
 

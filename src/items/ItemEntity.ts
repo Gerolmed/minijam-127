@@ -15,7 +15,7 @@ export class ItemEntity extends Entity {
 
     constructor(
         scene: GameScene, x?: number, y?: number,
-        private readonly item = new Item()
+        private readonly item = new Item("none")
     ) {
         super(scene, x, y);
 

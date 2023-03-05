@@ -24,4 +24,8 @@ export class CampfireEntity extends InteractableEntity {
                 TimeManager.setGameFreeze(false)
             })
     }
+
+    protected getActionText(): string {
+        return "to save";
+    }
 }

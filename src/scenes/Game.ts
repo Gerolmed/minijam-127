@@ -10,14 +10,11 @@ import MatterCollisionPlugin from "phaser-matter-collision-plugin";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 import Constants from "../Constants";
 import {EnemyFactory} from "../entities/factories/EnemyFactory";
-import {ItemEntity} from "../items/ItemEntity";
-import {MaxHealthItem} from "../items/MaxHealthItem";
-import {Theme} from "../painting/Theme";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
 import {CampfireFactory} from "../entities/factories/CampfireFactory";
 import {NPCFactory} from "../entities/factories/NPCFactory";
-import {PersistenceManager} from "../persistence/PersistenceManager";
+import {ItemFactory} from "../entities/factories/ItemFactory";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -97,6 +94,7 @@ export default class GameScene extends Phaser.Scene {
         this.tilemap.registerEntityFactory(enemyFactory);
         this.tilemap.registerEntityFactory(new CampfireFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
         this.tilemap.registerEntityFactory(new NPCFactory(this, physicsSocket, (entity) => this.addEntity(entity)));
+        this.tilemap.registerEntityFactory(new ItemFactory(this, (entity) => this.addEntity(entity)));
 
         this.entityContainer = this.add.container();
 
@@ -107,14 +105,11 @@ export default class GameScene extends Phaser.Scene {
         /////////////////
 
         const player = this.addEntity(new Player(this, 300, 100))
-        this.addEntity(new ItemEntity(this, 300, 140, new MaxHealthItem(10)))
         player.setTilemap(this.tilemap);
 
         physicsSocket.setPlayer(player);
         physicsSocket.setTilemap(this.tilemap);
 
-
-        // this.addEntity(new Wolf(this, physicsSocket, new Vector2(200, 150)));
 
         this.cameras.main.zoom = Constants.UPSCALE_FACTOR;
         this.cameras.main.startFollow(player, false, .09, .09);
