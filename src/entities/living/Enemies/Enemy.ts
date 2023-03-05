@@ -29,12 +29,12 @@ export class Enemy extends LivingEntity {
 
 
     private readonly SPEED = 52;
-    private readonly RETREAT_SPEED = 25;
+    private readonly RETREAT_SPEED = 70;
     private readonly ATTACK_RANGE = 50;
     private readonly AGGRO_RANGE = 150;
     private readonly AGGRO_RANGE_ORIGIN = 100;
     private readonly PATIENCE = 3 * 1000;
-    private readonly FOLLOW_DISTANCE = 200;
+    private readonly FOLLOW_DISTANCE = 300;
     private readonly RETREAT_DISTANCE_MAX = 250;
     private readonly RETREAT_DURATION_MAX = 10 * 1000;
 
@@ -115,8 +115,7 @@ export class Enemy extends LivingEntity {
         }
 
         if(this.aState === EnemyState.NEUTRAL) {
-            this.rigidbody.position.x = this.origin.x;
-            this.rigidbody.position.y = this.origin.y;
+            this.scene.matter.body.setPosition(this.rigidbody, new Vector2(this.origin.x, this.origin.y));
 
             this.facing = EnemyFacing.DOWN;
         }
