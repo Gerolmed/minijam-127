@@ -1,47 +1,43 @@
-{ "frames": [
-   {
-    "filename": "0",
-    "frame": { "x": 1, "y": 14, "w": 10, "h": 10 },
-    "rotated": false,
-    "trimmed": true,
-    "spriteSourceSize": { "x": 8, "y": 8, "w": 8, "h": 8 },
-    "sourceSize": { "w": 24, "h": 24 },
-    "duration": 100
-   },
-   {
-    "filename": "1",
-    "frame": { "x": 12, "y": 14, "w": 10, "h": 10 },
-    "rotated": false,
-    "trimmed": true,
-    "spriteSourceSize": { "x": 8, "y": 8, "w": 8, "h": 8 },
-    "sourceSize": { "w": 24, "h": 24 },
-    "duration": 100
-   },
-   {
-    "filename": "2",
-    "frame": { "x": 1, "y": 1, "w": 12, "h": 12 },
+{ "frames": {
+   "0": {
+    "frame": { "x": 1, "y": 16, "w": 12, "h": 12 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 7, "y": 7, "w": 10, "h": 10 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
    },
-   {
-    "filename": "3",
-    "frame": { "x": 14, "y": 1, "w": 12, "h": 12 },
+   "1": {
+    "frame": { "x": 14, "y": 16, "w": 12, "h": 12 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 7, "y": 7, "w": 10, "h": 10 },
+    "sourceSize": { "w": 24, "h": 24 },
+    "duration": 100
+   },
+   "2": {
+    "frame": { "x": 1, "y": 1, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 6, "y": 6, "w": 12, "h": 12 },
+    "sourceSize": { "w": 24, "h": 24 },
+    "duration": 100
+   },
+   "3": {
+    "frame": { "x": 16, "y": 1, "w": 14, "h": 14 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 6, "y": 6, "w": 12, "h": 12 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
    }
- ],
+ },
  "meta": {
-  "app": "https://www.aseprite.org/",
-  "version": "1.2.40-x64",
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.16.2-x64",
   "image": "PlayerShot.png",
   "format": "RGBA8888",
-  "size": { "w": 26, "h": 24 },
+  "size": { "w": 30, "h": 28 },
   "scale": "1",
   "frameTags": [
    { "name": "Idle", "from": 0, "to": 3, "direction": "forward" }
