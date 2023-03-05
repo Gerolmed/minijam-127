@@ -4,6 +4,8 @@ import {SimpleProjectile} from "../SimpleProjectile";
 import PhysicsLayers from "../../PhysicsLayers";
 import Transform = Phaser.GameObjects.Components.Transform;
 import {ProjectileEntity} from "../ProjectileEntity";
+import {SimpleProjectileKeys} from "../../../animations/ProjectileAnimationKeys";
+import {Theme} from "../../../painting/Theme";
 
 
 export type ShooterConfig = {
@@ -11,6 +13,8 @@ export type ShooterConfig = {
     projectileSpeed: number;
     hitLayer?: number;
     selfLayer?: number;
+    projectileAnimKeys?: SimpleProjectileKeys;
+    splashTheme: Theme;
     fireProjectile: (scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) => ProjectileEntity;
 }
 
@@ -19,6 +23,7 @@ export class ProjectileShooter {
     private shootTimer = 0;
     private config: ShooterConfig = {
         frequency: .5,
+        splashTheme: Theme.ORANGE,
         projectileSpeed: 3,
         hitLayer: PhysicsLayers.ENEMY,
         selfLayer: PhysicsLayers.PLAYER_PROJECTILE,
