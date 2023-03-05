@@ -10,6 +10,7 @@ export type ShooterConfig = {
     frequency: number;
     projectileSpeed: number;
     hitLayer?: number;
+    selfLayer?: number;
     fireProjectile: (scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) => ProjectileEntity;
 }
 
@@ -20,6 +21,7 @@ export class ProjectileShooter {
         frequency: .5,
         projectileSpeed: 3,
         hitLayer: PhysicsLayers.ENEMY,
+        selfLayer: PhysicsLayers.PLAYER_PROJECTILE,
         fireProjectile: SimpleProjectile.fire
     }
 

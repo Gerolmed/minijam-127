@@ -12,7 +12,8 @@ export class ProjectileEntity extends Entity {
 
     constructor(
         scene: GameScene, x?: number, y?: number,
-        private readonly hitTeamMask: number = PhysicsLayers.ENEMY | PhysicsLayers.PLAYER
+        private readonly hitTeamMask: number = PhysicsLayers.ENEMY | PhysicsLayers.PLAYER,
+        private readonly selfMask: number = PhysicsLayers.PLAYER_PROJECTILE
     ) {
         super(scene, x, y);
 
@@ -54,7 +55,7 @@ export class ProjectileEntity extends Entity {
     protected createPhysicsConfig(): MatterBodyConfig {
         return {
             collisionFilter: {
-                category: PhysicsLayers.PLAYER_PROJECTILE,
+                category: this.selfMask,
                 mask: PhysicsLayers.WALL | this.hitTeamMask
             },
             mass: 1,

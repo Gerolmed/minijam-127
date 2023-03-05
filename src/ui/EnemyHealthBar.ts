@@ -18,7 +18,6 @@ export class EnemyHealthBar extends Graphics implements IHealthStatHandler{
         const totalWidth = 20;
         const fullFillWidth = 20-2;
         const fillWidth = Math.ceil(fullFillWidth * health/maxHealth);
-        console.log(fillWidth)
 
         this.fillRect(this.offset.x-totalWidth/2,this.offset.y, totalWidth,3)
         this.fillStyle(0xd4715d, 1);
