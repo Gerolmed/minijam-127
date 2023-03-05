@@ -9,6 +9,7 @@ import GameObject = Phaser.GameObjects.GameObject;
 import {Theme} from "../painting/Theme";
 import Transform = Phaser.GameObjects.Components.Transform;
 import {IEntityFactory} from "../entities/factories/IEntityFactory";
+import {AABB} from "../util/AABB";
 
 
 export class ChunkedTilemap {
@@ -49,11 +50,7 @@ export class ChunkedTilemap {
 
     private isPositionIn(x: number, y: number, area: Area): boolean {
         const currentBounds = area.getBounds();
-
-        return !(currentBounds.x > x ||
-            currentBounds.y > y ||
-            currentBounds.x + currentBounds.width < x ||
-            currentBounds.y + currentBounds.height < y)
+        return AABB.isIn(x, y, currentBounds.x, currentBounds.y, currentBounds.width, currentBounds.height);
     }
 
     async enter(area: Area) {
