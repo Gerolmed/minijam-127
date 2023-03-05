@@ -13,6 +13,7 @@ import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 import Container = Phaser.GameObjects.Container;
 import Constants from "../Constants";
 import Vector2 = Phaser.Math.Vector2;
+import {EnemyFactory} from "../entities/EnemyFactory";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -62,7 +63,7 @@ export default class GameScene extends Phaser.Scene {
         })
     }
 
-    public addEntity<T extends Entity>(entity: T): T {
+    public addEntity<T extends Entity> (entity: T): T {
         entity.create();
         this.entityContainer.add(entity);
         this.sys.updateList.add(entity);
@@ -78,17 +79,22 @@ export default class GameScene extends Phaser.Scene {
         const map: Tilemap = this.cache.json.get("map");
         const tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
         const areas = tilemap.getAreas();
+
+        const physicsSocket = new PhysicsSocket();
+        const enemyFactory = new EnemyFactory(this, physicsSocket, (entity) => this.addEntity(entity));
+        tilemap.registerEntityFactory(enemyFactory);
+
+        this.entityContainer = this.add.container();
+
         tilemap.enter(areas[0]);
 
 
         // Init Entities
-        //////////////////
-        this.entityContainer = this.add.container();
+        /////////////////
 
         const player = this.addEntity(new Player(this, 300, 100))
         player.setTilemap(tilemap);
 
-        const physicsSocket = new PhysicsSocket();
         physicsSocket.setPlayer(player);
         physicsSocket.setTilemap(tilemap);
 

@@ -7,6 +7,7 @@ import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
 import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
 import {Animator} from "../../../animations/Animator";
+import {Scene} from "phaser";
 
 
 export enum EnemyState {
@@ -35,7 +36,7 @@ export class Enemy extends LivingEntity {
     private readonly AGGRO_RANGE_ORIGIN = 100;
     private readonly PATIENCE = 3 * 1000;
     private readonly FOLLOW_DISTANCE = 300;
-    private readonly RETREAT_DISTANCE_MAX = 250;
+    private readonly RETREAT_DISTANCE_MAX = 400;
     private readonly RETREAT_DURATION_MAX = 10 * 1000;
 
     private lastPlayerSpotted = Date.now();
@@ -72,6 +73,8 @@ export class Enemy extends LivingEntity {
         const distanceToOrigin = Math.sqrt((this.x - this.origin.x) * (this.x - this.origin.x) + (this.y - this.origin.y) * (this.y - this.origin.y));
         const timeLastSpotted = Date.now() - this.lastPlayerSpotted;
         let moving = false;
+
+        // this.projectileShooter.shoot(new Vector2(this.x, this.y), new Vector2(playerDir[0], playerDir[1]));
 
         if(hasLos)
             this.lastPlayerSpotted = Date.now();

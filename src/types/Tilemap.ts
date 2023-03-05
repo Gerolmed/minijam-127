@@ -44,6 +44,12 @@ export type EntityInstance = {
     __grid: [number, number],
     defUid: number,
     iid: string
+    fieldInstances: EntityFieldInstance[]
+}
+
+export type EntityFieldInstance = {
+    __identifier: string,
+    __value: string
 }
 
 export type Neighbour = {
