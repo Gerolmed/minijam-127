@@ -10,15 +10,12 @@ import MatterCollisionPlugin from "phaser-matter-collision-plugin";
 import {PhysicsSocket} from "../entities/living/PhysicsSocket";
 import Constants from "../Constants";
 import {EnemyFactory} from "../entities/factories/EnemyFactory";
-import {ItemEntity} from "../items/ItemEntity";
-import {Theme} from "../painting/Theme";
-import FilterMode = Phaser.Textures.FilterMode;
-import Container = Phaser.GameObjects.Container;
 import {CampfireFactory} from "../entities/factories/CampfireFactory";
 import {NPCFactory} from "../entities/factories/NPCFactory";
-import {PersistenceManager} from "../persistence/PersistenceManager";
 import {BossFactory} from "../entities/factories/BossFactory";
 import {ItemFactory} from "../entities/factories/ItemFactory";
+import FilterMode = Phaser.Textures.FilterMode;
+import Container = Phaser.GameObjects.Container;
 
 
 export default class GameScene extends Phaser.Scene {
@@ -117,7 +114,7 @@ export default class GameScene extends Phaser.Scene {
         physicsSocket.setTilemap(this.tilemap);
 
 
-        this.cameras.main.zoom = Constants.UPSCALE_FACTOR;
+        this.cameras.main.zoom = Constants.UPSCALE_FACTOR / 1.5;
         this.cameras.main.startFollow(player, false, .09, .09);
 
 

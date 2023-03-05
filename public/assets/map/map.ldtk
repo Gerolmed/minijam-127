@@ -6350,9 +6350,9 @@
 							"defUid": 79,
 							"px": [128,352],
 							"fieldInstances": [
-								{ "__identifier": "Arena0", "__value": { "cx": 1, "cy": 1 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
+								{ "__identifier": "Arena0", "__value": { "cx": 1, "cy": 3 }, "__type": "Point", "__tile": null, "defUid": 80, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["1,1"]
+									"params": ["1,3"]
 								}] },
 								{ "__identifier": "Arena1", "__value": { "cx": 24, "cy": 26 }, "__type": "Point", "__tile": null, "defUid": 81, "realEditorValues": [{
 									"id": "V_String",

@@ -13,7 +13,6 @@ export class BossEnemy extends Enemy {
                 private readonly arenaSize: Vector2) {
         super(scene, physicsSocket, origin);
 
-
     }
 
     protected safeUpdate(deltaTime: number) {
