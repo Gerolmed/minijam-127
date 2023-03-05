@@ -1,0 +1,22 @@
+{ "frames": {
+   "0": {
+    "frame": { "x": 1, "y": 1, "w": 34, "h": 22 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 8, "w": 32, "h": 20 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
+  "image": "NyanCat.png",
+  "format": "RGBA8888",
+  "size": { "w": 35, "h": 23 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Front_Idle", "from": 0, "to": 0, "direction": "forward" }
+  ]
+ }
+}
