@@ -82,7 +82,6 @@ export class Player extends LivingEntity {
             targetY = Math.max(current.y + dir.y * this.acceleration * deltaTime, targetY)
             targetY = Math.min(current.y, targetY)
         }
-
         this.scene.matter.setVelocity(this.rigidbody, targetX, targetY);
 
         return dir;

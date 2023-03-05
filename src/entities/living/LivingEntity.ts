@@ -5,6 +5,7 @@ import GameScene from "../../scenes/Game";
 import PhysicsLayers from "../PhysicsLayers";
 import {IBodyDefinition} from "matter";
 import Vector2 = Phaser.Math.Vector2;
+import Color = Phaser.Display.Color;
 
 export class LivingEntity extends Entity implements IDamageable {
     protected readonly animator: Animator;
@@ -81,6 +82,9 @@ export class LivingEntity extends Entity implements IDamageable {
         this.health -= damage;
 
         this.statHandler?.onHealthChange(this.health, this.maxHealth);
+
+        this.animator.doColorFade(new Color(255,255,255), new Color(255,0,0), 50, false)
+            .then(() => this.animator.doColorFade(new Color(255,0,0), new Color(255,255,255), 100))
 
         if(this.health <= 0) this.death();
 
