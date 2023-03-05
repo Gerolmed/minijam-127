@@ -10,11 +10,9 @@ export class Animator {
 
     constructor(
         private scene: Scene,
-        private animationSheets: string[] = []
+        baseSprite = PlayerAnimationKeys.BASE
     ) {
-        this.rootInstance = new Sprite(scene, 0,0, PlayerAnimationKeys.BASE);
-
-        animationSheets.forEach(sheet => this.load(sheet))
+        this.rootInstance = new Sprite(scene, 0,0, baseSprite);
     }
 
     public play(animation: string, repeat = -1, replace = false, onStop?: () => any) {

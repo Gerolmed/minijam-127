@@ -14,6 +14,8 @@ import Container = Phaser.GameObjects.Container;
 import Constants from "../Constants";
 import Vector2 = Phaser.Math.Vector2;
 import {EnemyFactory} from "../entities/EnemyFactory";
+import {ItemEntity} from "../items/ItemEntity";
+import {MaxHealthItem} from "../items/MaxHealthItem";
 
 
 export default class GameScene extends Phaser.Scene {
@@ -94,6 +96,7 @@ export default class GameScene extends Phaser.Scene {
         /////////////////
 
         const player = this.addEntity(new Player(this, 300, 100))
+        this.addEntity(new ItemEntity(this, 300, 140, new MaxHealthItem(10)))
         player.setTilemap(this.tilemap);
 
         physicsSocket.setPlayer(player);
