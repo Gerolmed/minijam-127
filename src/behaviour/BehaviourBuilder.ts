@@ -6,6 +6,7 @@ export class BehaviourBuilder<T> {
 
 
     private states: Map<string, State<T>> = new Map();
+    private globalTransition: Map<TransitionRule<T>, string> = new Map();
     private startState: string = "";
 
     private dataProvider?: () => T;
@@ -26,6 +27,11 @@ export class BehaviourBuilder<T> {
         return new StateBuilder(id, this);
     }
 
+    addTransition(id: string, transition: TransitionRule<T>) {
+        this.globalTransition.set(transition, id);
+        return this;
+    }
+
     setStart(id: string) {
         this.startState = id;
         return this;
@@ -44,7 +50,7 @@ export class BehaviourBuilder<T> {
         if(!this.dataProvider)
             throw new Error("No valid data provider specified")
 
-        return new BehaviourStateMachine<T>(this.states, start, this.dataProvider);
+        return new BehaviourStateMachine<T>(this.states, this.globalTransition, start, this.dataProvider);
     }
 
 }
@@ -71,6 +77,7 @@ class StateBuilder<T> {
     }
 
     and(): BehaviourBuilder<T> {
+        this.behaviourBuilder.registerState(this.id, this.transitionRules, this.updateRules);
         return this.behaviourBuilder;
     }
 
