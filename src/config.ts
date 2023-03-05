@@ -16,8 +16,8 @@ export const matterCollisionPluginConfig = {
 
 export default {
     type: Phaser.AUTO,
-    parent: 'game',
-    backgroundColor: '#efebea',
+    parent: "game",
+    backgroundColor: "#efebea",
     scale: {
         width: 320 * Constants.UPSCALE_FACTOR,
         height: 180 * Constants.UPSCALE_FACTOR,
