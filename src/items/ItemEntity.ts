@@ -41,6 +41,7 @@ export class ItemEntity extends Entity {
     }
 
     create() {
+        super.create();
         this.item.create(this);
     }
 

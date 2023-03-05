@@ -200,7 +200,7 @@
    { "name": "Front_Idle", "from": 1, "to": 1, "direction": "forward" },
    { "name": "Front_Walk", "from": 2, "to": 5, "direction": "forward" },
    { "name": "Left_Idle", "from": 6, "to": 6, "direction": "forward" },
-   { "name": "Left_walk", "from": 7, "to": 10, "direction": "forward" },
+   { "name": "Left_Walk", "from": 7, "to": 10, "direction": "forward" },
    { "name": "Back_Idle", "from": 11, "to": 11, "direction": "forward" },
    { "name": "Back_Walk", "from": 12, "to": 15, "direction": "forward" },
    { "name": "Right_Idle", "from": 16, "to": 16, "direction": "forward" },

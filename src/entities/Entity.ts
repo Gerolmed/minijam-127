@@ -4,14 +4,22 @@ import GameScene from "../scenes/Game";
 
 export class Entity extends Container {
 
+    private alive = false;
+
     constructor(scene: GameScene, x?: number, y?: number) {
         super(scene, x, y);
     }
 
     public create() {
+        this.alive = true;
+    }
+
+    public get isAlive() {
+        return this.alive;
     }
 
     public destroy() {
+        this.alive = false;
         this.scene.sys.updateList.remove(this);
         super.destroy()
     }

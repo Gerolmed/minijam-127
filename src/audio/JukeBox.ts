@@ -23,7 +23,7 @@ export type JukeboxConfig = {
     },
 }
 
-const THEME_CROSS_FADE = 5;
+const THEME_CROSS_FADE = 1;
 
 export class Jukebox {
 

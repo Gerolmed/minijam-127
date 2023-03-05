@@ -22,6 +22,7 @@ export class Player extends LivingEntity {
 
 
     public create() {
+        super.create();
 
         this.setName("Player")
 

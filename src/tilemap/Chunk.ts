@@ -157,7 +157,7 @@ export class Chunk {
         this.gameObjects.forEach(object => object.destroy(false));
         this.gameObjects = [];
 
-        this.entities.forEach(entity => entity.destroy());
+        this.entities.forEach(entity => entity.isAlive && entity.destroy());
         this.entities = [];
     }
 
