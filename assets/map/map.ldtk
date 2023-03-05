@@ -4914,7 +4914,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [22,1],
+							"__grid": [22,0],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -4923,7 +4923,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [352,16],
+							"px": [352,0],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
@@ -4931,7 +4931,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [20,8],
+							"__grid": [24,3],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -4940,24 +4940,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [320,128],
-							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Rat"]
-							}] }]
-						},
-						{
-							"__identifier": "EnemySpawn",
-							"__grid": [10,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "5d97e7c0-9f30-11ed-819b-cd63da50dd12",
-							"width": 16,
-							"height": 16,
-							"defUid": 47,
-							"px": [160,48],
+							"px": [384,48],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
@@ -11459,7 +11442,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [8,14],
+							"__grid": [16,13],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -11468,7 +11451,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [128,224],
+							"px": [256,208],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Opossum", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Opossum"]
@@ -13255,7 +13238,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [20,4],
+							"__grid": [29,4],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -13264,7 +13247,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [320,64],
+							"px": [464,64],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
@@ -13272,7 +13255,7 @@
 						},
 						{
 							"__identifier": "EnemySpawn",
-							"__grid": [23,11],
+							"__grid": [30,9],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -13281,7 +13264,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [368,176],
+							"px": [480,144],
 							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Rat"]
