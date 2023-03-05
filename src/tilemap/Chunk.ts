@@ -4,11 +4,11 @@ import {Layer, LayerType, Level} from "../types/Tilemap";
 import {layerToIntGrid} from "./Layer";
 import {ChunkParams} from "./ChunkParams";
 import {getThemeTileset, Theme, Themes} from "../painting/Theme";
+import {Entity} from "../entities/Entity";
 import GameObject = Phaser.GameObjects.GameObject;
 import RenderTexture = Phaser.GameObjects.RenderTexture;
 import Sprite = Phaser.GameObjects.Sprite;
 import Transform = Phaser.GameObjects.Components.Transform;
-import {Entity} from "../entities/Entity";
 
 export class Chunk {
 
@@ -49,48 +49,50 @@ export class Chunk {
 
     render(scene: Scene, params: ChunkParams) {
         const walls = params.tileEnums.getTiles("Wall")
-        this.level.layerInstances.forEach(layer => {
-            if(layer.__type === LayerType.Tiles)
-                this.processTileLayer(scene, params, layer, walls);
-            else if(layer.__type === LayerType.Entity)
-                this.processEntityLayer(scene, params, layer);
+        Themes.forEach(theme => {
+            this.level.layerInstances.forEach(layer => {
+                if (!this.masks.has(theme) && theme !== Theme.DEFAULT) {
+                    const maskTexture = new RenderTexture(
+                        scene,
+                        this.level.worldX - 0.5 * layer.__gridSize,
+                        this.level.worldY - 0.5 * layer.__gridSize,
+                        layer.__cWid * layer.__gridSize,
+                        layer.__cHei * layer.__gridSize
+                    )
+                    maskTexture.setOrigin(0, 0);
+                    this.gameObjects.push(maskTexture);
+                    this.masks.set(theme, maskTexture);
+                }
+                const mask = this.masks.get(theme);
+
+                if(layer.__type === LayerType.Tiles)
+                    this.processTileLayer(scene, params, layer, walls, theme, mask);
+                else if(theme === Theme.DEFAULT && layer.__type === LayerType.Entity)
+                    this.processEntityLayer(scene, params, layer);
+            })
         })
     }
 
 
-    private processTileLayer(scene: Scene, params: ChunkParams, layer: Layer, walls: number[]) {
+    private processTileLayer(scene: Scene, params: ChunkParams, layer: Layer, walls: number[], theme: Theme, mask: RenderTexture | undefined) {
         const grid = layerToIntGrid(layer);
-        Themes.forEach(theme => {
-            this.maskOffsetX = this.level.worldX - 0.5 * layer.__gridSize;
-            this.maskOffsetY = this.level.worldY - 0.5 * layer.__gridSize;
+        this.maskOffsetX = this.level.worldX - 0.5 * layer.__gridSize;
+        this.maskOffsetY = this.level.worldY - 0.5 * layer.__gridSize;
+        const renderTexture = scene.add.renderTexture(
+            this.maskOffsetX,
+            this.maskOffsetY,
+            layer.__cWid * layer.__gridSize,
+            layer.__cHei * layer.__gridSize
+        );
+        renderTexture.setOrigin(0, 0);
 
-            const renderTexture = scene.add.renderTexture(
-                this.maskOffsetX,
-                this.maskOffsetY,
-                layer.__cWid * layer.__gridSize,
-                layer.__cHei * layer.__gridSize
-            );
-            renderTexture.setOrigin(0, 0);
-            params.mapContainer.add(renderTexture);
-            this.gameObjects.push(renderTexture);
+        if(mask)
+            renderTexture.setMask(mask.createBitmapMask());
 
-            if (theme !== Theme.DEFAULT) {
-                const maskTexture = new RenderTexture(
-                    scene,
-                    this.level.worldX - 0.5 * layer.__gridSize,
-                    this.level.worldY - 0.5 * layer.__gridSize,
-                    layer.__cWid * layer.__gridSize,
-                    layer.__cHei * layer.__gridSize
-                )
-                maskTexture.setOrigin(0, 0);
-                this.gameObjects.push(maskTexture);
+        params.mapContainer.add(renderTexture);
+        this.gameObjects.push(renderTexture);
 
-                renderTexture.setMask(maskTexture.createBitmapMask());
-                this.masks.set(theme, maskTexture);
-            }
-
-            this.renderLayer(layer, scene, params, walls, grid, theme, renderTexture)
-        })
+        this.renderLayer(layer, scene, params, walls, grid, theme, renderTexture)
     }
 
 
