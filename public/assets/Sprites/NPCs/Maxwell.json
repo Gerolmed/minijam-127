@@ -1,0 +1,110 @@
+{ "frames": {
+   "0": {
+    "frame": { "x": 28, "y": 1, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 5, "y": 14, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "1": {
+    "frame": { "x": 28, "y": 1, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 5, "y": 14, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "2": {
+    "frame": { "x": 28, "y": 1, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 5, "y": 14, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "3": {
+    "frame": { "x": 1, "y": 1, "w": 26, "h": 21 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 3, "y": 11, "w": 24, "h": 19 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "4": {
+    "frame": { "x": 1, "y": 1, "w": 26, "h": 21 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 3, "y": 11, "w": 24, "h": 19 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "5": {
+    "frame": { "x": 1, "y": 1, "w": 26, "h": 21 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 3, "y": 11, "w": 24, "h": 19 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "6": {
+    "frame": { "x": 28, "y": 1, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 5, "y": 14, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "7": {
+    "frame": { "x": 28, "y": 1, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 5, "y": 14, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "8": {
+    "frame": { "x": 28, "y": 1, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 5, "y": 14, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "9": {
+    "frame": { "x": 28, "y": 22, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 6, "y": 13, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "10": {
+    "frame": { "x": 28, "y": 22, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 6, "y": 13, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   "11": {
+    "frame": { "x": 28, "y": 22, "w": 27, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 6, "y": 13, "w": 25, "h": 18 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
+  "image": "Maxwell.png",
+  "format": "RGBA8888",
+  "size": { "w": 55, "h": 42 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Front_Idle", "from": 0, "to": 11, "direction": "forward" }
+  ]
+ }
+}
