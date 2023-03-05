@@ -3,10 +3,13 @@ import Constants from "../Constants";
 import GameScene from "./Game";
 import {Player} from "../entities/living/Player";
 import {PlayerHealthBar} from "../ui/PlayerHealthBar";
+import {doAlphaTween,} from "../animations/ColorUtils";
+import {SaveScreen} from "../ui/SaveScreen";
 
 export class HUDScene extends Scene {
     private gameScene!: GameScene;
     private started = false;
+    private saveScreen = new SaveScreen(this);
 
 
     constructor() {
@@ -50,7 +53,7 @@ export class HUDScene extends Scene {
         }
     }
 
-    async doSaveFade(doSave: () => Promise<void>): Promise<void> {
-
+    doSaveFade(doSave: () => Promise<void>): Promise<void> {
+        return this.saveScreen.doSaveFade(doSave);
     }
 }
