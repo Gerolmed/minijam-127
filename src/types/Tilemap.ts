@@ -52,7 +52,7 @@ export type EntityInstance = {
 
 export type EntityFieldInstance = {
     __identifier: string,
-    __value: string
+    __value: string | {cx: number, cy: number}
 }
 
 export type Neighbour = {
