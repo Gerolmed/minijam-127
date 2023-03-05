@@ -41,7 +41,7 @@ reg.register("Minor_Fish", (id) => new MinorFish(id))
 reg.register("Catvision", (id) => new Catvision(id))
 
 reg.register("Sling_Tail", (id) => new SlingTail(id)) // MISSING
-reg.register("Extra_projectile", (id) => new ExtraProjectile(id))
+reg.register("Extra_Projectile", (id) => new ExtraProjectile(id))
 reg.register("Paws_of_Gliding", (id) => new PawsOfGliding(id))
 
 reg.register("Greater_Fish", (id) => new GreaterFish(id))
