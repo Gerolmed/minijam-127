@@ -4,6 +4,7 @@ import {IDamageable, IHealthStatHandler} from "../../damage/IDamageable";
 import GameScene from "../../scenes/Game";
 import PhysicsLayers from "../PhysicsLayers";
 import {IBodyDefinition} from "matter";
+import TimeManager from "../../TimeManager";
 import Vector2 = Phaser.Math.Vector2;
 import Color = Phaser.Display.Color;
 
@@ -32,6 +33,11 @@ export class LivingEntity extends Entity implements IDamageable {
         this.maxHealth = health;
         this.health = this.maxHealth;
         this.statHandler?.onHealthChange(this.health, this.maxHealth);
+    }
+
+    update(deltaTime: number) {
+        this.detectGameFreeze();
+        super.update(deltaTime);
     }
 
     protected safeUpdate(deltaTime: number) {
@@ -133,5 +139,21 @@ export class LivingEntity extends Entity implements IDamageable {
      */
     protected getPhysicsLayer() {
         return PhysicsLayers.PLAYER;
+    }
+
+    private isGameFrozen = false;
+    private frozenVel = new Vector2();
+    private detectGameFreeze() {
+        if(TimeManager.isGameFrozen === this.isGameFrozen) return;
+        this.isGameFrozen = TimeManager.isGameFrozen;
+
+        if(TimeManager.isGameFrozen) {
+            this.frozenVel = new Vector2(this.rigidbody.velocity.x, this.rigidbody.velocity.y);
+            this.scene.matter.body.setVelocity(this.rigidbody, new Vector2());
+            this.setPosition(this.rigidbody.position.x + this.physicsOffset.x, this.rigidbody.position.y + this.physicsOffset.y);
+        } else {
+
+            this.scene.matter.body.setVelocity(this.rigidbody, this.frozenVel);
+        }
     }
 }

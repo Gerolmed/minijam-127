@@ -153,8 +153,10 @@ export class Player extends LivingEntity implements IShootSource{
     }
 
     forceIdle() {
+
         this.scene.matter.body.setVelocity(this.rigidbody, new Vector2());
         this.setPosition(this.rigidbody.position.x + this.physicsOffset.x, this.rigidbody.position.y + this.physicsOffset.y);
+
         if(this.lastDir.y > 0) {
             this.animator.play(PlayerAnimationKeys.IDLE_DOWN)
         } else if(this.lastDir.y < 0) {
