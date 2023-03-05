@@ -21,6 +21,7 @@ export default class GameScene extends Phaser.Scene {
 
     private entityContainer!: Container;
     private ready = false;
+    private tilemap!: ChunkedTilemap;
 
     constructor() {
         super({
@@ -45,7 +46,7 @@ export default class GameScene extends Phaser.Scene {
 
         SpriteLoader(this.load)
 
-        this.load.image("logo", 'assets/phaser3-logo.png');
+        this.load.image("logo", "assets/phaser3-logo.png");
         this.load.json("map", "assets/map/map.ldtk")
         this.load.spritesheet("tileset", "assets/tilesets/tileset.png", {
             frameWidth: 16,
@@ -76,9 +77,9 @@ export default class GameScene extends Phaser.Scene {
         this.textures.get("tileset_orange").setFilter(FilterMode.NEAREST);
 
         const map: Tilemap = this.cache.json.get("map");
-        const tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
-        const areas = tilemap.getAreas();
-        tilemap.enter(areas[0]);
+        this.tilemap = new ChunkedTilemap(map, new OverworldAreaFactory(), this);
+        const areas = this.tilemap.getAreas();
+        this.tilemap.enter(areas[0]);
 
 
         // Init Entities
@@ -86,11 +87,11 @@ export default class GameScene extends Phaser.Scene {
         this.entityContainer = this.add.container();
 
         const player = this.addEntity(new Player(this, 300, 100))
-        player.setTilemap(tilemap);
+        player.setTilemap(this.tilemap);
 
         const physicsSocket = new PhysicsSocket();
         physicsSocket.setPlayer(player);
-        physicsSocket.setTilemap(tilemap);
+        physicsSocket.setTilemap(this.tilemap);
 
 
         this.addEntity(new Wolf(this, physicsSocket, new Vector2(200, 150)));
@@ -123,5 +124,9 @@ export default class GameScene extends Phaser.Scene {
 
     get matterCollisionPlugin() {
         return this.matterCollision as MatterCollisionPlugin
+    }
+
+    getTilemap() {
+        return this.tilemap
     }
 }

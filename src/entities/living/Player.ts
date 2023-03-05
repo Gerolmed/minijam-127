@@ -5,6 +5,7 @@ import Vector2 = Phaser.Math.Vector2;
 import {ProjectileShooter} from "../projectiles/shooting/ProjectileShooter";
 import {IBodyDefinition} from "matter";
 import {ChunkedTilemap} from "../../tilemap/ChunkedTilemap";
+import Color = Phaser.Display.Color;
 
 export class Player extends LivingEntity {
 
@@ -85,6 +86,10 @@ export class Player extends LivingEntity {
         this.scene.matter.setVelocity(this.rigidbody, targetX, targetY);
 
         return dir;
+    }
+
+    getDamageColor() {
+        return new Color(77,35,74);
     }
 
 
