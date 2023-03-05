@@ -125,7 +125,7 @@ export class InteractableEntity extends LivingEntity {
         return group;
     }
 
-    private showIndicator() {
+    protected showIndicator() {
         this.interactionIndicator?.destroy()
         this.interactionIndicator = this.createIndicator(this.x, this.y-24)
     }

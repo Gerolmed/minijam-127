@@ -3,6 +3,7 @@ import {Scene} from "phaser";
 import Sprite = Phaser.GameObjects.Sprite;
 import PlayerAnimationKeys from "./PlayerAnimationKeys";
 import Color = Phaser.Display.Color;
+import {doColorTween} from "./ColorUtils";
 
 export class Animator {
 
@@ -50,29 +51,10 @@ export class Animator {
     }
 
     doColorFade(from: Color, to: Color, duration: number, resetToWhite = false) {
-        return new Promise<void>(resolve => {
-            this.scene.tweens.addCounter({
-                from: 0,
-                to: 100,
-                duration: duration,
-                onUpdate: (tween) => {
-                    const newTarget = Color.Interpolate.ColorWithColor(
-                        from,
-                        to,
-                        100,
-                        tween.getValue()
-                    )
-
-                    const color = (newTarget.r << 16) + (newTarget.g << 8) + newTarget.b;
-                    this.setTint(color)
-                },
-                onComplete: () => {
-                    if(resetToWhite) {
-                        this.setTint(0xffffff)
-                    }
-                    resolve();
-                }
-            }).play()
+        return doColorTween(this.scene, from, to, duration, (col) => this.setTint(col)).then(() => {
+            if(resetToWhite) {
+                this.setTint(0xffffff)
+            }
         })
     }
 }

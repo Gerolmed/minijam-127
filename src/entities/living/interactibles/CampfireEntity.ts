@@ -20,6 +20,9 @@ export class CampfireEntity extends InteractableEntity {
         this.animator.play(CampfireAnimationKeys.ACTIVATED)
         const hudScene = this.scene.sys.scenePlugin.get<HUDScene>("HUDScene");
         hudScene.doSaveFade(() => this.gameScene.softResetWorld())
-            .finally(() => TimeManager.setGameFreeze(false))
+            .finally(() => {
+                this.showIndicator();
+                TimeManager.setGameFreeze(false)
+            })
     }
 }
