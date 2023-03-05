@@ -1,14 +1,14 @@
 import {IEntityFactory} from "./IEntityFactory";
-import {Entity} from "./Entity";
-import {EntityInstance, Layer} from "../types/Tilemap";
-import {Wolf} from "./living/Enemies/Wolf";
-import {Rat} from "./living/Enemies/Rat";
-import {Opossum} from "./living/Enemies/Opossum";
+import {Entity} from "../Entity";
+import {EntityInstance, Layer} from "../../types/Tilemap";
+import {Wolf} from "../living/Enemies/Wolf";
+import {Rat} from "../living/Enemies/Rat";
+import {Opossum} from "../living/Enemies/Opossum";
 import {Scene} from "phaser";
-import {PhysicsSocket} from "./living/PhysicsSocket";
+import {PhysicsSocket} from "../living/PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
-import GameScene from "../scenes/Game";
-import {Enemy} from "./living/Enemies/Enemy";
+import GameScene from "../../scenes/Game";
+import {Enemy} from "../living/Enemies/Enemy";
 
 
 
