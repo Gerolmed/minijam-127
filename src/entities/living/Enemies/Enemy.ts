@@ -27,21 +27,13 @@ export enum EnemyFacing {
     DOWN
 }
 
-/*
-
-hasLos = this.hasLineOfSight();
-        const playerDir = [player.x - this.x, player.y - this.y];
-        const distanceToPlayer = Math.sqrt(playerDir[0] * playerDir[0] + playerDir[1] * playerDir[1]);
-        const distanceToOrigin = Math.sqrt((this.x - this.origin.x) * (this.x - this.origin.x) + (this.y - this.origin.y) * (this.y - this.origin.y));
-        const timeLastSpotted = Date.now() - this.lastPlayerSpotted;
- */
-
 type EnemyAiParams = {
     hasLos: boolean,
     playerDir: [number, number],
     distanceToPlayer: number,
     distanceToOrigin: number,
-    timeLastSpotted: number
+    timeLastSpotted: number,
+    timeRetreating: number
 }
 
 export class Enemy extends LivingEntity implements IShootSource {
@@ -90,11 +82,14 @@ export class Enemy extends LivingEntity implements IShootSource {
                 .and()
             .addState("aggro")
                 .onUpdate((param, delta) => this.moveIntoAttackRange(param, delta))
+                .addTransition("retreat", (param, delta) => this.shouldAggroToRetreating(param, delta))
                 .and()
             .addState("retreat")
                 .onUpdate((param, delta) => this.retreat(param, delta))
+                .addTransition("neutral", (param, delta) => this.shouldRetreatToNeutral(param, delta))
                 .and()
             .setStart("neutral")
+            .addTransition("aggro", (param, delta) => this.shouldAggro(param, delta))
             .setDataProvider(() => this.getAiParams())
             .build()
     }
@@ -103,44 +98,29 @@ export class Enemy extends LivingEntity implements IShootSource {
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
 
+        this.behaviour.update(deltaTime);
         this.projectileShooter.update(deltaTime);
+
+        this.animator.play(this.getAnimationFrame(this.facing, this.isWalking? "WALK" : "IDLE"));
     }
 
-    protected move(deltaTime: number, animator: Animator) {
-        super.safeUpdate(deltaTime);
+    public shouldAggro(params: EnemyAiParams, deltaTime: number) {
+        return params.distanceToPlayer < this.AGGRO_RANGE && params.distanceToOrigin < this.AGGRO_RANGE_ORIGIN
+    }
 
-        const player = this.physicsSocket.getPlayer();
-        if(!player) return;
+    protected shouldAggroToRetreating(params: EnemyAiParams, deltaTime: number) {
+        const result = params.distanceToOrigin> this.FOLLOW_DISTANCE || params.timeLastSpotted > this.PATIENCE;
 
-        const hasLos = this.hasLineOfSight();
-        const playerDir = [player.x - this.x, player.y - this.y];
-        const distanceToPlayer = Math.sqrt(playerDir[0] * playerDir[0] + playerDir[1] * playerDir[1]);
-        const distanceToOrigin = Math.sqrt((this.x - this.origin.x) * (this.x - this.origin.x) + (this.y - this.origin.y) * (this.y - this.origin.y));
-        const timeLastSpotted = Date.now() - this.lastPlayerSpotted;
-        let moving = false;
-
-        // this.projectileShooter.shoot(new Vector2(this.x, this.y), new Vector2(playerDir[0], playerDir[1]));
-
-        if(hasLos)
-            this.lastPlayerSpotted = Date.now();
-
-        if(this.aState === EnemyState.AGGRO && (distanceToOrigin> this.FOLLOW_DISTANCE || timeLastSpotted > this.PATIENCE)) {
-            this.aState = EnemyState.RETREATING;
+        if(result)
             this.startRetreating = Date.now();
-        }
-        const timeRetreating = Date.now() - this.startRetreating;
 
-        if(this.aState !== EnemyState.AGGRO && distanceToPlayer < this.AGGRO_RANGE && distanceToOrigin < this.AGGRO_RANGE_ORIGIN)
-            this.aState = EnemyState.AGGRO;
-
-
-        if(this.aState === EnemyState.RETREATING && (distanceToOrigin > this.RETREAT_DISTANCE_MAX || timeRetreating > this.RETREAT_DURATION_MAX)) {
-            this.aState = EnemyState.NEUTRAL;
-        }
-
-        this.animator.play(this.getAnimationFrame(this.facing, moving? "WALK" : "IDLE"));
+        return result;
     }
 
+    protected shouldRetreatToNeutral(params: EnemyAiParams, deltaTime: number) {
+        console.log(params.timeRetreating)
+        return params.distanceToOrigin > this.RETREAT_DISTANCE_MAX || params.timeRetreating > this.RETREAT_DURATION_MAX
+    }
 
     protected getAiParams(): EnemyAiParams {
         const player = this.physicsSocket.getPlayer();
@@ -148,19 +128,25 @@ export class Enemy extends LivingEntity implements IShootSource {
             throw new Error("No player specified");
 
         const playerDir = [player.x - this.x, player.y - this.y];
+        const hasLos = this.hasLineOfSight();
+
+        if(hasLos)
+            this.lastPlayerSpotted = Date.now();
 
         return {
-            hasLos: this.hasLineOfSight(),
+            hasLos,
             playerDir: [player.x - this.x, player.y - this.y],
             distanceToPlayer: Math.sqrt(playerDir[0] * playerDir[0] + playerDir[1] * playerDir[1]),
             distanceToOrigin: Math.sqrt((this.x - this.origin.x) * (this.x - this.origin.x) + (this.y - this.origin.y) * (this.y - this.origin.y)),
-            timeLastSpotted: Date.now() - this.lastPlayerSpotted
+            timeLastSpotted: Date.now() - this.lastPlayerSpotted,
+            timeRetreating: Date.now() - this.startRetreating
         }
     }
 
     protected setToOrigin() {
         this.scene.matter.body.setPosition(this.rigidbody, new Vector2(this.origin.x, this.origin.y));
         this.facing = EnemyFacing.DOWN;
+        this.isWalking = false;
     }
 
 
@@ -195,6 +181,7 @@ export class Enemy extends LivingEntity implements IShootSource {
             this.updateFacing(velX, velY);
         } else {
             this.projectileShooter.tryShoot(new Vector2(param.playerDir[0] / param.distanceToPlayer, param.playerDir[1] / param.distanceToPlayer));
+            this.isWalking = false;
         }
     }
 

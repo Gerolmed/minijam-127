@@ -16,8 +16,6 @@ export class Opossum extends Enemy {
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
-
-        this.move(deltaTime, this.animator);
     }
 
     getAnimationFrame(facing: EnemyFacing, animation: "WALK" | "IDLE"): string {
