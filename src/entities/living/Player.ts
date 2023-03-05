@@ -24,6 +24,7 @@ export class Player extends LivingEntity implements IShootSource{
 
     public create() {
         super.create();
+        this.setDepth(100)
         this.setupHealth(100);
 
 

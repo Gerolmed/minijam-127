@@ -5,6 +5,11 @@ import TimeManager from "../../../TimeManager";
 
 export class NPCEntity extends InteractableEntity {
 
+    create() {
+        super.create();
+        this.setDepth(90)
+    }
+
     death() {
         // DO NOTHING
     }

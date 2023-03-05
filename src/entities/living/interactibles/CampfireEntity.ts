@@ -9,6 +9,7 @@ export class CampfireEntity extends InteractableEntity {
     private unlocked: boolean = false; // TODO: load from save
     create() {
         super.create();
+        this.setDepth(-10)
         this.animator.load(CampfireAnimationKeys.BASE)
         this.animator.play(CampfireAnimationKeys.UNACTIVATED)
     }
