@@ -21,6 +21,9 @@ export default function(load: LoaderPlugin) {
     load.image("splat_8", "assets/Sprites/Splats/Orange8.png");
     load.image("splat_9", "assets/Sprites/Splats/Orange9.png");
 
+    load.image("dialog_box", "assets/Sprites/UI/DialogBox.png");
+    load.image("dialog_arrow", "assets/Sprites/UI/DialogArrow.png");
+
 
     load.image("item_greater_fish", "assets/Sprites/Items/GreaterFish.png");
     load.image("item_minor_fish", "assets/Sprites/Items/MinorFish.png");
