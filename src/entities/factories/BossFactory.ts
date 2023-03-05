@@ -31,7 +31,7 @@ export class BossFactory implements IEntityFactory {
         const av0 = arena0.__value as {cx: number, cy: number};
         const topLeftCorner = new Vector2(av0.cx * layer.__gridSize + chunkX, av0.cy * layer.__gridSize + chunkY);
 
-        const arena1 = instance.fieldInstances.find(instance => instance.__identifier === "Arena0")
+        const arena1 = instance.fieldInstances.find(instance => instance.__identifier === "Arena1")
         if(!arena1)
             throw new Error("Invalid arena bounds");
         const av1 = arena1.__value as {cx: number, cy: number};
