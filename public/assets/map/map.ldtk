@@ -11,7 +11,7 @@
 	"iid": "8cf017f0-9f30-11ed-a90c-5d794baafe79",
 	"jsonVersion": "1.2.5",
 	"appBuildId": 464870,
-	"nextUid": 51,
+	"nextUid": 52,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -152,7 +152,7 @@
 		}
 	], "entities": [
 		{
-			"identifier": "Enemy_Spawn",
+			"identifier": "EnemySpawn",
 			"uid": 47,
 			"tags": [],
 			"exportToToc": false,
@@ -180,12 +180,12 @@
 			"pivotY": 0,
 			"fieldDefs": [
 				{
-					"identifier": "Enemies",
+					"identifier": "Type",
 					"doc": null,
-					"__type": "Array<LocalEnum.Enemies>",
-					"uid": 49,
+					"__type": "LocalEnum.Enemies",
+					"uid": 51,
 					"type": "F_Enum(48)",
-					"isArray": true,
+					"isArray": false,
 					"canBeNull": false,
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
@@ -238,7 +238,11 @@
 		}
 	], "enums": [
 		{ "identifier": "Collision", "uid": 6, "values": [{ "id": "Wall", "tileId": null, "color": 12470831, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
-		{ "identifier": "Enemies", "uid": 48, "values": [ { "id": "Enemy1", "tileId": null, "color": 12470831, "__tileSrcRect": null }, { "id": "Enemy2", "tileId": null, "color": 14120515, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
+		{ "identifier": "Enemies", "uid": 48, "values": [
+			{ "id": "Wolf", "tileId": null, "color": 5522697, "__tileSrcRect": null },
+			{ "id": "Rat", "tileId": null, "color": 5790555, "__tileSrcRect": null },
+			{ "id": "Oppossum", "tileId": null, "color": 3625853, "__tileSrcRect": null }
+		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
 	], "externalEnums": [], "levelFields": [] },
 	"levels": [
 		{
@@ -285,7 +289,25 @@
 					"seed": 2484222,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "EnemySpawn",
+							"__grid": [3,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"iid": "ecfed9d0-9f30-11ed-85e6-7192b7a456ee",
+							"width": 16,
+							"height": 16,
+							"defUid": 47,
+							"px": [48,48],
+							"fieldInstances": [{ "__identifier": "Type", "__value": "Wolf", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Wolf"]
+							}] }]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -781,7 +803,25 @@
 					"seed": 7343250,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "EnemySpawn",
+							"__grid": [3,8],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"iid": "410498c0-9f30-11ed-85e6-833fe53a2ed5",
+							"width": 16,
+							"height": 16,
+							"defUid": 47,
+							"px": [48,128],
+							"fieldInstances": [{ "__identifier": "Type", "__value": "Rat", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Rat"]
+							}] }]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -1154,7 +1194,25 @@
 					"seed": 5562381,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "EnemySpawn",
+							"__grid": [4,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"iid": "456c1190-9f30-11ed-85e6-273ea7ce3b67",
+							"width": 16,
+							"height": 16,
+							"defUid": 47,
+							"px": [64,48],
+							"fieldInstances": [{ "__identifier": "Type", "__value": "Oppossum", "__type": "LocalEnum.Enemies", "__tile": null, "defUid": 51, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Oppossum"]
+							}] }]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
