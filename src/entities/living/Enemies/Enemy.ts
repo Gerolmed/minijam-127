@@ -29,9 +29,9 @@ export class Enemy extends LivingEntity {
     protected readonly projectileShooter: ProjectileShooter;
 
 
-    private readonly SPEED = 52;
+    private readonly SPEED = 42;
     private readonly RETREAT_SPEED = 70;
-    private readonly ATTACK_RANGE = 50;
+    private readonly ATTACK_RANGE = 100;
     private readonly AGGRO_RANGE = 150;
     private readonly AGGRO_RANGE_ORIGIN = 100;
     private readonly PATIENCE = 3 * 1000;
@@ -51,7 +51,12 @@ export class Enemy extends LivingEntity {
         super(scene, origin.x, origin.y);
 
         this.facing = EnemyFacing.DOWN;
-        this.projectileShooter = new ProjectileShooter(scene, this);
+        this.projectileShooter = new ProjectileShooter(scene, this, {
+            selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
+            hitLayer: PhysicsLayers.PLAYER,
+            projectileSpeed: 1.5,
+            frequency: 0.6
+        });
     }
 
 
@@ -88,17 +93,21 @@ export class Enemy extends LivingEntity {
         if(this.aState !== EnemyState.AGGRO && distanceToPlayer < this.AGGRO_RANGE && distanceToOrigin < this.AGGRO_RANGE_ORIGIN)
             this.aState = EnemyState.AGGRO;
 
-        if(this.aState === EnemyState.AGGRO && hasLos && distanceToPlayer > this.ATTACK_RANGE) {
-            const velX = playerDir[0] / distanceToPlayer * this.SPEED * deltaTime;
-            const velY = playerDir[1] / distanceToPlayer * this.SPEED * deltaTime;
-            this.scene.matter.setVelocity(
-                this.rigidbody,
-                velX,
-                velY
-            )
+        if(this.aState === EnemyState.AGGRO && hasLos) {
+            if(distanceToPlayer > this.ATTACK_RANGE) {
+                const velX = playerDir[0] / distanceToPlayer * this.SPEED * deltaTime;
+                const velY = playerDir[1] / distanceToPlayer * this.SPEED * deltaTime;
+                this.scene.matter.setVelocity(
+                    this.rigidbody,
+                    velX,
+                    velY
+                )
 
-            moving = true;
-            this.updateFacing(velX, velY);
+                moving = true;
+                this.updateFacing(velX, velY);
+            } else {
+                this.projectileShooter.tryShoot(new Vector2(this.x, this.y), new Vector2(playerDir[0] / distanceToPlayer, playerDir[1] / distanceToPlayer));
+            }
         }
 
         if(this.aState === EnemyState.RETREATING) {
