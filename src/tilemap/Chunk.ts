@@ -35,7 +35,7 @@ export class Chunk {
     }
 
 
-    paint(object: GameObject & Transform & BlendMode, targetTheme: Theme) {
+    paint(object: GameObject & Transform, targetTheme: Theme) {
         Themes.forEach(theme => {
             if(theme === Theme.DEFAULT) return;
 
