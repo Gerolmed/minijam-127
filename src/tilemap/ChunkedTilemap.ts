@@ -67,7 +67,7 @@ export class ChunkedTilemap {
             this.load(neighbourArea);
         })
 
-        this.clean(requiredAreas);
+        // this.clean(requiredAreas);
     }
 
 

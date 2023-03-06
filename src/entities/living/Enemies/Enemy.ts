@@ -70,7 +70,7 @@ export class Enemy extends LivingEntity implements IShootSource {
             selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
             hitLayer: PhysicsLayers.PLAYER,
             projectileSpeed: 1.5,
-            frequency: 2.5,
+            frequency: 6,
             projectiles: 3,
             splashTheme: Theme.PURPLE,
             projectileAnimKeys: SpinnyProjectileAnimationKeys,
