@@ -12,7 +12,7 @@ export class RatKing extends BossEnemy {
         this.animator.load(RatKingAnimationKeys.BASE);
         this.animator.play(RatKingAnimationKeys.IDLE_DOWN);
 
-        this.setupHealth(200);
+        this.setupHealth(400);
 
         this.physicsOffset = new Vector2(-1,-2);
     }

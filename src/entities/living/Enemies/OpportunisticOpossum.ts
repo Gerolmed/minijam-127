@@ -6,6 +6,7 @@ import {
 } from "../../../animations/EnemyAnimationKeys";
 import {EnemyFacing} from "./Enemy";
 import Vector2 = Phaser.Math.Vector2;
+import {WorldStoreManager} from "../../../world/WorldSave";
 
 export class OpportunisticOpossum extends BossEnemy {
 
@@ -18,6 +19,14 @@ export class OpportunisticOpossum extends BossEnemy {
         this.setupHealth(200);
 
         this.physicsOffset = new Vector2(-1,-2);
+    }
+
+
+    protected safeDeath() {
+        this.gameScene.getJukebox().setTheme("overworld");
+        super.safeDeath();
+
+        WorldStoreManager.get().getStore().ratKingKilled = true;
     }
 
     getAnimationFrame(facing: EnemyFacing, animation: "WALK" | "IDLE"): string {
