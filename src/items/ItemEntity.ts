@@ -3,8 +3,9 @@ import {Entity} from "../entities/Entity";
 import {Animator} from "../animations/Animator";
 import GameScene from "../scenes/Game";
 import PhysicsLayers from "../entities/PhysicsLayers";
-import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 import {Item} from "./Item";
+import {WorldStoreManager} from "../world/WorldSave";
+import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 
 export class ItemEntity extends Entity {
 
@@ -15,7 +16,8 @@ export class ItemEntity extends Entity {
 
     constructor(
         scene: GameScene, x?: number, y?: number,
-        private readonly item = new Item("none")
+        private readonly item = new Item("none"),
+        private readonly collectInstanceId?: string,
     ) {
         super(scene, x, y);
 
@@ -72,7 +74,11 @@ export class ItemEntity extends Entity {
     }
 
     protected hit(other: Player) {
-        if(this.item.canBeCollected(other))
+        if(!this.item.canBeCollected(other)) return false
+        if(this.collectInstanceId) {
+            WorldStoreManager.get().getStore().raw[this.collectInstanceId] = true;
+        }
+
         other.collectItem(this.item);
         return true;
     }
