@@ -33,4 +33,19 @@ export class DeathScreen {
 
         await new Promise<void>(res => this.resolve = res)
     }
+    async doDeathFadeAway(): Promise<void> {
+
+        this.scene.input.keyboard?.addKey("space").on("down", () => {
+            this.resolve?.();
+        })
+
+        const camera = this.scene.cameras.main;
+
+        const graphics = this.scene.add.graphics()
+        graphics.setAlpha(1)
+        graphics.fillStyle(0x4d234a)
+        graphics.fillRect(0,0, camera.displayWidth, camera.displayHeight)
+
+        await doAlphaTween(this.scene, 1, 0, 1000, (a) => graphics.setAlpha(a))
+    }
 }
