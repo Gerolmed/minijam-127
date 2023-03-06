@@ -20,10 +20,6 @@ export class ProjectileRingShoot extends AttackStateBuilder{
     private done = false;
     private started = false;
 
-    configure(builder: BehaviourBuilder<EnemyAiParams>) {
-        builder.addState("projectile_ring_shoot")
-    }
-
     protected doSetup(stateBuilder: StateBuilder<EnemyAiParams>): void {
         stateBuilder.onUpdate((data, deltaTime) => this.update(data, deltaTime))
         stateBuilder.addTransition("aggro", data => this.checkDone())

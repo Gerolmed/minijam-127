@@ -9,6 +9,7 @@ import {BehaviourBuilder} from "../../../behaviour/BehaviourBuilder";
 import {CooldownManager} from "../../../behaviour/CooldownManager";
 import {ProjectileRingShoot} from "./attacks/ProjectileRingShoot";
 import {WorldStoreManager} from "../../../world/WorldSave";
+import {BulletHail} from "./attacks/BulletHail";
 
 export class BossEnemy extends Enemy {
 
@@ -31,6 +32,7 @@ export class BossEnemy extends Enemy {
         const abilities = new Map<string, number>();
         abilities.set("attack", 1.5 * 1000);
         abilities.set("projectileRing", 6 * 1000);
+        abilities.set("bulletHail", 4 * 1000);
         this.cooldownManager = new CooldownManager(abilities);
     }
 
@@ -55,8 +57,10 @@ export class BossEnemy extends Enemy {
             .addState("aggro")
                 .onUpdate((param, delta) => this.moveIntoAttackRange(param, delta))
                 .addTransition("projectile_ring_shoot", (param, delta) => this.shouldDoProjectileRing(param, delta))
+                .addTransition("bullet_hail", (param, delta) => this.shouldDoBulletHail(param, delta))
                 .and()
             .addFromBuilder(new ProjectileRingShoot(this))
+            .addFromBuilder(new BulletHail(this))
             .setStart("neutral")
             .setDataProvider(() => this.getAiParams())
             .build()
@@ -72,6 +76,18 @@ export class BossEnemy extends Enemy {
         }
 
         return result;
+    }
+
+
+    protected shouldDoBulletHail(params: EnemyAiParams, deltaTime: number): boolean {
+        const hasCd = this.cooldownManager.has("bulletHail") && this.cooldownManager.has("attack");
+
+        if(hasCd) {
+            this.cooldownManager.use("bulletHail");
+            this.cooldownManager.use("attack");
+        }
+
+        return hasCd;
     }
 
     protected moveIntoAttackRange(param: EnemyAiParams, deltaTime: number) {

@@ -2,6 +2,11 @@ import {AttackStateBuilder} from "./AttackStateBuilder";
 import {Enemy, EnemyAiParams} from "../Enemy";
 import {BehaviourBuilder, StateBuilder} from "../../../../behaviour/BehaviourBuilder";
 import {CooldownManager} from "../../../../behaviour/CooldownManager";
+import {SimpleProjectile} from "../../../projectiles/SimpleProjectile";
+import PhysicsLayers from "../../../PhysicsLayers";
+import {Theme} from "../../../../painting/Theme";
+import {FunkyProjectileAnimationKeys} from "../../../../animations/ProjectileAnimationKeys";
+import Vector2 = Phaser.Math.Vector2;
 
 export class BulletHail extends AttackStateBuilder {
 
@@ -23,13 +28,10 @@ export class BulletHail extends AttackStateBuilder {
         this.cooldownManager = new CooldownManager(cds);
     }
 
-    configure(builder: BehaviourBuilder<EnemyAiParams>) {
-        builder.addState("bullet_hail")
-            .addTransition("aggro", (param, deltaTime) => this.done(param, deltaTime))
-    }
 
     protected doSetup(stateBuilder: StateBuilder<EnemyAiParams>): void {
         stateBuilder.onUpdate((data, deltaTime) => this.update(data, deltaTime))
+            .addTransition("aggro", (param, deltaTime) => this.done(param, deltaTime))
     }
 
     private done(param: EnemyAiParams, deltaTime: number): boolean {
@@ -48,6 +50,12 @@ export class BulletHail extends AttackStateBuilder {
 
         this.cooldownManager.use("shot");
         this.bulletsLeft--;
+
+        const player = this.enemy.physicsSocket.getPlayer();
+        if(!player)
+            return;
+
+        this.enemy.projectileShooter.tryShoot(new Vector2(player.x, player.y));
     }
 
 }

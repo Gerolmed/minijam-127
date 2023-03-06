@@ -32,7 +32,7 @@ export type EnemyAiParams = {
 export class Enemy extends LivingEntity implements IShootSource {
 
 
-    protected readonly projectileShooter: ProjectileShooter;
+    readonly projectileShooter: ProjectileShooter;
 
 
     private readonly SPEED = 42;
@@ -54,7 +54,7 @@ export class Enemy extends LivingEntity implements IShootSource {
 
 
     constructor(scene: GameScene,
-                protected readonly physicsSocket: PhysicsSocket,
+                readonly physicsSocket: PhysicsSocket,
                 protected readonly origin: Vector2) {
         super(scene, origin.x, origin.y);
 
