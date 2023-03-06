@@ -6,6 +6,8 @@ import {IBodyDefinition} from "matter";
 import {ChunkedTilemap} from "../../tilemap/ChunkedTilemap";
 import {Item} from "../../items/Item";
 import {IShootSource} from "./IShootSource";
+import TimeManager from "../../TimeManager";
+import {HUDScene} from "../../scenes/HUDScene";
 import Vector2 = Phaser.Math.Vector2;
 import Color = Phaser.Display.Color;
 
@@ -53,8 +55,11 @@ export class Player extends LivingEntity implements IShootSource{
         item.apply(this);
     }
 
-    death() {
 
+    death() {
+        TimeManager.setGameFreeze(true);
+        this.animator.play(PlayerAnimationKeys.DEATH, 0, true);
+        this.scene.sys.scenePlugin.get<HUDScene>("HUDScene").DoDeathAnimation().finally(() => this.gameScene.deathReset());
     }
 
     protected safeUpdate(deltaTime: number) {
