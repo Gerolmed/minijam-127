@@ -40,14 +40,18 @@ export function doAlphaTween(scene: Scene, from: number, to: number, duration: n
         }).play()
     })
 }
-export function doTextTween(scene: Scene, text: string, duration: number, setText: (txt: string) => void) {
+export function doTextTween(scene: Scene, text: string, duration: number, setText: (txt: string) => void, shouldStop: () => boolean = () => false) {
     return new Promise<void>(resolve => {
-        scene.tweens.addCounter({
+        const tween = scene.tweens.addCounter({
             from: 0,
             to: text.length+1,
             duration: duration,
             onUpdate: (tween) => {
 
+                if(shouldStop()) {
+                    tween.complete()
+                    return
+                }
                 setText(text.slice(0, Math.min(Math.floor(tween.getValue()), text.length)))
             },
             onComplete: () => {
