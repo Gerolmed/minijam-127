@@ -60,10 +60,18 @@ export class PersistenceManager {
     }
 
 
-    delete() {
+    async clear() {
         if(!this.db)
             return;
 
+        const transaction = this.db.transaction(DATABASE_NAME, "readwrite");
+        const store = transaction.objectStore(DATABASE_NAME);
+        const request = store.clear();
+
+        return new Promise((resolve, reject) => {
+            request.onsuccess = resolve;
+            request.onerror = reject;
+        })
     }
 
     private login(req: IDBOpenDBRequest): Promise<IDBDatabase> {
