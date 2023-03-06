@@ -22,9 +22,10 @@ export class BehaviourStateMachine<T> {
     update(deltaTime: number) {
         const data = this.dataProvider();
 
-        console.log(this.current.id)
-
         for (const rule of this.globalTransition.keys()) {
+            if(!rule(data, deltaTime))
+                continue;
+
             this.current = this.states.get(this.globalTransition.get(rule)!)!;
         }
 
