@@ -39,14 +39,14 @@ export default class GameScene extends Phaser.Scene {
                 overworld: [
                     {
                         paths: [
-                            "assets/audio/music/overworld/PreVersion.mp3",
+                            "assets/audio/music/overworld/Theme.mp3",
                         ]
                     },
                 ],
                 boss: [
                     {
                         paths: [
-                            "assets/audio/music/overworld/Boss.mp3"
+                            "assets/audio/music/boss/Boss.mp3"
                         ]
                     }
                 ]
