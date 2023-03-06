@@ -11,6 +11,7 @@ import Vector2 = Phaser.Math.Vector2;
 export class ProjectileRingShoot extends AttackStateBuilder{
     constructor(
         enemy: Enemy,
+        private readonly onDone?: () => void,
         id = "projectile_ring_shoot",
     ) {
         super(id, enemy)
@@ -72,5 +73,6 @@ export class ProjectileRingShoot extends AttackStateBuilder{
 
         projectiles.filter(projectile => projectile[0].isAlive).forEach(projectile => projectile[0].setDirection(projectile[1].scale(speed)))
         this.done = true;
+        this.onDone?.()
     }
 }
