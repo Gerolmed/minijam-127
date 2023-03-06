@@ -20,7 +20,7 @@ export class SimpleProjectile extends ProjectileEntity {
         scene: GameScene, x?: number, y?: number,
         hitTeamMask?: number,
         selfMask?: number,
-        private readonly direction = new Vector2(1, 0),
+        private direction = new Vector2(1, 0),
         private readonly theme: Theme = Theme.ORANGE,
         private readonly ttl = 1.5,
         private readonly animationKeys: SimpleProjectileKeys = PlayerProjectileAnimationKeys,
@@ -31,6 +31,10 @@ export class SimpleProjectile extends ProjectileEntity {
         this.animator.load(this.animationKeys.BASE);
         this.animator.play(this.animationKeys.IDLE);
         this.lastPos = new Vector2(this.x, this.y);
+    }
+
+    setDirection(direction: Vector2) {
+        this.direction = direction;
     }
 
     protected safeUpdate(deltaTime: number) {
