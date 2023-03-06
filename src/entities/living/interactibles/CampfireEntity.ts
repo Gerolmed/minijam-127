@@ -3,6 +3,7 @@ import {CampfireAnimationKeys} from "../../../animations/ObjectAnimationKeys";
 import {Player} from "../Player";
 import TimeManager from "../../../TimeManager";
 import {HUDScene} from "../../../scenes/HUDScene";
+import {WorldStoreManager} from "../../../world/WorldSave";
 
 export class CampfireEntity extends InteractableEntity {
 
@@ -21,6 +22,9 @@ export class CampfireEntity extends InteractableEntity {
         this.unlocked = true;
         this.animator.play(CampfireAnimationKeys.ACTIVATED)
         const hudScene = this.scene.sys.scenePlugin.get<HUDScene>("HUDScene");
+
+        WorldStoreManager.get().getStore().spawnPosition = {x: this.x, y: this.y + 15};
+
         hudScene.doSaveFade(() => this.gameScene.softResetWorld())
             .finally(() => {
                 TimeManager.setGameFreeze(false)

@@ -13,15 +13,18 @@ import {NPCEntity} from "../living/interactibles/NPCEntity";
 import {Item} from "../../items/Item";
 import {ItemEntity} from "../../items/ItemEntity";
 import ItemRegistry from "../../items/ItemRegistry";
+import {PersistenceManager} from "../../persistence/PersistenceManager";
+import {WorldStoreManager} from "../../world/WorldSave";
 
 
 
 export class ItemFactory implements IEntityFactory {
 
-
+    private readonly worldStore: WorldStoreManager;
 
     constructor(private readonly scene: GameScene,
                 private readonly addEntity: <T extends Entity>(entity: T) => T) {
+        this.worldStore = WorldStoreManager.get();
     }
 
     produce(instance: EntityInstance, layer: Layer, chunkX: number, chunkY: number, scene: Phaser.Scene): Entity | undefined {
@@ -34,6 +37,12 @@ export class ItemFactory implements IEntityFactory {
             console.error(`Failed to find registered item with ID '${itemID}'`)
             return undefined;
         }
+
+        const worldStoreEntryName = "hasItem:" + instance.iid;
+        if(this.worldStore.getStore().raw[worldStoreEntryName])
+            return undefined;
+
+        this.worldStore.getStore().raw[worldStoreEntryName] = true;
 
         return this.addEntity(new ItemEntity(this.scene, pos.x, pos.y, item));
     }

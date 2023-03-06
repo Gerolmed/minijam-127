@@ -16,6 +16,7 @@ import {BossFactory} from "../entities/factories/BossFactory";
 import {ItemFactory} from "../entities/factories/ItemFactory";
 import {WorldStoreManager} from "../world/WorldSave";
 import {GLOBAL_DIALOG_DATA} from "../util/DialogData";
+import TimeManager from "../TimeManager";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
 
@@ -38,14 +39,14 @@ export default class GameScene extends Phaser.Scene {
                 overworld: [
                     {
                         paths: [
-                            "assets/audio/music/overworld/PreVersion.mp3",
+                            "assets/audio/music/overworld/Theme.mp3",
                         ]
                     },
                 ],
                 boss: [
                     {
                         paths: [
-                            "assets/audio/music/overworld/Boss.mp3"
+                            "assets/audio/music/boss/Boss.mp3"
                         ]
                     }
                 ]
@@ -120,7 +121,8 @@ export default class GameScene extends Phaser.Scene {
         // Init Entities
         /////////////////
 
-        const player = this.addEntity(new Player(this, 300, 100))
+        const store = WorldStoreManager.get().getStore();
+        const player = this.addEntity(new Player(this, store.spawnPosition.x, store.spawnPosition.y))
         player.setTilemap(this.tilemap);
 
         physicsSocket.setPlayer(player);
@@ -171,5 +173,15 @@ export default class GameScene extends Phaser.Scene {
 
         const worldStoreManager = WorldStoreManager.get();
         await worldStoreManager.write();
+    }
+
+    async deathReset() {
+        // Do reset to last campfire
+        await this.tilemap.unloadAllChunks();
+        await WorldStoreManager.get().write();
+
+        this.sys.scenePlugin.start("DeathTransition");
+
+        TimeManager.setGameFreeze(false);
     }
 }

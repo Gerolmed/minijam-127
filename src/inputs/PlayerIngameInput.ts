@@ -1,5 +1,6 @@
 import {Scene} from "phaser";
 import {DoubleAxisInput} from "./DoubleAxisInput";
+import SHIFT = Phaser.Input.Keyboard.KeyCodes.SHIFT;
 
 
 export class PlayerIngameInput {
@@ -8,7 +9,7 @@ export class PlayerIngameInput {
     private movement!: DoubleAxisInput
 
 
-    constructor(scene: Scene) {
+    constructor(scene: Scene, doDash: () => void) {
 
         const keyboard = scene.input.keyboard!;
         this.combatDirection = new DoubleAxisInput(keyboard.createCursorKeys(), true)
@@ -19,6 +20,8 @@ export class PlayerIngameInput {
             left: keyboard.addKey("a"),
             right: keyboard.addKey("d"),
         })
+
+        keyboard.addKey(SHIFT).on("down", () => doDash)
     }
 
 

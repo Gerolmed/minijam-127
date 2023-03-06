@@ -13,6 +13,7 @@ export class BehaviourStateMachine<T> {
     private current: State<T>;
 
     constructor(private readonly states: Map<string, State<T>>,
+                private readonly globalTransition: Map<TransitionRule<T>, string>,
                 private readonly start: State<T>,
                 private readonly dataProvider: () => T) {
         this.current = start;
@@ -20,6 +21,13 @@ export class BehaviourStateMachine<T> {
 
     update(deltaTime: number) {
         const data = this.dataProvider();
+
+        for (const rule of this.globalTransition.keys()) {
+            if(!rule(data, deltaTime))
+                continue;
+
+            this.current = this.states.get(this.globalTransition.get(rule)!)!;
+        }
 
         for (const rule of this.current.transitions.keys()) {
             if(!rule(data, deltaTime))

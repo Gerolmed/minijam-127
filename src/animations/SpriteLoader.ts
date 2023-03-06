@@ -1,5 +1,12 @@
 import LoaderPlugin = Phaser.Loader.LoaderPlugin;
-import PlayerAnimationKeys from "./PlayerAnimationKeys";
+import PlayerAnimationKeys, {
+    BingusAnimationKeys,
+    GanymedeAnimationKeys,
+    MaxwellAnimationKeys,
+    NyanCatAnimationKeys,
+    RaymondAnimationKeys,
+    ThurstonAnimationKeys
+} from "./PlayerAnimationKeys";
 import {
     FunkyProjectileAnimationKeys,
     LargePlayerProjectileAnimationKeys,
@@ -9,7 +16,7 @@ import {
     SpinnyProjectileAnimationKeys,
     TinyPlayerProjectileAnimationKeys
 } from "./ProjectileAnimationKeys";
-import {OpossumAnimationKeys, RatAnimationKeys, WolfAnimationKeys} from "./EnemyAnimationKeys";
+import {OpossumAnimationKeys, RatAnimationKeys, RatKingAnimationKeys, WolfAnimationKeys} from "./EnemyAnimationKeys";
 import {CampfireAnimationKeys} from "./ObjectAnimationKeys";
 
 export default function(load: LoaderPlugin) {
@@ -59,6 +66,37 @@ export default function(load: LoaderPlugin) {
         "assets/Sprites/Player/Player.png",
         "assets/Sprites/Player/Player.json",
     );
+    load.aseprite(
+        BingusAnimationKeys.BASE,
+        "assets/Sprites/NPCs/Bingus.png",
+        "assets/Sprites/NPCs/Bingus.json",
+    );
+    load.aseprite(
+        ThurstonAnimationKeys.BASE,
+        "assets/Sprites/NPCs/Thurston.png",
+        "assets/Sprites/NPCs/Thurston.json",
+    );
+    load.aseprite(
+        RaymondAnimationKeys.BASE,
+        "assets/Sprites/NPCs/Raymond.png",
+        "assets/Sprites/NPCs/Raymond.json",
+    );
+    load.aseprite(
+        MaxwellAnimationKeys.BASE,
+        "assets/Sprites/NPCs/Maxwell.png",
+        "assets/Sprites/NPCs/Maxwell.json",
+    );
+    load.aseprite(
+        GanymedeAnimationKeys.BASE,
+        "assets/Sprites/NPCs/Ganymede.png",
+        "assets/Sprites/NPCs/Ganymede.json",
+    );
+    load.aseprite(
+        NyanCatAnimationKeys.BASE,
+        "assets/Sprites/NPCs/NyanCat.png",
+        "assets/Sprites/NPCs/NyanCat.json",
+    );
+
     // Enemy sprites
     load.aseprite(
         RatAnimationKeys.BASE,
@@ -76,6 +114,18 @@ export default function(load: LoaderPlugin) {
         WolfAnimationKeys.BASE,
         "assets/Sprites/Wolf/Wolf.png",
         "assets/Sprites/Wolf/Wolf.json",
+    );
+
+    load.aseprite(
+        RatKingAnimationKeys.BASE,
+        "assets/Sprites/Ratking/Ratking.png",
+        "assets/Sprites/Ratking/Ratking.json",
+    );
+
+    load.aseprite(
+        RatKingAnimationKeys.BASE,
+        "assets/Sprites/Alpha/Alpha.png",
+        "assets/Sprites/Alpha/Alpha.json",
     );
 
 

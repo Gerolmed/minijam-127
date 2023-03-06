@@ -1,11 +1,15 @@
-import {Enemy, EnemyFacing} from "./Enemy";
+import {Enemy, EnemyAiParams, EnemyFacing} from "./Enemy";
 import GameScene from "../../../scenes/Game";
 import {PhysicsSocket} from "../PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
 import {AABB} from "../../../util/AABB";
 import {Jukebox} from "../../../audio/JukeBox";
+import {BehaviourStateMachine} from "../../../behaviour/BehaviourStateMachine";
 
 export class BossEnemy extends Enemy {
+
+
+    private isInCombat = false;
 
     constructor(scene: GameScene,
                 physicsSocket: PhysicsSocket,
@@ -23,12 +27,12 @@ export class BossEnemy extends Enemy {
         if(!player)
             return;
 
-        if(AABB.isIn(player.x, player.y, this.arenaTopLeft.x, this.arenaTopLeft.y, this.arenaSize.x, this.arenaSize.y))
+        if(!this.isInCombat && AABB.isIn(player.x, player.y, this.arenaTopLeft.x, this.arenaTopLeft.y, this.arenaSize.x, this.arenaSize.y))
             this.startBossFight();
     }
 
-
     private startBossFight() {
+        this.isInCombat = true;
         this.gameScene.getJukebox().setTheme("boss");
     }
 
