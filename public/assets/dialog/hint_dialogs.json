@@ -1,14 +1,12 @@
 {
     "pre_boss_1": [
-        "Please, Please help us and\nannihilate those idiots,\nthat killed all my kittens!",
-		"The Wolfs are dangerous\nin this area. Beware!",
-		"Rats are very annoying and\ndeadly, but they can be\nkilled easily. Good Luck!",
+		"The Wolfs are dangerous\nin this area. Beware!\nMaybe try defeating some opossums before!",
+        "Their leader is dead, but\nmany opossums are still\nransacking the northern areas.\nGo and kill them!",
 		"All Opossums share a very thick\nskin, so make sure to hit\nthem hard"
     ],
     "pre_boss_2": [
-        "Their leader is dead, but\nmany opossums are still\nransacking the northern areas.\nGo and kill them!",
+		"Rats are very annoying and\ndeadly, but they can be\nkilled easily. Good Luck!",
 		"I heard, that a pack of\nfilthy rats is loafing\naround in the west. They\nneed to die!"
-
     ],
     "end_boss": [
         "The alpha is waiting.",
