@@ -8,6 +8,7 @@ import {Item} from "../../items/Item";
 import {IShootSource} from "./IShootSource";
 import TimeManager from "../../TimeManager";
 import {HUDScene} from "../../scenes/HUDScene";
+import {CooldownManager} from "../../behaviour/CooldownManager";
 import Vector2 = Phaser.Math.Vector2;
 import Color = Phaser.Display.Color;
 
@@ -20,6 +21,7 @@ export class Player extends LivingEntity implements IShootSource{
     private projectileShooter!: ProjectileShooter;
     private lastDir: Vector2 = new Vector2(0,1);
     private lastMoveDir: Vector2 = new Vector2(0,1);
+    private cooldownManager = new CooldownManager(new Map<string, number>().set("dash", 2000));
 
     private tilemap?: ChunkedTilemap;
     private items: Item[] = []
@@ -208,6 +210,7 @@ export class Player extends LivingEntity implements IShootSource{
         if(TimeManager.isGameFrozen) return
         if(this.hasDied) return
         if(this.isDashing) return
+        if(!this.cooldownManager.has("dash")) return
         if(this.lastMoveDir.lengthSq() === 0) return
         this.doDash();
     }
@@ -221,6 +224,7 @@ export class Player extends LivingEntity implements IShootSource{
     private dashTimer = 0;
 
     private doDash() {
+        this.cooldownManager.use("dash")
         this.dashTimer = .1;
         this.isDashing = true;
     }
