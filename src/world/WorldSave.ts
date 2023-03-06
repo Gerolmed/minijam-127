@@ -5,6 +5,7 @@ type WorldStore = {
     ratKingKilled: boolean
     opportunisticOpossumKilled: boolean,
     spawnPosition: {x: number, y: number},
+    masterVolume: number,
     raw: {
         [key: string]: any
     }
@@ -43,6 +44,7 @@ export class WorldStoreManager {
             ratKingKilled: false,
             opportunisticOpossumKilled: false,
             spawnPosition: {x: 257, y: 130},
+            masterVolume: 0.5,
             raw: {}
         }
     }
