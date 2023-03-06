@@ -14,12 +14,6 @@ import {BehaviourStateMachine} from "../../../behaviour/BehaviourStateMachine";
 import {BehaviourBuilder} from "../../../behaviour/BehaviourBuilder";
 
 
-export enum EnemyState {
-    NEUTRAL,
-    AGGRO,
-    RETREATING
-}
-
 export enum EnemyFacing {
     LEFT,
     RIGHT,
@@ -54,7 +48,6 @@ export class Enemy extends LivingEntity implements IShootSource {
 
     private lastPlayerSpotted = Date.now();
     private startRetreating = 0;
-    private aState: EnemyState = EnemyState.NEUTRAL;
     private facing: EnemyFacing = EnemyFacing.DOWN;
     private isWalking = false;
 
@@ -71,7 +64,7 @@ export class Enemy extends LivingEntity implements IShootSource {
             selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
             hitLayer: PhysicsLayers.PLAYER,
             projectileSpeed: 1.5,
-            frequency: 0.6,
+            frequency: 0.65,
             splashTheme: Theme.PURPLE,
             projectileAnimKeys: SpinnyProjectileAnimationKeys
         });
@@ -123,7 +116,6 @@ export class Enemy extends LivingEntity implements IShootSource {
     }
 
     protected shouldRetreatToNeutral(params: EnemyAiParams, deltaTime: number) {
-        console.log(params.timeRetreating)
         return params.distanceToOrigin > this.RETREAT_DISTANCE_MAX || params.timeRetreating > this.RETREAT_DURATION_MAX
     }
 

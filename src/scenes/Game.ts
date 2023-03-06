@@ -49,6 +49,13 @@ export default class GameScene extends Phaser.Scene {
                             "assets/audio/music/boss/Boss.mp3"
                         ]
                     }
+                ],
+                bossIntro: [
+                    {
+                        paths: [
+                            "assets/audio/music/boss/BossIntro.mp3"
+                        ]
+                    }
                 ]
             }
         });
