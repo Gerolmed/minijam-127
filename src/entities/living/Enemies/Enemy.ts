@@ -95,6 +95,7 @@ export class Enemy extends LivingEntity implements IShootSource {
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
+        if(this.hasDied) return;
 
         this.behaviour.update(deltaTime);
         this.projectileShooter.update(deltaTime);

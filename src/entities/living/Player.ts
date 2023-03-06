@@ -72,9 +72,6 @@ export class Player extends LivingEntity implements IShootSource{
         item.apply(this);
     }
 
-
-    private hasDied = false;
-
     death() {
         if(this.hasDied) return
         this.hasDied = true;

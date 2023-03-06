@@ -33,4 +33,9 @@ export class Wolf extends Enemy {
         throw new Error("Invalid animation frame");
     }
 
+
+
+    async playDeathAnim(): Promise<void> {
+        return new Promise(resolve => this.animator.play(WolfAnimationKeys.DEATH, 2, true, resolve))
+    }
 }

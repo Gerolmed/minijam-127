@@ -101,6 +101,8 @@ export class LivingEntity extends Entity implements IDamageable {
     }
 
     damage(damage: number, knockBack?: Phaser.Math.Vector2): void {
+        if(this.hasDied) return
+
         this.health -= damage;
 
         this.statHandler?.onHealthChange(this.health, this.maxHealth);
@@ -117,8 +119,12 @@ export class LivingEntity extends Entity implements IDamageable {
         return new Color(212,113,93);
     }
 
+
+    protected hasDied = false;
     death() {
-        this.destroy();
+        if(this.hasDied) return
+        this.hasDied = true;
+        this.playDeathAnim().then(() => this.destroy());
     }
 
 
@@ -131,6 +137,10 @@ export class LivingEntity extends Entity implements IDamageable {
     setHandler(handler: IHealthStatHandler): void {
         this.statHandler = handler;
         this.statHandler.onHealthChange(this.health, this.maxHealth)
+    }
+
+    async playDeathAnim() {
+
     }
 
     /**
