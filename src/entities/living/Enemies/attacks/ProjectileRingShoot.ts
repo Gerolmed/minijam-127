@@ -42,8 +42,10 @@ export class ProjectileRingShoot extends AttackStateBuilder{
         const count = 8;
         const angle = 360/ 8;
         const speed = 3;
-        const bodyDist = 1.5;
-        const range = 4;
+        const bodyDist = 25;
+        const range = 1;
+        const delayBetween = 70;
+        const delayFinal = 70;
 
         const spawnDir = new Vector2(0, bodyDist)
 
@@ -59,13 +61,13 @@ export class ProjectileRingShoot extends AttackStateBuilder{
                 PhysicsLayers.ENEMY_PROJECTILE,
                 new Vector2(),
                 Theme.PURPLE,
-                SimpleProjectile.ttlFromRangeAndSpeed(range, speed) + 70/1000 * (count-i),
+                SimpleProjectile.ttlFromRangeAndSpeed(range, speed) + delayBetween/1000 * (count-i) + (delayFinal-delayBetween)/1000,
                 FunkyProjectileAnimationKeys
             ))
-            projectiles.push([projectile, spawnDir.clone()])
-            await sleep(70)
+            projectiles.push([projectile, spawnDir.clone().normalize()])
+            await sleep(delayBetween)
         }
-        await sleep(70)
+        await sleep(delayFinal-delayBetween)
 
         projectiles.filter(projectile => projectile[0].isAlive).forEach(projectile => projectile[0].setDirection(projectile[1].scale(speed)))
         this.done = true;
