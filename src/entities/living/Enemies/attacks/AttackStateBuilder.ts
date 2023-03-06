@@ -11,7 +11,9 @@ export abstract class AttackStateBuilder implements IStateBuilderConfigurer<Enem
 
 
     configure(builder: BehaviourBuilder<EnemyAiParams>) {
-        this.doSetup(builder.addState(this.id));
+        const state = builder.addState(this.id);
+        this.doSetup(state);
+        state.and()
     }
 
     protected abstract doSetup(stateBuilder: StateBuilder<EnemyAiParams>): void;
