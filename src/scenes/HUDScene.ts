@@ -4,11 +4,13 @@ import GameScene from "./Game";
 import {Player} from "../entities/living/Player";
 import {PlayerHealthBar} from "../ui/PlayerHealthBar";
 import {SaveScreen} from "../ui/SaveScreen";
+import {DeathScreen} from "../ui/DeathScreen";
 
 export class HUDScene extends Scene {
     private gameScene!: GameScene;
     private started = false;
     private saveScreen = new SaveScreen(this);
+    private deathScreen = new DeathScreen(this);
 
 
     constructor() {
@@ -57,7 +59,6 @@ export class HUDScene extends Scene {
     }
 
     async DoDeathAnimation(): Promise<void> {
-        // return this.deathScreen.doSaveFade(doSave);
-
+        return this.deathScreen.doDeathFade();
     }
 }

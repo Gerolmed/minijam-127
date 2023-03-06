@@ -56,7 +56,11 @@ export class Player extends LivingEntity implements IShootSource{
     }
 
 
+    private hasDied = false;
+
     death() {
+        if(this.hasDied) return
+        this.hasDied = true;
         TimeManager.setGameFreeze(true);
         this.animator.play(PlayerAnimationKeys.DEATH, 0, true);
         this.scene.sys.scenePlugin.get<HUDScene>("HUDScene").DoDeathAnimation().finally(() => this.gameScene.deathReset());
