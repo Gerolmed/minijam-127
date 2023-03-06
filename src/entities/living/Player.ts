@@ -67,7 +67,7 @@ export class Player extends LivingEntity implements IShootSource{
         TimeManager.setGameFreeze(true);
         this.animator.play(PlayerAnimationKeys.DEATH, 0, true);
         this.gameScene.getJukebox().setTheme("")
-        this.scene.sys.scenePlugin.get<HUDScene>("HUDScene").DoDeathAnimation().finally(() => this.gameScene.deathReset());
+        this.scene.sys.scenePlugin.get<HUDScene>("HUDScene").doDeathAnimation().finally(() => this.gameScene.deathReset());
     }
 
     protected safeUpdate(deltaTime: number) {

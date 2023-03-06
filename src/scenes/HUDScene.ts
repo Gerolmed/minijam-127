@@ -5,12 +5,14 @@ import {Player} from "../entities/living/Player";
 import {PlayerHealthBar} from "../ui/PlayerHealthBar";
 import {SaveScreen} from "../ui/SaveScreen";
 import {DeathScreen} from "../ui/DeathScreen";
+import {VictoryScreen} from "../ui/VictoryScreen";
 
 export class HUDScene extends Scene {
     private gameScene!: GameScene;
     private started = false;
-    private saveScreen = new SaveScreen(this);
-    private deathScreen = new DeathScreen(this);
+    private saveScreen!: SaveScreen;
+    private deathScreen!:DeathScreen;
+    private victoryScreen!: VictoryScreen;
 
 
     constructor() {
@@ -27,6 +29,9 @@ export class HUDScene extends Scene {
     }
 
     create() {
+        this.saveScreen = new SaveScreen(this);
+        this.deathScreen = new DeathScreen(this);
+        this.victoryScreen = new VictoryScreen(this);
         this.gameScene = this.scene.get("GameScene") as GameScene;
     }
 
@@ -59,7 +64,10 @@ export class HUDScene extends Scene {
         return this.saveScreen.doSaveFade(doSave);
     }
 
-    async DoDeathAnimation(): Promise<void> {
+    async doDeathAnimation(): Promise<void> {
         return this.deathScreen.doDeathFade();
+    }
+    async doVictoryAnimation(): Promise<void> {
+        return this.victoryScreen.doFade();
     }
 }

@@ -34,6 +34,7 @@ export class MainMenuScene extends Scene {
         this.load.aseprite("btn_continue", "assets/Menu/Button_Continue.png", "assets/Menu/Button_Continue.json")
         this.load.aseprite("btn_new_game", "assets/Menu/Button_NewGame.png", "assets/Menu/Button_NewGame.json")
         this.load.image("logo", "assets/Menu/Logo.png")
+        this.load.image("splat_cat", "assets/Menu/SplatCat.png")
         this.load.audio("ui_error", ["assets/audio/sfx/ui/Error.mp3"])
         this.load.audio("ui_navigate", ["assets/audio/sfx/ui/Navigate.mp3"])
         this.load.audio("ui_select", ["assets/audio/sfx/ui/Select.mp3"])
@@ -46,6 +47,8 @@ export class MainMenuScene extends Scene {
 
 
         this.add.sprite(0,0, "border").setOrigin(0,0).setScale(Constants.UPSCALE_FACTOR)
+        const splatCat = this.add.sprite(0,0, "splat_cat").setOrigin(0,0).setScale(Constants.UPSCALE_FACTOR)
+        splatCat.setPosition(camera.width / 2 - splatCat.displayWidth/2, camera.height - splatCat.displayHeight)
         const logo = this.add.sprite(0,0, "logo").setOrigin(0,0).setScale(Constants.UPSCALE_FACTOR)
 
         this.tweens.add({
@@ -58,7 +61,7 @@ export class MainMenuScene extends Scene {
         });
 
         this.add.existing(new Button(this, "btn_new_game",camera.width -250, 150, () => this.startNewGame()).setScale(Constants.UPSCALE_FACTOR))
-        this.add.existing(new Button(this, "btn_continue",camera.width -250, 250).setScale(Constants.UPSCALE_FACTOR))
+        this.add.existing(new Button(this, "btn_continue",camera.width -250, 250, () => this.continueGame()).setScale(Constants.UPSCALE_FACTOR))
 
         this.events.on('shutdown', () => this.jukebox.kill())
 
@@ -78,6 +81,12 @@ export class MainMenuScene extends Scene {
 
 
     private startNewGame() {
+        WorldStoreManager.get().clear().then(() => {
+            this.sys.scenePlugin.start("HUDScene")
+            this.sys.scenePlugin.launch("GameScene")
+        });
+    }
+    private continueGame() {
         this.sys.scenePlugin.start("HUDScene")
         this.sys.scenePlugin.launch("GameScene")
     }
