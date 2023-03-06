@@ -6,6 +6,7 @@ import {PlayerHealthBar} from "../ui/PlayerHealthBar";
 import {SaveScreen} from "../ui/SaveScreen";
 import {DeathScreen} from "../ui/DeathScreen";
 import {VictoryScreen} from "../ui/VictoryScreen";
+import {PlayerMiniMap} from "../ui/PlayerMiniMap";
 
 export class HUDScene extends Scene {
     private gameScene!: GameScene;
@@ -14,6 +15,7 @@ export class HUDScene extends Scene {
     private deathScreen!:DeathScreen;
     private victoryScreen!: VictoryScreen;
     private healthbar?: PlayerHealthBar;
+    private miniMap?: PlayerMiniMap;
 
 
     constructor() {
@@ -23,6 +25,8 @@ export class HUDScene extends Scene {
     }
 
     preload() {
+        this.load.image("minimap", "assets/map/Map.png")
+        this.load.image("minimap_marker", "assets/map/marker.png")
         this.load.image("hp_bar_text", "assets/Sprites/UI/HealthHP.png")
         this.load.image("hp_bar_frame", "assets/Sprites/UI/HPBar_Frame.png")
         this.load.image("hp_bar_fill", "assets/Sprites/UI/HPBar_Fill.png")
@@ -54,6 +58,8 @@ export class HUDScene extends Scene {
     update(time: number, delta: number) {
         super.update(time, delta);
 
+        this.miniMap?.update();
+
         if(!this.started) {
             if(this.gameScene.isReady()) {
                 this.started = true;
@@ -81,5 +87,7 @@ export class HUDScene extends Scene {
         const player = this.gameScene.getEntityByName<Player>("Player")!;
         this.healthbar?.remove();
         this.healthbar = new PlayerHealthBar(this, player)
+        this.miniMap?.remove();
+        this.miniMap = new PlayerMiniMap(this, player)
     }
 }
