@@ -26,6 +26,7 @@ export class HUDScene extends Scene {
         this.load.image("hp_bar_frame", "assets/Sprites/UI/HPBar_Frame.png")
         this.load.image("hp_bar_fill", "assets/Sprites/UI/HPBar_Fill.png")
         this.load.audio("game_over", "assets/audio/music/DeathJingle.mp3")
+        this.load.audio("victory", "assets/audio/music/VictorySound.mp3")
     }
 
     create() {

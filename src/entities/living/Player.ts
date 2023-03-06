@@ -9,6 +9,7 @@ import {IShootSource} from "./IShootSource";
 import TimeManager from "../../TimeManager";
 import {HUDScene} from "../../scenes/HUDScene";
 import {CooldownManager} from "../../behaviour/CooldownManager";
+import AudioManager from "../../util/AudioManager";
 import Vector2 = Phaser.Math.Vector2;
 import Color = Phaser.Display.Color;
 
@@ -54,6 +55,7 @@ export class Player extends LivingEntity implements IShootSource{
     }
 
     public collectItem(item: Item) {
+        this.scene.sound.add("collect_item", {volume: AudioManager.getSFXVolume()}).play();
         this.items.push(item);
         item.apply(this);
     }
@@ -225,6 +227,7 @@ export class Player extends LivingEntity implements IShootSource{
 
     private doDash() {
         this.cooldownManager.use("dash")
+        this.scene.sound.add("player_dash", {volume: AudioManager.getSFXVolume()}).play();
         this.dashTimer = .15;
         this.isDashing = true;
     }

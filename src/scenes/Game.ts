@@ -69,6 +69,16 @@ export default class GameScene extends Phaser.Scene {
         this.load.image("logo", "assets/phaser3-logo.png");
         this.load.json("map", "assets/map/map.ldtk")
         this.load.json("hint_dialog", "assets/dialog/hint_dialogs.json")
+
+        this.load.audio("campfire", "assets/audio/sfx/world/Campfire.mp3")
+        this.load.audio("enemy_hit", "assets/audio/sfx/world/EnemyShoot.mp3")
+        this.load.audio("enemy_shoot", "assets/audio/sfx/world/EnemyHit.mp3")
+        this.load.audio("player_footsteps", "assets/audio/sfx/world/PlayerFootsteps.mp3")
+        this.load.audio("player_hit", "assets/audio/sfx/world/PlayerHit.mp3")
+        this.load.audio("player_shoot", "assets/audio/sfx/world/PlayerShoot.mp3")
+        this.load.audio("collect_item", "assets/audio/sfx/world/PowerupUpgrade.mp3")
+        this.load.audio("player_dash", "assets/audio/sfx/world/PlayerDash.mp3")
+
         this.load.spritesheet("tileset", "assets/tilesets/tileset.png", {
             frameWidth: 16,
             frameHeight: 16,
