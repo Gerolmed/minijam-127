@@ -30,7 +30,7 @@ export class VictoryScreen {
         this.scene.sound.add("victory", {volume: AudioManager.getMusicVolume()})?.play()
         await doTextTween(this.scene, deathTextContent, 2000, txt => deathText.setText(txt));
         await new Promise(res => setTimeout(res,500))
-        this.scene.add.text(camera.displayWidth/2, camera.displayHeight/2+12, "Press 'space' to continue" , { fontFamily: "EndFont", fontSize: 100, color: "#d4715d"}).setScale(.06).setOrigin(.5,.5)
+        this.scene.add.text(camera.displayWidth/2, camera.displayHeight/2+12, "Congrats :D Leave a comment or join our discord and talk to us" , { fontFamily: "EndFont", fontSize: 100, color: "#d4715d"}).setScale(.06).setOrigin(.5,.5)
 
 
         await new Promise<void>(res => this.resolve = res)
