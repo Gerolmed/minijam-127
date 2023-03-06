@@ -2,6 +2,7 @@ import {Scene} from "phaser";
 import Constants from "../Constants";
 import GameScene from "./Game";
 import {DeathScreen} from "../ui/DeathScreen";
+import {HUDScene} from "./HUDScene";
 
 export class DeathTransition extends Scene {
     private started = false;
@@ -21,17 +22,17 @@ export class DeathTransition extends Scene {
 
         // Black Magic value I hate math
         camera.setScroll(-480, -270);
-
+        this.started = false;
     }
 
     doLateCreate() {
-        this.sys.scenePlugin.launch("HUDScene")
-        this.sys.scenePlugin.launch("GameScene")
         this.deathScreen.doDeathFadeAway().then(() => this.sys.scenePlugin.stop("DeathTransition"))
+
+        const hudScene = this.sys.scenePlugin.get<HUDScene>("HUDScene");
+        hudScene.removeDeath();
     }
 
     update(time: number, delta: number) {
-
         if(this.started) return
         this.started = true;
         this.doLateCreate()

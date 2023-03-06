@@ -197,7 +197,7 @@ export default class GameScene extends Phaser.Scene {
         await this.tilemap.unloadAllChunks();
         await WorldStoreManager.get().write();
 
-        this.sys.scenePlugin.start("DeathTransition");
+        this.sys.scenePlugin.launch("DeathTransition");
 
         TimeManager.setGameFreeze(false);
     }
