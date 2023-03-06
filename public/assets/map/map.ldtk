@@ -645,8 +645,8 @@
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
-				"opaqueTiles": "111111001111111110001111110011111111100011111100000111111000111111000001111100001110010000011111000011100000000000000000111011111000000000000000111110000000000011111111100000000000111111111000000000000011111110000000000000011111110000000000",
-				"averageColors": "feeefeeefeeefeeefeeefeeeaecaaeeefeddfecbfedcfedcfedcfeddfeedfeeefeed000000000000feeefeeefeeefeeefeeefeee6eee0000fedcfedcfedcfedcfeddfeddfeeefeeefeee000000000000feeefeeefeeefeeefeeefeee8eba9eba8eba9ecb9ecafeeefeeefeeefeeefeeefeee000000000000fedcfeddfedcfeedfeedfeee000000000000aecb7ecafeeefdddfeeefeeefeee0000000000000000fedcfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeeefeeefeee0000000000000000feedfeddfddd0000000000006cbb6cbb000000000000000000000000000000000000000000000000feddfeddfedd0000feeefeddfeeefeeefeee000000000000000000000000000000000000000000000000000000000000feeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
+				"opaqueTiles": "111111001111111110001111110011111111100011111100000111111000111111000001111100001110010000011111000011100000001111110000111011111011111100000000111110000000000011111111100000000000111111111000000000000011111110000000000000011111110000000000",
+				"averageColors": "feeefeeefeeefeeefeeefeeeaecaaeeefeeefedcfedcfeddfeccfeeefeedfeeefeed000000000000feeefeeefeeefeeefeeefeee6eee0000feedfedcfedcfeddfeddfeedfeeefeeefeee000000000000feeefeeefeeefeeefeeefeee8eba9eba8eba9ecb9ecafeeefeeefeeefeeefeeefeee000000000000fedcfeddfedcfeedfeedfeee000000000000aecb7ecafeeefdddfeeefeeefeee0000000000000000fedcfeeefeddceedceedfeee6ecc6ecc000000000000feeefeeefeeefeeefeee0000000000000000feedfeddfddd0000000000006cbb6cbb00000000fedcfedcfedcfedcfedcfedc0000000000000000feddfeddfedd0000feeefeddfeeefeeefeee0000feeefedcfedcfedcfedcfeee00000000000000000000000000000000feeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000feddfeddfeedfeddfeddfeddfeddfeddfedd0000000000000000000000000000000000000000000000000000feeefeeefeeefeddfeeefeeefeee00000000000000000000000000000000000000000000000000000000fdddfeeefeddfeeefeeefeddfeee0000000000000000000000000000000000000000"
 			}
 		}
 	], "enums": [
@@ -744,48 +744,6 @@
 							"defUid": 58,
 							"px": [168,120],
 							"fieldInstances": []
-						},
-						{
-							"__identifier": "NPC",
-							"__grid": [18,7],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#30E3D2",
-							"iid": "69ed74d0-9f30-11ed-a4bd-510be75bcb7f",
-							"width": 16,
-							"height": 16,
-							"defUid": 52,
-							"px": [296,120],
-							"fieldInstances": [
-								{ "__identifier": "DialogLines", "__value": [
-									"Welcome Splat Cat!",
-									"the rats, wolves and opossums are threatening all of catkind in this area.",
-									"Kill them!/nK I L L  T H E M  A L L!"
-								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [ {
-									"id": "V_String",
-									"params": ["Welcome Splat Cat!"]
-								}, {
-									"id": "V_String",
-									"params": ["the rats, wolves and opossums are threatening all of catkind in this area."]
-								}, {
-									"id": "V_String",
-									"params": ["Kill them!/nK I L L  T H E M  A L L!"]
-								} ] },
-								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
-									"id": "V_Bool",
-									"params": [ true ]
-								}] },
-								{ "__identifier": "Skin", "__value": "Bingus", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Bingus"]
-								}] },
-								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
-								{ "__identifier": "Name", "__value": "Bingus", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Bingus"]
-								}] }
-							]
 						}
 					]
 				},
@@ -1121,12 +1079,12 @@
 						{ "px": [192,128], "src": [16,16], "f": 0, "t": 21, "d": [188] },
 						{ "px": [208,128], "src": [16,16], "f": 0, "t": 21, "d": [189] },
 						{ "px": [224,128], "src": [16,16], "f": 0, "t": 21, "d": [190] },
-						{ "px": [240,128], "src": [160,80], "f": 0, "t": 110, "d": [191] },
-						{ "px": [256,128], "src": [176,80], "f": 0, "t": 111, "d": [192] },
-						{ "px": [272,128], "src": [192,80], "f": 0, "t": 112, "d": [193] },
-						{ "px": [288,128], "src": [208,80], "f": 0, "t": 113, "d": [194] },
-						{ "px": [304,128], "src": [224,80], "f": 0, "t": 114, "d": [195] },
-						{ "px": [320,128], "src": [240,80], "f": 0, "t": 115, "d": [196] },
+						{ "px": [240,128], "src": [80,0], "f": 0, "t": 5, "d": [191] },
+						{ "px": [256,128], "src": [80,0], "f": 0, "t": 5, "d": [192] },
+						{ "px": [272,128], "src": [16,16], "f": 0, "t": 21, "d": [193] },
+						{ "px": [288,128], "src": [16,16], "f": 0, "t": 21, "d": [194] },
+						{ "px": [304,128], "src": [16,16], "f": 0, "t": 21, "d": [195] },
+						{ "px": [320,128], "src": [80,0], "f": 0, "t": 5, "d": [196] },
 						{ "px": [336,128], "src": [16,16], "f": 0, "t": 21, "d": [197] },
 						{ "px": [0,144], "src": [16,16], "f": 0, "t": 21, "d": [198] },
 						{ "px": [16,144], "src": [16,16], "f": 0, "t": 21, "d": [199] },
@@ -1268,7 +1226,50 @@
 					"seed": 7343250,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "NPC",
+							"__grid": [5,5],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#30E3D2",
+							"iid": "a3e4a110-9f30-11ed-84e7-23e6d2f8c191",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [88,88],
+							"fieldInstances": [
+								{ "__identifier": "DialogLines", "__value": [
+									"Welcome Splat Cat!",
+									"the rats, wolves and opossums are threatening all of catkind in this area.",
+									"Kill them!/nK I L L  T H E M  A L L!"
+								], "__type": "Array<String>", "__tile": null, "defUid": 54, "realEditorValues": [ {
+									"id": "V_String",
+									"params": ["Welcome Splat Cat!"]
+								}, {
+									"id": "V_String",
+									"params": ["the rats, wolves and opossums are threatening all of catkind in this area."]
+								}, {
+									"id": "V_String",
+									"params": ["Kill them!/nK I L L  T H E M  A L L!"]
+								} ] },
+								{ "__identifier": "AppendProgressionHelp", "__value": true, "__type": "Bool", "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Skin", "__value": "Bingus", "__type": "LocalEnum.NPC_Skins", "__tile": null, "defUid": 57, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Bingus"]
+								}] },
+								{ "__identifier": "Oneshot", "__value": false, "__type": "Bool", "__tile": null, "defUid": 85, "realEditorValues": [] },
+								{ "__identifier": "Name", "__value": "Bingus", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Bingus"]
+								}] }
+							]
+						}
+					]
 				},
 				{
 					"__identifier": "_03_Front",
@@ -1474,23 +1475,23 @@
 						{ "px": [160,112], "src": [16,16], "f": 0, "t": 21, "d": [87] },
 						{ "px": [0,128], "src": [16,16], "f": 0, "t": 21, "d": [88] },
 						{ "px": [16,128], "src": [16,16], "f": 0, "t": 21, "d": [89] },
-						{ "px": [32,128], "src": [16,16], "f": 0, "t": 21, "d": [90] },
-						{ "px": [48,128], "src": [176,96], "f": 0, "t": 131, "d": [91] },
-						{ "px": [64,128], "src": [192,96], "f": 0, "t": 132, "d": [92] },
-						{ "px": [80,128], "src": [160,96], "f": 0, "t": 130, "d": [93] },
-						{ "px": [96,128], "src": [208,96], "f": 0, "t": 133, "d": [94] },
-						{ "px": [112,128], "src": [224,96], "f": 0, "t": 134, "d": [95] },
+						{ "px": [32,128], "src": [160,80], "f": 0, "t": 110, "d": [90] },
+						{ "px": [48,128], "src": [176,80], "f": 0, "t": 111, "d": [91] },
+						{ "px": [64,128], "src": [192,80], "f": 0, "t": 112, "d": [92] },
+						{ "px": [80,128], "src": [208,80], "f": 0, "t": 113, "d": [93] },
+						{ "px": [96,128], "src": [224,80], "f": 0, "t": 114, "d": [94] },
+						{ "px": [112,128], "src": [240,80], "f": 0, "t": 115, "d": [95] },
 						{ "px": [128,128], "src": [240,96], "f": 0, "t": 135, "d": [96] },
 						{ "px": [144,128], "src": [16,16], "f": 0, "t": 21, "d": [97] },
 						{ "px": [160,128], "src": [16,16], "f": 0, "t": 21, "d": [98] },
 						{ "px": [0,144], "src": [16,16], "f": 0, "t": 21, "d": [99] },
 						{ "px": [16,144], "src": [16,16], "f": 0, "t": 21, "d": [100] },
-						{ "px": [32,144], "src": [16,16], "f": 0, "t": 21, "d": [101] },
-						{ "px": [48,144], "src": [16,16], "f": 0, "t": 21, "d": [102] },
-						{ "px": [64,144], "src": [16,16], "f": 0, "t": 21, "d": [103] },
-						{ "px": [80,144], "src": [16,16], "f": 0, "t": 21, "d": [104] },
-						{ "px": [96,144], "src": [16,16], "f": 0, "t": 21, "d": [105] },
-						{ "px": [112,144], "src": [16,16], "f": 0, "t": 21, "d": [106] },
+						{ "px": [32,144], "src": [160,96], "f": 0, "t": 130, "d": [101] },
+						{ "px": [48,144], "src": [176,96], "f": 0, "t": 131, "d": [102] },
+						{ "px": [64,144], "src": [192,96], "f": 0, "t": 132, "d": [103] },
+						{ "px": [80,144], "src": [208,96], "f": 0, "t": 133, "d": [104] },
+						{ "px": [96,144], "src": [224,96], "f": 0, "t": 134, "d": [105] },
+						{ "px": [112,144], "src": [240,96], "f": 0, "t": 135, "d": [106] },
 						{ "px": [128,144], "src": [16,16], "f": 0, "t": 21, "d": [107] },
 						{ "px": [128,144], "src": [80,32], "f": 0, "t": 45, "d": [107] },
 						{ "px": [144,144], "src": [16,16], "f": 0, "t": 21, "d": [108] },
@@ -4362,8 +4363,6 @@
 					"seed": 1837475,
 					"overrideTilesetUid": null,
 					"gridTiles": [
-						{ "px": [112,32], "src": [240,16], "f": 0, "t": 35, "d": [47] },
-						{ "px": [112,48], "src": [240,16], "f": 0, "t": 35, "d": [67] },
 						{ "px": [160,128], "src": [96,16], "f": 0, "t": 26, "d": [170] },
 						{ "px": [0,192], "src": [224,0], "f": 0, "t": 14, "d": [240] },
 						{ "px": [16,192], "src": [240,0], "f": 0, "t": 15, "d": [241] },
@@ -4502,7 +4501,7 @@
 						{ "px": [64,32], "src": [16,16], "f": 0, "t": 21, "d": [44] },
 						{ "px": [80,32], "src": [16,16], "f": 0, "t": 21, "d": [45] },
 						{ "px": [96,32], "src": [16,16], "f": 0, "t": 21, "d": [46] },
-						{ "px": [112,32], "src": [240,16], "f": 0, "t": 35, "d": [47] },
+						{ "px": [112,32], "src": [16,16], "f": 0, "t": 21, "d": [47] },
 						{ "px": [128,32], "src": [80,0], "f": 0, "t": 5, "d": [48] },
 						{ "px": [144,32], "src": [16,16], "f": 0, "t": 21, "d": [49] },
 						{ "px": [160,32], "src": [16,16], "f": 0, "t": 21, "d": [50] },
@@ -4522,7 +4521,7 @@
 						{ "px": [64,48], "src": [16,16], "f": 0, "t": 21, "d": [64] },
 						{ "px": [80,48], "src": [80,16], "f": 0, "t": 25, "d": [65] },
 						{ "px": [96,48], "src": [16,16], "f": 0, "t": 21, "d": [66] },
-						{ "px": [112,48], "src": [240,16], "f": 0, "t": 35, "d": [67] },
+						{ "px": [112,48], "src": [16,16], "f": 0, "t": 21, "d": [67] },
 						{ "px": [128,48], "src": [16,16], "f": 0, "t": 21, "d": [68] },
 						{ "px": [144,48], "src": [16,16], "f": 0, "t": 21, "d": [69] },
 						{ "px": [160,48], "src": [16,16], "f": 0, "t": 21, "d": [70] },
@@ -4686,7 +4685,7 @@
 						{ "px": [64,176], "src": [16,16], "f": 0, "t": 21, "d": [224] },
 						{ "px": [80,176], "src": [16,16], "f": 0, "t": 21, "d": [225] },
 						{ "px": [96,176], "src": [16,16], "f": 0, "t": 21, "d": [226] },
-						{ "px": [112,176], "src": [80,0], "f": 0, "t": 5, "d": [227] },
+						{ "px": [112,176], "src": [16,16], "f": 0, "t": 21, "d": [227] },
 						{ "px": [128,176], "src": [16,16], "f": 0, "t": 21, "d": [228] },
 						{ "px": [144,176], "src": [16,16], "f": 0, "t": 21, "d": [229] },
 						{ "px": [160,176], "src": [16,16], "f": 0, "t": 21, "d": [230] },
@@ -11132,7 +11131,7 @@
 						{ "px": [96,96], "src": [16,16], "f": 0, "t": 21, "d": [132] },
 						{ "px": [112,96], "src": [16,16], "f": 0, "t": 21, "d": [133] },
 						{ "px": [128,96], "src": [16,16], "f": 0, "t": 21, "d": [134] },
-						{ "px": [144,96], "src": [64,0], "f": 0, "t": 4, "d": [135] },
+						{ "px": [144,96], "src": [16,16], "f": 0, "t": 21, "d": [135] },
 						{ "px": [160,96], "src": [16,16], "f": 0, "t": 21, "d": [136] },
 						{ "px": [176,96], "src": [16,16], "f": 0, "t": 21, "d": [137] },
 						{ "px": [192,96], "src": [16,16], "f": 0, "t": 21, "d": [138] },

@@ -2,8 +2,10 @@ import {Entity} from "../Entity";
 import GameScene from "../../scenes/Game";
 import PhysicsLayers from "../PhysicsLayers";
 import {Animator} from "../../animations/Animator";
+import TimeManager from "../../TimeManager";
 import MatterBodyConfig = Phaser.Types.Physics.Matter.MatterBodyConfig;
 import GameObject = Phaser.GameObjects.GameObject;
+import Vector2 = Phaser.Math.Vector2;
 
 export class ProjectileEntity extends Entity {
     protected rigidbody!: MatterJS.BodyType;
@@ -44,6 +46,11 @@ export class ProjectileEntity extends Entity {
         super.destroy();
     }
 
+    update(deltaTime: number) {
+        this.detectGameFreeze();
+        super.update(deltaTime);
+    }
+
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
         this.setPosition(this.rigidbody.position.x, this.rigidbody.position.y);
@@ -71,6 +78,22 @@ export class ProjectileEntity extends Entity {
 
     protected hit(other: GameObject | undefined) {
         return true;
+    }
+
+    private isGameFrozen = false;
+    private frozenVel = new Vector2();
+    private detectGameFreeze() {
+        if(TimeManager.isGameFrozen === this.isGameFrozen) return;
+        this.isGameFrozen = TimeManager.isGameFrozen;
+
+        if(TimeManager.isGameFrozen) {
+            this.frozenVel = new Vector2(this.rigidbody.velocity.x, this.rigidbody.velocity.y);
+            this.scene.matter.body.setVelocity(this.rigidbody, new Vector2());
+            this.setPosition(this.rigidbody.position.x, this.rigidbody.position.y);
+        } else {
+
+            this.scene.matter.body.setVelocity(this.rigidbody, this.frozenVel);
+        }
     }
 }
 

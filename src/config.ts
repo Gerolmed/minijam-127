@@ -1,6 +1,4 @@
 import GameConfig = Phaser.Types.Core.GameConfig;
-
-
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 import Constants from "./Constants";
 
@@ -34,10 +32,10 @@ export default {
             gravity: {
                 y: 0
             },
-            // debug: {
-            //     showBody: true,
-            //     showStaticBody: true,
-            // }
+            debug: {
+                showBody: true,
+                showStaticBody: true,
+            }
         }
     },
 
