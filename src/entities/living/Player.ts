@@ -32,7 +32,7 @@ export class Player extends LivingEntity implements IShootSource{
 
         this.setName("Player")
 
-        this.playerInput = new PlayerIngameInput(this.scene);
+        this.playerInput = new PlayerIngameInput(this.scene, () => this.tryDash());
         this.projectileShooter = new ProjectileShooter(this, this);
         this.animator.load(PlayerAnimationKeys.BASE);
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
@@ -193,6 +193,16 @@ export class Player extends LivingEntity implements IShootSource{
 
     getShootPos(dir: Vector2): Vector2 {
         return new Vector2(this.x, this.y).add(this.getShootDirOffset(dir))
+    }
+
+    private tryDash() {
+        if(TimeManager.isGameFrozen) return
+        if(this.hasDied) return
+        this.doDash();
+    }
+
+    private doDash() {
+
     }
 }
 

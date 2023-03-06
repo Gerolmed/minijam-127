@@ -19,7 +19,7 @@ export class MainMenuScene extends Scene {
                 overworld: [
                     {
                         paths: [
-                            "assets/audio/music/overworld/PreVersion.mp3",
+                            "assets/audio/music/overworld/Theme.mp3",
                         ]
                     },
                 ]
