@@ -28,6 +28,7 @@ export class CampfireEntity extends InteractableEntity {
         super.doInteract(player);
         TimeManager.setGameFreeze(true)
         player.forceIdle()
+        player.heal(player.getMaxHealth())
         this.unlocked = true;
         this.animator.play(CampfireAnimationKeys.ACTIVATED)
         const hudScene = this.scene.sys.scenePlugin.get<HUDScene>("HUDScene");
