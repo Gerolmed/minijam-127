@@ -39,6 +39,11 @@ export class WorldStoreManager {
         await this.persistenceManager.set("save", this.store);
     }
 
+    clear() {
+        this.store = this.createEmptySave();
+        this.persistenceManager.delete();
+    }
+
     private createEmptySave(): WorldStore {
         return {
             ratKingKilled: false,

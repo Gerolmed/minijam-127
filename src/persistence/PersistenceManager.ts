@@ -6,7 +6,6 @@ const MAIN_KEY_STORE = "MainKeyStore";
 
 export class PersistenceManager {
 
-    private valueStore?: ValueStore;
     private db?: IDBDatabase;
 
     private constructor() {
@@ -58,6 +57,13 @@ export class PersistenceManager {
             }
             request.onerror = reject;
         })
+    }
+
+
+    delete() {
+        if(!this.db)
+            return;
+
     }
 
     private login(req: IDBOpenDBRequest): Promise<IDBDatabase> {
