@@ -27,7 +27,7 @@ export enum EnemyFacing {
     DOWN
 }
 
-type EnemyAiParams = {
+export type EnemyAiParams = {
     hasLos: boolean,
     playerDir: [number, number],
     distanceToPlayer: number,
@@ -76,24 +76,29 @@ export class Enemy extends LivingEntity implements IShootSource {
             projectileAnimKeys: SpinnyProjectileAnimationKeys
         });
 
-        this.behaviour = new BehaviourBuilder<EnemyAiParams>()
+        this.behaviour = this.createBehaviour();
+    }
+
+
+
+    protected createBehaviour(): BehaviourStateMachine<EnemyAiParams> {
+        return new BehaviourBuilder<EnemyAiParams>()
             .addState("neutral")
-                .onUpdate((param) => this.setToOrigin())
-                .and()
+            .onUpdate((param) => this.setToOrigin())
+            .and()
             .addState("aggro")
-                .onUpdate((param, delta) => this.moveIntoAttackRange(param, delta))
-                .addTransition("retreat", (param, delta) => this.shouldAggroToRetreating(param, delta))
-                .and()
+            .onUpdate((param, delta) => this.moveIntoAttackRange(param, delta))
+            .addTransition("retreat", (param, delta) => this.shouldAggroToRetreating(param, delta))
+            .and()
             .addState("retreat")
-                .onUpdate((param, delta) => this.retreat(param, delta))
-                .addTransition("neutral", (param, delta) => this.shouldRetreatToNeutral(param, delta))
-                .and()
+            .onUpdate((param, delta) => this.retreat(param, delta))
+            .addTransition("neutral", (param, delta) => this.shouldRetreatToNeutral(param, delta))
+            .and()
             .setStart("neutral")
             .addTransition("aggro", (param, delta) => this.shouldAggro(param, delta))
             .setDataProvider(() => this.getAiParams())
             .build()
     }
-
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
