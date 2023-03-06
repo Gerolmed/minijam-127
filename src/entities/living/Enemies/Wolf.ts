@@ -1,6 +1,10 @@
 import {Enemy, EnemyFacing} from "./Enemy";
 import {WolfAnimationKeys} from "../../../animations/EnemyAnimationKeys";
 import Vector2 = Phaser.Math.Vector2;
+import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
+import PhysicsLayers from "../../PhysicsLayers";
+import {Theme} from "../../../painting/Theme";
+import {SpinnyProjectileAnimationKeys} from "../../../animations/ProjectileAnimationKeys";
 
 
 export class Wolf extends Enemy {
@@ -32,5 +36,20 @@ export class Wolf extends Enemy {
 
         throw new Error("Invalid animation frame");
     }
+
+
+    protected createProjectileConfig(): ProjectileShooter {
+        return new ProjectileShooter(this, this, {
+            selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
+            hitLayer: PhysicsLayers.PLAYER,
+            projectileSpeed: 2,
+            frequency: 1,
+            projectiles: 1,
+            splashTheme: Theme.PURPLE,
+            projectileAnimKeys: SpinnyProjectileAnimationKeys,
+            audioName: "enemy_shoot"
+        });
+    }
+
 
 }

@@ -59,19 +59,24 @@ export class Enemy extends LivingEntity implements IShootSource {
         super(scene, origin.x, origin.y);
 
         this.facing = EnemyFacing.DOWN;
-        this.projectileShooter = new ProjectileShooter(this, this, {
-            selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
-            hitLayer: PhysicsLayers.PLAYER,
-            projectileSpeed: 1.5,
-            frequency: 0.65,
-            splashTheme: Theme.PURPLE,
-            projectileAnimKeys: SpinnyProjectileAnimationKeys,
-            audioName: "enemy_shoot"
-        });
+        this.projectileShooter = this.createProjectileConfig();
 
         this.behaviour = this.createBehaviour();
     }
 
+
+    protected createProjectileConfig() {
+        return new ProjectileShooter(this, this, {
+            selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
+            hitLayer: PhysicsLayers.PLAYER,
+            projectileSpeed: 1.5,
+            frequency: 2.5,
+            projectiles: 3,
+            splashTheme: Theme.PURPLE,
+            projectileAnimKeys: SpinnyProjectileAnimationKeys,
+            audioName: "enemy_shoot"
+        });
+    }
 
 
     protected createBehaviour(): BehaviourStateMachine<EnemyAiParams> {

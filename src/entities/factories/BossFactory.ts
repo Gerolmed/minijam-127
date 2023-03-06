@@ -6,6 +6,8 @@ import GameScene from "../../scenes/Game";
 import {PhysicsSocket} from "../living/PhysicsSocket";
 import Vector2 = Phaser.Math.Vector2;
 import {WorldStoreManager} from "../../world/WorldSave";
+import {Alpha} from "../living/Enemies/Alpha";
+import {OpportunisticOpossum} from "../living/Enemies/OpportunisticOpossum";
 
 export class BossFactory implements IEntityFactory {
 
@@ -45,6 +47,10 @@ export class BossFactory implements IEntityFactory {
         let boss = undefined;
         if(enemyType === "Ratking" && !this.worldStore.getStore().ratKingKilled) {
             boss = new RatKing(this.scene, this.physicsSocket, pos, topLeftCorner, new Vector2(botRightCorner.x - topLeftCorner.x,botRightCorner.y - topLeftCorner.y))
+        } else if(enemyType === "Alpha" && !this.worldStore.getStore().ratKingKilled) {
+            boss = new Alpha(this.scene, this.physicsSocket, pos, topLeftCorner, new Vector2(botRightCorner.x - topLeftCorner.x,botRightCorner.y - topLeftCorner.y))
+        } else if(enemyType === "Opossum" && !this.worldStore.getStore().ratKingKilled) {
+            boss = new OpportunisticOpossum(this.scene, this.physicsSocket, pos, topLeftCorner, new Vector2(botRightCorner.x - topLeftCorner.x,botRightCorner.y - topLeftCorner.y))
         }
 
         if(!boss)

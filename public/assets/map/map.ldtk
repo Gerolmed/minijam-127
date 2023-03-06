@@ -679,7 +679,11 @@
 			{ "id": "Greater_Fish", "tileId": null, "color": 16705377, "__tileSrcRect": null },
 			{ "id": "Triple_Projectiles", "tileId": null, "color": 16705377, "__tileSrcRect": null }
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
-		{ "identifier": "Boss", "uid": 82, "values": [{ "id": "Ratking", "tileId": null, "color": 12470831, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
+		{ "identifier": "Boss", "uid": 82, "values": [
+			{ "id": "Ratking", "tileId": null, "color": 12470831, "__tileSrcRect": null },
+			{ "id": "Alpha", "tileId": null, "color": 14120515, "__tileSrcRect": null },
+			{ "id": "Opossum", "tileId": null, "color": 15389866, "__tileSrcRect": null }
+		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
 	], "externalEnums": [], "levelFields": [] },
 	"levels": [
 		{
@@ -2832,9 +2836,9 @@
 									"id": "V_String",
 									"params": ["26,22"]
 								}] },
-								{ "__identifier": "Type", "__value": "Ratking", "__type": "LocalEnum.Boss", "__tile": null, "defUid": 83, "realEditorValues": [{
+								{ "__identifier": "Type", "__value": "Alpha", "__type": "LocalEnum.Boss", "__tile": null, "defUid": 83, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Ratking"]
+									"params": ["Alpha"]
 								}] }
 							]
 						}
@@ -8722,9 +8726,9 @@
 									"id": "V_String",
 									"params": ["23,22"]
 								}] },
-								{ "__identifier": "Type", "__value": "Ratking", "__type": "LocalEnum.Boss", "__tile": null, "defUid": 83, "realEditorValues": [{
+								{ "__identifier": "Type", "__value": "Opossum", "__type": "LocalEnum.Boss", "__tile": null, "defUid": 83, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Ratking"]
+									"params": ["Opossum"]
 								}] }
 							]
 						}
