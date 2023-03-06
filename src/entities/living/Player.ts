@@ -19,6 +19,7 @@ export class Player extends LivingEntity implements IShootSource{
     private playerInput!: PlayerIngameInput;
     private projectileShooter!: ProjectileShooter;
     private lastDir: Vector2 = new Vector2(0,1);
+    private lastMoveDir: Vector2 = new Vector2(0,1);
 
     private tilemap?: ChunkedTilemap;
     private items: Item[] = []
@@ -63,19 +64,24 @@ export class Player extends LivingEntity implements IShootSource{
         this.hasDied = true;
         TimeManager.setGameFreeze(true);
         this.animator.play(PlayerAnimationKeys.DEATH, 0, true);
+        this.gameScene.getJukebox().setTheme("")
         this.scene.sys.scenePlugin.get<HUDScene>("HUDScene").DoDeathAnimation().finally(() => this.gameScene.deathReset());
     }
 
     protected safeUpdate(deltaTime: number) {
         super.safeUpdate(deltaTime);
 
-        this.playerInput.update(deltaTime);
-        this.projectileShooter.update(deltaTime);
+        if(!this.isDashing) {
+            this.playerInput.update(deltaTime);
+            this.projectileShooter.update(deltaTime);
 
-        const shootDir = this.handleShooting(deltaTime);
-        const moveDir = this.handleMovement(deltaTime);
+            const shootDir = this.handleShooting(deltaTime);
+            const moveDir = this.handleMovement(deltaTime);
 
-        this.handleAnimation(moveDir, shootDir);
+            this.handleAnimation(moveDir, shootDir);
+        } else {
+            this.updateDash(deltaTime);
+        }
 
         if(this.tilemap)
             this.tilemap.setPlayerPosition(this.x, this.y);
@@ -90,7 +96,10 @@ export class Player extends LivingEntity implements IShootSource{
     }
 
     private handleMovement(deltaTime: number): Vector2  {
+
         const dir = this.playerInput.getMovementVector();
+        this.lastMoveDir = dir;
+
         let targetX = dir.x * this.speed;
         let targetY = dir.y * this.speed;
         const current = this.rigidbody.velocity;
@@ -198,11 +207,30 @@ export class Player extends LivingEntity implements IShootSource{
     private tryDash() {
         if(TimeManager.isGameFrozen) return
         if(this.hasDied) return
+        if(this.isDashing) return
+        if(this.lastMoveDir.lengthSq() === 0) return
         this.doDash();
     }
 
-    private doDash() {
+    damage(damage: number, knockBack?: Phaser.Math.Vector2) {
+        if(this.isDashing) return
+        super.damage(damage, knockBack);
+    }
 
+    private isDashing = false;
+    private dashTimer = 0;
+
+    private doDash() {
+        this.dashTimer = .1;
+        this.isDashing = true;
+    }
+
+    private updateDash(deltaTime: number) {
+        this.dashTimer -= deltaTime;
+        this.scene.matter.body.setVelocity(this.rigidbody, this.lastMoveDir.clone().scale(15));
+        if(this.dashTimer > 0) return
+        this.isDashing = false;
+        this.scene.matter.body.setVelocity(this.rigidbody, new Vector2());
     }
 }
 
