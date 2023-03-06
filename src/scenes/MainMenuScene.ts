@@ -33,6 +33,7 @@ export class MainMenuScene extends Scene {
         this.load.image("border", "assets/Menu/Border.png")
         this.load.aseprite("btn_continue", "assets/Menu/Button_Continue.png", "assets/Menu/Button_Continue.json")
         this.load.aseprite("btn_new_game", "assets/Menu/Button_NewGame.png", "assets/Menu/Button_NewGame.json")
+        this.load.aseprite("btn_discord", "assets/Menu/Discord.png", "assets/Menu/Discord.json")
         this.load.image("logo", "assets/Menu/Logo.png")
         this.load.image("splat_cat", "assets/Menu/SplatCat.png")
         this.load.audio("ui_error", ["assets/audio/sfx/ui/Error.mp3"])
@@ -62,6 +63,7 @@ export class MainMenuScene extends Scene {
 
         this.add.existing(new Button(this, "btn_new_game",camera.width -250, 150, () => this.startNewGame()).setScale(Constants.UPSCALE_FACTOR))
         this.add.existing(new Button(this, "btn_continue",camera.width -250, 250, () => this.continueGame()).setScale(Constants.UPSCALE_FACTOR))
+        this.add.existing(new Button(this, "btn_discord",camera.width -120, camera.height - 90, () => this.visitDiscord()).setScale(Constants.UPSCALE_FACTOR))
 
         this.events.on('shutdown', () => this.jukebox.kill())
 
@@ -82,12 +84,15 @@ export class MainMenuScene extends Scene {
 
     private startNewGame() {
         WorldStoreManager.get().clear().then(() => {
-            this.sys.scenePlugin.start("HUDScene")
-            this.sys.scenePlugin.launch("GameScene")
+            this.sys.scenePlugin.start("HUDScene");
+            this.sys.scenePlugin.launch("GameScene");
         });
     }
+    private visitDiscord() {
+        window.open("https://endrealm.net/discord",'_blank');
+    }
     private continueGame() {
-        this.sys.scenePlugin.start("HUDScene")
-        this.sys.scenePlugin.launch("GameScene")
+        this.sys.scenePlugin.start("HUDScene");
+        this.sys.scenePlugin.launch("GameScene");
     }
 }
