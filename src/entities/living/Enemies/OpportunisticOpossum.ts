@@ -1,5 +1,9 @@
 import {BossEnemy} from "./BossEnemy";
-import {AlphaAnimationKeys, OpossumAnimationKeys} from "../../../animations/EnemyAnimationKeys";
+import {
+    AlphaAnimationKeys,
+    OpossumAnimationKeys,
+    OpportunisticOpossumAnimationKeys
+} from "../../../animations/EnemyAnimationKeys";
 import {EnemyFacing} from "./Enemy";
 import Vector2 = Phaser.Math.Vector2;
 
@@ -8,8 +12,8 @@ export class OpportunisticOpossum extends BossEnemy {
     create() {
         super.create();
 
-        this.animator.load(AlphaAnimationKeys.BASE);
-        this.animator.play(AlphaAnimationKeys.IDLE_DOWN);
+        this.animator.load(OpportunisticOpossumAnimationKeys.BASE);
+        this.animator.play(OpportunisticOpossumAnimationKeys.IDLE_DOWN);
 
         this.setupHealth(200);
 
@@ -18,13 +22,13 @@ export class OpportunisticOpossum extends BossEnemy {
 
     getAnimationFrame(facing: EnemyFacing, animation: "WALK" | "IDLE"): string {
         if(facing === EnemyFacing.RIGHT)  {
-            return animation === "WALK"? AlphaAnimationKeys.WALK_RIGHT: AlphaAnimationKeys.IDLE_RIGHT;
+            return animation === "WALK"? OpportunisticOpossumAnimationKeys.WALK_RIGHT: OpportunisticOpossumAnimationKeys.IDLE_RIGHT;
         } else if(facing === EnemyFacing.LEFT)  {
-            return animation === "WALK"? AlphaAnimationKeys.WALK_LEFT: AlphaAnimationKeys.IDLE_LEFT;
+            return animation === "WALK"? OpportunisticOpossumAnimationKeys.WALK_LEFT: OpportunisticOpossumAnimationKeys.IDLE_LEFT;
         } else if(facing === EnemyFacing.TOP)  {
-            return animation === "WALK"? AlphaAnimationKeys.WALK_UP: AlphaAnimationKeys.IDLE_UP;
+            return animation === "WALK"? OpportunisticOpossumAnimationKeys.WALK_UP: OpportunisticOpossumAnimationKeys.IDLE_UP;
         } else if(facing === EnemyFacing.DOWN)  {
-            return animation === "WALK"? AlphaAnimationKeys.WALK_DOWN: AlphaAnimationKeys.IDLE_DOWN;
+            return animation === "WALK"? OpportunisticOpossumAnimationKeys.WALK_DOWN: OpportunisticOpossumAnimationKeys.IDLE_DOWN;
         }
 
         throw new Error("Invalid animation frame")
