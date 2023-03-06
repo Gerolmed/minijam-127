@@ -47,7 +47,7 @@ export class NPCFactory implements IEntityFactory {
             skinAnim = RaymondAnimationKeys;
         } else if(skin === "Ganymede") {
             skinAnim = GanymedeAnimationKeys;
-        } else if(skin === "NeonCat") {
+        } else if(skin === "NyanCat") {
             skinAnim = NyanCatAnimationKeys;
         }
 

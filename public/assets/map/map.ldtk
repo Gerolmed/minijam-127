@@ -9570,7 +9570,10 @@
 									"id": "V_Bool",
 									"params": [ true ]
 								}] },
-								{ "__identifier": "Name", "__value": "Maxwell", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [] }
+								{ "__identifier": "Name", "__value": "NyanCat", "__type": "String", "__tile": null, "defUid": 86, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["NyanCat"]
+								}] }
 							]
 						}
 					]
