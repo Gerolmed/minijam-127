@@ -19,6 +19,7 @@ import {
 import {
     AlphaAnimationKeys,
     OpossumAnimationKeys,
+    OpportunisticOpossumAnimationKeys,
     RatAnimationKeys,
     RatKingAnimationKeys,
     WolfAnimationKeys
@@ -132,6 +133,12 @@ export default function(load: LoaderPlugin) {
         AlphaAnimationKeys.BASE,
         "assets/Sprites/Alpha/Alpha.png",
         "assets/Sprites/Alpha/Alpha.json",
+    );
+
+    load.aseprite(
+        OpportunisticOpossumAnimationKeys.BASE,
+        "assets/Sprites/OpportunisticOpossum/OpportunisticOpossum.png",
+        "assets/Sprites/OpportunisticOpossum/OpportunisticOpossum.json",
     );
 
 
