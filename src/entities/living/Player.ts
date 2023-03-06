@@ -73,12 +73,18 @@ export class Player extends LivingEntity implements IShootSource{
     }
 
     death() {
-        if(this.hasDied) return
-        this.hasDied = true;
-        TimeManager.setGameFreeze(true);
-        this.animator.play(PlayerAnimationKeys.DEATH, 0, true);
-        this.gameScene.getJukebox().setTheme("")
+        if(!this.hasDied) TimeManager.setGameFreeze(true);
+        super.death()
+    }
+
+    protected safeDeath() {
         this.scene.sys.scenePlugin.get<HUDScene>("HUDScene").doDeathAnimation().finally(() => this.gameScene.deathReset());
+    }
+
+    playDeathAnim(): Promise<void> {
+        this.gameScene.getJukebox().setTheme("")
+
+        return new Promise<void>(resolve => this.animator.play(PlayerAnimationKeys.DEATH, 0, true, resolve));
     }
 
     protected safeUpdate(deltaTime: number) {

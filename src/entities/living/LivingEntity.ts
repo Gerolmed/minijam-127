@@ -124,7 +124,7 @@ export class LivingEntity extends Entity implements IDamageable {
     death() {
         if(this.hasDied) return
         this.hasDied = true;
-        this.playDeathAnim().then(() => this.destroy());
+        this.playDeathAnim().then(() => this.safeDeath());
     }
 
 
@@ -165,5 +165,9 @@ export class LivingEntity extends Entity implements IDamageable {
 
             this.scene.matter.body.setVelocity(this.rigidbody, this.frozenVel);
         }
+    }
+
+    protected safeDeath() {
+        this.destroy()
     }
 }

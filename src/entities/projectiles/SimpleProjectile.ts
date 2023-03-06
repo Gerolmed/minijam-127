@@ -74,11 +74,15 @@ export class SimpleProjectile extends ProjectileEntity {
     }
 
     static fire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig){
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, shooterConfig.range * 3 / shooterConfig.projectileSpeed, shooterConfig.projectileAnimKeys, shooterConfig.hitBoxSizeMod);
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, this.ttlFromRangeAndSpeed(shooterConfig.range, shooterConfig.projectileSpeed), shooterConfig.projectileAnimKeys, shooterConfig.hitBoxSizeMod);
     }
 
     static enemyFire(scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) {
-        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, undefined, shooterConfig.projectileAnimKeys, shooterConfig.hitBoxSizeMod);
+        return new SimpleProjectile(scene, x, y, shooterConfig.hitLayer, shooterConfig.selfLayer, dir.scale(shooterConfig.projectileSpeed), shooterConfig.splashTheme, this.ttlFromRangeAndSpeed(shooterConfig.range, shooterConfig.projectileSpeed), shooterConfig.projectileAnimKeys, shooterConfig.hitBoxSizeMod);
+    }
+
+    static ttlFromRangeAndSpeed(range: number, speed: number) {
+        return range * 3 / speed
     }
 
 }
