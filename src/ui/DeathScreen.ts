@@ -1,5 +1,6 @@
 import {doAlphaTween, doTextTween} from "../animations/ColorUtils";
 import {Scene} from "phaser";
+import GameObject = Phaser.GameObjects.GameObject;
 
 export class DeathScreen {
 
@@ -9,12 +10,18 @@ export class DeathScreen {
     }
 
     private resolve?: () => void;
+
+    private objects: GameObject[] = [];
+
+
+    remove() {
+        this.resolve = undefined;
+
+        this.objects.forEach(obj => obj.destroy(true));
+        this.objects = [];
+    }
+
     async doDeathFade(): Promise<void> {
-
-        this.scene.input.keyboard?.addKey("space").on("down", () => {
-            this.resolve?.();
-        })
-
         const camera = this.scene.cameras.main;
 
         const graphics = this.scene.add.graphics()
@@ -29,10 +36,15 @@ export class DeathScreen {
         this.scene.sound.add("game_over", {volume: 1}).play()
         await doTextTween(this.scene, deathTextContent, 3000, txt => deathText.setText(txt));
         await new Promise(res => setTimeout(res,500))
-        this.scene.add.text(camera.displayWidth/2, camera.displayHeight/2+12, "Press 'space' to continue" , { fontFamily: "EndFont", fontSize: 100}).setScale(.06).setOrigin(.5,.5)
+        const tmp = this.scene.add.text(camera.displayWidth/2, camera.displayHeight/2+12, "Press 'space' to continue" , { fontFamily: "EndFont", fontSize: 100}).setScale(.06).setOrigin(.5,.5)
 
+        this.scene.input.keyboard?.addKey("space").once("down", () => {
+            this.resolve?.();
+        })
 
         await new Promise<void>(res => this.resolve = res)
+
+        this.objects.push(graphics, deathText, tmp);
     }
     async doDeathFadeAway(): Promise<void> {
 

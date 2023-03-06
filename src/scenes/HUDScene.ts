@@ -29,6 +29,8 @@ export class HUDScene extends Scene {
     }
 
     create() {
+        this.started = false;
+
         this.saveScreen = new SaveScreen(this);
         this.deathScreen = new DeathScreen(this);
         this.victoryScreen = new VictoryScreen(this);
@@ -62,6 +64,10 @@ export class HUDScene extends Scene {
 
     doSaveFade(doSave: () => Promise<void>): Promise<void> {
         return this.saveScreen.doSaveFade(doSave);
+    }
+
+    removeDeath() {
+        this.deathScreen.remove();
     }
 
     async doDeathAnimation(): Promise<void> {
