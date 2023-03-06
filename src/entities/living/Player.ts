@@ -10,6 +10,8 @@ import TimeManager from "../../TimeManager";
 import {HUDScene} from "../../scenes/HUDScene";
 import {CooldownManager} from "../../behaviour/CooldownManager";
 import AudioManager from "../../util/AudioManager";
+import {WorldStoreManager} from "../../world/WorldSave";
+import ItemRegistry from "../../items/ItemRegistry";
 import Vector2 = Phaser.Math.Vector2;
 import Color = Phaser.Display.Color;
 
@@ -29,6 +31,8 @@ export class Player extends LivingEntity implements IShootSource{
 
 
     public create() {
+
+
         super.create();
         this.setDepth(100)
         this.setupHealth(100);
@@ -42,6 +46,9 @@ export class Player extends LivingEntity implements IShootSource{
         this.animator.play(PlayerAnimationKeys.IDLE_DOWN);
 
         this.physicsOffset = new Vector2(-1,-2);
+
+        const items: string[] = WorldStoreManager.get().getStore().raw["items"] || []
+        items.forEach(item => this.collectItem(ItemRegistry.getItem(item)!, false))
     }
 
     protected createPhysicsConfig(): IBodyDefinition {
@@ -54,9 +61,14 @@ export class Player extends LivingEntity implements IShootSource{
         };
     }
 
-    public collectItem(item: Item) {
-        this.scene.sound.add("collect_item", {volume: AudioManager.getSFXVolume()}).play();
-        this.items.push(item);
+    public collectItem(item: Item, audio = true) {
+        if(audio) {
+            this.scene.sound.add("collect_item", {volume: AudioManager.getSFXVolume()}).play();
+        }
+        if(item.isPersistent()) {
+            this.items.push(item);
+            WorldStoreManager.get().getStore().raw["items"] = this.items.map(item => item.ID)
+        }
         item.apply(this);
     }
 

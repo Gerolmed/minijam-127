@@ -13,6 +13,7 @@ export class HUDScene extends Scene {
     private saveScreen!: SaveScreen;
     private deathScreen!:DeathScreen;
     private victoryScreen!: VictoryScreen;
+    private healthbar?: PlayerHealthBar;
 
 
     constructor() {
@@ -47,9 +48,7 @@ export class HUDScene extends Scene {
         // Black Magic value I hate math
         camera.setScroll(-480, -270);
 
-        const player = this.gameScene.getEntityByName<Player>("Player")!;
-
-        new PlayerHealthBar(this, player)
+        this.refresh()
     }
 
     update(time: number, delta: number) {
@@ -76,5 +75,11 @@ export class HUDScene extends Scene {
     }
     async doVictoryAnimation(): Promise<void> {
         return this.victoryScreen.doFade();
+    }
+
+    refresh() {
+        const player = this.gameScene.getEntityByName<Player>("Player")!;
+        this.healthbar?.remove();
+        this.healthbar = new PlayerHealthBar(this, player)
     }
 }

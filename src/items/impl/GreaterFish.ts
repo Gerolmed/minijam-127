@@ -1,7 +1,6 @@
 import {ItemEntity} from "../ItemEntity";
 import {Player} from "../../entities/living/Player";
 import {Item} from "../Item";
-import {RatAnimationKeys} from "../../animations/EnemyAnimationKeys";
 
 export class GreaterFish extends Item {
 
@@ -20,5 +19,9 @@ export class GreaterFish extends Item {
 
     getBaseSprite(): string {
         return "item_greater_fish"
+    }
+
+    isPersistent(): boolean {
+        return false;
     }
 }

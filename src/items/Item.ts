@@ -16,4 +16,8 @@ export class Item {
     canBeCollected(other: Player) {
         return true;
     }
+
+    isPersistent(): boolean {
+        return true;
+    }
 }
