@@ -1,4 +1,5 @@
 import {Scene} from "phaser";
+import AudioManager from "../util/AudioManager";
 import WebAudioSound = Phaser.Sound.WebAudioSound;
 
 type ThemeTrack = {
@@ -102,8 +103,6 @@ export class Jukebox {
 
 
     public update(deltaTime: number) {
-        this.current?.setVolume(this.fadeValue);
-        this.previous?.setVolume(1-this.fadeValue);
 
 
         if(this.fading) {
@@ -114,6 +113,9 @@ export class Jukebox {
             this.previous.destroy();
             this.previous = undefined;
         }
+
+        this.current?.setVolume(this.fadeValue * AudioManager.getMusicVolume());
+        this.previous?.setVolume(AudioManager.getMusicVolume()-this.fadeValue* AudioManager.getMusicVolume());
 
         if(!this.fading && this.current && this.current.totalDuration - this.current.seek <= THEME_CROSS_FADE) {
             this.doFade(false, THEME_CROSS_FADE, this.getNext())

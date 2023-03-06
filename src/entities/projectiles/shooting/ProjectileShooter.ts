@@ -5,6 +5,7 @@ import {ProjectileEntity} from "../ProjectileEntity";
 import {SimpleProjectileKeys, SplatsLarge, SplatsSmall} from "../../../animations/ProjectileAnimationKeys";
 import {Theme} from "../../../painting/Theme";
 import {IShootSource} from "../../living/IShootSource";
+import AudioManager from "../../../util/AudioManager";
 import Vector2 = Phaser.Math.Vector2;
 import Transform = Phaser.GameObjects.Components.Transform;
 
@@ -25,6 +26,7 @@ export type ShooterConfig = {
     splashTheme: Theme;
     splatsPath: string[];
     splatsExplode: string[];
+    audioName: string,
     fireProjectile: (scene: GameScene, x: number, y: number, dir: Vector2, shooterConfig: ShooterConfig) => ProjectileEntity;
 }
 
@@ -51,6 +53,7 @@ export class ProjectileShooter {
             range: 1,
             hitLayer: PhysicsLayers.ENEMY,
             selfLayer: PhysicsLayers.PLAYER_PROJECTILE,
+            audioName: "player_shoot",
             fireProjectile: SimpleProjectile.fire,
             ...config
         };
@@ -88,7 +91,10 @@ export class ProjectileShooter {
 
 
         for (let i = 0; i < this.config.projectiles; i++) {
-            setTimeout(() => this.fireProjectile(input, input.clone()), 333 * i / this.config.projectileSpeed)
+            setTimeout(() => {
+                this.source.gameScene.sound.add(this.config.audioName, {volume: AudioManager.getSFXVolume()})?.play()
+                this.fireProjectile(input, input.clone())
+            }, 333 * i / this.config.projectileSpeed)
         }
 
         if(this.config.hasBackShot) {

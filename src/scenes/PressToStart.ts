@@ -1,6 +1,5 @@
 import {Scene} from "phaser";
-import Constants from "../Constants";
-import {Button} from "../ui/Button";
+import AudioManager from "../util/AudioManager";
 
 export class PressToStart extends Scene {
     constructor() {
@@ -26,7 +25,7 @@ export class PressToStart extends Scene {
     }
 
     private openMenu() {
-        this.sound.add("ui_select").play();
+        this.sound.add("ui_select", {volume: AudioManager.getSFXVolume()}).play();
         this.sys.scenePlugin.start("MainMenu")
     }
 }

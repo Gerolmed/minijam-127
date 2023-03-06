@@ -5,13 +5,12 @@ import GameScene from "../../../scenes/Game";
 import PhysicsLayers from "../../PhysicsLayers";
 import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
 import {EnemyHealthBar} from "../../../ui/EnemyHealthBar";
-import {Animator} from "../../../animations/Animator";
 import {Theme} from "../../../painting/Theme";
 import {SpinnyProjectileAnimationKeys} from "../../../animations/ProjectileAnimationKeys";
 import {IShootSource} from "../IShootSource";
-import Vector2 = Phaser.Math.Vector2;
 import {BehaviourStateMachine} from "../../../behaviour/BehaviourStateMachine";
 import {BehaviourBuilder} from "../../../behaviour/BehaviourBuilder";
+import Vector2 = Phaser.Math.Vector2;
 
 
 export enum EnemyFacing {
@@ -66,7 +65,8 @@ export class Enemy extends LivingEntity implements IShootSource {
             projectileSpeed: 1.5,
             frequency: 0.65,
             splashTheme: Theme.PURPLE,
-            projectileAnimKeys: SpinnyProjectileAnimationKeys
+            projectileAnimKeys: SpinnyProjectileAnimationKeys,
+            audioName: "enemy_shoot"
         });
 
         this.behaviour = this.createBehaviour();

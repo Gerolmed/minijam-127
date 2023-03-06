@@ -1,5 +1,6 @@
 import {doAlphaTween, doTextTween} from "../animations/ColorUtils";
 import {Scene} from "phaser";
+import AudioManager from "../util/AudioManager";
 
 export class VictoryScreen {
 
@@ -26,7 +27,7 @@ export class VictoryScreen {
 
         await doAlphaTween(this.scene, 0, 1, 3000, (a) => graphics.setAlpha(a))
         await new Promise(res => setTimeout(res,200))
-        this.scene.sound.add("victory", {volume: 1})?.play()
+        this.scene.sound.add("victory", {volume: AudioManager.getMusicVolume()})?.play()
         await doTextTween(this.scene, deathTextContent, 2000, txt => deathText.setText(txt));
         await new Promise(res => setTimeout(res,500))
         this.scene.add.text(camera.displayWidth/2, camera.displayHeight/2+12, "Press 'space' to continue" , { fontFamily: "EndFont", fontSize: 100, color: "#d4715d"}).setScale(.06).setOrigin(.5,.5)

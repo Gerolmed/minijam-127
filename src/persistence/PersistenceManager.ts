@@ -1,6 +1,3 @@
-import {ValueStore} from "./ValueStore";
-
-
 const DATABASE_NAME = "SplatCatDB";
 const MAIN_KEY_STORE = "MainKeyStore";
 
@@ -63,9 +60,10 @@ export class PersistenceManager {
     async clear() {
         if(!this.db)
             return;
+        console.log(this.db.objectStoreNames)
 
-        const transaction = this.db.transaction(DATABASE_NAME, "readwrite");
-        const store = transaction.objectStore(DATABASE_NAME);
+        const transaction = this.db.transaction(MAIN_KEY_STORE, "readwrite");
+        const store = transaction.objectStore(MAIN_KEY_STORE);
         const request = store.clear();
 
         return new Promise((resolve, reject) => {
