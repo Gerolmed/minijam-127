@@ -26,14 +26,22 @@ export class BehaviourStateMachine<T> {
             if(!rule(data, deltaTime))
                 continue;
 
-            this.current = this.states.get(this.globalTransition.get(rule)!)!;
+            const to = this.globalTransition.get(rule);
+            if (!to) throw new Error(`Missing global rule`)
+            const toState = this.states.get(to!);
+            if (!toState) throw new Error(`Missing state for ID ${to} of global transition`)
+            this.current = toState;
         }
 
         for (const rule of this.current.transitions.keys()) {
             if(!rule(data, deltaTime))
                 continue;
+            const to = this.current.transitions.get(rule);
+            if (!to) throw new Error(`Missing target for rule of ${this.current.id}`)
+            const toState = this.states.get(to!);
+            if (!toState) throw new Error(`Missing state for ID ${to} of transition state ${this.current.id}`)
+            this.current = toState;
 
-            this.current = this.states.get(this.current.transitions.get(rule)!)!;
         }
 
         this.current.onUpdate.forEach(update => update(data, deltaTime))

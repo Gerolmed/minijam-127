@@ -1,5 +1,5 @@
 import {Enemy, EnemyAiParams} from "../Enemy";
-import {BehaviourBuilder, StateBuilder} from "../../../../behaviour/BehaviourBuilder";
+import {StateBuilder} from "../../../../behaviour/BehaviourBuilder";
 import {AttackStateBuilder} from "./AttackStateBuilder";
 import {SimpleProjectile} from "../../../projectiles/SimpleProjectile";
 import PhysicsLayers from "../../../PhysicsLayers";
@@ -20,13 +20,9 @@ export class ProjectileRingShoot extends AttackStateBuilder{
     private done = false;
     private started = false;
 
-    configure(builder: BehaviourBuilder<EnemyAiParams>) {
-        builder.addState("projectile_ring_shoot")
-    }
-
     protected doSetup(stateBuilder: StateBuilder<EnemyAiParams>): void {
         stateBuilder.onUpdate((data, deltaTime) => this.update(data, deltaTime))
-        stateBuilder.addTransition("aggro", data => this.checkDone())
+            .addTransition("aggro", data => this.checkDone())
     }
 
     private update(data: EnemyAiParams, deltaTime: number) {
