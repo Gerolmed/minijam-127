@@ -4,8 +4,6 @@ export type NpcAnimationType = {
 }
 
 
-
-
 export default Object.freeze({
     BASE: "Player",
     IDLE_LEFT: "Left_Idle",
@@ -16,6 +14,7 @@ export default Object.freeze({
     WALK_RIGHT: "Right_Walk",
     WALK_UP: "Back_Walk",
     WALK_DOWN: "Front_Walk",
+    DEATH: "Death",
 });
 
 export const MaxwellAnimationKeys = Object.freeze({

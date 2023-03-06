@@ -16,6 +16,7 @@ import {BossFactory} from "../entities/factories/BossFactory";
 import {ItemFactory} from "../entities/factories/ItemFactory";
 import {WorldStoreManager} from "../world/WorldSave";
 import {GLOBAL_DIALOG_DATA} from "../util/DialogData";
+import TimeManager from "../TimeManager";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
 
@@ -171,5 +172,11 @@ export default class GameScene extends Phaser.Scene {
 
         const worldStoreManager = WorldStoreManager.get();
         await worldStoreManager.write();
+    }
+
+    async deathReset() {
+        // Do reset to last campfire
+
+        TimeManager.setGameFreeze(false)
     }
 }

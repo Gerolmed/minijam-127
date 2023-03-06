@@ -16,7 +16,7 @@ import {
     SpinnyProjectileAnimationKeys,
     TinyPlayerProjectileAnimationKeys
 } from "./ProjectileAnimationKeys";
-import {OpossumAnimationKeys, RatAnimationKeys, WolfAnimationKeys} from "./EnemyAnimationKeys";
+import {OpossumAnimationKeys, RatAnimationKeys, RatKingAnimationKeys, WolfAnimationKeys} from "./EnemyAnimationKeys";
 import {CampfireAnimationKeys} from "./ObjectAnimationKeys";
 
 export default function(load: LoaderPlugin) {
@@ -114,6 +114,18 @@ export default function(load: LoaderPlugin) {
         WolfAnimationKeys.BASE,
         "assets/Sprites/Wolf/Wolf.png",
         "assets/Sprites/Wolf/Wolf.json",
+    );
+
+    load.aseprite(
+        RatKingAnimationKeys.BASE,
+        "assets/Sprites/Ratking/Ratking.png",
+        "assets/Sprites/Ratking/Ratking.json",
+    );
+
+    load.aseprite(
+        RatKingAnimationKeys.BASE,
+        "assets/Sprites/Alpha/Alpha.png",
+        "assets/Sprites/Alpha/Alpha.json",
     );
 
 
