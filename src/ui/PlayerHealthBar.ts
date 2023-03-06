@@ -32,4 +32,10 @@ export class PlayerHealthBar implements IHealthStatHandler{
         this.fill.width = health;
         this.recenter()
     }
+
+    remove() {
+        this.frame.destroy(true)
+        this.fill.destroy(true)
+        this.text.destroy(true)
+    }
 }

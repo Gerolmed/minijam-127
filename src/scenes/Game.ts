@@ -17,6 +17,7 @@ import {ItemFactory} from "../entities/factories/ItemFactory";
 import {WorldStoreManager} from "../world/WorldSave";
 import {GLOBAL_DIALOG_DATA} from "../util/DialogData";
 import TimeManager from "../TimeManager";
+import {HUDScene} from "./HUDScene";
 import FilterMode = Phaser.Textures.FilterMode;
 import Container = Phaser.GameObjects.Container;
 
@@ -193,12 +194,22 @@ export default class GameScene extends Phaser.Scene {
     }
 
     async deathReset() {
+        TimeManager.setGameFreeze(false);
         // Do reset to last campfire
         await this.tilemap.unloadAllChunks();
         await WorldStoreManager.get().write();
-
         this.sys.scenePlugin.launch("DeathTransition");
 
-        TimeManager.setGameFreeze(false);
+        this.entityContainer.getAll().forEach(value => value.destroy(true))
+        this.create()
+
+        await this.tilemap.unloadAllChunks();
+        this.entityContainer.getAll().forEach(value => value.destroy(true))
+        this.create()
+
+
+        this.sys.scenePlugin.get<HUDScene>("HUDScene").refresh();
+
+
     }
 }

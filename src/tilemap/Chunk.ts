@@ -10,13 +10,13 @@ import GameObject = Phaser.GameObjects.GameObject;
 import RenderTexture = Phaser.GameObjects.RenderTexture;
 import Sprite = Phaser.GameObjects.Sprite;
 import Transform = Phaser.GameObjects.Components.Transform;
-import BlendMode = Phaser.GameObjects.Components.BlendMode;
 import Color = Phaser.Display.Color;
 
 export class Chunk {
 
 
-    private gameObjects: GameObject[] = [];
+    private maskObjects: GameObject[] = [];
+    private renderObjects: GameObject[] = [];
     private masks: Map<Theme, RenderTexture> = new Map();
     private maskOffsetX: number = 0;
     private maskOffsetY: number = 0;
@@ -72,7 +72,7 @@ export class Chunk {
                         layer.__cHei * layer.__gridSize
                     )
                     maskTexture.setOrigin(0, 0);
-                    this.gameObjects.push(maskTexture);
+                    this.maskObjects.push(maskTexture);
                     this.masks.set(theme, maskTexture);
                 }
                 const mask = this.masks.get(theme);
@@ -138,7 +138,7 @@ export class Chunk {
             renderTexture.setMask(mask.createBitmapMask());
 
         params.mapContainer.add(renderTexture);
-        this.gameObjects.push(renderTexture);
+        this.renderObjects.push(renderTexture);
 
         this.renderLayer(layer, scene, params, walls, grid, theme, renderTexture)
     }
@@ -212,8 +212,10 @@ export class Chunk {
             })
         })
 
-        this.gameObjects.forEach(object => object.destroy(false));
-        this.gameObjects = [];
+        this.maskObjects.forEach(object => object.destroy(true));
+        this.maskObjects = [];
+        this.renderObjects.forEach(object => object.destroy(false));
+        this.renderObjects = [];
 
         this.entities.forEach(entity => entity.isAlive && entity.destroy());
         this.entities = [];
