@@ -1,5 +1,5 @@
 import {BehaviourStateMachine, State, TransitionRule, UpdateRule} from "./BehaviourStateMachine";
-
+import {IStateBuilderConfigurer} from "./IStateBuilderConfigurer";
 
 
 export class BehaviourBuilder<T> {
@@ -21,6 +21,11 @@ export class BehaviourBuilder<T> {
             onUpdate: updates,
             transitions
         })
+    }
+
+    addFromBuilder(builder: IStateBuilderConfigurer<T>) {
+        builder.configure(this);
+        return this;
     }
 
     addState(id: string): StateBuilder<T> {
@@ -56,7 +61,7 @@ export class BehaviourBuilder<T> {
 }
 
 
-class StateBuilder<T> {
+export class StateBuilder<T> {
 
 
     private readonly transitionRules: Map<TransitionRule<T>, string> = new Map();
