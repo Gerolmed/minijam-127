@@ -4,6 +4,7 @@ import {EnemyFacing} from "./Enemy";
 import TimeManager from "../../../TimeManager";
 import {HUDScene} from "../../../scenes/HUDScene";
 import Vector2 = Phaser.Math.Vector2;
+import {WorldStoreManager} from "../../../world/WorldSave";
 
 export class Alpha extends BossEnemy {
 
@@ -13,9 +14,16 @@ export class Alpha extends BossEnemy {
         this.animator.load(AlphaAnimationKeys.BASE);
         this.animator.play(AlphaAnimationKeys.IDLE_DOWN);
 
-        this.setupHealth(200);
+        this.setupHealth(600);
 
         this.physicsOffset = new Vector2(-1,-2);
+    }
+
+    protected safeDeath() {
+        this.gameScene.getJukebox().setTheme("overworld");
+        super.safeDeath();
+
+        WorldStoreManager.get().getStore().alphaKilled = true;
     }
 
     getAnimationFrame(facing: EnemyFacing, animation: "WALK" | "IDLE"): string {
