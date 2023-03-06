@@ -1,5 +1,6 @@
 import Sprite = Phaser.GameObjects.Sprite;
 import {Scene} from "phaser";
+import AudioManager from "../util/AudioManager";
 
 export class Button extends Sprite {
     constructor(scene: Scene, baseName: string, x: number, y: number, private readonly action?: () => any) {
@@ -7,8 +8,8 @@ export class Button extends Sprite {
         this.anims.createFromAseprite(baseName)
         this.anims.play("Normal")
 
-        const navigateSound = this.scene.sound.add("ui_navigate", {volume: 1});
-        const selectSound = this.scene.sound.add("ui_select", {volume: 1});
+        const navigateSound = this.scene.sound.add("ui_navigate", {volume: AudioManager.getSFXVolume()});
+        const selectSound = this.scene.sound.add("ui_select", {volume: AudioManager.getSFXVolume()});
 
         this.setInteractive({ cursor: 'pointer' })
 
