@@ -225,13 +225,13 @@ export class Player extends LivingEntity implements IShootSource{
 
     private doDash() {
         this.cooldownManager.use("dash")
-        this.dashTimer = .1;
+        this.dashTimer = .15;
         this.isDashing = true;
     }
 
     private updateDash(deltaTime: number) {
         this.dashTimer -= deltaTime;
-        this.scene.matter.body.setVelocity(this.rigidbody, this.lastMoveDir.clone().scale(15));
+        this.scene.matter.body.setVelocity(this.rigidbody, this.lastMoveDir.clone().scale(10));
         if(this.dashTimer > 0) return
         this.isDashing = false;
         this.scene.matter.body.setVelocity(this.rigidbody, new Vector2());
