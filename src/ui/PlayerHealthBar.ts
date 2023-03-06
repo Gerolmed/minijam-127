@@ -9,9 +9,9 @@ export class PlayerHealthBar implements IHealthStatHandler{
     private text: Phaser.GameObjects.Sprite;
     constructor(private readonly scene: Scene, player: Player) {
 
-        this.frame = scene.add.nineslice(0,2, "hp_bar_frame", 0, 50, 9,3,3,3,3)
-        this.fill = scene.add.nineslice(0,2, "hp_bar_fill", 0, 50, 9,3,3,3,3)
-        this.text = scene.add.sprite(0,2, "hp_bar_text")
+        this.frame = scene.add.nineslice(0,2* Constants.UPSCALE_FACTOR, "hp_bar_frame", 0, 50, 9,3,3,3,3).setScale(Constants.UPSCALE_FACTOR)
+        this.fill = scene.add.nineslice(0,2* Constants.UPSCALE_FACTOR, "hp_bar_fill", 0, 50, 9,3,3,3,3).setScale(Constants.UPSCALE_FACTOR)
+        this.text = scene.add.sprite(0,2* Constants.UPSCALE_FACTOR, "hp_bar_text").setScale(Constants.UPSCALE_FACTOR)
 
 
         this.frame.setOrigin(0,0)
@@ -22,9 +22,9 @@ export class PlayerHealthBar implements IHealthStatHandler{
 
     private recenter() {
         const half = this.scene.cameras.main.width/2
-        this.frame.x = half/Constants.UPSCALE_FACTOR - this.frame.width/2;
-        this.fill.x = half/Constants.UPSCALE_FACTOR - this.frame.width/2;
-        this.text.x = half/Constants.UPSCALE_FACTOR - this.frame.width/2;
+        this.frame.x = half- this.frame.width/2 * Constants.UPSCALE_FACTOR;
+        this.fill.x = half - this.frame.width/2 * Constants.UPSCALE_FACTOR;
+        this.text.x = half- this.frame.width/2 * Constants.UPSCALE_FACTOR;
     }
 
     onHealthChange(health: number, maxHealth: number): void {

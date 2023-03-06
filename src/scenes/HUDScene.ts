@@ -1,5 +1,4 @@
 import {Scene} from "phaser";
-import Constants from "../Constants";
 import GameScene from "./Game";
 import {Player} from "../entities/living/Player";
 import {PlayerHealthBar} from "../ui/PlayerHealthBar";
@@ -47,10 +46,10 @@ export class HUDScene extends Scene {
 
         const camera = this.cameras.main;
 
-        camera.zoom = Constants.UPSCALE_FACTOR;
+        // camera.zoom = Constants.UPSCALE_FACTOR;
 
         // Black Magic value I hate math
-        camera.setScroll(-480, -270);
+        // camera.setScroll(-480, -270);
 
         this.refresh()
     }

@@ -1,5 +1,6 @@
 import {Scene} from "phaser";
 import {Player} from "../entities/living/Player";
+import Constants from "../Constants";
 import Vector2 = Phaser.Math.Vector2;
 
 export class PlayerMiniMap {
@@ -12,10 +13,10 @@ export class PlayerMiniMap {
         const camera = scene.cameras.main;
         this.cameraShape = new Vector2(camera.displayWidth, camera.displayHeight);
 
-        this.map = scene.add.sprite(camera.displayWidth/2,camera.displayHeight/2, "minimap")
+        this.map = scene.add.sprite(camera.displayWidth/2,camera.displayHeight/2, "minimap").setScale(Constants.UPSCALE_FACTOR)
         this.map.setVisible(false);
         this.map.setOrigin(.5,.5)
-        this.marker = scene.add.sprite(0,0, "minimap_marker")
+        this.marker = scene.add.sprite(0,0, "minimap_marker").setScale(Constants.UPSCALE_FACTOR)
         this.marker.setVisible(false);
         this.marker.setOrigin(.5,1)
         this.mapKey = this.scene.input.keyboard?.addKey("m")!
@@ -36,6 +37,6 @@ export class PlayerMiniMap {
     }
 
     private getMapPos() {
-        return new Vector2(this.player.x, this.player.y).scale(1/14.6).add(new Vector2(166,162));
+        return new Vector2(this.player.x, this.player.y).scale(1/14.6).add(new Vector2(166,162)).scale(Constants.UPSCALE_FACTOR);
     }
 }
