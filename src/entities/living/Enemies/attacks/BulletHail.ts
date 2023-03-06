@@ -10,21 +10,22 @@ import Vector2 = Phaser.Math.Vector2;
 
 export class BulletHail extends AttackStateBuilder {
 
-
-    private readonly TOTAL_BULLETS = 7;
-
-    private bulletsLeft: number = this.TOTAL_BULLETS;
+    private bulletsLeft: number;
 
     private readonly cooldownManager: CooldownManager;
 
     constructor(
         enemy: Enemy,
         id = "bullet_hail",
+        fireRate = 0.3 * 1000,
+        private readonly totalBullets = 7
     ) {
         super(id, enemy)
 
+        this.bulletsLeft = totalBullets;
+
         const cds = new Map<string, number>();
-        cds.set("shot", 0.3);
+        cds.set("shot", fireRate);
         this.cooldownManager = new CooldownManager(cds);
     }
 
@@ -38,7 +39,7 @@ export class BulletHail extends AttackStateBuilder {
         const done = this.bulletsLeft <= 0;
 
         if(done)
-            this.bulletsLeft = this.TOTAL_BULLETS;
+            this.bulletsLeft = this.totalBullets;
 
         return done;
     }
@@ -51,11 +52,7 @@ export class BulletHail extends AttackStateBuilder {
         this.cooldownManager.use("shot");
         this.bulletsLeft--;
 
-        const player = this.enemy.physicsSocket.getPlayer();
-        if(!player)
-            return;
-
-        this.enemy.projectileShooter.tryShoot(new Vector2(player.x, player.y));
+        this.enemy.projectileShooter.tryShoot(new Vector2(data.playerDir[0] / data.distanceToPlayer, data.playerDir[1] / data.distanceToPlayer));
     }
 
 }

@@ -41,7 +41,7 @@ export class ProjectileRingShoot extends AttackStateBuilder{
 
         const count = 8;
         const angle = 360/ 8;
-        const speed = 3;
+        const speed = 2;
         const bodyDist = 25;
         const range = 1;
         const delayBetween = 70;

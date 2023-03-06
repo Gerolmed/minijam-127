@@ -10,6 +10,10 @@ import {CooldownManager} from "../../../behaviour/CooldownManager";
 import {ProjectileRingShoot} from "./attacks/ProjectileRingShoot";
 import {WorldStoreManager} from "../../../world/WorldSave";
 import {BulletHail} from "./attacks/BulletHail";
+import {ProjectileShooter} from "../../projectiles/shooting/ProjectileShooter";
+import PhysicsLayers from "../../PhysicsLayers";
+import {Theme} from "../../../painting/Theme";
+import {SpinnyProjectileAnimationKeys} from "../../../animations/ProjectileAnimationKeys";
 
 export class BossEnemy extends Enemy {
 
@@ -31,7 +35,7 @@ export class BossEnemy extends Enemy {
 
         const abilities = new Map<string, number>();
         abilities.set("attack", 1.5 * 1000);
-        abilities.set("projectileRing", 6 * 1000);
+        abilities.set("projectileRing", 9 * 1000);
         abilities.set("bulletHail", 4 * 1000);
         this.cooldownManager = new CooldownManager(abilities);
     }
@@ -45,6 +49,18 @@ export class BossEnemy extends Enemy {
 
         if(!this.isInCombat && AABB.isIn(player.x, player.y, this.arenaTopLeft.x, this.arenaTopLeft.y, this.arenaSize.x, this.arenaSize.y))
             this.startBossFight();
+    }
+
+
+    protected createProjectileConfig() {
+        const shooter = super.createProjectileConfig();
+
+        shooter.updateConfig({
+            projectiles: 1,
+            frequency: 0
+        })
+
+        return shooter;
     }
 
 
