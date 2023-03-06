@@ -1,5 +1,5 @@
 import {Enemy, EnemyFacing} from "./Enemy";
-import {OpossumAnimationKeys, RatAnimationKeys} from "../../../animations/EnemyAnimationKeys";
+import {OpossumAnimationKeys} from "../../../animations/EnemyAnimationKeys";
 import Vector2 = Phaser.Math.Vector2;
 
 export class Opossum extends Enemy {
@@ -30,6 +30,12 @@ export class Opossum extends Enemy {
         }
 
         throw new Error("Invalid animation frame");
+    }
+
+
+
+    async playDeathAnim(): Promise<void> {
+        return new Promise(resolve => this.animator.play(Math.random() > .5 ? OpossumAnimationKeys.DEATH_LEFT : OpossumAnimationKeys.DEATH_RIGHT, 2, true, resolve))
     }
 
 }

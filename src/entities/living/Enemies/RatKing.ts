@@ -1,9 +1,7 @@
 import {BossEnemy} from "./BossEnemy";
-import {EnemyAiParams, EnemyFacing} from "./Enemy";
-import {RatKingAnimationKeys, WolfAnimationKeys} from "../../../animations/EnemyAnimationKeys";
+import {EnemyFacing} from "./Enemy";
+import {RatKingAnimationKeys} from "../../../animations/EnemyAnimationKeys";
 import Vector2 = Phaser.Math.Vector2;
-import {BehaviourStateMachine} from "../../../behaviour/BehaviourStateMachine";
-import {BehaviourBuilder} from "../../../behaviour/BehaviourBuilder";
 
 export class RatKing extends BossEnemy {
 
@@ -32,4 +30,7 @@ export class RatKing extends BossEnemy {
         throw new Error("Invalid animation frame")
     }
 
+    async playDeathAnim(): Promise<void> {
+        return new Promise(resolve => this.animator.play(Math.random() > .5 ? RatKingAnimationKeys.DEATH_LEFT : RatKingAnimationKeys.DEATH_RIGHT, 0, true, resolve))
+    }
 }

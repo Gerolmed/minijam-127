@@ -38,6 +38,11 @@ export class Wolf extends Enemy {
     }
 
 
+
+    async playDeathAnim(): Promise<void> {
+        return new Promise(resolve => this.animator.play(WolfAnimationKeys.DEATH, 2, true, resolve))
+    }
+
     protected createProjectileConfig(): ProjectileShooter {
         return new ProjectileShooter(this, this, {
             selfLayer: PhysicsLayers.ENEMY_PROJECTILE,
