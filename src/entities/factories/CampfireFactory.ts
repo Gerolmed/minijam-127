@@ -1,16 +1,10 @@
 import {IEntityFactory} from "./IEntityFactory";
 import {Entity} from "../Entity";
 import {EntityInstance, Layer} from "../../types/Tilemap";
-import {Wolf} from "../living/Enemies/Wolf";
-import {Rat} from "../living/Enemies/Rat";
-import {Opossum} from "../living/Enemies/Opossum";
-import {Scene} from "phaser";
 import {PhysicsSocket} from "../living/PhysicsSocket";
-import Vector2 = Phaser.Math.Vector2;
 import GameScene from "../../scenes/Game";
-import {Enemy} from "../living/Enemies/Enemy";
 import {CampfireEntity} from "../living/interactibles/CampfireEntity";
-
+import Vector2 = Phaser.Math.Vector2;
 
 
 export class CampfireFactory implements IEntityFactory {
@@ -27,7 +21,7 @@ export class CampfireFactory implements IEntityFactory {
             instance.__grid[1] * layer.__gridSize + chunkY -18,
         );
 
-        const fire = new CampfireEntity(this.scene, pos.x, pos.y, this.physicsSocket);
+        const fire = new CampfireEntity(this.scene, pos.x, pos.y, this.physicsSocket, instance.iid);
 
         return this.addEntity(fire);
     }
