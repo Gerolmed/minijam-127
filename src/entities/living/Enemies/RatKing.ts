@@ -32,10 +32,10 @@ export class RatKing extends BossEnemy {
     }
 
     protected safeDeath() {
+        this.gameScene.getJukebox().setTheme("overworld");
         super.safeDeath();
 
         WorldStoreManager.get().getStore().ratKingKilled = true;
-        this.gameScene.getJukebox().setTheme("overworld");
     }
 
     async playDeathAnim(): Promise<void> {
