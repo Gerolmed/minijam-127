@@ -3,7 +3,8 @@ import {PersistenceManager} from "../persistence/PersistenceManager";
 
 type WorldStore = {
     ratKingKilled: boolean
-    opportunisticOpossumKilled: boolean
+    opportunisticOpossumKilled: boolean,
+    spawnPosition: {x: number, y: number},
     raw: {
         [key: string]: any
     }
@@ -41,6 +42,7 @@ export class WorldStoreManager {
         return {
             ratKingKilled: false,
             opportunisticOpossumKilled: false,
+            spawnPosition: {x: 257, y: 130},
             raw: {}
         }
     }

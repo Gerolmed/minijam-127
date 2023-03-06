@@ -121,7 +121,8 @@ export default class GameScene extends Phaser.Scene {
         // Init Entities
         /////////////////
 
-        const player = this.addEntity(new Player(this, 300, 100))
+        const store = WorldStoreManager.get().getStore();
+        const player = this.addEntity(new Player(this, store.spawnPosition.x, store.spawnPosition.y))
         player.setTilemap(this.tilemap);
 
         physicsSocket.setPlayer(player);
@@ -176,7 +177,11 @@ export default class GameScene extends Phaser.Scene {
 
     async deathReset() {
         // Do reset to last campfire
+        await this.tilemap.unloadAllChunks();
+        await WorldStoreManager.get().write();
 
-        TimeManager.setGameFreeze(false)
+        this.sys.scenePlugin.start("DeathTransition");
+
+        TimeManager.setGameFreeze(false);
     }
 }
