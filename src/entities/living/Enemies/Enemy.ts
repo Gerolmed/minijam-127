@@ -48,7 +48,7 @@ export class Enemy extends LivingEntity implements IShootSource {
     private lastPlayerSpotted = Date.now();
     private startRetreating = 0;
     private facing: EnemyFacing = EnemyFacing.DOWN;
-    private isWalking = false;
+    protected isWalking = false;
 
     private readonly behaviour: BehaviourStateMachine<EnemyAiParams>;
 
@@ -189,7 +189,7 @@ export class Enemy extends LivingEntity implements IShootSource {
     }
 
 
-    private updateFacing(velX: number, velY: number) {
+    protected updateFacing(velX: number, velY: number) {
         const horizontal = Math.abs(velX) > Math.abs(velY);
 
         if(horizontal) {

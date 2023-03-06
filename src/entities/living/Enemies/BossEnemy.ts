@@ -7,6 +7,8 @@ import {Jukebox} from "../../../audio/JukeBox";
 import {BehaviourStateMachine} from "../../../behaviour/BehaviourStateMachine";
 import {BehaviourBuilder} from "../../../behaviour/BehaviourBuilder";
 import {CooldownManager} from "../../../behaviour/CooldownManager";
+import {ProjectileRingShoot} from "./attacks/ProjectileRingShoot";
+import {WorldStoreManager} from "../../../world/WorldSave";
 
 export class BossEnemy extends Enemy {
 
@@ -14,6 +16,10 @@ export class BossEnemy extends Enemy {
     private isInCombat = false;
 
     private readonly cooldownManager: CooldownManager;
+
+    private readonly APPROACH_RANGE = 120;
+    private readonly BOSS_SPEED = 32;
+
 
     constructor(scene: GameScene,
                 physicsSocket: PhysicsSocket,
@@ -23,7 +29,8 @@ export class BossEnemy extends Enemy {
         super(scene, physicsSocket, origin);
 
         const abilities = new Map<string, number>();
-        abilities.set("bulletHell", 3 * 1000);
+        abilities.set("attack", 1.5 * 1000);
+        abilities.set("projectileRing", 6 * 1000);
         this.cooldownManager = new CooldownManager(abilities);
     }
 
@@ -43,27 +50,71 @@ export class BossEnemy extends Enemy {
         return new BehaviourBuilder<EnemyAiParams>()
             .addState("neutral")
                 .onUpdate((param) => this.setToOrigin())
+                .addTransition("aggro", () => this.isInCombat)
                 .and()
             .addState("aggro")
                 .onUpdate((param, delta) => this.moveIntoAttackRange(param, delta))
+                .addTransition("projectile_ring_shoot", (param, delta) => this.shouldDoProjectileRing(param, delta))
                 .and()
-            // .addState("bulletHell")
-            //    .onUpdate((param, delta) => this.doBulletHell(param, delta))
-            //    .and()
+            .addFromBuilder(new ProjectileRingShoot(this))
             .setStart("neutral")
-                .addTransition("aggro", (param, delta) => this.shouldAggro(param, delta))
-                .setDataProvider(() => this.getAiParams())
+            .setDataProvider(() => this.getAiParams())
             .build()
     }
 
-    protected doBulletHell() {
+    protected shouldDoProjectileRing(params: EnemyAiParams, deltaTime: number): boolean {
+        const hasCd = this.cooldownManager.has("projectileRing") && this.cooldownManager.has("attack");
+        const result = hasCd && params.distanceToPlayer <= this.APPROACH_RANGE;
 
+        if(result) {
+            this.cooldownManager.use("projectileRing");
+            this.cooldownManager.use("attack");
+        }
+
+        return result;
+    }
+
+    protected moveIntoAttackRange(param: EnemyAiParams, deltaTime: number) {
+        if(!param.hasLos)
+            return;
+
+        if(param.distanceToPlayer > this.APPROACH_RANGE) {
+            const velX = param.playerDir[0] / param.distanceToPlayer * this.BOSS_SPEED * deltaTime;
+            const velY = param.playerDir[1] / param.distanceToPlayer * this.BOSS_SPEED * deltaTime;
+            this.scene.matter.setVelocity(
+                this.rigidbody,
+                velX,
+                velY
+            )
+
+            this.isWalking = true;
+            this.updateFacing(velX, velY);
+        } else {
+            this.isWalking = false;
+        }
+    }
+
+    protected shouldAttack(param: EnemyAiParams, deltaTime: number): boolean {
+        if(param.distanceToPlayer > this.APPROACH_RANGE)
+            return false;
+
+        return this.cooldownManager.has("")
+    }
+
+    public shouldAggro(params: EnemyAiParams, deltaTime: number): boolean {
+        return this.isInCombat;
     }
 
     private startBossFight() {
         this.isInCombat = true;
-        this.gameScene.getJukebox().setTheme("intro");
-        // this.gameScene.getJukebox().
+        this.gameScene.getJukebox().setTheme("");
+        const sound = this.scene.sound.add("boss_intro");
+        sound.setVolume(WorldStoreManager.get().getStore().masterVolume )
+        sound.on("complete", () => {
+            this.gameScene.getJukebox().setTheme("boss")
+        })
+
+        sound.play();
     }
 
 }

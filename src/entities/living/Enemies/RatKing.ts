@@ -2,6 +2,7 @@ import {BossEnemy} from "./BossEnemy";
 import {EnemyFacing} from "./Enemy";
 import {RatKingAnimationKeys} from "../../../animations/EnemyAnimationKeys";
 import Vector2 = Phaser.Math.Vector2;
+import {WorldStoreManager} from "../../../world/WorldSave";
 
 export class RatKing extends BossEnemy {
 
@@ -28,6 +29,13 @@ export class RatKing extends BossEnemy {
         }
 
         throw new Error("Invalid animation frame")
+    }
+
+    protected safeDeath() {
+        super.safeDeath();
+
+        WorldStoreManager.get().getStore().ratKingKilled = true;
+        this.gameScene.getJukebox().setTheme("overworld");
     }
 
     async playDeathAnim(): Promise<void> {

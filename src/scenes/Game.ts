@@ -80,6 +80,8 @@ export default class GameScene extends Phaser.Scene {
         this.load.audio("collect_item", "assets/audio/sfx/world/PowerupUpgrade.mp3")
         this.load.audio("player_dash", "assets/audio/sfx/world/PlayerDash.mp3")
 
+        this.load.audio("boss_intro", "assets/audio/music/boss/BossIntro.mp3")
+
         this.load.spritesheet("tileset", "assets/tilesets/tileset.png", {
             frameWidth: 16,
             frameHeight: 16,

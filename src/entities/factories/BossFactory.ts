@@ -47,9 +47,9 @@ export class BossFactory implements IEntityFactory {
         let boss = undefined;
         if(enemyType === "Ratking" && !this.worldStore.getStore().ratKingKilled) {
             boss = new RatKing(this.scene, this.physicsSocket, pos, topLeftCorner, new Vector2(botRightCorner.x - topLeftCorner.x,botRightCorner.y - topLeftCorner.y))
-        } else if(enemyType === "Alpha" && !this.worldStore.getStore().ratKingKilled) {
+        } else if(enemyType === "Alpha" && !this.worldStore.getStore().alphaKilled) {
             boss = new Alpha(this.scene, this.physicsSocket, pos, topLeftCorner, new Vector2(botRightCorner.x - topLeftCorner.x,botRightCorner.y - topLeftCorner.y))
-        } else if(enemyType === "Opossum" && !this.worldStore.getStore().ratKingKilled) {
+        } else if(enemyType === "Opossum" && !this.worldStore.getStore().opportunisticOpossumKilled) {
             boss = new OpportunisticOpossum(this.scene, this.physicsSocket, pos, topLeftCorner, new Vector2(botRightCorner.x - topLeftCorner.x,botRightCorner.y - topLeftCorner.y))
         }
 
