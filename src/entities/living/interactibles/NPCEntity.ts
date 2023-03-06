@@ -6,6 +6,7 @@ import GameScene from "../../../scenes/Game";
 import {PhysicsSocket} from "../PhysicsSocket";
 import {WorldStoreManager} from "../../../world/WorldSave";
 import {GLOBAL_DIALOG_DATA} from "../../../util/DialogData";
+import {NpcAnimationType} from "../../../animations/PlayerAnimationKeys";
 
 function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
@@ -20,14 +21,20 @@ export class NPCEntity extends InteractableEntity {
         private readonly entityId: string,
         private readonly lines: string[],
         private readonly oneshot: boolean,
-        private readonly globalLine: boolean
+        private readonly globalLine: boolean,
+        private readonly animationKeys: NpcAnimationType,
+        name: string
     ) {
         super(scene, x, y, socket);
+        this.name = name;
     }
 
     create() {
         super.create();
         this.setDepth(90)
+
+        this.animator.load(this.animationKeys.BASE)
+        this.animator.play(this.animationKeys.IDLE_DOWN)
     }
 
     death() {
@@ -68,7 +75,7 @@ export class NPCEntity extends InteractableEntity {
 
     private async doDialogs(lines: string[]): Promise<void> {
         for (let line of lines) {
-            const box = this.scene.add.existing(new DialogBox(this.scene, this.x, this.y-12, line))
+            const box = this.scene.add.existing(new DialogBox(this.scene, this.x, this.y-12, line, this.name))
 
             await box.start();
         }
