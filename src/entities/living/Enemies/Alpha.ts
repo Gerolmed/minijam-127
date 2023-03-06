@@ -1,6 +1,8 @@
 import {BossEnemy} from "./BossEnemy";
-import {AlphaAnimationKeys, RatKingAnimationKeys} from "../../../animations/EnemyAnimationKeys";
+import {AlphaAnimationKeys} from "../../../animations/EnemyAnimationKeys";
 import {EnemyFacing} from "./Enemy";
+import TimeManager from "../../../TimeManager";
+import {HUDScene} from "../../../scenes/HUDScene";
 import Vector2 = Phaser.Math.Vector2;
 
 export class Alpha extends BossEnemy {
@@ -30,4 +32,14 @@ export class Alpha extends BossEnemy {
         throw new Error("Invalid animation frame")
     }
 
+    death() {
+        super.death();
+        TimeManager.setGameFreeze(true)
+        this.gameScene.sys.scenePlugin.get<HUDScene>("HUDScene").doVictoryAnimation().then(() => {});
+    }
+
+
+    async playDeathAnim(): Promise<void> {
+        return new Promise(resolve => this.animator.play(AlphaAnimationKeys.DEATH, 0, true, resolve))
+    }
 }
