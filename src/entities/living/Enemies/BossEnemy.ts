@@ -33,7 +33,8 @@ export class BossEnemy extends Enemy {
 
     private startBossFight() {
         this.isInCombat = true;
-        this.gameScene.getJukebox().setTheme("boss");
+        this.gameScene.getJukebox().setTheme("intro");
+        // this.gameScene.getJukebox().
     }
 
 }

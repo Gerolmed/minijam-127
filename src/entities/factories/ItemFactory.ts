@@ -1,21 +1,11 @@
 import {IEntityFactory} from "./IEntityFactory";
 import {Entity} from "../Entity";
 import {EntityInstance, Layer} from "../../types/Tilemap";
-import {Wolf} from "../living/Enemies/Wolf";
-import {Rat} from "../living/Enemies/Rat";
-import {Opossum} from "../living/Enemies/Opossum";
-import {Scene} from "phaser";
-import {PhysicsSocket} from "../living/PhysicsSocket";
-import Vector2 = Phaser.Math.Vector2;
 import GameScene from "../../scenes/Game";
-import {Enemy} from "../living/Enemies/Enemy";
-import {NPCEntity} from "../living/interactibles/NPCEntity";
-import {Item} from "../../items/Item";
 import {ItemEntity} from "../../items/ItemEntity";
 import ItemRegistry from "../../items/ItemRegistry";
-import {PersistenceManager} from "../../persistence/PersistenceManager";
 import {WorldStoreManager} from "../../world/WorldSave";
-
+import Vector2 = Phaser.Math.Vector2;
 
 
 export class ItemFactory implements IEntityFactory {
@@ -42,9 +32,7 @@ export class ItemFactory implements IEntityFactory {
         if(this.worldStore.getStore().raw[worldStoreEntryName])
             return undefined;
 
-        this.worldStore.getStore().raw[worldStoreEntryName] = true;
-
-        return this.addEntity(new ItemEntity(this.scene, pos.x, pos.y, item));
+        return this.addEntity(new ItemEntity(this.scene, pos.x, pos.y, item, worldStoreEntryName));
     }
 
     supports(typeID: number): boolean {

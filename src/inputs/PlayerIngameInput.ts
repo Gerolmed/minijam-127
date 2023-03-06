@@ -21,7 +21,7 @@ export class PlayerIngameInput {
             right: keyboard.addKey("d"),
         })
 
-        keyboard.addKey(SHIFT).on("down", () => doDash)
+        keyboard.addKey(SHIFT).on("down", doDash)
     }
 
 
