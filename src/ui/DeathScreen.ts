@@ -6,13 +6,15 @@ export class DeathScreen {
     constructor(
         private readonly scene: Scene,
     ) {
-        scene.input.keyboard?.addKey("space").on("down", () => {
-            this.resolve?.();
-        })
     }
 
     private resolve?: () => void;
     async doDeathFade(): Promise<void> {
+
+        this.scene.input.keyboard?.addKey("space").on("down", () => {
+            this.resolve?.();
+        })
+
         const camera = this.scene.cameras.main;
 
         const graphics = this.scene.add.graphics()
@@ -22,10 +24,13 @@ export class DeathScreen {
         graphics.fillStyle(0x4d234a)
         graphics.fillRect(0,0, camera.displayWidth, camera.displayHeight)
 
-        await doAlphaTween(this.scene, 0, 1, 1000, (a) => graphics.setAlpha(a))
+        await doAlphaTween(this.scene, 0, 1, 3000, (a) => graphics.setAlpha(a))
         await new Promise(res => setTimeout(res,200))
-        await doTextTween(this.scene, deathTextContent, 1000, txt => deathText.setText(txt));
-        await new Promise(res => setTimeout(res,1000))
+        await doTextTween(this.scene, deathTextContent, 3000, txt => deathText.setText(txt));
+        await new Promise(res => setTimeout(res,500))
+        this.scene.add.text(camera.displayWidth/2, camera.displayHeight/2+12, "Press 'space' to continue" , { fontFamily: "EndFont", fontSize: 100}).setScale(.06).setOrigin(.5,.5)
+
+
         await new Promise<void>(res => this.resolve = res)
     }
 }
