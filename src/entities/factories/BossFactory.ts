@@ -24,7 +24,7 @@ export class BossFactory implements IEntityFactory {
         return typeID === 79;
     }
 
-    produce(instance: EntityInstance, layer: Layer, chunkX: number, chunkY: number, scene: Phaser.Scene): Entity {
+    produce(instance: EntityInstance, layer: Layer, chunkX: number, chunkY: number, scene: Phaser.Scene): Entity | undefined  {
         const type = instance.fieldInstances.find(field => field.__identifier === "Type");
         if(!type)
             throw new Error("Boss has no type");
@@ -54,7 +54,8 @@ export class BossFactory implements IEntityFactory {
         }
 
         if(!boss)
-            throw new Error("Unknown boss type: " + enemyType);
+            return undefined;
+            //throw new Error("Unknown boss type: " + enemyType);
 
         return this.addEnemy(boss);
     }

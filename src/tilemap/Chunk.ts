@@ -62,23 +62,39 @@ export class Chunk {
     render(scene: Scene, params: ChunkParams) {
         const walls = params.tileEnums.getTiles("Wall")
         Themes.forEach(theme => {
-            this.level.layerInstances.forEach(layer => {
-                if (!this.masks.has(theme) && theme !== Theme.DEFAULT) {
-                    const maskTexture = new RenderTexture(
-                        scene,
-                        this.level.worldX - 0.5 * layer.__gridSize,
-                        this.level.worldY - 0.5 * layer.__gridSize,
-                        layer.__cWid * layer.__gridSize,
-                        layer.__cHei * layer.__gridSize
-                    )
-                    maskTexture.setOrigin(0, 0);
-                    this.maskObjects.push(maskTexture);
-                    this.masks.set(theme, maskTexture);
-                }
-                const mask = this.masks.get(theme);
+            const sampleLayer = this.level.layerInstances[0];
 
+            this.maskOffsetX = this.level.worldX - 0.5 * sampleLayer.__gridSize;
+            this.maskOffsetY = this.level.worldY - 0.5 * sampleLayer.__gridSize;
+
+            const renderTarget = scene.add.renderTexture(
+                this.maskOffsetX,
+                this.maskOffsetY,
+                sampleLayer.__cWid * sampleLayer.__gridSize,
+                sampleLayer.__cHei * sampleLayer.__gridSize
+            );
+            renderTarget.setOrigin(0, 0);
+            params.mapContainer.add(renderTarget);
+            this.renderObjects.push(renderTarget);
+
+            if (theme !== Theme.DEFAULT) {
+                const maskTexture = new RenderTexture(
+                    scene,
+                    this.level.worldX - 0.5 * sampleLayer.__gridSize,
+                    this.level.worldY - 0.5 * sampleLayer.__gridSize,
+                    sampleLayer.__cWid * sampleLayer.__gridSize,
+                    sampleLayer.__cHei * sampleLayer.__gridSize
+                )
+                maskTexture.setOrigin(0, 0);
+                this.maskObjects.push(maskTexture);
+                this.masks.set(theme, maskTexture);
+
+                renderTarget.setMask(maskTexture.createBitmapMask());
+            }
+
+            this.level.layerInstances.forEach(layer => {
                 if(layer.__type === LayerType.Tiles)
-                    this.processTileLayer(scene, params, layer, walls, theme, mask);
+                    this.processTileLayer(scene, params, layer, walls, theme, renderTarget);
                 else if(theme === Theme.DEFAULT && layer.__type === LayerType.Entity)
                     this.processEntityLayer(scene, params, layer);
             })
@@ -122,25 +138,9 @@ export class Chunk {
     }
 
 
-    private processTileLayer(scene: Scene, params: ChunkParams, layer: Layer, walls: number[], theme: Theme, mask: RenderTexture | undefined) {
+    private processTileLayer(scene: Scene, params: ChunkParams, layer: Layer, walls: number[], theme: Theme, renderTarget: RenderTexture) {
         const grid = layerToIntGrid(layer);
-        this.maskOffsetX = this.level.worldX - 0.5 * layer.__gridSize;
-        this.maskOffsetY = this.level.worldY - 0.5 * layer.__gridSize;
-        const renderTexture = scene.add.renderTexture(
-            this.maskOffsetX,
-            this.maskOffsetY,
-            layer.__cWid * layer.__gridSize,
-            layer.__cHei * layer.__gridSize
-        );
-        renderTexture.setOrigin(0, 0);
-
-        if(mask)
-            renderTexture.setMask(mask.createBitmapMask());
-
-        params.mapContainer.add(renderTexture);
-        this.renderObjects.push(renderTexture);
-
-        this.renderLayer(layer, scene, params, walls, grid, theme, renderTexture)
+        this.renderLayer(layer, scene, params, walls, grid, theme, renderTarget);
     }
 
 
@@ -179,7 +179,7 @@ export class Chunk {
 
                 if(!params.hasPhysics || !walls.includes(index)) continue;
 
-                if(theme == Theme.DEFAULT) {
+                if(theme === Theme.DEFAULT) {
                     const physics = scene.matter.add.rectangle(
                         x * layer.__gridSize + this.level.worldX,
                         y * layer.__gridSize + this.level.worldY,
