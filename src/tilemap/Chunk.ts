@@ -61,7 +61,7 @@ export class Chunk {
 
     render(scene: Scene, params: ChunkParams) {
         const walls = params.tileEnums.getTiles("Wall")
-        Themes.forEach(theme => {
+        for(const theme of Themes) {
             const sampleLayer = this.level.layerInstances[0];
 
             this.maskOffsetX = this.level.worldX - 0.5 * sampleLayer.__gridSize;
@@ -92,13 +92,13 @@ export class Chunk {
                 renderTarget.setMask(maskTexture.createBitmapMask());
             }
 
-            this.level.layerInstances.forEach(layer => {
+            for(const layer of this.level.layerInstances) {
                 if(layer.__type === LayerType.Tiles)
                     this.processTileLayer(scene, params, layer, walls, theme, renderTarget);
                 else if(theme === Theme.DEFAULT && layer.__type === LayerType.Entity)
                     this.processEntityLayer(scene, params, layer);
-            })
-        })
+            }
+        }
 
         this.masks.forEach((mask, theme) => {
             this.loadMaskFromDB(mask, theme, scene);
@@ -159,6 +159,7 @@ export class Chunk {
 
 
     private renderLayer(layer: Layer, scene: Scene, params: ChunkParams, walls: number[], grid: number[][], theme: Theme, renderTexture: RenderTexture) {
+        renderTexture.beginDraw();
         for(let x = 0; x < layer.__cWid; x++) {
             for(let y = 0; y < layer.__cHei; y++) {
                 const index = grid[x][y];
@@ -173,9 +174,7 @@ export class Chunk {
                 )
                 sprite.setOrigin(0, 0);
 
-                renderTexture.beginDraw();
                 renderTexture.batchDraw(sprite);
-                renderTexture.endDraw();
 
                 if(!params.hasPhysics || !walls.includes(index)) continue;
 
@@ -193,6 +192,7 @@ export class Chunk {
                 }
             }
         }
+        renderTexture.endDraw();
     }
 
 
